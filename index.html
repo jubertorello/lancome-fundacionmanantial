@@ -145,18 +145,27 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   text-transform:uppercase;line-height:.88;letter-spacing:-.02em;margin:0;
   font-size:clamp(46px,11.5vw,168px);}
 .hero-claim .ast{color:var(--pink);opacity:0;transition:opacity .45s var(--ease)}
-.hero-claim .ast.on,.no-js .hero-claim .ast{opacity:1}
+.hero-claim .ast{opacity:1}
+.js .hero-claim .ast{opacity:0}
+.js .hero-claim .ast.on{opacity:1}
 .hero-claim2{
   font-family:var(--f-logo);font-weight:800;font-variation-settings:"wdth" 76;
   text-transform:uppercase;font-size:clamp(20px,5.2vw,74px);line-height:1;
   color:var(--pink);margin:.1em 0 0;
 }
 
-/* máquina de escribir: «I'M FINE» sale automático, «*or maybe not» duda */
-.tw span{opacity:0}
-.no-js .tw span{opacity:1}
-.tw span.on{opacity:1}
-.tw.done span{opacity:1}
+/* «I'M FINE» se teclea: es lo que mandas, deliberado y mecánico.
+   «*or maybe not» no se teclea: es el pensamiento de debajo, así que
+   aparece entero y va enfocándose. Si los dos se escribieran igual,
+   estarían al mismo nivel y el claim perdería la tensión. */
+.js .tw span{opacity:0}
+.js .tw span.on,.js .tw.done span{opacity:1}
+
+.js .think{
+  opacity:0;filter:blur(18px);transform:translateY(12px);
+  transition:opacity 1.1s var(--ease),filter 1.1s var(--ease),transform 1.1s var(--ease);
+}
+.js .think.in{opacity:1;filter:blur(0);transform:none}
 .caret{
   display:inline-block;width:.07em;height:.78em;margin-left:.06em;
   background:var(--pink);vertical-align:baseline;
@@ -418,6 +427,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 .js .checks.in .check--last b{transition-delay:calc(var(--i,0) * 260ms + 420ms)}
 @media(prefers-reduced-motion:reduce){
   .js .rv,.js .stagger > *,.js .check b{opacity:1;transform:none}
+  .js .think{opacity:1;filter:none;transform:none}
   .js .rv-mask > *{transform:none}
   .js .ph img{transform:none}
   .marq-track,.caret{animation:none}
@@ -463,6 +473,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 </style>
 </head>
 <body>
+<script>document.documentElement.classList.add("js")</script>
 
 <header class="top">
   <div class="top-in">
@@ -486,11 +497,9 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     <div class="bgimg bgimg--blur" aria-hidden="true"><img src="img/rosa-macro.webp" alt="" data-opt></div>
     <div class="hero-in wrap">
       <h1 class="hero-claim" aria-label="I'm fine, or maybe not">
-        <span class="tw" data-tw="I'm fine" data-speed="62"></span><span class="ast" aria-hidden="true">*</span>
+        <span class="tw" data-speed="62">I'm fine</span><span class="ast" aria-hidden="true">*</span>
       </h1>
-      <p class="hero-claim2" aria-hidden="true">
-        <span class="tw" data-tw="*or maybe not" data-speed="82" data-delay="900"></span>
-      </p>
+      <p class="hero-claim2 think" id="think" aria-hidden="true">*or maybe not</p>
       <div class="hero-grid">
         <p class="hero-lead">Respondemos «estoy bien» decenas de veces al día. Casi nunca nos paramos a comprobarlo.</p>
         <div class="hero-act">
@@ -843,7 +852,6 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 /* URL del cuestionario — sustituir por la definitiva */
 const FORM_URL = "#cuestionario";
 
-document.documentElement.classList.add("js");
 
 /* si aún no hay foto en img/, el hueco etiquetado se queda como está */
 document.querySelectorAll("img[data-opt]").forEach(img => {
@@ -871,11 +879,12 @@ document.querySelectorAll(".ph").forEach(el => pio.observe(el));
 /* máquina de escribir del claim */
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 document.querySelectorAll(".tw").forEach(tw => {
-  const text = tw.dataset.tw;
+  const text = tw.textContent;
   const speed = +tw.dataset.speed || 70;
   const delay = +tw.dataset.delay || 0;
 
-  // cada letra es un span: el texto sigue en el DOM para lectores y buscadores
+  // el texto ya está escrito en el HTML: aquí solo se parte en letras, así
+  // que sin JS el claim se lee igual
   tw.textContent = "";
   const spans = [...text].map(ch => {
     const sp = document.createElement("span");
@@ -884,7 +893,11 @@ document.querySelectorAll(".tw").forEach(tw => {
     return sp;
   });
 
-  if (reduce) { tw.classList.add("done"); return; }
+  if (reduce) {
+    tw.classList.add("done");
+    document.getElementById("think")?.classList.add("in");
+    return;
+  }
 
   const caret = document.createElement("i");
   caret.className = "caret";
@@ -898,6 +911,9 @@ document.querySelectorAll(".tw").forEach(tw => {
       // el asterisco aparece cuando la frase ya está dicha, no antes
       const ast = tw.parentElement.querySelector(".ast");
       if (ast) setTimeout(() => ast.classList.add("on"), 140);
+      // la pausa antes del pensamiento: el silencio es parte de la frase
+      const think = document.getElementById("think");
+      if (think) setTimeout(() => think.classList.add("in"), 620);
       return;
     }
     spans[i].classList.add("on");
@@ -915,6 +931,7 @@ setTimeout(() => {
   document.querySelectorAll(".tw:not(.done)").forEach(tw => tw.classList.add("done"));
   document.querySelectorAll(".caret").forEach(c => c.classList.add("off"));
   document.querySelectorAll(".hero-claim .ast").forEach(a => a.classList.add("on"));
+  document.getElementById("think")?.classList.add("in");
 }, 4000);
 
 /* la rosa del fondo se mueve algo menos que la página */

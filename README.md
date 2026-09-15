@@ -43,9 +43,20 @@ una sola línea.
 
 ## Movimiento
 
-El claim se escribe: «I'M FINE» sale rápido, casi automático, como la
-respuesta que damos sin pensar; «*or maybe not» entra después y más lento.
-El asterisco no aparece hasta que la primera frase está dicha.
+El claim tiene dos registros distintos a propósito:
+
+- **«I'M FINE» se teclea**, rápido y mecánico, con cursor. Es lo que
+  mandas por chat: deliberado, automático, la respuesta que damos sin
+  pensar.
+- **«*or maybe not» no se teclea.** Es el pensamiento de debajo, así que
+  aparece entero, desenfocado, y va enfocándose. Nadie teclea lo que
+  piensa por dentro.
+
+Entre los dos hay una pausa de 620 ms. El silencio forma parte de la
+frase. El asterisco tampoco aparece hasta que la primera está dicha.
+
+Si los dos se escribieran igual quedarían al mismo nivel y el claim
+perdería justamente la tensión que lo sostiene.
 
 El resto del movimiento es discreto y siempre al servicio del contenido:
 titulares que suben desde debajo de una línea, rejillas escalonadas, fotos
