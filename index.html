@@ -187,7 +187,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .hero-grid{display:grid;grid-template-columns:1fr auto;gap:clamp(24px,4vw,56px);
   align-items:end;margin-top:clamp(30px,4.5vw,58px)}
 @media(max-width:820px){.hero-grid{grid-template-columns:1fr;align-items:start}}
-.hero-lead{font-size:clamp(16px,1.5vw,20px);line-height:1.55;color:rgba(255,255,255,.82);max-width:34ch;margin:0}
+.hero-lead{font-size:clamp(16px,1.5vw,20px);line-height:1.5;color:rgba(255,255,255,.86);max-width:38ch;margin:0}
 .hero-act{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
 .hero-play{display:inline-flex;align-items:center;gap:11px;color:#fff;text-decoration:none;font-size:12px;letter-spacing:.13em;text-transform:uppercase}
 .hero-play i{
@@ -517,27 +517,28 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   .film-cap{bottom:auto;top:14px}
 }
 
-@media(max-width:560px){
-  /* Se encoge, nunca se oculta: la colaboración son dos marcas siempre.
-     A 375 px las dos marcas y el botón caben justos, así que aquí se
-     aprieta todo en lugar de sacrificar una. */
-  .top .fm-logo{--h:26px}
-  .top .lan-logo{--h:13px}
-  .top-in{gap:10px;padding-inline:14px}
-  .top .bar{height:18px}
+@media(max-width:700px){
+  /* En móvil la cabecera se queda con las marcas y suelta el botón: el
+     CTA ya vive en la barra fija de abajo a ancho completo, y el hero
+     tiene el suyo. Eso libera unos 150 px y permite que el logo de la
+     fundación mande de verdad en vez de ir apretado a 24 px.
+     Para recuperarlo: borrar la línea .top .btn{display:none}. */
+  .top .btn{display:none}
+  .top .fm-logo{--h:40px}
+  .top .lan-logo{--h:18px}
+  .top-in{gap:14px;padding-inline:16px}
+  .top .bar{height:24px}
   /* los logos son enlaces: se les da área de toque sin moverlos */
-  .top .fm-logo{padding-block:10px}
-  .top .lan-logo{padding-block:16px}
+  .top .fm-logo{padding-block:6px}
+  .top .lan-logo{padding-block:17px}
   .credit .fm-logo,.credit .lan-logo{padding-block:9px}
 }
 
-@media(max-width:420px){
-  /* En un iPhone SE las dos marcas y el botón van al límite. Se aprieta
-     todo un punto más antes que renunciar a una de las dos. */
-  .top .fm-logo{--h:24px}
-  .top .lan-logo{--h:12px}
-  .top-in{gap:8px;padding-inline:12px}
-  .top .btn{font-size:10px;padding:12px;letter-spacing:.06em}
+@media(max-width:400px){
+  /* iPhone SE: un punto menos, sin renunciar a ninguna de las dos marcas */
+  .top .fm-logo{--h:34px}
+  .top .lan-logo{--h:16px}
+  .top-in{gap:11px;padding-inline:14px}
 }
 </style>
 </head>
@@ -570,7 +571,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
       </h1>
       <p class="hero-claim2 think" id="think" aria-hidden="true">*or maybe not</p>
       <div class="hero-grid">
-        <p class="hero-lead">Respondemos «estoy bien» decenas de veces al día. Casi nunca nos paramos a comprobarlo.</p>
+        <p class="hero-lead">¿Estoy bien porque realmente lo estoy o porque es lo que respondo automáticamente?</p>
         <div class="hero-act">
           <a class="hero-play" href="#video"><i>▶</i> Ver el vídeo</a>
           <a class="btn btn--light btn--big cta" href="#">Descubre cómo estás <span class="arw">→</span></a>
