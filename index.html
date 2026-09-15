@@ -125,9 +125,12 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .brand{display:inline-flex;align-items:center;text-decoration:none;flex:none}
 .brand img{width:auto;height:var(--h,28px);transition:opacity .3s var(--ease)}
 .brand:hover img{opacity:.68}
-.fm-logo{--h:30px}
-.lan-logo{--h:18px}
-@media(max-width:860px){.fm-logo{--h:24px}.lan-logo{--h:15px}}
+/* La fundación es la anfitriona: su logo manda en la cabecera.
+   El de Lancôme es una línea de texto y el de FM una marca con dos
+   líneas, así que a estas alturas pesan parecido en pantalla. */
+.fm-logo{--h:44px}
+.lan-logo{--h:20px}
+@media(max-width:860px){.fm-logo{--h:34px}.lan-logo{--h:16px}}
 @media(max-width:520px){.lan-logo,.top .bar{display:none}}
 
 /* ---------- barra superior ---------- */
