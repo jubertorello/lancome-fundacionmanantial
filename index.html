@@ -1146,9 +1146,23 @@ if (filmBox) {
 /* tarjetas: toggle en táctil */
 document.querySelectorAll(".say").forEach(b => {
   b.addEventListener("click", () => {
+    b.dataset.tocada = "1";   // a partir de aquí manda la persona
     b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
   });
 });
+
+/* En móvil la primera frase arranca desplegada: al ver una abierta se
+   entiende de un vistazo que las demás también lo hacen. En escritorio no,
+   porque allí la tarjeta se voltea al pasar el ratón y arrancaría
+   enseñando el reverso. Se deja de tocar en cuanto la persona interviene. */
+const movil = matchMedia("(max-width: 700px)");
+const primeraFrase = document.querySelector(".say");
+const abrirPrimera = () => {
+  if (!primeraFrase || primeraFrase.dataset.tocada) return;
+  primeraFrase.setAttribute("aria-pressed", movil.matches ? "true" : "false");
+};
+abrirPrimera();
+movil.addEventListener("change", abrirPrimera);
 
 /* barra CTA fija */
 const dock = document.getElementById("dock");

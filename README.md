@@ -238,6 +238,11 @@ Lo que se corrigió al probarlo de verdad:
 - **Veinticinco rótulos a 10 px**, que en la mano no se leen. Suben a 11.
   Se mantiene a 10 solo la etiqueta del botón de cabecera: es el precio de
   que quepan las dos marcas, y en un botón en negrita y versales aguanta.
+- **«Lo que decimos / lo que no decimos» deja de ser tarjetas en móvil**
+  y pasa a lista desplegable, con el asterisco de campaña como señal. El
+  bloque baja de unos 1.900 px a 400. La primera frase arranca abierta,
+  que es lo que hace evidente que las demás también se abren; deja de
+  forzarse en cuanto la persona toca cualquiera.
 - **La barra fija ocupaba 121 px** de los 812 de pantalla porque el titular
   se partía en tres líneas. En móvil se queda solo el botón, a 68 px.
 - **«*or maybe not» se quedaba en 20 px** frente a los 46 del claim. Sube a
