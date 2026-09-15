@@ -206,6 +206,31 @@ autoobservación, nunca como diagnóstico.
 
 El pie incluye el **024** (atención a la conducta suicida) y el **112**.
 
+## Responsive
+
+Auditado a 375 px, no solo escrito. Puntos de ruptura en 820, 700, 560 y 420.
+
+Lo que se corrigió al probarlo de verdad:
+
+- **Lancôme desaparecía entero en móvil.** Una regla pensada para despejar
+  la cabecera ocultaba `.lan-logo` en toda la página: cabecera, crédito del
+  hero y las dos apariciones del pie. Ahora se encoge, nunca se oculta.
+- **La cabecera se salía 20 px** y `overflow-x:hidden` lo estaba tapando. A
+  375 px necesita 350 y cabe; también en 360.
+- **Trece objetivos táctiles por debajo de 44 px**, entre ellos enlaces del
+  pie de 22 px de alto. Los logos, que también son enlaces, llevan relleno
+  para crecer sin moverse.
+- **Veinticinco rótulos a 10 px**, que en la mano no se leen. Suben a 11.
+  Se mantiene a 10 solo la etiqueta del botón de cabecera: es el precio de
+  que quepan las dos marcas, y en un botón en negrita y versales aguanta.
+- **La barra fija ocupaba 121 px** de los 812 de pantalla porque el titular
+  se partía en tres líneas. En móvil se queda solo el botón, a 68 px.
+- **«*or maybe not» se quedaba en 20 px** frente a los 46 del claim. Sube a
+  28: es la mitad de la frase, no una nota al pie.
+- El rótulo del vídeo se montaba encima del subtítulo quemado del clip.
+- Las media queries de cabecera estaban **antes** que el bloque general de
+  700 px y la cascada las pisaba. Reordenadas.
+
 ## Estructura
 
 1. Banner — claim y vídeo

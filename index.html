@@ -131,7 +131,6 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .fm-logo{--h:44px}
 .lan-logo{--h:20px}
 @media(max-width:860px){.fm-logo{--h:34px}.lan-logo{--h:16px}}
-@media(max-width:520px){.lan-logo,.top .bar{display:none}}
 
 /* ---------- barra superior ---------- */
 .top{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid rgba(0,69,145,.22)}
@@ -162,7 +161,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .js .hero-claim .ast.on{opacity:1}
 .hero-claim2{
   font-family:var(--f-logo);font-weight:800;font-variation-settings:"wdth" 76;
-  text-transform:uppercase;font-size:clamp(20px,5.2vw,74px);line-height:1;
+  text-transform:uppercase;font-size:clamp(28px,5.2vw,74px);line-height:1;
   color:var(--pink);margin:.1em 0 0;
 }
 
@@ -477,6 +476,69 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 .bgimg--soft img{filter:blur(16px) saturate(1.1);transform:scale(1.1)}
 /* el cierre firma con el sello: poco desenfoque para que se lea el relieve */
 .bgimg--seal img{filter:blur(7px) saturate(1.05) brightness(.82);transform:scale(1.06)}
+
+/* ==========================================================================
+   MÓVIL
+   Auditado a 375 px. Corrige tres cosas que no se ven en escritorio:
+   objetivos táctiles por debajo de 44 px, rótulos de 10 px que ahí no se
+   leen, y una barra fija que ocupaba 121 px de los 812 de pantalla.
+   ========================================================================== */
+@media(max-width:700px){
+
+  /* --- objetivos táctiles: mínimo 44 px, que es lo que recomiendan
+         Apple y Google y lo que mide un dedo --- */
+  .top .btn{min-height:44px;padding:13px 16px;font-size:11px;letter-spacing:.08em}
+  .hero-play i{width:44px;height:44px;font-size:12px}
+  .foot-col a{padding-block:11px;margin:0}
+  .top .fm-logo{padding-block:6px}
+  .foot-bottom .fm-logo{padding-block:9px}
+  .foot-col p{padding-block:5px}
+  .art .link,.proj{min-height:44px;display:flex;align-items:center}
+  .proj{display:grid;padding-top:14px}
+
+  /* --- rótulos: 10 px no se leen en la mano --- */
+  .say small,.msg-k,.art-img i,.credit > span:first-child{font-size:11px}
+  .voice i,.hero-play i{font-size:12px}
+
+  /* --- la barra fija se queda solo con el botón: el titular se partía en
+         tres líneas y comía 92 px --- */
+  .dock-in{padding:10px var(--pad)}
+  .dock-txt{display:none}
+  .dock .btn{width:100%;justify-content:center;min-height:48px;font-size:12px}
+  footer{padding-bottom:104px}
+
+  /* --- la lista de comprobaciones se apila: en línea se estrangulaba --- */
+  .check{flex-direction:column;align-items:flex-start;gap:4px}
+
+  /* --- el crédito del hero respira --- */
+  .credit{gap:12px}
+
+  /* --- el rótulo se iba encima del subtítulo quemado del vídeo --- */
+  .film-cap{bottom:auto;top:14px}
+}
+
+@media(max-width:560px){
+  /* Se encoge, nunca se oculta: la colaboración son dos marcas siempre.
+     A 375 px las dos marcas y el botón caben justos, así que aquí se
+     aprieta todo en lugar de sacrificar una. */
+  .top .fm-logo{--h:26px}
+  .top .lan-logo{--h:13px}
+  .top-in{gap:10px;padding-inline:14px}
+  .top .bar{height:18px}
+  /* los logos son enlaces: se les da área de toque sin moverlos */
+  .top .fm-logo{padding-block:10px}
+  .top .lan-logo{padding-block:16px}
+  .credit .fm-logo,.credit .lan-logo{padding-block:9px}
+}
+
+@media(max-width:420px){
+  /* En un iPhone SE las dos marcas y el botón van al límite. Se aprieta
+     todo un punto más antes que renunciar a una de las dos. */
+  .top .fm-logo{--h:24px}
+  .top .lan-logo{--h:12px}
+  .top-in{gap:8px;padding-inline:12px}
+  .top .btn{font-size:10px;padding:12px;letter-spacing:.06em}
+}
 </style>
 </head>
 <body>
@@ -843,7 +905,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 
 <div class="dock" id="dock">
   <div class="dock-in">
-    <div>
+    <div class="dock-txt">
       <b>¿Quieres saber cómo estás?</b>
       <small>3 pasos · 4 min · anónimo · no es un diagnóstico</small>
     </div>
