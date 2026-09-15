@@ -252,6 +252,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .neg:hover img{opacity:.7}
 
 /* ---------- 02 · lo que decimos / lo que no ---------- */
+.says-hint{margin:10px 0 0;font-size:14px;color:var(--mute)}
 .says{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1px;background:var(--rule);
   border:1px solid var(--rule);margin-top:clamp(30px,4vw,48px)}
 .say{
@@ -513,6 +514,42 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   .dock .btn{width:100%;justify-content:center;min-height:48px;font-size:12px}
   footer{padding-bottom:104px}
 
+  /* --- «lo que decimos / lo que no decimos» deja de ser tarjetas ---
+     A pantalla completa cada tarjeta medía unos 370 px: las cinco se comían
+     1.900 px de scroll. Y el volteo dependía del hover, que en táctil no
+     existe, así que nada decía que se pudieran tocar. En móvil pasan a
+     lista desplegable y el asterisco de la campaña hace de señal: ya
+     significa «hay una nota debajo». */
+  .says{grid-template-columns:1fr;gap:0;background:none;border:0;border-top:1px solid var(--rule)}
+  .say{aspect-ratio:auto;background:none;border-bottom:1px solid var(--rule)}
+  .say-f,.say-b{position:static;transform:none;padding:0}
+  .say-f{
+    /* la base es columna para las tarjetas; aquí es una fila */
+    flex-direction:row;align-items:center;justify-content:space-between;gap:16px;
+    padding:18px 0;
+  }
+  .say-f small{display:none}
+  .say-f::after{
+    content:"✱";color:var(--pink);font-size:19px;flex:none;
+    transition:transform .45s var(--ease);
+  }
+  .say[aria-pressed="true"] .say-f::after{transform:rotate(90deg)}
+  .say-b{
+    background:none;color:var(--pink);
+    display:grid;grid-template-rows:0fr;
+    transition:grid-template-rows .5s var(--ease);
+  }
+  .say[aria-pressed="true"] .say-b{grid-template-rows:1fr}
+  .say-b-in{overflow:hidden;min-height:0}
+  .say-b small{display:block;padding-top:2px;color:rgba(238,75,152,.72)}
+  .say-b p{padding:6px 0 20px}
+  /* El volteo de escritorio desplazaba la cara visible fuera de pantalla.
+     Aquí no hay volteo: la fila se despliega, así que se anulan los dos
+     desplazamientos, el del hover y el del estado abierto. */
+  .say:hover .say-f,.say:hover .say-b,
+  .say[aria-pressed="true"] .say-f,
+  .say[aria-pressed="true"] .say-b{transform:none}
+
   /* --- la lista de comprobaciones se apila: en línea se estrangulaba --- */
   .check{flex-direction:column;align-items:flex-start;gap:4px}
 
@@ -624,26 +661,27 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     <p class="lead rv" style="margin-top:22px">A veces decimos «estoy bien» sin pararnos a pensar cómo estamos realmente.</p>
 
     <p class="kicker rv" style="margin-top:clamp(34px,4vw,52px)">Lo que decimos <span class="ast">·</span> lo que no decimos</p>
+    <p class="says-hint rv">Toca cada frase para ver lo que hay debajo</p>
     <div class="says rv stagger">
       <button class="say" aria-pressed="false">
         <span class="say-f"><small>Lo que decimos</small><p>«No es para tanto.»</p></span>
-        <span class="say-b"><small>Lo que no decimos</small><p>«No estoy durmiendo bien.»</p></span>
+        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>«No estoy durmiendo bien.»</p></span></span>
       </button>
       <button class="say" aria-pressed="false">
         <span class="say-f"><small>Lo que decimos</small><p>«Solo estoy cansada.»</p></span>
-        <span class="say-b"><small>Lo que no decimos</small><p>«Estoy agotada.»</p></span>
+        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>«Estoy agotada.»</p></span></span>
       </button>
       <button class="say" aria-pressed="false">
         <span class="say-f"><small>Lo que decimos</small><p>«Es que llevo unas semanas raras.»</p></span>
-        <span class="say-b"><small>Lo que no decimos</small><p>«No tengo ganas de nada.»</p></span>
+        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>«No tengo ganas de nada.»</p></span></span>
       </button>
       <button class="say" aria-pressed="false">
         <span class="say-f"><small>Lo que decimos</small><p>«Ya se me pasará.»</p></span>
-        <span class="say-b"><small>Lo que no decimos</small><p>«No consigo desconectar.»</p></span>
+        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>«No consigo desconectar.»</p></span></span>
       </button>
       <button class="say" aria-pressed="false">
         <span class="say-f"><small>Lo que decimos</small><p>«Todo el mundo está igual.»</p></span>
-        <span class="say-b"><small>Lo que no decimos</small><p>«Estoy más irritable últimamente.»</p></span>
+        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>«Estoy más irritable últimamente.»</p></span></span>
       </button>
     </div>
   </section>
@@ -681,7 +719,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     <div class="quest-in wrap">
       <div class="quest-grid">
         <div>
-          <p class="kicker">3 pasos <span class="ast">·</span> 4 minutos <span class="ast">·</span> anónimo</p>
+          <p class="kicker">Cuestionario <span class="ast">·</span> 3 pasos <span class="ast">·</span> 4 minutos</p>
           <h2 class="h-xl">¿Quieres saber cómo <b>estás</b>?</h2>
           <p class="lead">A veces, preguntártelo es el primer paso.</p>
           <div class="quest-cta">
@@ -693,7 +731,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
             <div class="num" data-to="7000">0</div>
             <p class="num-l">Mujeres a las que queremos escuchar</p>
           </div>
-          <p class="note">Es una herramienta de prevención y autoobservación. No es un diagnóstico ni lo sustituye.</p>
+          <p class="note">Es anónimo. Una herramienta de prevención y autoobservación: no es un diagnóstico ni lo sustituye.</p>
         </div>
       </div>
     </div>
