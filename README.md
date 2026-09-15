@@ -259,10 +259,10 @@ Lo que se corrigió al probarlo de verdad:
   Se mantiene a 10 solo la etiqueta del botón de cabecera: es el precio de
   que quepan las dos marcas, y en un botón en negrita y versales aguanta.
 - **«Lo que decimos / lo que no decimos» deja de ser tarjetas en móvil**
-  y pasa a lista desplegable, con el asterisco de campaña como señal. El
-  bloque baja de unos 1.900 px a 400. La primera frase arranca abierta,
-  que es lo que hace evidente que las demás también se abren; deja de
-  forzarse en cuanto la persona toca cualquiera.
+  y pasa a lista desplegable con un chevron por fila. El bloque baja de
+  unos 1.900 px a 298. Se probó antes con el asterisco de campaña, que
+  encajaba con la marca pero no decía «esto se abre», que es lo único que
+  ese elemento tiene que comunicar.
 - **La barra fija ocupaba 121 px** de los 812 de pantalla porque el titular
   se partía en tres líneas. En móvil se queda solo el botón, a 68 px.
 - **«*or maybe not» se quedaba en 20 px** frente a los 46 del claim. Sube a
