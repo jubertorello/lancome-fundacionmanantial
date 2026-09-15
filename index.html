@@ -65,15 +65,17 @@
 }
 
 *{box-sizing:border-box}
-html{overflow-x:hidden;overflow-x:clip}
+/* El recorte va solo en html. La propiedad del elemento raíz se propaga al
+   viewport, que es el comportamiento universal y predecible en todos los
+   navegadores, y deja el propio html sin ser contenedor de scroll, así que
+   no estorba a la cabecera pegajosa.
+   Antes usaba overflow-x:clip aquí: en el raíz tiene un soporte mucho más
+   irregular y hay navegadores que sencillamente lo ignoran. */
+html{overflow-x:hidden}
 body{
   margin:0;background:var(--paper);color:var(--ink);
   font-family:var(--f-sans);font-size:16px;line-height:1.55;
   -webkit-font-smoothing:antialiased;
-  /* clip donde se soporte: a diferencia de hidden no crea un contenedor de
-     scroll, así que no interfiere con la cabecera pegajosa. Es solo una red:
-     lo que de verdad no debe pasar es que algo sea más ancho que la pantalla. */
-  overflow-x:hidden;overflow-x:clip;
   max-width:100%;
 }
 img,svg,video{display:block;max-width:100%}
