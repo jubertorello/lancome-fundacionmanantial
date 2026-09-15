@@ -1010,10 +1010,19 @@ if (filmBox) {
     v.src = "video/manifiesto.mp4";
     v.poster = "video/manifiesto-poster.webp";
     v.controls = true;
-    v.autoplay = true;
     v.playsInline = true;
+    // con sonido: el play viene de un clic, así que el navegador lo permite.
+    // (El mp4 actual no trae pista de audio; en cuanto llegue un export con
+    //  voz sonará sin tocar nada.)
+    v.muted = false;
+    v.preload = "auto";
     filmBox.classList.add("playing");
     filmBox.querySelector("img").replaceWith(v);
+
+    // si algún navegador se niega a arrancar con sonido —iOS en bajo
+    // consumo, por ejemplo— se deja el vídeo listo con sus controles en
+    // lugar de un fotograma congelado
+    v.play().catch(() => { v.controls = true; });
   };
   filmBox.addEventListener("click", play);
   filmBox.querySelector(".film-play").addEventListener("keydown", e => {

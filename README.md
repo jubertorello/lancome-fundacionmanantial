@@ -132,12 +132,24 @@ bitrate) y se queda en 6,7 MB. Con ffmpeg baja a ~1 MB sin pérdida visible:
 ```bash
 ffmpeg -i video/manifiesto-master.mp4 -vf scale=1280:-2 \
   -c:v libx264 -crf 26 -preset slow -profile:v high \
-  -movflags +faststart -an video/manifiesto.mp4
+  -movflags +faststart -c:a aac -b:a 96k video/manifiesto.mp4
 ```
 
-`-an` quita el audio: el vídeo lleva los subtítulos quemados, así que se
-entiende en silencio. Si hace falta conservar la voz, cambia `-an` por
-`-c:a aac -b:a 96k`.
+Conserva el audio. El máster actual no lo tiene —ver abajo— pero el día que
+llegue un export con voz, este comando no lo tira.
+
+### El archivo actual no tiene sonido
+
+Comprobado de dos formas: leyendo los átomos del MP4, que solo declaran una
+pista `vide`, y reproduciéndolo en el navegador, donde
+`webkitAudioDecodedByteCount` se queda en 0 con el volumen al máximo y sin
+silenciar.
+
+No se perdió al comprimir: el máster ya venía mudo del programa de edición.
+El reproductor de la página pide sonido —sin `muted`, con controles y
+lanzado por un clic, que es lo que los navegadores exigen para permitir
+audio—, así que **en cuanto se sustituya el archivo por un export con voz,
+sonará sin tocar una línea de código**.
 
 Una vez por debajo de ~1,5 MB se puede pasar a autoplay silenciado en
 bucle, que como hook funciona mucho mejor que un play manual.
