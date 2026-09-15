@@ -9,6 +9,21 @@ cuestionario. Todos los CTA principales apuntan ahí.
 Se alojará en [fundacionmanantial.org](https://www.fundacionmanantial.org/),
 enlazada desde un botón de la web principal.
 
+## En revisión
+
+**https://lancome-fundacionmanantial.vercel.app**
+
+Desplegada desde este repositorio: cada push a `main` la actualiza sola.
+
+No se indexa. Lleva `noindex, nofollow` y un `robots.txt` cerrado porque
+es material de campaña sin publicar y con fotografía de Lancôme cuya
+licencia para este dominio está por confirmar. **Las dos cosas hay que
+retirarlas al aprobarla.**
+
+La URL es pública para quien la tenga. Si hace falta cerrarla del todo
+mientras la ven Lancôme y la fundación, en Vercel se activa protección
+por contraseña desde los ajustes del proyecto.
+
 ## Stack
 
 HTML + CSS + JavaScript, sin dependencias ni build. Un único archivo
