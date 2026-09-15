@@ -239,6 +239,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .credit-claim{
   margin:0;font-size:11px;font-weight:700;letter-spacing:.15em;line-height:1.7;
   text-transform:uppercase;color:rgba(255,255,255,.62);
+  max-width:42ch;text-wrap:balance;
 }
 .credit-logos{display:flex;align-items:center;gap:clamp(14px,2vw,22px)}
 .credit-x{font-size:15px;color:rgba(255,255,255,.35)}
@@ -518,7 +519,6 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   /* --- la firma y los logos se apilan --- */
   .credit{flex-direction:column;align-items:flex-start;gap:16px}
   .credit-claim{font-size:10px;letter-spacing:.13em;line-height:1.6}
-  .credit-claim br{display:none}
 
   /* --- el rótulo se iba encima del subtítulo quemado del vídeo --- */
   .film-cap{bottom:auto;top:14px}
@@ -531,6 +531,13 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
      fundación mande de verdad en vez de ir apretado a 24 px.
      Para recuperarlo: borrar la línea .top .btn{display:none}. */
   .top .btn{display:none}
+
+  /* El enlace al vídeo sobra en móvil: el vídeo está justo debajo, a
+     sangre, y basta con seguir bajando. Así el hero se queda con una
+     sola acción en vez de dos compitiendo. */
+  .hero-play{display:none}
+  .hero-act{width:100%}
+  .hero-act .btn{width:100%;justify-content:center}
   .top .fm-logo{--h:40px}
   .top .lan-logo{--h:18px}
   .top-in{gap:14px;padding-inline:16px}
@@ -586,7 +593,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
       </div>
 
       <div class="credit">
-        <p class="credit-claim">Juntos en la prevención de los problemas<br>de salud mental de las mujeres</p>
+        <p class="credit-claim">Juntos en la prevención de los problemas de salud mental de las mujeres</p>
         <div class="credit-logos">
           <span class="brand lan-logo neg" style="--h:19px"><img src="img/logo-lancome.png" alt="Lancôme"></span>
           <span class="credit-x">+</span>
@@ -899,7 +906,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 
     <div class="foot-bottom">
       <div class="foot-lock">
-        <p class="credit-claim credit-claim--pie">Juntos en la prevención de los problemas<br>de salud mental de las mujeres</p>
+        <p class="credit-claim credit-claim--pie">Juntos en la prevención de los problemas de salud mental de las mujeres</p>
         <div class="lock" style="gap:20px">
           <span class="brand lan-logo" style="--h:22px"><img src="img/logo-lancome.png" alt="Lancôme"></span>
           <span class="lock-x">+</span>
