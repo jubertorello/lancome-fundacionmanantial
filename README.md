@@ -37,6 +37,24 @@ una sola línea.
 - La rosa de Lancôme aparece **siempre desenfocada**, como atmósfera y nunca
   como fotografía legible (clases `.bgimg--blur` y `.bgimg--soft`).
 
+## Movimiento
+
+El claim se escribe: «I'M FINE» sale rápido, casi automático, como la
+respuesta que damos sin pensar; «*or maybe not» entra después y más lento.
+El asterisco no aparece hasta que la primera frase está dicha.
+
+El resto del movimiento es discreto y siempre al servicio del contenido:
+titulares que suben desde debajo de una línea, rejillas escalonadas, fotos
+que se posan, la rosa del hero a menor velocidad que la página, y la lista
+de «Compruebas» cayendo uno a uno hasta el silencio final.
+
+Todo respeta `prefers-reduced-motion`, que deja la página quieta y legible.
+
+**Contrapartida a tener en cuenta:** durante los primeros ~2,5 s el claim se
+está escribiendo, así que una captura automática o la miniatura de una
+previsualización pueden pillarlo a medias. Si molesta, basta con bajar
+`data-speed` en los dos `<span class="tw">` del hero.
+
 Para verlo: abre `index.html` en el navegador, o sirve la carpeta como estático.
 
 ```bash
