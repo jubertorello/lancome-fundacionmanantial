@@ -13,7 +13,7 @@
 <title>I'm Fine. Or Maybe Not.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300..900;1,400..600&family=Bodoni+Moda:opsz,wght@6..96,400..600&family=Archivo:wdth,wght@62..100,700..900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300..900;1,400..600&family=Archivo:wdth,wght@62..100,700..900&display=swap">
 
 <style>
 /* ==========================================================================
@@ -54,7 +54,6 @@
   --wine-2:#8E1230;
 
   --f-sans:"Mulish","Helvetica Neue",Arial,system-ui,sans-serif;
-  --f-serif:"Bodoni Moda","Didot","Times New Roman",serif;
   --f-logo:"Archivo","Helvetica Neue",Arial,sans-serif;
 
   --pad:clamp(20px,5vw,64px);
@@ -70,7 +69,7 @@ body{
 }
 img,svg{display:block}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 
 .wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--pad)}
 .band{padding-block:clamp(56px,7.5vw,112px)}
@@ -104,10 +103,10 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease);
 }
 .btn .arw{transition:transform .35s var(--ease)}
-.btn:hover{background:var(--pink);border-color:var(--pink);color:#fff}
+.btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
 .btn:hover .arw{transform:translateX(5px)}
 .btn--light{background:#fff;color:var(--ink);border-color:#fff}
-.btn--light:hover{background:var(--pink);border-color:var(--pink);color:#fff}
+.btn--light:hover{background:var(--blue);border-color:var(--blue);color:#fff}
 .btn--line{background:transparent;color:var(--blue);border-color:var(--blue)}
 .btn--line:hover{background:var(--blue);border-color:var(--blue);color:#fff}
 .btn--big{font-size:13px;padding:18px 34px}
@@ -116,7 +115,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   text-transform:uppercase;text-decoration:none;padding-bottom:3px;
   border-bottom:1px solid currentColor;transition:color .3s var(--ease);
 }
-.link:hover{color:var(--pink)}
+.link:hover{color:var(--blue)}
 
 /* ---------- lockups ---------- */
 .lock{display:flex;align-items:center;gap:13px;min-width:0}
@@ -279,8 +278,8 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 }
 .check span{font-size:clamp(18px,2.2vw,30px);line-height:1.2;font-weight:400}
 .check b{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
-.check--last span{color:var(--pink);font-weight:500}
-.check--last b{color:var(--pink)}
+.check--last span{color:var(--blue);font-weight:600}
+.check--last b{color:var(--blue)}
 .checks-out{margin:clamp(22px,2.6vw,34px) 0 0;font-size:clamp(16px,1.4vw,19px);color:var(--ink-soft)}
 
 /* ---------- 03 · cuestionario (mundo rosa Lancôme) ---------- */
@@ -316,7 +315,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 /* la cita es el corazón de lo que dice la fundación: bloque azul entero */
 .quote{margin-top:clamp(44px,5.5vw,84px);
   background:var(--blue);color:#fff;padding:clamp(32px,5vw,72px)}
-.quote p{margin:0;font-family:var(--f-serif);font-size:clamp(21px,2.9vw,40px);line-height:1.26;max-width:26ch}
+.quote p{margin:0;font-weight:300;font-size:clamp(21px,2.9vw,38px);line-height:1.32;letter-spacing:-.015em;max-width:28ch}
 .quote cite{display:block;margin-top:22px;font-style:normal;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.62)}
 
 /* ---------- 05 · mensajes ---------- */
@@ -324,7 +323,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .msg{border-bottom:1px solid var(--rule);padding:clamp(22px,2.8vw,34px) 0;
   display:grid;grid-template-columns:clamp(74px,11vw,170px) 1fr;gap:clamp(14px,3vw,40px);align-items:start}
 @media(max-width:620px){.msg{grid-template-columns:1fr;gap:10px}}
-.msg-k{font-size:10px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:var(--pink);padding-top:.5em}
+.msg-k{font-size:10px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--blue);padding-top:.5em}
 .msg-t{margin:0;font-size:clamp(19px,2.2vw,30px);line-height:1.22;font-weight:400;max-width:26ch}
 .msg-d{margin:10px 0 0;font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:56ch}
 
@@ -335,7 +334,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .art-img{aspect-ratio:4/3;background:var(--paper-2);position:relative;overflow:hidden}
 .art-img::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(145deg,rgba(238,75,152,.14),rgba(27,76,161,.12));
+  background:linear-gradient(145deg,rgba(0,69,145,.16),rgba(0,69,145,.06));
   transition:opacity .4s var(--ease);
 }
 .art:hover .art-img::after{opacity:.45}
@@ -414,8 +413,8 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   display:flex;align-items:center;justify-content:space-between;gap:18px}
 .dock b{font-size:14px;font-weight:500}
 .dock small{display:block;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:3px}
-.dock .btn{background:var(--pink);border-color:var(--pink)}
-.dock .btn:hover{background:#fff;border-color:#fff;color:var(--ink)}
+.dock .btn{background:#fff;border-color:#fff;color:var(--ink)}
+.dock .btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
 @media(max-width:600px){.dock small{display:none}.dock .btn{padding:12px 16px;font-size:11px}}
 
 /* ---------- reveals ---------- */
@@ -458,7 +457,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 .ph{
   position:relative;aspect-ratio:var(--ar,4/3);overflow:hidden;
   background:
-    linear-gradient(145deg,rgba(238,75,152,.10),rgba(92,11,27,.08)),
+    linear-gradient(145deg,rgba(0,69,145,.10),rgba(0,69,145,.04)),
     var(--paper-2);
 }
 .ph::after{

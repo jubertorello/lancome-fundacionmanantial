@@ -21,12 +21,15 @@ una sola línea.
 
 ## Tipografía
 
-- **Mulish** — la tipografía de Fundación Manantial. Es la principal de toda
-  la página: titulares, cuerpo, botones y navegación.
-- **Bodoni Moda** — solo para el wordmark LANCÔME y la cita. Es el guiño
-  didone de Lancôme, usado con cuentagotas.
+- **Mulish** — la tipografía de Fundación Manantial. Es la de toda la
+  página: titulares, cuerpo, botones, navegación y la cita.
 - **Archivo** (ancho condensado, peso 800) — exclusivamente para el lockup
-  del claim, que funciona como logo.
+  del claim, que funciona como logo. Desaparece en cuanto llegue el logo de
+  campaña en SVG, y entonces la landing se queda con una sola familia.
+
+Había una tercera, Bodoni Moda, para el wordmark LANCÔME y la cita. El
+wordmark pasó a ser el PNG oficial y la cita a Mulish, así que ya no la
+usaba nadie y se ha retirado también de la descarga.
 
 ## Color: cada uno tiene un trabajo
 
@@ -35,7 +38,7 @@ pone azul o arena, es que habla Fundación Manantial**.
 
 | Color | Hex | Papel |
 |---|---|---|
-| Rosa | `#EE4B98` | La duda, la campaña, el asterisco |
+| Rosa | `#EE4B98` | **Solo** el claim «or maybe not», los asteriscos, el cursor del claim y las frases de «lo que no decimos» |
 | Granate | `#5C0B1B` / `#8E1230` | El mundo Lancôme: hero, cuestionario, cierre |
 | Azul | `#004591` | La voz de Fundación Manantial |
 | Arena | `#EAE6E0` | La superficie de los bloques de la fundación |
@@ -56,9 +59,18 @@ Y en azul suelto: los datos de los objetivos y su filete superior, los CTA
 secundarios, los títulos de columna del pie, los teléfonos de ayuda y la
 línea inferior de la cabecera.
 
-Los CTA secundarios en azul cumplen además una función de conversión: al no
-ser negros dejan de competir con el botón del cuestionario, que es el único
-objetivo de la página.
+El rosa está muy restringido a propósito. Mirando la web de Lancôme, su
+sistema es blanco y negro y el color queda para los fondos y para la propia
+campaña; si el rosa se reparte por hovers, rótulos y detalles deja de
+señalar la duda y pasa a ser decoración.
+
+Todo lo que antes era rosa y no era campaña —el foco del teclado, los
+hovers de botones y enlaces, los rótulos de los mensajes, «¿Cómo estoy? ·
+Silencio»— es ahora azul de la fundación.
+
+Jerarquía de botones, sin rosa: negro relleno para el CTA principal, blanco
+sobre la barra fija, azul con filete para los secundarios de FM. Todos pasan
+a azul al posarse encima.
 
 ## Reglas de marca
 
