@@ -1,0 +1,815 @@
+<title>I'm Fine. Or Maybe Not.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..700;1,400..500&family=Bodoni+Moda:opsz,wght@6..96,400..600&family=Archivo:wdth,wght@62..100,700..900&display=swap">
+
+<style>
+/* ==========================================================================
+   I'M FINE. OR MAYBE NOT.  ·  Lancôme × Fundación Manantial
+   ---------------------------------------------------------------------------
+   · FORM_URL (al final, en el <script>) = URL del cuestionario.
+     Todos los CTA principales la toman de ahí.
+   · Los logos M de Fundación Manantial van dibujados en SVG como provisional:
+     sustituir los <svg class="fm-mark"> por el SVG oficial.
+   · Diseño a una sola cara (claro), como la web de Lancôme.
+   ========================================================================== */
+
+:root{
+  color-scheme:light;
+
+  /* neutros con sesgo cálido, los de la web de Lancôme */
+  --paper:#FFFFFF;
+  --paper-2:#F5F4F2;
+  --ink:#121212;
+  --ink-soft:#5A5A60;
+  --mute:#8E8E94;
+  --rule:#E3E2DF;
+
+  /* marca */
+  --pink:#EE4B98;
+  --blue:#1B4CA1;
+  --wine:#5C0B1B;
+  --wine-2:#8E1230;
+
+  --f-sans:"Jost","Futura","Century Gothic",system-ui,sans-serif;
+  --f-serif:"Bodoni Moda","Didot","Times New Roman",serif;
+  --f-logo:"Archivo","Helvetica Neue",Arial,sans-serif;
+
+  --pad:clamp(20px,5vw,64px);
+  --max:1380px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--f-sans);font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img,svg{display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
+
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--pad)}
+.band{padding:clamp(56px,7.5vw,112px) 0}
+.band--grey{background:var(--paper-2)}
+section{scroll-margin-top:72px}
+
+/* ---------- tipografía ---------- */
+h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.015em;text-wrap:balance}
+.h-xl{font-size:clamp(32px,5vw,62px);line-height:1.08}
+.h-lg{font-size:clamp(27px,3.6vw,46px);line-height:1.12}
+.h-md{font-size:clamp(21px,2.1vw,30px);line-height:1.2}
+.h-xl b,.h-lg b{font-weight:600}
+.lead{font-size:clamp(16px,1.35vw,19px);line-height:1.6;color:var(--ink-soft);max-width:46ch;margin:0}
+.body{font-size:16px;line-height:1.68;color:var(--ink-soft);max-width:60ch;margin:0}
+.kicker{
+  margin:0;font-size:11px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--mute);
+}
+.kicker .ast{color:var(--pink)}
+.rule{height:1px;background:var(--rule);border:0;margin:0}
+
+/* ---------- botones (rectos, como Lancôme) ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:.8em;
+  font-family:var(--f-sans);font-size:12px;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;text-decoration:none;
+  background:var(--ink);color:#fff;border:1px solid var(--ink);
+  padding:15px 26px;white-space:nowrap;
+  transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease);
+}
+.btn .arw{transition:transform .35s var(--ease)}
+.btn:hover{background:var(--pink);border-color:var(--pink);color:#fff}
+.btn:hover .arw{transform:translateX(5px)}
+.btn--light{background:#fff;color:var(--ink);border-color:#fff}
+.btn--light:hover{background:var(--pink);border-color:var(--pink);color:#fff}
+.btn--line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn--line:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn--big{font-size:13px;padding:18px 34px}
+.link{
+  display:inline-block;font-size:12px;font-weight:500;letter-spacing:.13em;
+  text-transform:uppercase;text-decoration:none;padding-bottom:3px;
+  border-bottom:1px solid currentColor;transition:color .3s var(--ease);
+}
+.link:hover{color:var(--pink)}
+
+/* ---------- lockups ---------- */
+.lock{display:flex;align-items:center;gap:13px;min-width:0}
+.lock-fine{line-height:.8}
+.lock-fine b{
+  display:block;font-family:var(--f-logo);font-weight:800;
+  font-variation-settings:"wdth" 78;font-size:15px;letter-spacing:-.01em;
+}
+.lock-fine i{
+  display:block;font-family:var(--f-logo);font-style:normal;font-weight:800;
+  font-variation-settings:"wdth" 78;font-size:8px;letter-spacing:.01em;color:var(--pink);
+}
+.lock-fine b .ast{color:var(--pink)}
+.bar{width:1px;height:24px;background:var(--rule)}
+.lock-lan{font-family:var(--f-serif);font-weight:400;font-size:17px;letter-spacing:.14em;white-space:nowrap}
+.fm{display:flex;align-items:center;gap:9px;white-space:nowrap}
+.fm-mark{width:26px;height:26px;flex:none}
+.fm-txt{font-size:9px;font-weight:500;letter-spacing:.17em;text-transform:uppercase;color:var(--blue);line-height:1.35}
+.fm-txt b{display:block;font-weight:700;letter-spacing:.13em;font-size:10px}
+
+/* ---------- barra superior ---------- */
+.top{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--rule)}
+.top-in{max-width:var(--max);margin-inline:auto;padding:11px var(--pad);display:flex;align-items:center;gap:20px}
+.top .fm{margin-left:auto}
+.top .btn{padding:11px 18px;font-size:11px}
+@media(max-width:860px){.top .fm{display:none}.top .btn{margin-left:auto}}
+@media(max-width:560px){.lock-lan{font-size:14px}.top .btn{padding:10px 13px;font-size:10px;letter-spacing:.08em}}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;background:#0A0507;color:#fff;overflow:hidden}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(75% 85% at 22% 32%, var(--wine-2) 0%, rgba(92,11,27,.75) 38%, rgba(10,5,7,.2) 72%, transparent 100%),
+    radial-gradient(55% 70% at 78% 78%, rgba(238,75,152,.30) 0%, transparent 70%),
+    linear-gradient(160deg,#160308 0%,#0A0507 100%);
+}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:radial-gradient(60% 60% at 30% 40%, transparent 0%, rgba(10,5,7,.55) 100%);
+}
+.hero-in{position:relative;z-index:2;padding:clamp(52px,8vw,104px) 0 clamp(44px,6vw,80px)}
+.hero-claim{font-family:var(--f-logo);font-weight:800;font-variation-settings:"wdth" 76;
+  text-transform:uppercase;line-height:.88;letter-spacing:-.02em;margin:0;
+  font-size:clamp(46px,11.5vw,168px);}
+.hero-claim .ast{color:var(--pink);display:inline-block;transform-origin:50% 56%;animation:spin 30s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-claim2{
+  font-family:var(--f-logo);font-weight:800;font-variation-settings:"wdth" 76;
+  text-transform:uppercase;font-size:clamp(20px,5.2vw,74px);line-height:1;
+  color:var(--pink);margin:.1em 0 0;
+  clip-path:inset(0 100% 0 0);animation:wipe 1.1s var(--ease) .5s forwards;
+}
+@keyframes wipe{to{clip-path:inset(0 0 0 0)}}
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:clamp(24px,4vw,56px);
+  align-items:end;margin-top:clamp(30px,4.5vw,58px)}
+@media(max-width:820px){.hero-grid{grid-template-columns:1fr;align-items:start}}
+.hero-lead{font-size:clamp(16px,1.5vw,20px);line-height:1.55;color:rgba(255,255,255,.82);max-width:34ch;margin:0}
+.hero-act{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.hero-play{display:inline-flex;align-items:center;gap:11px;color:#fff;text-decoration:none;font-size:12px;letter-spacing:.13em;text-transform:uppercase}
+.hero-play i{
+  font-style:normal;width:34px;height:34px;border:1px solid rgba(255,255,255,.55);
+  display:grid;place-items:center;font-size:10px;padding-left:2px;
+  transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease);
+}
+.hero-play:hover i{background:#fff;color:var(--ink);border-color:#fff}
+
+/* tira de partners, como en Lancôme */
+.partners{border-bottom:1px solid var(--rule);background:var(--paper)}
+.partners-in{max-width:var(--max);margin-inline:auto;padding:14px var(--pad);
+  display:flex;align-items:center;justify-content:flex-end;gap:22px;flex-wrap:wrap}
+.partners span{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+
+/* ---------- marquesina «el bien automático» ---------- */
+.marq{overflow:hidden;padding:15px 0;border-bottom:1px solid var(--rule);background:var(--paper)}
+.marq-track{display:flex;width:max-content;animation:slide 46s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+.marq-track span{font-size:clamp(15px,1.5vw,20px);letter-spacing:.02em;padding-inline:.85em;white-space:nowrap;color:var(--mute)}
+.marq-track span.q{color:var(--pink);font-style:italic}
+
+/* ---------- 02 · lo que decimos / lo que no ---------- */
+.says{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1px;background:var(--rule);
+  border:1px solid var(--rule);margin-top:clamp(30px,4vw,48px)}
+.say{
+  position:relative;overflow:hidden;background:var(--paper-2);
+  aspect-ratio:1/1.12;border:0;padding:0;font:inherit;color:inherit;text-align:left;cursor:pointer;
+}
+.say-f,.say-b{
+  position:absolute;inset:0;padding:22px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  transition:transform .62s var(--ease);
+}
+.say-b{background:var(--pink);color:#fff;transform:translateY(100%)}
+.say:hover .say-f,.say[aria-pressed="true"] .say-f{transform:translateY(-100%)}
+.say:hover .say-b,.say[aria-pressed="true"] .say-b{transform:translateY(0)}
+.say small{font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.say-b small{color:rgba(255,255,255,.78)}
+.say p{margin:0;font-size:clamp(18px,1.75vw,24px);line-height:1.24;font-weight:400}
+.says-out{
+  margin:clamp(26px,3vw,40px) 0 0;font-size:clamp(20px,2.6vw,34px);
+  line-height:1.2;font-weight:500;color:var(--pink);max-width:22ch;
+}
+
+/* ---------- cosas que revisamos ---------- */
+.checks{border-top:1px solid var(--rule);margin-top:clamp(26px,3.5vw,44px)}
+.check{
+  border-bottom:1px solid var(--rule);display:flex;align-items:baseline;
+  justify-content:space-between;gap:20px;padding:clamp(13px,1.7vw,20px) 0;
+}
+.check span{font-size:clamp(18px,2.2vw,30px);line-height:1.2;font-weight:400}
+.check b{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
+.check--last span{color:var(--pink);font-weight:500}
+.check--last b{color:var(--pink)}
+.checks-out{margin:clamp(22px,2.6vw,34px) 0 0;font-size:clamp(16px,1.4vw,19px);color:var(--ink-soft)}
+
+/* ---------- 03 · cuestionario (mundo rosa Lancôme) ---------- */
+.quest{position:relative;background:#2E0410;color:#fff;overflow:hidden}
+.quest::before{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(60% 75% at 72% 30%, var(--wine-2) 0%, rgba(92,11,27,.85) 40%, transparent 78%),
+    radial-gradient(70% 80% at 18% 82%, rgba(238,75,152,.32) 0%, transparent 72%),
+    linear-gradient(140deg,#4A0716 0%,#2A040E 100%);
+}
+.quest-in{position:relative;z-index:2;padding:clamp(52px,8vw,112px) 0}
+.quest-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(30px,5vw,80px);align-items:center}
+@media(max-width:900px){.quest-grid{grid-template-columns:1fr}}
+.quest .kicker{color:rgba(255,255,255,.6)}
+.quest h2{margin-top:16px}
+.quest .lead{color:rgba(255,255,255,.8);margin-top:20px}
+.quest-cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.quest-side{border-left:1px solid rgba(255,255,255,.2);padding-left:clamp(20px,2.6vw,38px);display:grid;gap:26px}
+@media(max-width:900px){.quest-side{border-left:0;border-top:1px solid rgba(255,255,255,.2);padding:26px 0 0}}
+.num{font-size:clamp(38px,5vw,66px);line-height:.95;font-weight:300;font-variant-numeric:tabular-nums}
+.num-l{margin:8px 0 0;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.note{margin:0;font-size:13px;line-height:1.55;color:rgba(255,255,255,.6);max-width:36ch}
+
+/* ---------- 04 · objetivos ---------- */
+.objs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);margin-top:clamp(34px,4vw,54px)}
+@media(max-width:820px){.objs{grid-template-columns:1fr;gap:34px}}
+.obj{display:grid;gap:12px;align-content:start;border-top:2px solid var(--ink);padding-top:20px}
+.obj-n{font-size:clamp(30px,3.4vw,44px);line-height:1;font-weight:300;color:var(--blue);font-variant-numeric:tabular-nums}
+.obj h3{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.obj p{margin:0;font-size:15px;line-height:1.6;color:var(--ink-soft)}
+
+.quote{display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,2.6vw,36px);
+  margin-top:clamp(44px,5.5vw,84px);padding-top:clamp(36px,4vw,56px);border-top:1px solid var(--rule)}
+@media(max-width:700px){.quote{grid-template-columns:1fr}}
+.quote-m{font-family:var(--f-serif);font-size:clamp(56px,7vw,110px);line-height:.68;color:var(--pink)}
+.quote p{margin:0;font-family:var(--f-serif);font-size:clamp(20px,2.7vw,36px);line-height:1.28;max-width:24ch}
+.quote cite{display:block;margin-top:20px;font-style:normal;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+
+/* ---------- 05 · mensajes ---------- */
+.msgs{margin-top:clamp(30px,4vw,50px);border-top:1px solid var(--rule)}
+.msg{border-bottom:1px solid var(--rule);padding:clamp(22px,2.8vw,34px) 0;
+  display:grid;grid-template-columns:clamp(74px,11vw,170px) 1fr;gap:clamp(14px,3vw,40px);align-items:start}
+@media(max-width:620px){.msg{grid-template-columns:1fr;gap:10px}}
+.msg-k{font-size:10px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:var(--pink);padding-top:.5em}
+.msg-t{margin:0;font-size:clamp(19px,2.2vw,30px);line-height:1.22;font-weight:400;max-width:26ch}
+.msg-d{margin:10px 0 0;font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:56ch}
+
+/* ---------- 06 · artículos ---------- */
+.arts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,34px);margin-top:clamp(30px,4vw,48px)}
+@media(max-width:860px){.arts{grid-template-columns:1fr}}
+.art{text-decoration:none;display:grid;gap:12px;align-content:start}
+.art-img{aspect-ratio:4/3;background:var(--paper-2);position:relative;overflow:hidden}
+.art-img::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(145deg,rgba(238,75,152,.14),rgba(27,76,161,.12));
+  transition:opacity .4s var(--ease);
+}
+.art:hover .art-img::after{opacity:.45}
+.art-img i{
+  position:absolute;left:14px;top:14px;font-style:normal;z-index:4;
+  background:var(--paper);padding:5px 9px;font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+}
+.art h3{font-size:clamp(17px,1.5vw,21px);line-height:1.3;font-weight:500}
+.art p{margin:0;font-size:14px;line-height:1.55;color:var(--ink-soft)}
+.art .link{margin-top:4px;justify-self:start}
+
+/* ---------- 07 · voces ---------- */
+.voices{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.6vw,22px);margin-top:clamp(30px,4vw,48px)}
+@media(max-width:900px){.voices{grid-template-columns:repeat(2,1fr)}}
+.voice{position:relative;aspect-ratio:3/4;overflow:hidden;background:#1A1013;color:#fff;
+  display:flex;flex-direction:column;justify-content:flex-end;padding:18px;gap:6px;text-decoration:none}
+.voice::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(170deg,rgba(142,18,48,.75),rgba(26,16,19,.95));
+  transition:transform .6s var(--ease)}
+.voice:hover::before{transform:scale(1.06)}
+.voice-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.voice:has(.voice-img)::before{background:linear-gradient(180deg,rgba(10,5,7,.1) 35%,rgba(10,5,7,.88) 100%)}
+.voice i{position:relative;font-style:normal;width:34px;height:34px;border:1px solid rgba(255,255,255,.55);
+  display:grid;place-items:center;font-size:10px;padding-left:2px;margin-bottom:auto}
+.voice b{position:relative;font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase}
+.voice span{position:relative;font-size:14px;line-height:1.35;color:rgba(255,255,255,.75)}
+
+/* ---------- 08 · institucional ---------- */
+.inst{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,4.5vw,72px);align-items:start}
+@media(max-width:860px){.inst{grid-template-columns:1fr}}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.stat{background:var(--paper);padding:clamp(18px,2.2vw,28px)}
+.stat b{display:block;font-size:clamp(26px,3vw,40px);line-height:1;font-weight:300;color:var(--blue);font-variant-numeric:tabular-nums}
+.stat span{display:block;margin-top:8px;font-size:11px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--mute)}
+.ctas2{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.projs{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2vw,28px);margin-top:clamp(34px,4vw,56px)}
+@media(max-width:820px){.projs{grid-template-columns:repeat(2,1fr)}}
+.proj{text-decoration:none;display:grid;gap:8px;align-content:start;border-top:1px solid var(--rule);padding-top:16px;
+  transition:border-color .3s var(--ease)}
+.proj:hover{border-color:var(--pink)}
+.proj b{font-size:12px;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
+.proj span{font-size:14px;line-height:1.55;color:var(--ink-soft)}
+
+/* ---------- 09 · cierre ---------- */
+.close{position:relative;background:#0A0507;color:#fff;overflow:hidden;text-align:center}
+.close::before{content:"";position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(65% 80% at 50% 38%, var(--wine-2) 0%, rgba(92,11,27,.7) 42%, transparent 78%),
+    linear-gradient(180deg,#170309,#0A0507)}
+.close-in{position:relative;z-index:2;padding:clamp(60px,9vw,140px) 0;display:grid;justify-items:center;gap:26px}
+.close-claim{font-family:var(--f-logo);font-weight:800;font-variation-settings:"wdth" 76;
+  text-transform:uppercase;line-height:.9;margin:0;font-size:clamp(34px,8.5vw,124px)}
+.close-claim em{font-style:normal;color:var(--pink);display:block;font-size:.62em}
+.close p{margin:0;font-size:clamp(17px,1.7vw,22px);line-height:1.45;color:rgba(255,255,255,.82);max-width:26ch}
+
+/* ---------- footer ---------- */
+footer{background:var(--paper);padding:clamp(40px,5vw,72px) 0 108px;border-top:1px solid var(--rule)}
+.foot-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,40px)}
+@media(max-width:760px){.foot-cols{grid-template-columns:repeat(2,1fr);gap:28px}}
+.foot-col h4{margin:0 0 14px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.foot-col a,.foot-col p{display:block;margin:0 0 9px;font-size:14px;color:var(--ink-soft);text-decoration:none}
+.foot-col a:hover{color:var(--pink)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:26px;flex-wrap:wrap;
+  margin-top:clamp(34px,4vw,56px);padding-top:clamp(22px,2.6vw,34px);border-top:1px solid var(--rule)}
+.legal{margin:0;font-size:12px;line-height:1.6;color:var(--mute);max-width:56ch}
+.legal a{color:var(--mute)}
+.legal strong{color:var(--ink-soft)}
+
+/* ---------- barra CTA fija ---------- */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:70;background:var(--ink);color:#fff;
+  transform:translateY(105%);transition:transform .5s var(--ease)}
+.dock.on{transform:translateY(0)}
+.dock-in{max-width:var(--max);margin-inline:auto;padding:11px var(--pad);
+  display:flex;align-items:center;justify-content:space-between;gap:18px}
+.dock b{font-size:14px;font-weight:500}
+.dock small{display:block;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:3px}
+.dock .btn{background:var(--pink);border-color:var(--pink)}
+.dock .btn:hover{background:#fff;border-color:#fff;color:var(--ink)}
+@media(max-width:600px){.dock small{display:none}.dock .btn{padding:12px 16px;font-size:11px}}
+
+/* ---------- reveals ---------- */
+.js .rv{opacity:0;transform:translateY(20px)}
+.js .rv.in{opacity:1;transform:none;transition:opacity .85s var(--ease),transform .85s var(--ease)}
+@media(prefers-reduced-motion:reduce){
+  .js .rv{opacity:1;transform:none}
+  .hero-claim .ast,.marq-track{animation:none}
+  .hero-claim2{animation:none;clip-path:none}
+}
+
+/* ---------- huecos de imagen ----------
+   Suelta los JPG en una carpeta img/ junto al HTML con el nombre
+   indicado en cada src y la foto sustituye al hueco automáticamente. */
+.ph{
+  position:relative;aspect-ratio:var(--ar,4/3);overflow:hidden;
+  background:
+    linear-gradient(145deg,rgba(238,75,152,.10),rgba(92,11,27,.08)),
+    var(--paper-2);
+}
+.ph::after{
+  content:attr(data-label);position:absolute;left:12px;bottom:12px;z-index:3;
+  font-size:9px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--mute);background:var(--paper);padding:5px 8px;
+}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+.ph:has(img)::after{display:none}
+.ph--dark{background:linear-gradient(150deg,#4A0716,#1A0408)}
+.ph--dark::after{color:rgba(255,255,255,.5);background:rgba(0,0,0,.4)}
+
+/* banda de imagen a sangre */
+.bleed{position:relative;overflow:hidden}
+.bleed .ph{aspect-ratio:auto;height:100%;position:absolute;inset:0}
+.split{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;gap:0}
+@media(max-width:820px){.split{grid-template-columns:1fr}}
+.split-txt{padding:clamp(34px,5.5vw,88px) var(--pad);display:grid;align-content:center;gap:20px;max-width:640px;justify-self:center;width:100%}
+.split .ph{--ar:4/5;min-height:300px}
+
+/* imagen de fondo del hero y del cierre */
+.bgimg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.bgimg img{width:100%;height:100%;object-fit:cover}
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <div class="lock">
+      <div class="lock-fine">
+        <b>I'M FINE<span class="ast">*</span></b>
+        <i>*OR MAYBE NOT</i>
+      </div>
+      <div class="bar"></div>
+      <div class="lock-lan">LANCÔME</div>
+    </div>
+    <div class="fm">
+      <!-- PROVISIONAL: sustituir por el SVG oficial de Fundación Manantial -->
+      <svg class="fm-mark" viewBox="0 0 100 100" aria-hidden="true">
+        <g fill="none" stroke="#1B4CA1" stroke-width="11" stroke-linecap="round">
+          <path d="M11 90 V15 L55 58"></path>
+          <path d="M33 90 L89 15 V90"></path>
+        </g>
+      </svg>
+      <span class="fm-txt">Fundación<b>Manantial</b></span>
+    </div>
+    <a class="btn cta" href="#">Haz el cuestionario</a>
+  </div>
+</header>
+
+<main>
+  <!-- 01 · BANNER -->
+  <section class="hero" id="inicio">
+    <div class="bgimg" aria-hidden="true"><img src="img/rosa-macro.jpg" alt="" data-opt></div>
+    <div class="hero-in wrap">
+      <h1 class="hero-claim">I'm fine<span class="ast">*</span></h1>
+      <p class="hero-claim2">*o quizá no</p>
+      <div class="hero-grid">
+        <p class="hero-lead">Respondemos «estoy bien» decenas de veces al día. Casi nunca nos paramos a comprobarlo.</p>
+        <div class="hero-act">
+          <a class="hero-play" href="#voces"><i>▶</i> Ver el vídeo</a>
+          <a class="btn btn--light btn--big cta" href="#">Descubre cómo estás <span class="arw">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="partners">
+    <div class="partners-in">
+      <span>Una iniciativa de</span>
+      <div class="lock-lan">LANCÔME</div>
+      <div class="bar"></div>
+      <div class="fm">
+        <svg class="fm-mark" viewBox="0 0 100 100" aria-hidden="true">
+          <g fill="none" stroke="#1B4CA1" stroke-width="11" stroke-linecap="round">
+            <path d="M11 90 V15 L55 58"></path>
+            <path d="M33 90 L89 15 V90"></path>
+          </g>
+        </svg>
+        <span class="fm-txt">Fundación<b>Manantial</b></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="marq" aria-hidden="true"><div class="marq-track" id="marq"></div></div>
+
+  <!-- 02 · ABRIMOS LA DUDA -->
+  <section class="band wrap" id="duda">
+    <p class="kicker"><span class="ast">✱</span> Abrimos la duda</p>
+    <h2 class="h-xl rv" style="margin-top:18px">¿Cómo sabes que estás <b>bien</b>?</h2>
+    <p class="lead rv" style="margin-top:22px">A veces decimos «estoy bien» sin pararnos a pensar cómo estamos realmente.</p>
+
+    <p class="kicker rv" style="margin-top:clamp(34px,4vw,52px)">Lo que decimos <span class="ast">·</span> lo que no decimos</p>
+    <div class="says rv">
+      <button class="say" aria-pressed="false">
+        <span class="say-f"><small>Lo que decimos</small><p>«No es para tanto.»</p></span>
+        <span class="say-b"><small>Lo que no decimos</small><p>«No estoy durmiendo bien.»</p></span>
+      </button>
+      <button class="say" aria-pressed="false">
+        <span class="say-f"><small>Lo que decimos</small><p>«Solo estoy cansada.»</p></span>
+        <span class="say-b"><small>Lo que no decimos</small><p>«Estoy agotada.»</p></span>
+      </button>
+      <button class="say" aria-pressed="false">
+        <span class="say-f"><small>Lo que decimos</small><p>«Es que llevo unas semanas raras.»</p></span>
+        <span class="say-b"><small>Lo que no decimos</small><p>«No tengo ganas de nada.»</p></span>
+      </button>
+      <button class="say" aria-pressed="false">
+        <span class="say-f"><small>Lo que decimos</small><p>«Ya se me pasará.»</p></span>
+        <span class="say-b"><small>Lo que no decimos</small><p>«No consigo desconectar.»</p></span>
+      </button>
+      <button class="say" aria-pressed="false">
+        <span class="say-f"><small>Lo que decimos</small><p>«Todo el mundo está igual.»</p></span>
+        <span class="say-b"><small>Lo que no decimos</small><p>«Estoy más irritable últimamente.»</p></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- banda: lo que se normaliza -->
+  <section class="split" aria-label="¿Y si te has acostumbrado a estar así?">
+    <figure class="ph" data-label="Cama deshecha · luz de mañana" style="--ar:4/5;margin:0">
+      <img src="img/cama.jpg" alt="Cama deshecha con luz de mañana entrando por la ventana" data-opt>
+    </figure>
+    <div class="split-txt">
+      <p class="kicker"><span class="ast">✱</span> Lo que se normaliza</p>
+      <h2 class="h-lg">¿Y si te has acostumbrado<br>a estar <b>así</b>?</h2>
+      <p class="body">Un mal día es un mal día. Un cansancio que no se va, una tristeza que se instala o una tensión constante son otra cosa. Lo que se repite, cuenta.</p>
+    </div>
+  </section>
+
+  <!-- COSAS QUE REVISAMOS -->
+  <section class="band band--grey" id="revisamos">
+    <div class="wrap">
+      <h2 class="h-lg rv">Lo comprobamos todo.<br>Menos cómo estamos.</h2>
+      <div class="checks rv">
+        <div class="check"><span>¿He cerrado la puerta?</span><b>Compruebas</b></div>
+        <div class="check"><span>¿He apagado el horno?</span><b>Compruebas</b></div>
+        <div class="check"><span>¿He enviado el mail?</span><b>Compruebas</b></div>
+        <div class="check"><span>¿He reservado el vuelo?</span><b>Compruebas</b></div>
+        <div class="check check--last"><span>¿Cómo estoy?</span><b>Silencio</b></div>
+      </div>
+      <p class="checks-out rv">¿Hace cuánto que no te lo preguntas?</p>
+    </div>
+  </section>
+
+  <!-- 03 · CUESTIONARIO -->
+  <section class="quest" id="cuestionario">
+    <div class="bgimg" aria-hidden="true" style="opacity:.5"><img src="img/sello-rosa.jpg" alt="" data-opt></div>
+    <div class="quest-in wrap">
+      <div class="quest-grid">
+        <div>
+          <p class="kicker">3 pasos <span class="ast">·</span> 4 minutos <span class="ast">·</span> anónimo</p>
+          <h2 class="h-xl">¿Quieres saber cómo <b>estás</b>?</h2>
+          <p class="lead">A veces, preguntártelo es el primer paso.</p>
+          <div class="quest-cta">
+            <a class="btn btn--light btn--big cta" href="#">Compruébalo <span class="arw">→</span></a>
+          </div>
+        </div>
+        <div class="quest-side">
+          <div>
+            <div class="num" data-to="7000">0</div>
+            <p class="num-l">Mujeres a las que queremos escuchar</p>
+          </div>
+          <p class="note">Es una herramienta de prevención y autoobservación. No es un diagnóstico ni lo sustituye.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · COLABORACIÓN -->
+  <section class="band wrap" id="colaboracion">
+    <p class="kicker"><span class="ast">✱</span> Lancôme + Fundación Manantial</p>
+    <h2 class="h-lg rv" style="margin-top:18px">Juntos en la prevención de los problemas<br>de salud mental de las <b>mujeres</b></h2>
+
+    <div class="objs rv">
+      <article class="obj">
+        <div class="obj-n">1 de cada 3</div>
+        <h3>Prevención</h3>
+        <p>Una de cada tres mujeres convivirá con ansiedad o depresión a lo largo de su vida. Cuanto antes se nombra, menos pesa.</p>
+      </article>
+      <article class="obj">
+        <div class="obj-n">El doble</div>
+        <h3>Concienciación</h3>
+        <p>La ansiedad y la depresión se diagnostican hasta el doble en mujeres que en hombres. Hablar de ello es parte del cuidado.</p>
+      </article>
+      <article class="obj">
+        <div class="obj-n">10 años</div>
+        <h3>Contra el estigma</h3>
+        <p>Es el tiempo que puede pasar entre los primeros síntomas y pedir ayuda. El estigma es lo que alarga esa espera.</p>
+      </article>
+    </div>
+
+    <div class="rv" style="margin-top:clamp(44px,5.5vw,80px)">
+      <figure class="ph" data-label="Retrato con rosa · Lancôme" style="--ar:21/9;margin:0">
+        <img src="img/retrato-rosa.jpg" alt="Retrato de mujer sosteniendo una rosa" data-opt>
+      </figure>
+    </div>
+
+    <div class="quote rv">
+      <div class="quote-m">“</div>
+      <div>
+        <p>No se trata de que todo el mundo vaya a terapia y busque un diagnóstico. Lo primero es eliminar las barreras sociales y poder hablar de cómo nos sentimos.</p>
+        <cite>Fundación Manantial</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · CÓMO ENTENDEMOS LA SALUD MENTAL -->
+  <section class="band band--grey" id="salud-mental">
+    <div class="wrap">
+      <p class="kicker"><span class="ast">✱</span> Cómo entendemos la salud mental</p>
+      <h2 class="h-lg rv" style="margin-top:18px">Estar bien no es una respuesta <b>automática</b></h2>
+
+      <div class="msgs rv">
+        <div class="msg">
+          <div class="msg-k">Prevención</div>
+          <div>
+            <p class="msg-t">¿Por qué esperamos a estar mal para preguntarnos cómo estamos?</p>
+            <p class="msg-d">No hace falta estar mal para preguntarte cómo estás. Revisarlo es un gesto de cuidado, no una señal de alarma.</p>
+          </div>
+        </div>
+        <div class="msg">
+          <div class="msg-k">Normalización</div>
+          <div>
+            <p class="msg-t">A veces, lo preocupante es haber dejado de preocuparse.</p>
+            <p class="msg-d">¿Y eso que has normalizado merece que te pares a mirarlo? Un mal día es un mal día. Lo que se repite, cuenta.</p>
+          </div>
+        </div>
+        <div class="msg">
+          <div class="msg-k">Tabú</div>
+          <div>
+            <p class="msg-t">¿Por qué nos cuesta tanto decir que no estamos bien?</p>
+            <p class="msg-d">Hablar de salud mental no debería costar más que hablar de cualquier otra cosa que nos duele.</p>
+          </div>
+        </div>
+        <div class="msg">
+          <div class="msg-k">Acción</div>
+          <div>
+            <p class="msg-t">¿Y si estar bien también se revisa?</p>
+            <p class="msg-d">Preguntarte cómo estás también es cuidarte. Igual que cualquier otra revisión.</p>
+          </div>
+        </div>
+        <div class="msg">
+          <div class="msg-k">Conversación</div>
+          <div>
+            <p class="msg-t">Hablemos de salud mental.</p>
+            <p class="msg-d">Hablar de cómo estamos también es cuidarnos. Lo primero no es un diagnóstico: es poder decirlo en voz alta.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · ARTÍCULOS -->
+  <section class="band wrap" id="articulos">
+    <p class="kicker"><span class="ast">✱</span> Artículos Lancôme</p>
+    <h2 class="h-lg rv" style="margin-top:18px">Prevención y salud <b>mental</b></h2>
+    <p class="body rv" style="margin-top:18px">Contenido para seguir leyendo, elaborado con Fundación Manantial y alojado en Lancôme.</p>
+
+    <div class="arts rv">
+      <a class="art" href="#">
+        <div class="art-img ph" data-label="Mujer escribiendo en casa" style="--ar:4/3"><img src="img/mujer-escribiendo.jpg" alt="" data-opt><i>5 min de lectura</i></div>
+        <h3>Las señales que solemos dejar pasar</h3>
+        <p>Cansancio, irritabilidad, desconexión: cómo distinguir una mala racha de algo que conviene mirar de cerca.</p>
+        <span class="link">Leer en Lancôme</span>
+      </a>
+      <a class="art" href="#">
+        <div class="art-img ph" data-label="Manos y cuenco tibetano" style="--ar:4/3"><img src="img/cuenco.jpg" alt="" data-opt><i>4 min de lectura</i></div>
+        <h3>Por qué nos cuesta tanto decir que no estamos bien</h3>
+        <p>El peso de la autoexigencia y del «yo puedo con todo» en la salud mental de las mujeres.</p>
+        <span class="link">Leer en Lancôme</span>
+      </a>
+      <a class="art" href="#">
+        <div class="art-img ph" data-label="Madre y bebé, cotidiano" style="--ar:4/3"><img src="img/madre-bebe.jpg" alt="" data-opt><i>6 min de lectura</i></div>
+        <h3>Hábitos que sostienen: sueño, vínculos y descanso</h3>
+        <p>Pequeñas rutinas con evidencia detrás para cuidar el ánimo en el día a día.</p>
+        <span class="link">Leer en Lancôme</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 07 · VOCES -->
+  <section class="band band--grey" id="voces">
+    <div class="wrap">
+      <p class="kicker"><span class="ast">✱</span> Voces</p>
+      <h2 class="h-lg rv" style="margin-top:18px">¿Cuántas veces has dicho «estoy bien»<br>sin preguntarte si lo <b>estabas</b>?</h2>
+      <div class="voices rv">
+        <a class="voice" href="#"><img class="voice-img" src="img/retrato-1.jpg" alt="" data-opt><i>▶</i><b>Embajadora</b><span>«Lo dije durante dos años»</span></a>
+        <a class="voice" href="#"><img class="voice-img" src="img/retrato-2.jpg" alt="" data-opt><i>▶</i><b>Primera persona</b><span>«Nadie me lo preguntó dos veces»</span></a>
+        <a class="voice" href="#"><img class="voice-img" src="img/retrato-3.jpg" alt="" data-opt><i>▶</i><b>Profesional FM</b><span>«Preguntar no rompe nada»</span></a>
+        <a class="voice" href="#"><img class="voice-img" src="img/retrato-4.jpg" alt="" data-opt><i>▶</i><b>Colaboradora</b><span>«Empecé por escribirlo»</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 · QUIÉNES SOMOS -->
+  <section class="band wrap" id="fundacion">
+    <div class="inst">
+      <div>
+        <p class="kicker"><span class="ast">✱</span> Fundación Manantial</p>
+        <h2 class="h-lg rv" style="margin-top:18px">Acompañamos a personas con problemas<br>de salud <b>mental</b></h2>
+        <p class="body rv" style="margin-top:22px">Desde 1995 trabajamos por los derechos y la recuperación de las personas con problemas de salud mental y sus familias: atención comunitaria, vivienda, empleo, tutela y sensibilización. Creemos que la salud mental se sostiene en comunidad, no en silencio.</p>
+        <div class="ctas2">
+          <a class="btn btn--line" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Quiero colaborar</a>
+          <a class="btn btn--line" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Quiero estar informado</a>
+        </div>
+      </div>
+      <figure class="ph rv" data-label="Retrato · equipo y comunidad" style="--ar:3/4;margin:0 0 26px">
+        <img src="img/retrato-fm.jpg" alt="" data-opt>
+      </figure>
+      <div class="stats rv" style="grid-column:1/-1">
+        <div class="stat"><b>1995</b><span>Año de fundación</span></div>
+        <div class="stat"><b>+4.000</b><span>Personas atendidas al año</span></div>
+        <div class="stat"><b>+50</b><span>Recursos y servicios</span></div>
+        <div class="stat"><b>+700</b><span>Profesionales</span></div>
+      </div>
+    </div>
+
+    <p class="kicker rv" style="margin-top:clamp(40px,5vw,72px)">Proyectos de Fundación Manantial</p>
+    <div class="projs rv">
+      <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Atención comunitaria</b><span>Equipos que acompañan en el entorno de cada persona.</span></a>
+      <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Empleo e inserción</b><span>Formación y trabajo como parte de la recuperación.</span></a>
+      <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Vivienda y apoyo</b><span>Alternativas residenciales para vivir con autonomía.</span></a>
+      <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Sensibilización</b><span>Campañas contra el estigma y por los derechos.</span></a>
+    </div>
+  </section>
+
+  <!-- 09 · CIERRE -->
+  <section class="close" id="cierre">
+    <div class="bgimg" aria-hidden="true" style="opacity:.42"><img src="img/rosa-macro.jpg" alt="" data-opt></div>
+    <div class="close-in wrap">
+      <h2 class="close-claim">I'm fine.<em>*O quizá no.</em></h2>
+      <p>No te decimos cómo estás. Te invitamos a comprobarlo.</p>
+      <a class="btn btn--light btn--big cta" href="#">Compruébalo <span class="arw">→</span></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h4>La campaña</h4>
+        <a href="#cuestionario">Haz el cuestionario</a>
+        <a href="#articulos">Artículos</a>
+        <a href="#voces">Voces</a>
+      </div>
+      <div class="foot-col">
+        <h4>Fundación Manantial</h4>
+        <a href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Quiénes somos</a>
+        <a href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Proyectos</a>
+        <a href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Quiero colaborar</a>
+      </div>
+      <div class="foot-col">
+        <h4>Si necesitas ayuda</h4>
+        <p><strong>024</strong> · Atención a la conducta suicida</p>
+        <p><strong>112</strong> · Emergencias</p>
+      </div>
+      <div class="foot-col">
+        <h4>Con la colaboración de</h4>
+        <div class="lock-lan" style="margin-top:4px">LANCÔME</div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div class="lock">
+        <div class="lock-fine">
+          <b>I'M FINE<span class="ast">*</span></b>
+          <i>*OR MAYBE NOT</i>
+        </div>
+        <div class="bar"></div>
+        <div class="fm">
+          <svg class="fm-mark" viewBox="0 0 100 100" aria-hidden="true">
+            <g fill="none" stroke="#1B4CA1" stroke-width="11" stroke-linecap="round">
+              <path d="M11 90 V15 L55 58"></path>
+              <path d="M33 90 L89 15 V90"></path>
+            </g>
+          </svg>
+          <span class="fm-txt">Fundación<b>Manantial</b></span>
+        </div>
+      </div>
+      <p class="legal">
+        Esta iniciativa tiene fines divulgativos y de prevención. El cuestionario es anónimo y no constituye un diagnóstico.
+        · <a href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">fundacionmanantial.org</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<div class="dock" id="dock">
+  <div class="dock-in">
+    <div>
+      <b>¿Quieres saber cómo estás?</b>
+      <small>3 pasos · 4 min · anónimo · no es un diagnóstico</small>
+    </div>
+    <a class="btn cta" href="#">Quiero saber cómo estoy <span class="arw">→</span></a>
+  </div>
+</div>
+
+<script>
+/* URL del cuestionario — sustituir por la definitiva */
+const FORM_URL = "#cuestionario";
+
+document.documentElement.classList.add("js");
+
+/* si aún no hay foto en img/, el hueco etiquetado se queda como está */
+document.querySelectorAll("img[data-opt]").forEach(img => {
+  img.addEventListener("error", () => img.remove());
+});
+document.querySelectorAll("a.cta").forEach(a => { a.href = FORM_URL; });
+
+/* marquesina · el «bien» automático */
+const words = ["bien","bien","¿qué tal?","bien","bien","¿seguro?","bien","estoy bien","bien","*o quizá no"];
+const track = document.getElementById("marq");
+const row = words.map(w => `<span class="${w.includes("?")||w.startsWith("*") ? "q" : ""}">${w}</span><span>·</span>`).join("");
+track.innerHTML = row + row;
+
+/* reveals */
+const io = new IntersectionObserver((es) => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+}, {rootMargin:"0px 0px -6% 0px", threshold:0.06});
+document.querySelectorAll(".rv").forEach(el => io.observe(el));
+
+/* contador */
+const fmt = new Intl.NumberFormat("es-ES");
+const cio = new IntersectionObserver((es) => {
+  es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, to = +el.dataset.to, t0 = performance.now(), dur = 1500;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = fmt.format(to); cio.unobserve(el); return; }
+    const step = (t) => {
+      const p = Math.min(1, (t - t0) / dur);
+      el.textContent = fmt.format(Math.round(to * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+    cio.unobserve(el);
+  });
+}, {threshold:0.5});
+document.querySelectorAll(".num[data-to]").forEach(el => cio.observe(el));
+
+/* tarjetas: toggle en táctil */
+document.querySelectorAll(".say").forEach(b => {
+  b.addEventListener("click", () => {
+    b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+  });
+});
+
+/* barra CTA fija */
+const dock = document.getElementById("dock");
+let pastHero = false, atClose = false;
+const sync = () => dock.classList.toggle("on", pastHero && !atClose);
+new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting; sync(); }, {threshold:0})
+  .observe(document.getElementById("inicio"));
+new IntersectionObserver(([e]) => { atClose = e.isIntersecting; sync(); }, {threshold:0.12})
+  .observe(document.getElementById("cierre"));
+</script>
