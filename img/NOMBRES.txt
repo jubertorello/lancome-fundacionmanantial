@@ -12,8 +12,9 @@ LOGOS
                                  para el hero y el cierre, que van en oscuro
 
 FOTOGRAFIA
-  rosa-macro.webp         fondo del hero y del cierre, desenfocada
-  sello-rosa.webp         fondo del bloque de cuestionario, desenfoque suave
+  rosa-macro.webp         fondo del hero y del bloque de cuestionario
+  sello-rosa.webp         fondo del cierre, con poco desenfoque para que se
+                          lea el relieve
   mujer-sofa.webp         banda "¿Y si te has acostumbrado a estar asi?"
   manos.webp              banda ancha del bloque de colaboracion
   mujer-escribiendo.webp  articulo 1, senales

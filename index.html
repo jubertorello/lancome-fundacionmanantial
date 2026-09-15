@@ -284,14 +284,25 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 
 /* ---------- 03 · cuestionario (mundo rosa Lancôme) ---------- */
 .quest{position:relative;background:#2E0410;color:#fff;overflow:hidden}
-.quest::before{
-  content:"";position:absolute;inset:0;z-index:1;
-  background:
-    radial-gradient(60% 75% at 72% 30%, var(--wine-2) 0%, rgba(92,11,27,.85) 40%, transparent 78%),
-    radial-gradient(70% 80% at 18% 82%, rgba(238,75,152,.32) 0%, transparent 72%),
-    linear-gradient(140deg,#4A0716 0%,#2A040E 100%);
+/* La rosa va nítida debajo; el desenfoque y el oscurecido los hace esta
+   capa de cristal, que es el tratamiento del self-assessment de Lancôme. */
+.quest .bgimg img{transform:scale(1.04)}
+.quest-glass{
+  position:absolute;inset:0;z-index:1;
+  background:rgba(0,0,0,.56);
+  -webkit-backdrop-filter:blur(20.5px);
+  backdrop-filter:blur(20.5px);
 }
-.quest-in{position:relative;z-index:2;padding-block:clamp(52px,8vw,112px)}
+/* Si el navegador no sabe difuminar el fondo, se difumina la propia foto:
+   sin esto quedaría una rosa nítida detrás del texto. */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .quest .bgimg img{filter:blur(20px);transform:scale(1.14)}
+}
+.quest::before{
+  content:"";position:absolute;inset:0;z-index:2;
+  background:radial-gradient(70% 80% at 72% 28%, rgba(142,18,48,.34) 0%, transparent 72%);
+}
+.quest-in{position:relative;z-index:3;padding-block:clamp(52px,8vw,112px)}
 .quest-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(30px,5vw,80px);align-items:center}
 @media(max-width:900px){.quest-grid{grid-template-columns:1fr}}
 .quest .kicker{color:rgba(255,255,255,.6)}
@@ -714,7 +725,8 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 
   <!-- 03 · CUESTIONARIO -->
   <section class="quest" id="cuestionario">
-    <div class="bgimg bgimg--soft" aria-hidden="true" style="opacity:.55"><img src="img/sello-rosa.webp" alt="" data-opt></div>
+    <div class="bgimg" aria-hidden="true"><img src="img/rosa-macro.webp" alt="" data-opt></div>
+    <div class="quest-glass" aria-hidden="true"></div>
     <div class="quest-in wrap">
       <div class="quest-grid">
         <div>
