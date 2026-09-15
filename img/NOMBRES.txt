@@ -15,7 +15,7 @@ FOTOGRAFIA
   rosa-macro.webp         fondo del hero y del cierre, desenfocada
   sello-rosa.webp         fondo del bloque de cuestionario, desenfoque suave
   mujer-sofa.webp         banda "¿Y si te has acostumbrado a estar asi?"
-  retrato-trenzas.webp    banda ancha del bloque de colaboracion
+  manos.webp              banda ancha del bloque de colaboracion
   mujer-escribiendo.webp  articulo 1, senales
   cuenco.webp             articulo 2, autoexigencia
   cama.webp               articulo 3, sueno y descanso
@@ -23,9 +23,9 @@ FOTOGRAFIA
   mujer-cafe.webp         voces, primera persona
   retrato-estudio.webp    voces, profesional de FM
   retrato-actriz.webp     voces, colaboradora
-  manos.webp              banda del bloque institucional
 
 SIN USO, DISPONIBLE
+  retrato-trenzas.webp    liberada al pasar las manos a colaboracion
   modelo.webp             mujer rodeada de camaras y moviles. Encaja con el
                           mensaje de tabu o con la banda de normalizacion
   retrato-sereno.webp     liberada al entrar la actriz en voces
