@@ -1,25 +1,31 @@
-NOMBRES DE ARCHIVO ESPERADOS
-Suelta aquí los JPG con EXACTAMENTE estos nombres (minúsculas, sin acentos).
-Si un archivo no está, la landing muestra un hueco etiquetado en su lugar.
+FOTOGRAFIA DE LA LANDING
 
-  rosa-macro.jpg          Rosa macro. Fondo del hero y del cierre (va desenfocada)
-  sello-rosa.jpg          Sello rojo Lancome. Fondo del bloque de cuestionario
-  cama.jpg                Cama deshecha con luz. Banda "¿Y si te has acostumbrado a estar asi?"
-  retrato-rosa.jpg        Retrato con rosa. Bloque de colaboracion
-  mujer-escribiendo.jpg   Articulo 1
-  cuenco.jpg              Articulo 2
-  madre-bebe.jpg          Articulo 3
-  retrato-1.jpg           Voces
-  retrato-2.jpg           Voces
-  retrato-3.jpg           Voces
-  retrato-4.jpg           Voces
-  retrato-fm.jpg          Bloque institucional Fundacion Manantial
+Todas las rutas son relativas (img/...), asi que la carpeta entera se sube
+tal cual a fundacionmanantial.org/lancome sin tocar el HTML.
 
-TAMANOS RECOMENDADOS
-  Fondos a sangre (rosa-macro, sello-rosa) ...... 2000 px de ancho
-  Bandas y retratos ............................. 1400 px
-  Tarjetas de articulo .......................... 1000 px
-  Formato JPG calidad 80. Si pesan mucho, avisa y las optimizo yo.
+LOGOS
+  logo-fundacion-manantial.png   cabecera, tira de cobranding y pie
+  logo-lancome.png               idem. RECORTADO del lockup de campana:
+                                 sustituir por el original de marca
+  logo-imfine.png                logo de campana en positivo. Sin uso todavia:
+                                 hace falta la version en NEGATIVO (blanca)
+                                 para el hero y el cierre, que van en oscuro
 
-Las rutas son relativas (img/...), asi que la carpeta entera se puede subir
-tal cual a fundacionmanantial.org/lancome sin tocar nada.
+FOTOGRAFIA
+  rosa-macro.jpg          fondo del hero y del cierre, desenfocada
+  sello-rosa.jpg          fondo del bloque de cuestionario, desenfoque suave
+  cama.jpg                banda "¿Y si te has acostumbrado a estar asi?"
+  retrato-trenzas.jpg     banda ancha del bloque de colaboracion
+  mujer-escribiendo.jpg   articulo 1
+  cuenco.jpg              articulo 2
+  madre-bebe.jpg          articulo 3
+  retrato-rosa.jpg        voces, embajadora
+  retrato-sereno.jpg      voces, primera persona
+  retrato-estudio.jpg     voces, profesional de FM
+
+Ya optimizadas: de 40 MB a 1,5 MB en total. Si se sustituye alguna, mantener
+el nombre de archivo y un ancho de 1100-1800 px en JPG calidad 70-72.
+
+PENDIENTE DE VERIFICAR
+  Licencia del banco de imagenes de Lancome para alojarlas en el dominio de
+  Fundacion Manantial, no solo en lancome.com.
