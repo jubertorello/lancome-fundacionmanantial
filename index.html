@@ -165,6 +165,35 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 }
 .hero-play:hover i{background:#fff;color:var(--ink);border-color:#fff}
 
+/* ---------- bloque de vídeo ---------- */
+.film{background:#0A0507;position:relative;z-index:2}
+.film-in{padding-block:0 clamp(40px,6vw,76px)}
+.film-box{
+  position:relative;margin:0;aspect-ratio:16/9;overflow:hidden;
+  background:#140309;cursor:pointer;
+}
+.film-box img,.film-box video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.film-box::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,5,7,.12),rgba(10,5,7,.45));
+  transition:opacity .4s var(--ease);
+}
+.film-box:hover::after{opacity:.55}
+.film-play{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;
+  width:clamp(62px,7vw,86px);height:clamp(62px,7vw,86px);border-radius:50%;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.75);
+  backdrop-filter:blur(6px);color:#fff;font-size:17px;padding-left:4px;
+  display:grid;place-items:center;cursor:pointer;
+  transition:background .35s var(--ease),color .35s var(--ease),transform .35s var(--ease);
+}
+.film-box:hover .film-play{background:#fff;color:var(--ink);transform:translate(-50%,-50%) scale(1.06)}
+.film-cap{
+  position:absolute;left:clamp(14px,2vw,26px);bottom:clamp(14px,2vw,26px);z-index:3;
+  font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.85);
+}
+.film-box.playing::after,.film-box.playing .film-play,.film-box.playing .film-cap{display:none}
+
 /* tira de partners, como en Lancôme */
 .partners{border-bottom:1px solid var(--rule);background:var(--paper)}
 .partners-in{max-width:var(--max);margin-inline:auto;padding:14px var(--pad);
@@ -423,10 +452,22 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
       <div class="hero-grid">
         <p class="hero-lead">Respondemos «estoy bien» decenas de veces al día. Casi nunca nos paramos a comprobarlo.</p>
         <div class="hero-act">
-          <a class="hero-play" href="#voces"><i>▶</i> Ver el vídeo</a>
+          <a class="hero-play" href="#video"><i>▶</i> Ver el vídeo</a>
           <a class="btn btn--light btn--big cta" href="#">Descubre cómo estás <span class="arw">→</span></a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- El vídeo no se autocarga: el póster pesa 105 KB y el mp4 solo se pide
+       cuando la persona pulsa. Ver README para la compresión pendiente. -->
+  <section class="film" id="video" aria-label="Vídeo de campaña">
+    <div class="wrap film-in">
+      <figure class="film-box" id="filmBox">
+        <img src="video/manifiesto-poster.jpg" alt="Fotograma del vídeo de campaña" data-opt>
+        <button class="film-play" type="button" aria-label="Reproducir el vídeo de campaña">▶</button>
+        <figcaption class="film-cap">Manifiesto · 8 s</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -474,8 +515,8 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 
   <!-- banda: lo que se normaliza -->
   <section class="split" aria-label="¿Y si te has acostumbrado a estar así?">
-    <figure class="ph" data-label="Cama deshecha · luz de mañana" style="--ar:4/5;margin:0">
-      <img src="img/cama.jpg" alt="Cama deshecha con luz de mañana entrando por la ventana" data-opt>
+    <figure class="ph" data-label="" style="--ar:4/5;margin:0">
+      <img src="img/mujer-sofa.jpg" alt="Mujer recostada en un sofá mirando el móvil, con la luz baja" data-opt>
     </figure>
     <div class="split-txt">
       <p class="kicker"><span class="ast">✱</span> Lo que se normaliza</p>
@@ -627,7 +668,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
         <span class="link">Leer en Lancôme</span>
       </a>
       <a class="art" href="#">
-        <div class="art-img ph" data-label="Madre y bebé, cotidiano" style="--ar:4/3"><img src="img/madre-bebe.jpg" alt="" data-opt><i>6 min de lectura</i></div>
+        <div class="art-img ph" data-label="Madre y bebé, cotidiano" style="--ar:4/3"><img src="img/cama.jpg" alt="" data-opt><i>6 min de lectura</i></div>
         <h3>Hábitos que sostienen: sueño, vínculos y descanso</h3>
         <p>Pequeñas rutinas con evidencia detrás para cuidar el ánimo en el día a día.</p>
         <span class="link">Leer en Lancôme</span>
@@ -640,18 +681,22 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     <div class="wrap">
       <p class="kicker"><span class="ast">✱</span> Voces</p>
       <h2 class="h-lg rv" style="margin-top:18px">¿Cuántas veces has dicho «estoy bien»<br>sin preguntarte si lo <b>estabas</b>?</h2>
-      <div class="voices voices--3 rv">
+      <div class="voices rv">
         <a class="voice" href="#">
           <img class="voice-img" src="img/retrato-rosa.jpg" alt="" data-opt><i>▶</i>
           <b>Embajadora</b><span>Vídeo pendiente de montaje</span>
         </a>
         <a class="voice" href="#">
-          <img class="voice-img" src="img/retrato-sereno.jpg" alt="" data-opt><i>▶</i>
+          <img class="voice-img" src="img/mujer-cafe.jpg" alt="" data-opt><i>▶</i>
           <b>Primera persona</b><span>Vídeo pendiente de montaje</span>
         </a>
         <a class="voice" href="#">
           <img class="voice-img" src="img/retrato-estudio.jpg" alt="" data-opt><i>▶</i>
           <b>Profesional de FM</b><span>Vídeo pendiente de montaje</span>
+        </a>
+        <a class="voice" href="#">
+          <img class="voice-img" src="img/retrato-sereno.jpg" alt="" data-opt><i>▶</i>
+          <b>Colaboradora</b><span>Vídeo pendiente de montaje</span>
         </a>
       </div>
     </div>
@@ -659,6 +704,9 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 
   <!-- 08 · QUIÉNES SOMOS -->
   <section class="band wrap" id="fundacion">
+    <figure class="ph rv" data-label="" style="--ar:21/9;margin:0 0 clamp(34px,4vw,56px)">
+      <img src="img/manos.jpg" alt="Unas manos sostienen a otras" data-opt>
+    </figure>
     <div class="inst">
       <div>
         <p class="kicker"><span class="ast">✱</span> Fundación Manantial</p>
@@ -800,6 +848,26 @@ const cio = new IntersectionObserver((es) => {
   });
 }, {threshold:0.5});
 document.querySelectorAll(".num[data-to]").forEach(el => cio.observe(el));
+
+/* vídeo: se descarga solo al pulsar */
+const filmBox = document.getElementById("filmBox");
+if (filmBox) {
+  const play = () => {
+    if (filmBox.classList.contains("playing")) return;
+    const v = document.createElement("video");
+    v.src = "video/manifiesto.mp4";
+    v.poster = "video/manifiesto-poster.jpg";
+    v.controls = true;
+    v.autoplay = true;
+    v.playsInline = true;
+    filmBox.classList.add("playing");
+    filmBox.querySelector("img").replaceWith(v);
+  };
+  filmBox.addEventListener("click", play);
+  filmBox.querySelector(".film-play").addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); play(); }
+  });
+}
 
 /* tarjetas: toggle en táctil */
 document.querySelectorAll(".say").forEach(b => {

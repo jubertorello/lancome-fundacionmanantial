@@ -14,14 +14,20 @@ LOGOS
 FOTOGRAFIA
   rosa-macro.jpg          fondo del hero y del cierre, desenfocada
   sello-rosa.jpg          fondo del bloque de cuestionario, desenfoque suave
-  cama.jpg                banda "¿Y si te has acostumbrado a estar asi?"
+  mujer-sofa.jpg          banda "¿Y si te has acostumbrado a estar asi?"
   retrato-trenzas.jpg     banda ancha del bloque de colaboracion
-  mujer-escribiendo.jpg   articulo 1
-  cuenco.jpg              articulo 2
-  madre-bebe.jpg          articulo 3
+  mujer-escribiendo.jpg   articulo 1, senales
+  cuenco.jpg              articulo 2, autoexigencia
+  cama.jpg                articulo 3, sueno y descanso
   retrato-rosa.jpg        voces, embajadora
-  retrato-sereno.jpg      voces, primera persona
+  mujer-cafe.jpg          voces, primera persona
   retrato-estudio.jpg     voces, profesional de FM
+  retrato-sereno.jpg      voces, colaboradora
+  manos.jpg               banda del bloque institucional
+
+SIN USO, DISPONIBLE
+  madre-bebe.jpg          sin hueco asignado ahora mismo
+  logo-imfine-lancome.png lockup de campana, sustituido por el cobranding
 
 Ya optimizadas: de 40 MB a 1,5 MB en total. Si se sustituye alguna, mantener
 el nombre de archivo y un ancho de 1100-1800 px en JPG calidad 70-72.

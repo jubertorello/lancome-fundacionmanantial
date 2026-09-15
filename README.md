@@ -55,6 +55,47 @@ python3 -m http.server 8000
 | Artículos de Lancôme | títulos y URLs reales en `#articulos` |
 | Datos de prevalencia | `#colaboracion` y `.stats` — verificar fuentes antes de publicar |
 
+## Vídeo
+
+`video/manifiesto.mp4` — 8 s, 720p, con subtítulos quemados en inglés.
+
+No se autocarga. La página muestra el póster (105 KB) y solo pide el mp4
+cuando alguien pulsa play. Es lo correcto mientras el archivo pese lo que
+pesa.
+
+### Pendiente: comprimir
+
+El máster viene a 15,5 Mbps, que es bitrate de edición, no de web. Lo he
+bajado a 720p con `avconvert` (la herramienta del sistema, sin control de
+bitrate) y se queda en 6,7 MB. Con ffmpeg baja a ~1 MB sin pérdida visible:
+
+```bash
+ffmpeg -i video/manifiesto-master.mp4 -vf scale=1280:-2 \
+  -c:v libx264 -crf 26 -preset slow -profile:v high \
+  -movflags +faststart -an video/manifiesto.mp4
+```
+
+`-an` quita el audio: el vídeo lleva los subtítulos quemados, así que se
+entiende en silencio. Si hace falta conservar la voz, cambia `-an` por
+`-c:a aac -b:a 96k`.
+
+Una vez por debajo de ~1,5 MB se puede pasar a autoplay silenciado en
+bucle, que como hook funciona mucho mejor que un play manual.
+
+### ¿YouTube o alojado?
+
+Para este clip, **alojado**. Son 8 segundos sin audio imprescindible: un
+embed de YouTube traería el reproductor completo, su marca, sus cookies y
+el consentimiento que eso obliga a pedir en el sitio de una fundación de
+salud mental. Un mp4 de 1 MB no tiene ninguna de esas contrapartidas.
+
+Para piezas largas —el manifiesto completo, los testimonios— sí conviene
+YouTube o Vimeo: bitrate adaptativo, subtítulos gestionables y ancho de
+banda que no paga la fundación. En ese caso, embeber con fachada (póster
+que solo carga el iframe al pulsar) y usar `youtube-nocookie.com`.
+
+`video/manifiesto-master.mp4` se conserva como original para reencodear.
+
 ## Imágenes
 
 Los huecos son progresivos: si el archivo no existe se ve un hueco etiquetado,
