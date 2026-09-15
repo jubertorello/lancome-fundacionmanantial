@@ -28,6 +28,29 @@ una sola línea.
 - **Archivo** (ancho condensado, peso 800) — exclusivamente para el lockup
   del claim, que funciona como logo.
 
+## Color: cada uno tiene un trabajo
+
+No hay cuotas de color, hay papeles. La regla es que **cuando la página se
+pone azul o arena, es que habla Fundación Manantial**.
+
+| Color | Hex | Papel |
+|---|---|---|
+| Rosa | `#EE4B98` | La duda, la campaña, el asterisco |
+| Granate | `#5C0B1B` / `#8E1230` | El mundo Lancôme: hero, cuestionario, cierre |
+| Azul | `#004591` | La voz de Fundación Manantial |
+| Arena | `#EAE6E0` | La superficie de los bloques de la fundación |
+
+Azul y arena están tomados directamente de fundacionmanantial.org, no
+aproximados a ojo.
+
+Van en azul o sobre arena: «Cómo entendemos la salud mental desde FM», el
+bloque institucional y sus proyectos, la cita de la fundación, los datos
+de los objetivos, los CTA secundarios y los teléfonos de ayuda del pie.
+
+Los CTA secundarios en azul cumplen además una función de conversión: al no
+ser negros dejan de competir con el botón del cuestionario, que es el único
+objetivo de la página.
+
 ## Reglas de marca
 
 - El claim va **siempre en inglés**: I'M FINE · OR MAYBE NOT. El resto de la

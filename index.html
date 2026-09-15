@@ -39,9 +39,17 @@
   --mute:#8E8E94;
   --rule:#E3E2DF;
 
-  /* marca */
+  /* marca
+     Cada color tiene un trabajo, no una cuota:
+       rosa    = la duda, la campaña
+       granate = el mundo Lancôme (hero, cuestionario, cierre)
+       azul    = la voz de Fundación Manantial. Cuando la página se pone
+                 azul o arena, es que habla la fundación.
+     Azules y arena tomados de fundacionmanantial.org. */
   --pink:#EE4B98;
-  --blue:#1B4CA1;
+  --blue:#004591;
+  --blue-dark:#00305F;
+  --sand:#EAE6E0;
   --wine:#5C0B1B;
   --wine-2:#8E1230;
 
@@ -67,6 +75,7 @@ a{color:inherit}
 .wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--pad)}
 .band{padding-block:clamp(56px,7.5vw,112px)}
 .band--grey{background:var(--paper-2)}
+.band--sand{background:var(--sand)}
 section{scroll-margin-top:72px}
 
 /* ---------- tipografía ---------- */
@@ -82,6 +91,9 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   text-transform:uppercase;color:var(--mute);
 }
 .kicker .ast{color:var(--pink)}
+.band--sand .kicker{color:var(--blue)}
+.band--sand .kicker .ast{color:var(--blue)}
+.band--sand .msg-k{color:var(--blue)}
 .rule{height:1px;background:var(--rule);border:0;margin:0}
 
 /* ---------- botones (rectos, como Lancôme) ---------- */
@@ -98,8 +110,8 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .btn:hover .arw{transform:translateX(5px)}
 .btn--light{background:#fff;color:var(--ink);border-color:#fff}
 .btn--light:hover{background:var(--pink);border-color:var(--pink);color:#fff}
-.btn--line{background:transparent;color:var(--ink);border-color:var(--ink)}
-.btn--line:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn--line{background:transparent;color:var(--blue);border-color:var(--blue)}
+.btn--line:hover{background:var(--blue);border-color:var(--blue);color:#fff}
 .btn--big{font-size:13px;padding:18px 34px}
 .link{
   display:inline-block;font-size:12px;font-weight:700;letter-spacing:.13em;
@@ -297,7 +309,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .quote{display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,2.6vw,36px);
   margin-top:clamp(44px,5.5vw,84px);padding-top:clamp(36px,4vw,56px);border-top:1px solid var(--rule)}
 @media(max-width:700px){.quote{grid-template-columns:1fr}}
-.quote-m{font-family:var(--f-serif);font-size:clamp(56px,7vw,110px);line-height:.68;color:var(--pink)}
+.quote-m{font-family:var(--f-serif);font-size:clamp(56px,7vw,110px);line-height:.68;color:var(--blue)}
 .quote p{margin:0;font-family:var(--f-serif);font-size:clamp(20px,2.7vw,36px);line-height:1.28;max-width:24ch}
 .quote cite{display:block;margin-top:20px;font-style:normal;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
 
@@ -352,6 +364,8 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 @media(max-width:860px){.inst{grid-template-columns:1fr}}
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
 .stat{background:var(--paper);padding:clamp(18px,2.2vw,28px)}
+.band--sand .stats{border-color:rgba(0,69,145,.16);background:rgba(0,69,145,.16)}
+.band--sand .msgs,.band--sand .msg,.band--sand .proj{border-color:rgba(0,69,145,.18)}
 .stat b{display:block;font-size:clamp(26px,3vw,40px);line-height:1;font-weight:300;color:var(--blue);font-variant-numeric:tabular-nums}
 .stat span{display:block;margin-top:8px;font-size:11px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--mute)}
 .ctas2{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
@@ -359,7 +373,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 @media(max-width:820px){.projs{grid-template-columns:repeat(2,1fr)}}
 .proj{text-decoration:none;display:grid;gap:8px;align-content:start;border-top:1px solid var(--rule);padding-top:16px;
   transition:border-color .3s var(--ease)}
-.proj:hover{border-color:var(--pink)}
+.proj:hover{border-color:var(--blue)}
 .proj b{font-size:12px;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
 .proj span{font-size:14px;line-height:1.55;color:var(--ink-soft)}
 
@@ -387,6 +401,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 .legal{margin:0;font-size:12px;line-height:1.6;color:var(--mute);max-width:56ch}
 .legal a{color:var(--mute)}
 .legal strong{color:var(--ink-soft)}
+.foot-col p strong{color:var(--blue);font-weight:800}
 
 /* ---------- barra CTA fija ---------- */
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:70;background:var(--ink);color:#fff;
@@ -654,7 +669,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   </section>
 
   <!-- 05 · CÓMO ENTENDEMOS LA SALUD MENTAL -->
-  <section class="band band--grey" id="salud-mental">
+  <section class="band band--sand" id="salud-mental">
     <div class="wrap">
       <p class="kicker"><span class="ast">✱</span> Cómo entendemos la salud mental</p>
       <h2 class="h-lg rv" style="margin-top:18px">Estar bien no es una respuesta <b>automática</b></h2>
@@ -754,7 +769,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   </section>
 
   <!-- 08 · QUIÉNES SOMOS -->
-  <section class="band wrap" id="fundacion">
+  <section class="band band--sand" id="fundacion"><div class="wrap">
     <figure class="ph rv" data-label="" style="--ar:21/9;margin:0 0 clamp(34px,4vw,56px)">
       <img src="img/manos.webp" alt="Unas manos sostienen a otras" data-opt>
     </figure>
@@ -782,6 +797,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
       <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Empleo e inserción</b><span>Formación y trabajo como parte de la recuperación.</span></a>
       <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Vivienda y apoyo</b><span>Alternativas residenciales para vivir con autonomía.</span></a>
       <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Sensibilización</b><span>Campañas contra el estigma y por los derechos.</span></a>
+    </div>
     </div>
   </section>
 
