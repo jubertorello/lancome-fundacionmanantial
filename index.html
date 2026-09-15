@@ -197,7 +197,9 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 
 /* ---------- bloque de vídeo ---------- */
 .film{background:#0A0507;position:relative;z-index:2}
-.film-in{padding-block:0 clamp(40px,6vw,76px)}
+/* a sangre: el bloque oscuro termina exactamente donde termina el vídeo,
+   sin marco ni franja negra por debajo */
+.film-in{max-width:none;padding:0}
 .film-box{
   position:relative;margin:0;aspect-ratio:16/9;overflow:hidden;
   background:#140309;cursor:pointer;
@@ -533,7 +535,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   <!-- El vídeo no se autocarga: el póster pesa 105 KB y el mp4 solo se pide
        cuando la persona pulsa. Ver README para la compresión pendiente. -->
   <section class="film" id="video" aria-label="Vídeo de campaña">
-    <div class="wrap film-in">
+    <div class="film-in">
       <figure class="film-box" id="filmBox">
         <img src="video/manifiesto-poster.webp" alt="Fotograma del vídeo de campaña" data-opt>
         <button class="film-play" type="button" aria-label="Reproducir el vídeo de campaña">▶</button>
