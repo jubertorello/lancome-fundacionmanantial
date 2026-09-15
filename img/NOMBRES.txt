@@ -22,10 +22,13 @@ FOTOGRAFIA
   retrato-rosa.webp       voces, embajadora
   mujer-cafe.webp         voces, primera persona
   retrato-estudio.webp    voces, profesional de FM
-  retrato-sereno.webp     voces, colaboradora
+  retrato-actriz.webp     voces, colaboradora
   manos.webp              banda del bloque institucional
 
 SIN USO, DISPONIBLE
+  modelo.webp             mujer rodeada de camaras y moviles. Encaja con el
+                          mensaje de tabu o con la banda de normalizacion
+  retrato-sereno.webp     liberada al entrar la actriz en voces
   madre-bebe.webp         sin hueco asignado ahora mismo
   logo-imfine-lancome.png lockup de campana, sustituido por el cobranding
 
