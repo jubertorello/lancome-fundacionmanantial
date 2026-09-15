@@ -34,8 +34,12 @@ una sola línea.
   página está en castellano.
 - El logo de **Fundación Manantial va a la izquierda de la navegación**, por
   delante del lockup de campaña: la landing se aloja en su dominio.
-- La rosa de Lancôme aparece **siempre desenfocada**, como atmósfera y nunca
-  como fotografía legible (clases `.bgimg--blur` y `.bgimg--soft`).
+- Los tres bloques oscuros tienen imagen propia, ninguna se repite: la rosa
+  en el hero, el sello en el cuestionario y otra vez el sello —con menos
+  desenfoque, para que se lea el relieve— firmando el cierre.
+- La rosa va **siempre muy desenfocada**, como atmósfera y nunca como
+  fotografía legible (`.bgimg--blur`, `.bgimg--soft`). El cierre es la
+  excepción deliberada: ahí el sello sí debe reconocerse (`.bgimg--seal`).
 
 ## Movimiento
 
