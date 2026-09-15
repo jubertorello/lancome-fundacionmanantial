@@ -66,8 +66,11 @@ objetivo de la página.
   página está en castellano.
 - El logo de **Fundación Manantial va a la izquierda de la navegación**, por
   delante del lockup de campaña: la landing se aloja en su dominio.
-- El crédito «una iniciativa de» vive **dentro del hero**, como pie de la
-  portada. Sobre oscuro los dos logos van en blanco puro
+- **Firma de la colaboración**: donde aparecen juntos los dos logos —el
+  hero y el pie— los acompaña siempre «Juntos en la prevención de los
+  problemas de salud mental de las mujeres». No es un pie de crédito
+  genérico: es el claim de la alianza.
+- El crédito vive **dentro del hero**, como pie de la portada. Sobre oscuro los dos logos van en blanco puro
   (`filter: brightness(0) invert(1)`), que es el negativo estándar de ambas
   marcas. Si alguna tiene versión en negativo propia, sustituirla.
 - Los tres bloques oscuros tienen imagen propia, ninguna se repite: la rosa
