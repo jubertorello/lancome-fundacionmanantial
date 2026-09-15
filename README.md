@@ -43,9 +43,18 @@ pone azul o arena, es que habla Fundación Manantial**.
 Azul y arena están tomados directamente de fundacionmanantial.org, no
 aproximados a ojo.
 
-Van en azul o sobre arena: «Cómo entendemos la salud mental desde FM», el
-bloque institucional y sus proyectos, la cita de la fundación, los datos
-de los objetivos, los CTA secundarios y los teléfonos de ayuda del pie.
+Van en azul macizo, con texto en blanco: **la cita de la fundación** y **el
+bloque de cifras institucionales**. Son los dos momentos en los que la
+fundación habla en primera persona, y por eso son bloques enteros de color
+y no detalles.
+
+Van sobre arena, con rótulos azules: «lo comprobamos todo menos cómo
+estamos», «cómo entendemos la salud mental desde FM» y el bloque
+institucional con sus proyectos.
+
+Y en azul suelto: los datos de los objetivos y su filete superior, los CTA
+secundarios, los títulos de columna del pie, los teléfonos de ayuda y la
+línea inferior de la cabecera.
 
 Los CTA secundarios en azul cumplen además una función de conversión: al no
 ser negros dejan de competir con el botón del cuestionario, que es el único

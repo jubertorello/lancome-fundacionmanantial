@@ -131,7 +131,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 @media(max-width:520px){.lan-logo,.top .bar{display:none}}
 
 /* ---------- barra superior ---------- */
-.top{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--rule)}
+.top{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid rgba(0,69,145,.22)}
 .top-in{max-width:var(--max);margin-inline:auto;padding:11px var(--pad);display:flex;align-items:center;gap:20px}
 .top .btn{padding:11px 18px;font-size:11px}
 @media(max-width:560px){.top .btn{padding:10px 13px;font-size:10px;letter-spacing:.08em}}
@@ -243,13 +243,6 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .neg img{filter:brightness(0) invert(1)}
 .neg:hover img{opacity:.7}
 
-/* ---------- marquesina «el bien automático» ---------- */
-.marq{overflow:hidden;padding:15px 0;border-bottom:1px solid var(--rule);background:var(--paper)}
-.marq-track{display:flex;width:max-content;animation:slide 46s linear infinite}
-@keyframes slide{to{transform:translateX(-50%)}}
-.marq-track span{font-size:clamp(15px,1.5vw,20px);letter-spacing:.02em;padding-inline:.85em;white-space:nowrap;color:var(--mute)}
-.marq-track span.q{color:var(--pink);font-style:italic}
-
 /* ---------- 02 · lo que decimos / lo que no ---------- */
 .says{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1px;background:var(--rule);
   border:1px solid var(--rule);margin-top:clamp(30px,4vw,48px)}
@@ -306,17 +299,16 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 /* ---------- 04 · objetivos ---------- */
 .objs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);margin-top:clamp(34px,4vw,54px)}
 @media(max-width:820px){.objs{grid-template-columns:1fr;gap:34px}}
-.obj{display:grid;gap:12px;align-content:start;border-top:2px solid var(--ink);padding-top:20px}
+.obj{display:grid;gap:12px;align-content:start;border-top:2px solid var(--blue);padding-top:20px}
 .obj-n{font-size:clamp(30px,3.4vw,44px);line-height:1;font-weight:300;color:var(--blue);font-variant-numeric:tabular-nums}
 .obj h3{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
 .obj p{margin:0;font-size:15px;line-height:1.6;color:var(--ink-soft)}
 
-.quote{display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,2.6vw,36px);
-  margin-top:clamp(44px,5.5vw,84px);padding-top:clamp(36px,4vw,56px);border-top:1px solid var(--rule)}
-@media(max-width:700px){.quote{grid-template-columns:1fr}}
-.quote-m{font-family:var(--f-serif);font-size:clamp(56px,7vw,110px);line-height:.68;color:var(--blue)}
-.quote p{margin:0;font-family:var(--f-serif);font-size:clamp(20px,2.7vw,36px);line-height:1.28;max-width:24ch}
-.quote cite{display:block;margin-top:20px;font-style:normal;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+/* la cita es el corazón de lo que dice la fundación: bloque azul entero */
+.quote{margin-top:clamp(44px,5.5vw,84px);
+  background:var(--blue);color:#fff;padding:clamp(32px,5vw,72px)}
+.quote p{margin:0;font-family:var(--f-serif);font-size:clamp(21px,2.9vw,40px);line-height:1.26;max-width:26ch}
+.quote cite{display:block;margin-top:22px;font-style:normal;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.62)}
 
 /* ---------- 05 · mensajes ---------- */
 .msgs{margin-top:clamp(30px,4vw,50px);border-top:1px solid var(--rule)}
@@ -365,12 +357,11 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 /* ---------- 08 · institucional ---------- */
 .inst{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,4.5vw,72px);align-items:start}
 @media(max-width:860px){.inst{grid-template-columns:1fr}}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
-.stat{background:var(--paper);padding:clamp(18px,2.2vw,28px)}
-.band--sand .stats{border-color:rgba(0,69,145,.16);background:rgba(0,69,145,.16)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.22);border:0}
+.stat{background:var(--blue);padding:clamp(20px,2.4vw,30px)}
 .band--sand .msgs,.band--sand .msg,.band--sand .proj{border-color:rgba(0,69,145,.18)}
-.stat b{display:block;font-size:clamp(26px,3vw,40px);line-height:1;font-weight:300;color:var(--blue);font-variant-numeric:tabular-nums}
-.stat span{display:block;margin-top:8px;font-size:11px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--mute)}
+.stat b{display:block;font-size:clamp(26px,3vw,40px);line-height:1;font-weight:300;color:#fff;font-variant-numeric:tabular-nums}
+.stat span{display:block;margin-top:8px;font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.66)}
 .ctas2{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
 .projs{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2vw,28px);margin-top:clamp(34px,4vw,56px)}
 @media(max-width:820px){.projs{grid-template-columns:repeat(2,1fr)}}
@@ -396,9 +387,9 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-top:1px solid var(--rule)}
 .foot-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,40px)}
 @media(max-width:760px){.foot-cols{grid-template-columns:repeat(2,1fr);gap:28px}}
-.foot-col h4{margin:0 0 14px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.foot-col h4{margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
 .foot-col a,.foot-col p{display:block;margin:0 0 9px;font-size:14px;color:var(--ink-soft);text-decoration:none}
-.foot-col a:hover{color:var(--pink)}
+.foot-col a:hover{color:var(--blue)}
 .foot-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:26px;flex-wrap:wrap;
   margin-top:clamp(34px,4vw,56px);padding-top:clamp(22px,2.6vw,34px);border-top:1px solid var(--rule)}
 .legal{margin:0;font-size:12px;line-height:1.6;color:var(--mute);max-width:56ch}
@@ -448,7 +439,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   .js .think{opacity:1;filter:none;transform:none}
   .js .rv-mask > *{transform:none}
   .js .ph img{transform:none}
-  .marq-track,.caret{animation:none}
+  .caret{animation:none}
   .caret{display:none}
 }
 
@@ -544,8 +535,6 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     </div>
   </section>
 
-  <div class="marq" aria-hidden="true"><div class="marq-track" id="marq"></div></div>
-
   <!-- 02 · ABRIMOS LA DUDA -->
   <section class="band wrap" id="duda">
     <p class="kicker"><span class="ast">✱</span> Abrimos la duda</p>
@@ -590,7 +579,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   </section>
 
   <!-- COSAS QUE REVISAMOS -->
-  <section class="band band--grey" id="revisamos">
+  <section class="band band--sand" id="revisamos">
     <div class="wrap">
       <h2 class="h-lg rv-mask"><span>Lo comprobamos todo.<br>Menos cómo estamos.</span></h2>
       <div class="checks rv stagger">
@@ -658,11 +647,8 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     </div>
 
     <div class="quote rv">
-      <div class="quote-m">“</div>
-      <div>
-        <p>No se trata de que todo el mundo vaya a terapia y busque un diagnóstico. Lo primero es eliminar las barreras sociales y poder hablar de cómo nos sentimos.</p>
-        <cite>Fundación Manantial</cite>
-      </div>
+      <p>«No se trata de que todo el mundo vaya a terapia y busque un diagnóstico. Lo primero es eliminar las barreras sociales y poder hablar de cómo nos sentimos.»</p>
+      <cite>Fundación Manantial</cite>
     </div>
   </section>
 
@@ -881,12 +867,6 @@ document.querySelectorAll("a.cta").forEach(a => {
   // a quien está leyendo la landing
   if (esExterno) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
 });
-
-/* marquesina · el «bien» automático */
-const words = ["bien","bien","¿qué tal?","bien","bien","¿seguro?","bien","estoy bien","bien","*or maybe not"];
-const track = document.getElementById("marq");
-const row = words.map(w => `<span class="${w.includes("?")||w.startsWith("*") ? "q" : ""}">${w}</span><span>·</span>`).join("");
-track.innerHTML = row + row;
 
 /* índice para el escalonado */
 document.querySelectorAll(".stagger").forEach(g => {
