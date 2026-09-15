@@ -223,7 +223,27 @@ El pie incluye el **024** (atención a la conducta suicida) y el **112**.
 
 ## Responsive
 
-Auditado a 375 px, no solo escrito. Puntos de ruptura en 820, 700, 560 y 420.
+Auditado, no solo escrito. Puntos de ruptura en 820, 700, 560, 420 y 400.
+
+### El ancho nunca supera la pantalla
+
+Comprobado a 320, 375, 414, 768, 1024 y 1470 px **desactivando
+temporalmente `overflow-x`**, que es la única forma de medirlo de verdad:
+con esa propiedad puesta, el desbordamiento no desaparece, solo se
+esconde. Desborde real en los seis anchos: 0.
+
+Aparte hay tres redes, por orden de importancia:
+
+1. Que nada sea más ancho que la pantalla. Es la que cuenta.
+2. `overflow-x: clip` en `html` y `body`, con `hidden` de respaldo para
+   navegadores antiguos. Se prefiere `clip` porque, a diferencia de
+   `hidden`, no crea un contenedor de scroll y no interfiere con la
+   cabecera pegajosa.
+3. `max-width: 100%` en `img`, `svg` y `video`.
+
+Para volver a auditarlo tras cualquier cambio, en la consola del
+navegador: poner `document.body.style.overflowX='visible'` y comparar
+`document.documentElement.scrollWidth` con `clientWidth`.
 
 Lo que se corrigió al probarlo de verdad:
 
