@@ -12,25 +12,27 @@ LOGOS
                                  para el hero y el cierre, que van en oscuro
 
 FOTOGRAFIA
-  rosa-macro.jpg          fondo del hero y del cierre, desenfocada
-  sello-rosa.jpg          fondo del bloque de cuestionario, desenfoque suave
-  mujer-sofa.jpg          banda "¿Y si te has acostumbrado a estar asi?"
-  retrato-trenzas.jpg     banda ancha del bloque de colaboracion
-  mujer-escribiendo.jpg   articulo 1, senales
-  cuenco.jpg              articulo 2, autoexigencia
-  cama.jpg                articulo 3, sueno y descanso
-  retrato-rosa.jpg        voces, embajadora
-  mujer-cafe.jpg          voces, primera persona
-  retrato-estudio.jpg     voces, profesional de FM
-  retrato-sereno.jpg      voces, colaboradora
-  manos.jpg               banda del bloque institucional
+  rosa-macro.webp         fondo del hero y del cierre, desenfocada
+  sello-rosa.webp         fondo del bloque de cuestionario, desenfoque suave
+  mujer-sofa.webp         banda "¿Y si te has acostumbrado a estar asi?"
+  retrato-trenzas.webp    banda ancha del bloque de colaboracion
+  mujer-escribiendo.webp  articulo 1, senales
+  cuenco.webp             articulo 2, autoexigencia
+  cama.webp               articulo 3, sueno y descanso
+  retrato-rosa.webp       voces, embajadora
+  mujer-cafe.webp         voces, primera persona
+  retrato-estudio.webp    voces, profesional de FM
+  retrato-sereno.webp     voces, colaboradora
+  manos.webp              banda del bloque institucional
 
 SIN USO, DISPONIBLE
-  madre-bebe.jpg          sin hueco asignado ahora mismo
+  madre-bebe.webp         sin hueco asignado ahora mismo
   logo-imfine-lancome.png lockup de campana, sustituido por el cobranding
 
-Ya optimizadas: de 40 MB a 1,5 MB en total. Si se sustituye alguna, mantener
-el nombre de archivo y un ancho de 1100-1800 px en JPG calidad 70-72.
+FORMATO
+Fotografia en WebP calidad 80, logos en PNG. De los 40 MB originales a 644 KB.
+Si se sustituye alguna foto: ancho 1100-1800 px y exportar a WebP calidad 80.
+rosa-macro.jpg se conserva ademas en JPG porque es la imagen de og:image.
 
 PENDIENTE DE VERIFICAR
   Licencia del banco de imagenes de Lancome para alojarlas en el dominio de
