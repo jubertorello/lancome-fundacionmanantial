@@ -15,6 +15,28 @@ HTML + CSS + JavaScript, sin dependencias ni build. Un único archivo
 (`index.html`) con los estilos y el script en línea. La única carga externa son
 las fuentes de Google Fonts.
 
+Todas las rutas de imagen son **relativas** (`img/...`), así que la carpeta
+entera se puede subir tal cual a `fundacionmanantial.org/lancome` sin tocar
+una sola línea.
+
+## Tipografía
+
+- **Mulish** — la tipografía de Fundación Manantial. Es la principal de toda
+  la página: titulares, cuerpo, botones y navegación.
+- **Bodoni Moda** — solo para el wordmark LANCÔME y la cita. Es el guiño
+  didone de Lancôme, usado con cuentagotas.
+- **Archivo** (ancho condensado, peso 800) — exclusivamente para el lockup
+  del claim, que funciona como logo.
+
+## Reglas de marca
+
+- El claim va **siempre en inglés**: I'M FINE · OR MAYBE NOT. El resto de la
+  página está en castellano.
+- El logo de **Fundación Manantial va a la izquierda de la navegación**, por
+  delante del lockup de campaña: la landing se aloja en su dominio.
+- La rosa de Lancôme aparece **siempre desenfocada**, como atmósfera y nunca
+  como fotografía legible (clases `.bgimg--blur` y `.bgimg--soft`).
+
 Para verlo: abre `index.html` en el navegador, o sirve la carpeta como estático.
 
 ```bash
@@ -27,6 +49,7 @@ python3 -m http.server 8000
 |---|---|
 | URL del cuestionario | `const FORM_URL` al final de `index.html` — alimenta los 5 CTA |
 | Logo oficial de Fundación Manantial | los `<svg class="fm-mark">` (ahora hay un trazado provisional) |
+| Ruta final de alojamiento | prevista `fundacionmanantial.org/lancome` |
 | Fotografía | carpeta `img/` — ver nombres abajo |
 | Vídeo de embajadoras | bloque `.hero` y sección `#voces` |
 | Artículos de Lancôme | títulos y URLs reales en `#articulos` |

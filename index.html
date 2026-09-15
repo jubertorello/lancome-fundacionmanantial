@@ -1,7 +1,7 @@
 <title>I'm Fine. Or Maybe Not.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..700;1,400..500&family=Bodoni+Moda:opsz,wght@6..96,400..600&family=Archivo:wdth,wght@62..100,700..900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300..900;1,400..600&family=Bodoni+Moda:opsz,wght@6..96,400..600&family=Archivo:wdth,wght@62..100,700..900&display=swap">
 
 <style>
 /* ==========================================================================
@@ -31,7 +31,7 @@
   --wine:#5C0B1B;
   --wine-2:#8E1230;
 
-  --f-sans:"Jost","Futura","Century Gothic",system-ui,sans-serif;
+  --f-sans:"Mulish","Helvetica Neue",Arial,system-ui,sans-serif;
   --f-serif:"Bodoni Moda","Didot","Times New Roman",serif;
   --f-logo:"Archivo","Helvetica Neue",Arial,sans-serif;
 
@@ -56,15 +56,15 @@ a{color:inherit}
 section{scroll-margin-top:72px}
 
 /* ---------- tipografía ---------- */
-h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.015em;text-wrap:balance}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .h-xl{font-size:clamp(32px,5vw,62px);line-height:1.08}
 .h-lg{font-size:clamp(27px,3.6vw,46px);line-height:1.12}
 .h-md{font-size:clamp(21px,2.1vw,30px);line-height:1.2}
-.h-xl b,.h-lg b{font-weight:600}
+.h-xl b,.h-lg b{font-weight:800}
 .lead{font-size:clamp(16px,1.35vw,19px);line-height:1.6;color:var(--ink-soft);max-width:46ch;margin:0}
 .body{font-size:16px;line-height:1.68;color:var(--ink-soft);max-width:60ch;margin:0}
 .kicker{
-  margin:0;font-size:11px;font-weight:600;letter-spacing:.16em;
+  margin:0;font-size:11px;font-weight:700;letter-spacing:.16em;
   text-transform:uppercase;color:var(--mute);
 }
 .kicker .ast{color:var(--pink)}
@@ -73,7 +73,7 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.015em;text-wrap:balance}
 /* ---------- botones (rectos, como Lancôme) ---------- */
 .btn{
   display:inline-flex;align-items:center;gap:.8em;
-  font-family:var(--f-sans);font-size:12px;font-weight:500;
+  font-family:var(--f-sans);font-size:12px;font-weight:700;
   letter-spacing:.13em;text-transform:uppercase;text-decoration:none;
   background:var(--ink);color:#fff;border:1px solid var(--ink);
   padding:15px 26px;white-space:nowrap;
@@ -88,7 +88,7 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.015em;text-wrap:balance}
 .btn--line:hover{background:var(--ink);border-color:var(--ink);color:#fff}
 .btn--big{font-size:13px;padding:18px 34px}
 .link{
-  display:inline-block;font-size:12px;font-weight:500;letter-spacing:.13em;
+  display:inline-block;font-size:12px;font-weight:700;letter-spacing:.13em;
   text-transform:uppercase;text-decoration:none;padding-bottom:3px;
   border-bottom:1px solid currentColor;transition:color .3s var(--ease);
 }
@@ -116,9 +116,12 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.015em;text-wrap:balance}
 /* ---------- barra superior ---------- */
 .top{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--rule)}
 .top-in{max-width:var(--max);margin-inline:auto;padding:11px var(--pad);display:flex;align-items:center;gap:20px}
-.top .fm{margin-left:auto}
+.top .fm{text-decoration:none}
+.top .lock{margin-right:auto}
+.fm--home:hover .fm-txt{color:#12357A}
 .top .btn{padding:11px 18px;font-size:11px}
-@media(max-width:860px){.top .fm{display:none}.top .btn{margin-left:auto}}
+@media(max-width:860px){.top .lock-lan,.top .bar--soft{display:none}}
+@media(max-width:620px){.top .fm-txt{display:none}.top .lock-fine{display:none}}
 @media(max-width:560px){.lock-lan{font-size:14px}.top .btn{padding:10px 13px;font-size:10px;letter-spacing:.08em}}
 
 /* ---------- HERO ---------- */
@@ -126,9 +129,9 @@ h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.015em;text-wrap:balance}
 .hero::before{
   content:"";position:absolute;inset:0;z-index:1;
   background:
-    radial-gradient(75% 85% at 22% 32%, var(--wine-2) 0%, rgba(92,11,27,.75) 38%, rgba(10,5,7,.2) 72%, transparent 100%),
-    radial-gradient(55% 70% at 78% 78%, rgba(238,75,152,.30) 0%, transparent 70%),
-    linear-gradient(160deg,#160308 0%,#0A0507 100%);
+    radial-gradient(75% 85% at 22% 32%, rgba(142,18,48,.55) 0%, rgba(92,11,27,.45) 38%, rgba(10,5,7,.25) 72%, transparent 100%),
+    radial-gradient(55% 70% at 78% 78%, rgba(238,75,152,.22) 0%, transparent 70%),
+    linear-gradient(160deg,rgba(22,3,8,.62) 0%,rgba(10,5,7,.78) 100%);
 }
 .hero::after{
   content:"";position:absolute;inset:0;z-index:1;
@@ -381,19 +384,15 @@ footer{background:var(--paper);padding:clamp(40px,5vw,72px) 0 108px;border-top:1
 /* imagen de fondo del hero y del cierre */
 .bgimg{position:absolute;inset:0;z-index:0;overflow:hidden}
 .bgimg img{width:100%;height:100%;object-fit:cover}
+/* desenfoque de marca: la rosa queda como atmósfera, nunca como foto legible.
+   El scale evita que el blur deje los bordes transparentes. */
+.bgimg--blur img{filter:blur(34px) saturate(1.15);transform:scale(1.18)}
+.bgimg--soft img{filter:blur(16px) saturate(1.1);transform:scale(1.1)}
 </style>
 
 <header class="top">
   <div class="top-in">
-    <div class="lock">
-      <div class="lock-fine">
-        <b>I'M FINE<span class="ast">*</span></b>
-        <i>*OR MAYBE NOT</i>
-      </div>
-      <div class="bar"></div>
-      <div class="lock-lan">LANCÔME</div>
-    </div>
-    <div class="fm">
+    <a class="fm fm--home" href="https://www.fundacionmanantial.org/">
       <!-- PROVISIONAL: sustituir por el SVG oficial de Fundación Manantial -->
       <svg class="fm-mark" viewBox="0 0 100 100" aria-hidden="true">
         <g fill="none" stroke="#1B4CA1" stroke-width="11" stroke-linecap="round">
@@ -402,6 +401,15 @@ footer{background:var(--paper);padding:clamp(40px,5vw,72px) 0 108px;border-top:1
         </g>
       </svg>
       <span class="fm-txt">Fundación<b>Manantial</b></span>
+    </a>
+    <div class="bar"></div>
+    <div class="lock">
+      <div class="lock-fine">
+        <b>I'M FINE<span class="ast">*</span></b>
+        <i>*OR MAYBE NOT</i>
+      </div>
+      <div class="bar bar--soft"></div>
+      <div class="lock-lan">LANCÔME</div>
     </div>
     <a class="btn cta" href="#">Haz el cuestionario</a>
   </div>
@@ -410,10 +418,10 @@ footer{background:var(--paper);padding:clamp(40px,5vw,72px) 0 108px;border-top:1
 <main>
   <!-- 01 · BANNER -->
   <section class="hero" id="inicio">
-    <div class="bgimg" aria-hidden="true"><img src="img/rosa-macro.jpg" alt="" data-opt></div>
+    <div class="bgimg bgimg--blur" aria-hidden="true"><img src="img/rosa-macro.jpg" alt="" data-opt></div>
     <div class="hero-in wrap">
       <h1 class="hero-claim">I'm fine<span class="ast">*</span></h1>
-      <p class="hero-claim2">*o quizá no</p>
+      <p class="hero-claim2">*or maybe not</p>
       <div class="hero-grid">
         <p class="hero-lead">Respondemos «estoy bien» decenas de veces al día. Casi nunca nos paramos a comprobarlo.</p>
         <div class="hero-act">
@@ -503,7 +511,7 @@ footer{background:var(--paper);padding:clamp(40px,5vw,72px) 0 108px;border-top:1
 
   <!-- 03 · CUESTIONARIO -->
   <section class="quest" id="cuestionario">
-    <div class="bgimg" aria-hidden="true" style="opacity:.5"><img src="img/sello-rosa.jpg" alt="" data-opt></div>
+    <div class="bgimg bgimg--soft" aria-hidden="true" style="opacity:.55"><img src="img/sello-rosa.jpg" alt="" data-opt></div>
     <div class="quest-in wrap">
       <div class="quest-grid">
         <div>
@@ -685,9 +693,9 @@ footer{background:var(--paper);padding:clamp(40px,5vw,72px) 0 108px;border-top:1
 
   <!-- 09 · CIERRE -->
   <section class="close" id="cierre">
-    <div class="bgimg" aria-hidden="true" style="opacity:.42"><img src="img/rosa-macro.jpg" alt="" data-opt></div>
+    <div class="bgimg bgimg--blur" aria-hidden="true" style="opacity:.6"><img src="img/rosa-macro.jpg" alt="" data-opt></div>
     <div class="close-in wrap">
-      <h2 class="close-claim">I'm fine.<em>*O quizá no.</em></h2>
+      <h2 class="close-claim">I'm fine.<em>*Or maybe not.</em></h2>
       <p>No te decimos cómo estás. Te invitamos a comprobarlo.</p>
       <a class="btn btn--light btn--big cta" href="#">Compruébalo <span class="arw">→</span></a>
     </div>

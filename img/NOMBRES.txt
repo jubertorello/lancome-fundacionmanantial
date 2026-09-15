@@ -1,0 +1,25 @@
+NOMBRES DE ARCHIVO ESPERADOS
+Suelta aquí los JPG con EXACTAMENTE estos nombres (minúsculas, sin acentos).
+Si un archivo no está, la landing muestra un hueco etiquetado en su lugar.
+
+  rosa-macro.jpg          Rosa macro. Fondo del hero y del cierre (va desenfocada)
+  sello-rosa.jpg          Sello rojo Lancome. Fondo del bloque de cuestionario
+  cama.jpg                Cama deshecha con luz. Banda "¿Y si te has acostumbrado a estar asi?"
+  retrato-rosa.jpg        Retrato con rosa. Bloque de colaboracion
+  mujer-escribiendo.jpg   Articulo 1
+  cuenco.jpg              Articulo 2
+  madre-bebe.jpg          Articulo 3
+  retrato-1.jpg           Voces
+  retrato-2.jpg           Voces
+  retrato-3.jpg           Voces
+  retrato-4.jpg           Voces
+  retrato-fm.jpg          Bloque institucional Fundacion Manantial
+
+TAMANOS RECOMENDADOS
+  Fondos a sangre (rosa-macro, sello-rosa) ...... 2000 px de ancho
+  Bandas y retratos ............................. 1400 px
+  Tarjetas de articulo .......................... 1000 px
+  Formato JPG calidad 80. Si pesan mucho, avisa y las optimizo yo.
+
+Las rutas son relativas (img/...), asi que la carpeta entera se puede subir
+tal cual a fundacionmanantial.org/lancome sin tocar nada.
