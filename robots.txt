@@ -1,0 +1,4 @@
+# Landing en revisión: material de campaña sin publicar.
+# Retirar este archivo cuando se apruebe y pase a fundacionmanantial.org/lancome
+User-agent: *
+Disallow: /
