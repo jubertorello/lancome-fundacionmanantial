@@ -103,7 +103,7 @@ python3 -m http.server 8000
 
 | Pendiente | Dónde |
 |---|---|
-| URL del cuestionario | `const FORM_URL` al final de `index.html` — alimenta los 5 CTA |
+| URL del cuestionario | `const FORM_URL` al final de `index.html` — alimenta los 6 CTA. **Ahora apunta provisionalmente a lancome.es** |
 | Logo oficial de Fundación Manantial | los `<svg class="fm-mark">` (ahora hay un trazado provisional) |
 | Ruta final de alojamiento | prevista `fundacionmanantial.org/lancome` |
 | Fotografía | carpeta `img/` — ver nombres abajo |

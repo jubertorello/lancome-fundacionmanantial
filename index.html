@@ -817,7 +817,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     <div class="foot-cols">
       <div class="foot-col">
         <h4>La campaña</h4>
-        <a href="#cuestionario">Haz el cuestionario</a>
+        <a class="cta" href="#cuestionario">Haz el cuestionario</a>
         <a href="#articulos">Artículos</a>
         <a href="#voces">Voces</a>
       </div>
@@ -865,15 +865,24 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 </div>
 
 <script>
-/* URL del cuestionario — sustituir por la definitiva */
-const FORM_URL = "#cuestionario";
+/* URL del cuestionario.
+   Provisional: apunta a lancome.es hasta que exista el formulario.
+   Cambiar solo esta línea; de aquí salen todos los CTA de la página. */
+const FORM_URL = "https://www.lancome.es/";
 
 
 /* si aún no hay foto en img/, el hueco etiquetado se queda como está */
 document.querySelectorAll("img[data-opt]").forEach(img => {
   img.addEventListener("error", () => img.remove());
 });
-document.querySelectorAll("a.cta").forEach(a => { a.href = FORM_URL; });
+const esExterno = /^https?:\/\//.test(FORM_URL) &&
+  new URL(FORM_URL, location.href).host !== location.host;
+document.querySelectorAll("a.cta").forEach(a => {
+  a.href = FORM_URL;
+  // mientras el destino sea otro dominio, se abre aparte para no perder
+  // a quien está leyendo la landing
+  if (esExterno) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+});
 
 /* marquesina · el «bien» automático */
 const words = ["bien","bien","¿qué tal?","bien","bien","¿seguro?","bien","estoy bien","bien","*or maybe not"];
