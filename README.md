@@ -13,9 +13,19 @@ enlazada desde un botón de la web principal.
 
 **https://lancome-fundacionmanantial-chi.vercel.app**
 
-Desplegada desde este repositorio. Para que cada push a `main` la
-actualice sola, el proyecto de Vercel necesita tener conectada la
-integración de GitHub y `main` como rama de producción.
+Desplegada desde este repositorio: cada push a `main` la actualiza sola.
+
+El repositorio es **público**. No por preferencia, sino porque el plan
+Hobby de Vercel no despliega commits de un autor distinto al dueño de la
+cuenta cuando el repositorio es privado, y el proyecto vive en una cuenta
+distinta a la que firma los commits. Al abrirlo, esa restricción
+desaparece.
+
+Conviene tenerlo presente: dentro hay fotografía de Lancôme con la
+licencia aún por confirmar, los logos y la campaña sin publicar. Si en
+algún momento hay que cerrarlo, basta con volver a ponerlo privado y
+mover el proyecto de Vercel a la cuenta de `jubertorello`, que es la que
+coincide con el autor de los commits.
 
 No se indexa. Lleva `noindex, nofollow` y un `robots.txt` cerrado porque
 es material de campaña sin publicar y con fotografía de Lancôme cuya
