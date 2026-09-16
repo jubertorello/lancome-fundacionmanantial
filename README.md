@@ -301,8 +301,18 @@ Lo que se corrigió al probarlo de verdad:
 3. Lo comprobamos todo menos cómo estamos
 4. Cuestionario (bloque protagonista)
 5. Colaboración Lancôme + Fundación Manantial
-6. Cómo entendemos la salud mental desde FM
+6. Fundación Manantial — mirada, casa y proyectos
 7. Artículos Lancôme
 8. Voces
-9. Quiénes somos y proyectos de FM
-10. Cierre → cuestionario
+9. Cierre → cuestionario
+
+El punto 6 unifica lo que el documento de campaña separaba en dos: «cómo
+entendemos la salud mental desde FM» y «quiénes somos». Eran dos bloques
+de arena separados por los artículos y las voces que empezaban los dos
+diciendo «Fundación Manantial», así que repetían territorio y partían en
+dos la única voz institucional de la página.
+
+Unificados, el bloque va de lo que la fundación piensa a lo que hace:
+titular y entradilla, tres pilares —prevención, normalización,
+conversación—, el dato de quiénes son con sus cifras y sus dos CTA, y los
+proyectos al final.
