@@ -159,6 +159,7 @@ python3 -m http.server 8000
 | Ruta final de alojamiento | prevista `fundacionmanantial.org/lancome` |
 | Fotografía | carpeta `img/` — ver nombres abajo |
 | Vídeo de embajadoras | bloque `.hero` y sección `#voces` |
+| Historias reales de Voces | array `VOCES` en el script: imagen y frase de cada una. **Las frases actuales son de campaña, no testimonios**: hay que sustituirlas por lo que digan de verdad las mujeres que aparezcan, y con sus caras |
 | Artículos de Lancôme | títulos y URLs reales en `#articulos` |
 | Datos de prevalencia | `#colaboracion` y `.stats` — verificar fuentes antes de publicar |
 

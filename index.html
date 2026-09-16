@@ -401,21 +401,94 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .art p{margin:0;font-size:14px;line-height:1.55;color:var(--ink-soft)}
 .art .link{margin-top:4px;justify-self:start}
 
-/* ---------- 07 · voces ---------- */
-.voices{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.6vw,22px);margin-top:clamp(30px,4vw,48px)}
-@media(max-width:900px){.voices{grid-template-columns:repeat(2,1fr)}}
-.voice{position:relative;aspect-ratio:3/4;overflow:hidden;background:#1A1013;color:#fff;
-  display:flex;flex-direction:column;justify-content:flex-end;padding:18px;gap:6px;text-decoration:none}
-.voice::before{content:"";position:absolute;inset:0;
-  background:linear-gradient(170deg,rgba(142,18,48,.75),rgba(26,16,19,.95));
+/* ---------- 07 · voces ----------
+   Una historia manda y las otras tres esperan debajo. El peso visual dice
+   por dónde empezar, que es lo que no hacía la rejilla de cuatro iguales. */
+.voces-head{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(24px,4vw,64px);align-items:end}
+@media(max-width:860px){.voces-head{grid-template-columns:1fr;gap:18px}}
+.voces-head .body{font-size:15px;max-width:34ch}
+
+.voz{
+  position:relative;margin:clamp(30px,4vw,52px) 0 0;
+  aspect-ratio:16/9;overflow:hidden;background:#1A1013;
+}
+@media(max-width:700px){.voz{aspect-ratio:4/5}}
+.voz img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:center 26%;
+}
+.voz::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,rgba(10,5,7,.82) 0%,rgba(10,5,7,.55) 42%,transparent 78%);
+}
+@media(max-width:700px){
+  .voz::after{background:linear-gradient(180deg,rgba(10,5,7,.25) 30%,rgba(10,5,7,.88) 100%)}
+}
+.voz-in{
+  position:absolute;inset:0;z-index:2;color:#fff;
+  padding:clamp(22px,3.4vw,52px);
+  display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+  gap:clamp(14px,1.8vw,24px);max-width:min(560px,68%);
+}
+@media(max-width:700px){.voz-in{justify-content:flex-end;max-width:100%}}
+.voz-n{
+  margin:0;font-size:11px;font-weight:700;letter-spacing:.2em;
+  color:rgba(255,255,255,.62);
+}
+.voz-n::after{content:"";display:inline-block;width:48px;height:1px;background:rgba(255,255,255,.4);margin-left:14px;vertical-align:middle}
+.voz-cita{
+  margin:0;font-size:clamp(20px,2.5vw,34px);line-height:1.24;font-weight:300;
+}
+.voz-cita em{display:block;font-style:normal;font-size:.62em;font-weight:400;color:rgba(255,255,255,.82);margin-top:.5em;line-height:1.4}
+
+.voz-play,.voz-nav button{
+  font-family:var(--f-sans);color:#fff;background:none;cursor:pointer;
+  border:1px solid rgba(255,255,255,.5);
+  transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease);
+}
+.voz-play{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:12px 22px 12px 12px;border-radius:999px;
+  font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+}
+.voz-play i{
+  width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.16);
+  display:grid;place-items:center;font-size:11px;padding-left:2px;font-style:normal;
+}
+.voz-play:hover{background:#fff;color:var(--ink);border-color:#fff}
+.voz-nav{position:absolute;top:clamp(18px,2.4vw,30px);right:clamp(18px,2.4vw,30px);z-index:3;display:flex;gap:10px}
+.voz-nav button{width:42px;height:42px;border-radius:50%;font-size:15px;display:grid;place-items:center}
+.voz-nav button:hover{background:#fff;color:var(--ink);border-color:#fff}
+@media(max-width:700px){.voz-nav{display:none}}
+
+/* las tres que esperan */
+.voz-thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.4vw,20px);margin-top:clamp(12px,1.4vw,20px)}
+@media(max-width:700px){.voz-thumbs{grid-template-columns:1fr;gap:10px}}
+.thumb{
+  position:relative;overflow:hidden;background:#1A1013;cursor:pointer;
+  border:0;padding:0;aspect-ratio:4/3;text-align:left;
+  font:inherit;color:#fff;
+}
+@media(max-width:700px){.thumb{aspect-ratio:16/7}}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 26%;
   transition:transform .6s var(--ease)}
-.voice:hover::before{transform:scale(1.06)}
-.voice-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.voice:has(.voice-img)::before{background:linear-gradient(180deg,rgba(10,5,7,.1) 35%,rgba(10,5,7,.88) 100%)}
-.voice i{position:relative;font-style:normal;width:34px;height:34px;border:1px solid rgba(255,255,255,.55);
-  display:grid;place-items:center;font-size:10px;padding-left:2px;margin-bottom:auto}
-.voice b{position:relative;font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase}
-.voice span{position:relative;font-size:14px;line-height:1.35;color:rgba(255,255,255,.75)}
+.thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,5,7,.15) 30%,rgba(10,5,7,.88) 100%)}
+.thumb:hover img{transform:scale(1.05)}
+.thumb-in{position:absolute;inset:0;z-index:2;padding:clamp(14px,1.6vw,20px);display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
+.thumb-n{font-size:10px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,.6)}
+.thumb-q{font-size:clamp(14px,1.15vw,16px);line-height:1.35;font-weight:400}
+.thumb-ver{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.78);display:flex;align-items:center;gap:8px}
+.thumb-ver::before{content:"▶";font-size:8px}
+
+/* el cierre devuelve la pregunta */
+.voces-cierre{
+  margin-top:clamp(36px,4.6vw,72px);padding-top:clamp(28px,3.4vw,48px);
+  border-top:1px solid var(--rule);
+  display:grid;justify-items:center;text-align:center;gap:14px;
+}
+.voces-cierre-q{margin:0;font-size:clamp(19px,2.1vw,28px);line-height:1.3;font-weight:500;max-width:26ch;letter-spacing:-.01em}
+.voces-cierre-s{margin:0;font-size:15px;color:var(--ink-soft)}
+.voces-cierre .btn{margin-top:10px}
 
 /* ---------- 08 · institucional ---------- */
 .inst{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,4.5vw,72px);align-items:start}
@@ -990,32 +1063,46 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   </section>
 
   <!-- 07 · VOCES -->
+  <!-- 07 · VOCES
+       Una historia en grande y las otras tres debajo, para ir cambiando.
+       Cierra devolviendo la pregunta a quien lee y empujando al cuestionario.
+       Los vídeos están pendientes: el botón queda preparado y el guion de
+       cada historia vive en el array VOCES del script. -->
   <section class="band band--grey" id="voces">
     <div class="wrap">
-      <p class="kicker"><span class="ast">✱</span> Voces</p>
-      <h2 class="h-lg rv" style="margin-top:18px">¿Cuántas veces has dicho «estoy bien»<br>sin preguntarte si lo <b>estabas</b>?</h2>
-      <div class="voices rv stagger">
-        <a class="voice" href="#">
-          <img class="voice-img" src="img/retrato-rosa.webp" alt="" data-opt><i>▶</i>
-          <b>Embajadora</b><span>Vídeo pendiente de montaje</span>
-        </a>
-        <a class="voice" href="#">
-          <img class="voice-img" src="img/mujer-cafe.webp" alt="" data-opt><i>▶</i>
-          <b>Primera persona</b><span>Vídeo pendiente de montaje</span>
-        </a>
-        <a class="voice" href="#">
-          <img class="voice-img" src="img/retrato-estudio.webp" alt="" data-opt><i>▶</i>
-          <b>Profesional de FM</b><span>Vídeo pendiente de montaje</span>
-        </a>
-        <a class="voice" href="#">
-          <img class="voice-img" src="img/retrato-actriz.webp" alt="" data-opt><i>▶</i>
-          <b>Colaboradora</b><span>Vídeo pendiente de montaje</span>
-        </a>
+      <div class="voces-head">
+        <div>
+          <p class="kicker"><span class="ast">✱</span> Voces</p>
+          <h2 class="h-lg rv-mask" style="margin-top:18px"><span>¿Cuántas veces has dicho «estoy bien»<br>sin preguntarte si lo <b>estabas</b>?</span></h2>
+        </div>
+        <p class="body rv">Hemos hablado con mujeres que, como tú, han normalizado el «estoy bien». Estas son sus historias.</p>
+      </div>
+
+      <figure class="voz rv" id="voz">
+        <img id="vozImg" src="img/retrato-trenzas.webp" alt="" data-opt>
+        <figcaption class="voz-in">
+          <p class="voz-n"><span id="vozN">01</span> / 04</p>
+          <blockquote class="voz-cita" id="vozCita"></blockquote>
+          <button class="voz-play" type="button" id="vozPlay">
+            <i aria-hidden="true">▶</i> Ver vídeo
+          </button>
+        </figcaption>
+        <div class="voz-nav">
+          <button type="button" id="vozPrev" aria-label="Historia anterior">←</button>
+          <button type="button" id="vozNext" aria-label="Historia siguiente">→</button>
+        </div>
+      </figure>
+
+      <div class="voz-thumbs rv" id="vozThumbs"></div>
+
+      <div class="voces-cierre rv">
+        <p class="voces-cierre-q">Decir «estoy bien» no siempre significa que nos hayamos preguntado cómo estamos.</p>
+        <p class="voces-cierre-s">Preguntarte cómo estás también es cuidarte.</p>
+        <a class="btn cta" href="#">Quiero saber cómo estoy <span class="arw">→</span></a>
       </div>
     </div>
   </section>
 
-  <!-- 08 · QUIÉNES SOMOS -->
   <!-- 09 · CIERRE -->
   <section class="close" id="cierre">
     <div class="bgimg bgimg--seal" aria-hidden="true"><img src="img/sello-rosa.webp" alt="" data-opt></div>
@@ -1241,6 +1328,61 @@ const cio = new IntersectionObserver((es) => {
   });
 }, {threshold:0.5});
 document.querySelectorAll(".num[data-to]").forEach(el => cio.observe(el));
+
+/* ---------- voces ----------
+   Las cuatro historias viven aquí: al sustituirlas por las reales solo hay
+   que tocar este array. «pie» es la continuación de la frase, la parte que
+   normalmente no se dice. */
+const VOCES = [
+  {img:"img/retrato-trenzas.webp",  pie:"aunque últimamente me cuesta desconectar."},
+  {img:"img/retrato-rosa.webp",     pie:"pero llevo unas semanas sintiéndome agotada."},
+  {img:"img/mujer-cafe.webp",       pie:"o eso es lo que suelo decir."},
+  {img:"img/retrato-estudio.webp",  pie:"aunque hace tiempo que no me pregunto cómo estoy."},
+];
+
+const vozImg = document.getElementById("vozImg");
+const vozCita = document.getElementById("vozCita");
+const vozN = document.getElementById("vozN");
+const vozThumbs = document.getElementById("vozThumbs");
+let vozActiva = 0;
+
+const dosDigitos = n => String(n + 1).padStart(2, "0");
+
+const pintarVoces = () => {
+  const v = VOCES[vozActiva];
+  vozImg.src = v.img;
+  vozN.textContent = dosDigitos(vozActiva);
+  vozCita.innerHTML = `«Estoy bien…<em>${v.pie}»</em>`;
+
+  // las otras tres, en el orden en que siguen a la actual
+  vozThumbs.innerHTML = "";
+  for (let i = 1; i <= 3; i++) {
+    const idx = (vozActiva + i) % VOCES.length;
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "thumb";
+    b.setAttribute("aria-label", `Ver la historia ${dosDigitos(idx)}`);
+    b.innerHTML =
+      `<img src="${VOCES[idx].img}" alt="">` +
+      `<span class="thumb-in">` +
+        `<span class="thumb-n">${dosDigitos(idx)} / 04</span>` +
+        `<span class="thumb-q">«Estoy bien… ${VOCES[idx].pie}»</span>` +
+        `<span class="thumb-ver">Ver vídeo</span>` +
+      `</span>`;
+    b.addEventListener("click", () => { vozActiva = idx; pintarVoces(); });
+    vozThumbs.appendChild(b);
+  }
+};
+
+if (vozImg) {
+  pintarVoces();
+  document.getElementById("vozNext").addEventListener("click", () => {
+    vozActiva = (vozActiva + 1) % VOCES.length; pintarVoces();
+  });
+  document.getElementById("vozPrev").addEventListener("click", () => {
+    vozActiva = (vozActiva - 1 + VOCES.length) % VOCES.length; pintarVoces();
+  });
+}
 
 /* vídeo: se descarga solo al pulsar */
 const filmBox = document.getElementById("filmBox");
