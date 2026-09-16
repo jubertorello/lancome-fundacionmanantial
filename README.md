@@ -11,9 +11,11 @@ enlazada desde un botón de la web principal.
 
 ## En revisión
 
-**https://lancome-fundacionmanantial.vercel.app**
+**https://lancome-fundacionmanantial-chi.vercel.app**
 
-Desplegada desde este repositorio: cada push a `main` la actualiza sola.
+Desplegada desde este repositorio. Para que cada push a `main` la
+actualice sola, el proyecto de Vercel necesita tener conectada la
+integración de GitHub y `main` como rama de producción.
 
 No se indexa. Lleva `noindex, nofollow` y un `robots.txt` cerrado porque
 es material de campaña sin publicar y con fotografía de Lancôme cuya
