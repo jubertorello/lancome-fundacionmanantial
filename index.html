@@ -463,8 +463,8 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 @media(max-width:600px){.dock small{display:none}.dock .btn{padding:12px 16px;font-size:11px}}
 
 /* ---------- reveals ---------- */
-.js .rv{opacity:0;transform:translateY(20px)}
-.js .rv.in{opacity:1;transform:none;transition:opacity .85s var(--ease),transform .85s var(--ease)}
+.js .rv{opacity:0;transform:translateY(30px)}
+.js .rv.in{opacity:1;transform:none;transition:opacity .9s var(--ease),transform .9s var(--ease)}
 
 /* los titulares suben desde debajo de una línea invisible, no se desvanecen */
 .js .rv-mask{overflow:hidden;padding-bottom:.12em}
@@ -472,7 +472,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 .js .rv-mask.in > *{transform:none}
 
 /* las rejillas entran escalonadas, no en bloque */
-.js .stagger > *{opacity:0;transform:translateY(24px)}
+.js .stagger > *{opacity:0;transform:translateY(32px)}
 .js .stagger.in > *{opacity:1;transform:none;
   transition:opacity .8s var(--ease),transform .8s var(--ease);
   transition-delay:calc(var(--i,0) * 90ms)}
@@ -505,21 +505,21 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 .js .check--last span{transform:translateY(16px) scale(.94);transform-origin:left center}
 .js .checks.in .check--last span{
   transition:opacity .7s var(--ease),transform .7s var(--ease);
-  transition-delay:1700ms}
+  transition-delay:1550ms}
 
 /* «Silencio» no cae como las demás: no se desplaza, solo aparece, y lo
    hace a ritmo constante. Un silencio no llega, se instala. */
 .js .checks.in .check--last b{
   transform:none;
-  transition:opacity 1s linear;
-  transition-delay:2600ms;
+  transition:opacity .8s linear;
+  transition-delay:2150ms;
 }
 
 /* La última pregunta cierra el gesto, ya instalado el silencio. */
 .js .last-ask{opacity:0;transform:translateY(10px)}
 .js .checks.in .last-ask{opacity:1;transform:none;
   transition:opacity .7s var(--ease),transform .7s var(--ease);
-  transition-delay:3400ms}
+  transition-delay:2750ms}
 @media(prefers-reduced-motion:reduce){
   .js .rv,.js .stagger > *,.js .check span,.js .check b,.js .last-ask{opacity:1;transform:none}
   .js .think{opacity:1;filter:none;transform:none}
@@ -1182,30 +1182,42 @@ if (roseLayers.length && !reduce) {
   }, {passive:true});
 }
 
-/* reveals */
+/* reveals
+   El margen inferior negativo hace que cada bloque empiece a entrar
+   cuando su borde superior cruza el 85 % de la pantalla, no al asomar por
+   abajo: así el movimiento ocurre donde se está mirando. */
+let observadorVivo = false;
 const io = new IntersectionObserver((es) => {
-  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-}, {rootMargin:"0px 0px -6% 0px", threshold:0.06});
+  es.forEach(e => {
+    if (!e.isIntersecting) return;
+    observadorVivo = true;
+    e.target.classList.add("in");
+    io.unobserve(e.target);
+  });
+}, {rootMargin:"0px 0px -15% 0px", threshold:0});
 document.querySelectorAll(".rv, .rv-mask").forEach(el => io.observe(el));
 
-/* Red de seguridad, acotada a lo que ya está a la vista.
-   Antes revelaba la página entera a los 2,5 s, así que todas las
-   animaciones de scroll se disparaban fuera de pantalla y al llegar
-   scrolleando ya estaba todo quieto: el movimiento existía pero no lo
-   veía nadie. Ahora solo alcanza a lo que está en pantalla o por encima,
-   que es lo único que de verdad no puede quedarse invisible. */
+/* Red de seguridad: solo lo que está de verdad dentro de la pantalla.
+   Es un respaldo, no un segundo motor. Cuando corría en cada scroll y con
+   margen de sobra, revelaba los bloques antes de que asomaran y las
+   animaciones terminaban fuera de vista: el movimiento existía pero
+   llegaba tarde. Ahora, en cuanto el observer da señales de vida, este
+   respaldo se desengancha y deja de estorbar. */
 const revelarLoVisible = () => {
   document.querySelectorAll(".rv:not(.in), .rv-mask:not(.in)").forEach(el => {
-    if (el.getBoundingClientRect().top < innerHeight * 1.15) el.classList.add("in");
+    if (el.getBoundingClientRect().top < innerHeight * 0.85) el.classList.add("in");
   });
+};
+const respaldo = () => {
+  if (observadorVivo) { removeEventListener("scroll", respaldo); return; }
+  revelarLoVisible();
 };
 if (!("IntersectionObserver" in window)) {
   // sin observer no hay nada que dispare los reveals: se muestra todo
   document.querySelectorAll(".rv, .rv-mask").forEach(el => el.classList.add("in"));
 } else {
-  setTimeout(revelarLoVisible, 2500);
-  // por si el observer falla en silencio dentro de un iframe o similar
-  addEventListener("scroll", revelarLoVisible, {passive: true});
+  setTimeout(revelarLoVisible, 2500);   // solo la primera pantalla
+  addEventListener("scroll", respaldo, {passive: true});
 }
 
 /* contador */
