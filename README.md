@@ -129,6 +129,14 @@ titulares que suben desde debajo de una línea, rejillas escalonadas, fotos
 que se posan, la rosa del hero a menor velocidad que la página, y la lista
 de «Compruebas» cayendo uno a uno hasta el silencio final.
 
+El movimiento va ocurriendo **a medida que se hace scroll**: cada bloque se
+anima cuando entra en pantalla, no antes.
+
+La red de seguridad que evita que algo se quede invisible está acotada a lo
+que ya está a la vista o por encima. Antes revelaba la página entera a los
+2,5 s y eso disparaba todas las animaciones fuera de pantalla: el
+movimiento existía, pero al llegar scrolleando ya estaba todo quieto.
+
 Todo respeta `prefers-reduced-motion`, que deja la página quieta y legible.
 
 **Contrapartida a tener en cuenta:** durante los primeros ~2,5 s el claim se
