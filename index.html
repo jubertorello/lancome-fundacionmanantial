@@ -706,13 +706,19 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     transition:transform .45s var(--ease);
   }
   .say[aria-pressed="true"] .say-f::after{transform:translateY(2px) rotate(-135deg)}
+  /* El truco de grid-template-rows 0fr→1fr, que sí usa el acordeón de la
+     colaboración, aquí no vale: dentro de un <button> la fila nunca llega a
+     resolverse y se queda en cero. Se despliega con max-height, que es menos
+     elegante pero no depende de cómo el navegador trate el interior del
+     botón. El número es holgado: sobra para dos líneas de texto. */
   .say-b{
     background:none;color:var(--pink);
-    display:grid;grid-template-rows:0fr;
-    transition:grid-template-rows .5s var(--ease);
+    display:block;overflow:hidden;
+    max-height:0;opacity:0;
+    transition:max-height .42s var(--ease),opacity .3s var(--ease);
   }
-  .say[aria-pressed="true"] .say-b{grid-template-rows:1fr}
-  .say-b-in{overflow:hidden;min-height:0}
+  .say[aria-pressed="true"] .say-b{max-height:200px;opacity:1}
+  .say-b-in{display:block;min-height:0}
   .say-b small{display:block;padding-top:2px;color:rgba(238,75,152,.72)}
   .say-b p{padding:6px 0 20px}
   /* El volteo de escritorio desplazaba la cara visible fuera de pantalla.
@@ -856,24 +862,24 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     </div>
     <div class="says rv stagger">
       <button class="say" aria-pressed="false">
-        <span class="say-f"><small>Lo que decimos</small><p>«No es para tanto.»</p></span>
-        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>«No estoy durmiendo bien.»</p></span></span>
+        <span class="say-f"><small>Lo que decimos</small><p>«Estoy bien.»</p></span>
+        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>Tengo ansiedad</p></span></span>
       </button>
       <button class="say" aria-pressed="false">
-        <span class="say-f"><small>Lo que decimos</small><p>«Solo estoy cansada.»</p></span>
-        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>«Estoy agotada.»</p></span></span>
+        <span class="say-f"><small>Lo que decimos</small><p>«Estoy tranquila.»</p></span>
+        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>Estoy cansada</p></span></span>
       </button>
       <button class="say" aria-pressed="false">
-        <span class="say-f"><small>Lo que decimos</small><p>«Es que llevo unas semanas raras.»</p></span>
-        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>«No tengo ganas de nada.»</p></span></span>
+        <span class="say-f"><small>Lo que decimos</small><p>«Todo está bien.»</p></span>
+        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>Estoy irritable</p></span></span>
       </button>
       <button class="say" aria-pressed="false">
-        <span class="say-f"><small>Lo que decimos</small><p>«Ya se me pasará.»</p></span>
-        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>«No consigo desconectar.»</p></span></span>
+        <span class="say-f"><small>Lo que decimos</small><p>«Estoy genial.»</p></span>
+        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>Estoy irascible</p></span></span>
       </button>
       <button class="say" aria-pressed="false">
-        <span class="say-f"><small>Lo que decimos</small><p>«Todo el mundo está igual.»</p></span>
-        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>«Estoy más irritable últimamente.»</p></span></span>
+        <span class="say-f"><small>Lo que decimos</small><p>«Todo en orden.»</p></span>
+        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>Estoy agotada</p></span></span>
       </button>
     </div>
   </section>
