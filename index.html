@@ -407,7 +407,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   margin-top:clamp(34px,4vw,56px);
 }
 @media(max-width:860px){.arts{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.arts{grid-template-columns:1fr}}
+
 .art{display:grid;align-content:start;text-decoration:none;gap:0}
 .art-img{
   display:block;aspect-ratio:121/100;overflow:hidden;background:var(--paper-2);
@@ -433,6 +433,28 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   color:var(--ink);transition:color .3s var(--ease);
 }
 .art:hover .art-mas{color:var(--blue)}
+
+/* En móvil la tarjeta se tumba: imagen cuadrada a la izquierda y el texto
+   al lado, con filete entre piezas. Apiladas ocupaban una pantalla entera
+   cada una y había que hacer scroll para ver que existía la siguiente. */
+@media(max-width:640px){
+  .arts{grid-template-columns:1fr;gap:0;margin-top:clamp(22px,4vw,30px)}
+  .art{
+    grid-template-columns:clamp(112px,36vw,152px) 1fr;
+    grid-template-rows:auto auto auto;
+    column-gap:16px;align-items:start;
+    padding:16px 0;border-bottom:1px solid #D9D9D9;
+  }
+  .art:first-child{border-top:1px solid #D9D9D9}
+  .art-img{grid-column:1;grid-row:1 / -1;aspect-ratio:1;align-self:start}
+  .art-min{grid-column:2;grid-row:1;padding-top:0}
+  .art-tit{
+    grid-column:2;grid-row:2;margin-top:6px;
+    -webkit-line-clamp:3;min-height:0;
+  }
+  .art-mas{grid-column:2;grid-row:3;margin-top:10px}
+  .art:hover .art-img img{transform:none}
+}
 
 /* ---------- 07 · voces ----------
    Carrusel: una historia ocupa la pantalla y las siguientes asoman por la
