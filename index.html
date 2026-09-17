@@ -9,11 +9,12 @@
      campaña sin publicar. Quitar esta línea y robots.txt al aprobarla. -->
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-<meta property="og:title" content="I'M (NOT) FINE">
+<meta property="og:title" content="I'M (NOT) FINE · Lancôme + Fundación Manantial">
+<meta property="og:site_name" content="Fundación Manantial">
 <meta property="og:description" content="No te decimos cómo estás. Te invitamos a comprobarlo.">
 <meta property="og:image" content="img/rosa-macro.jpg">
 <meta property="og:type" content="website">
-<title>I'm (not) fine</title>
+<title>I'M (NOT) FINE · Lancôme + Fundación Manantial</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300..900;1,400..600&family=Archivo:wdth,wght@62..100,700..900&display=swap">
@@ -162,12 +163,13 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 }
 .hero-in{position:relative;z-index:2;padding-block:clamp(52px,8vw,104px) clamp(44px,6vw,80px)}
 .hero-claim{font-family:var(--f-logo);font-weight:800;font-variation-settings:"wdth" 76;
-  text-transform:uppercase;line-height:.88;letter-spacing:-.02em;margin:0;
-  font-size:clamp(46px,11.5vw,168px);}
-/* El hueco del «(not)» está reservado desde el principio: la frase se
-   escribe con un agujero en medio y la duda llega a ocuparlo. Así no hay
-   salto de maquetación y la espera se ve. */
-.hero-claim .claim-not{color:var(--pink);padding-inline:.12em}
+  text-transform:uppercase;line-height:.86;letter-spacing:-.025em;margin:0;
+  font-size:clamp(54px,10vw,148px);}
+/* Una palabra por línea. La del medio queda reservada y vacía mientras la
+   duda no llega: la frase se escribe con un hueco y luego se ocupa, sin
+   salto de maquetación y con la espera a la vista. */
+.hero-claim > span{display:block}
+.hero-claim .claim-not{color:var(--pink)}
 
 /* «I'M … FINE» se teclea: es lo que mandas, deliberado y mecánico.
    «(not)» no se teclea: es lo que piensas, así que aparece entero y va
@@ -735,7 +737,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     <div class="bgimg bgimg--blur" aria-hidden="true"><img src="img/rosa-macro.webp" alt="" data-opt></div>
     <div class="hero-in wrap">
       <h1 class="hero-claim" aria-label="I'm not fine">
-        <span class="tw" data-speed="62">I'm</span><span class="claim-not think" id="think" aria-hidden="true">(not)</span><span class="tw" data-speed="62" data-delay="330" data-ultima>fine</span>
+        <span class="tw">I'm</span><span class="claim-not think" id="think" aria-hidden="true">(not)</span><span class="tw" data-delay="330" data-ultima>fine</span>
       </h1>
       <div class="hero-grid">
         <p class="hero-lead">¿Estoy bien porque realmente lo estoy o porque es lo que respondo automáticamente?</p>
@@ -900,7 +902,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   <section class="band wrap" id="articulos">
     <p class="kicker">Artículos Lancôme</p>
     <h2 class="h-lg rv-mask" style="margin-top:18px"><span>Prevención y salud <b>mental</b></span></h2>
-    <p class="lead rv" style="margin-top:20px">Contenido elaborado con <span class="fm-nombre">Fundación Manantial</span> y alojado en Lancôme.</p>
+    <p class="lead rv" style="margin-top:20px">Párate a pensar en ti con artículos seleccionados por especialistas, en la web de Lancôme.</p>
 
     <div class="arts rv stagger">
         <a class="art" href="#">
