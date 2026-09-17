@@ -472,16 +472,19 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
    Carrusel: una historia ocupa la pantalla y las siguientes asoman por la
    derecha, que es lo que invita a seguir. Se arrastra con el dedo y se
    navega con puntos o flechas. */
-.voces-head{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(24px,4vw,64px);align-items:end}
-@media(max-width:860px){.voces-head{grid-template-columns:1fr;gap:18px}}
-.voces-head .body{font-size:15px;max-width:34ch}
+#voces h2{text-wrap:balance}
 
-.carrusel{margin-top:clamp(30px,4vw,52px)}
+/* El carrusel se sale de .wrap y ocupa el ancho de la pantalla, pero la
+   primera historia sigue arrancando en la misma vertical que el título:
+   este canalón repite la cuenta que hace .wrap, así que la sección se lee
+   alineada aunque las historias se escapen por la derecha. */
+.carrusel{margin-top:clamp(30px,4vw,52px);--canalon:max(var(--pad),calc((100% - var(--max))/2 + var(--pad)))}
 .carrusel-pista{
   display:flex;gap:clamp(12px,1.4vw,20px);
   overflow-x:auto;scroll-snap-type:x mandatory;
   scrollbar-width:none;-ms-overflow-style:none;
   scroll-behavior:smooth;
+  padding-inline:var(--canalon);scroll-padding-inline:var(--canalon);
 }
 .carrusel-pista::-webkit-scrollbar{display:none}
 .voz{
@@ -520,7 +523,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 }
 .voz-play:hover{background:#fff;color:var(--ink);border-color:#fff}
 
-.carrusel-barra{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:20px}
+.carrusel-barra{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:20px;padding-inline:var(--canalon)}
 .carrusel-puntos{display:flex;gap:8px}
 .carrusel-puntos button{
   width:32px;height:3px;border:0;padding:0;cursor:pointer;
@@ -537,14 +540,26 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .carrusel-flechas button:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
 
 /* el cierre devuelve la pregunta */
+/* Centrado y en una columna, el cierre parecía un pie de página y la frase
+   se quedaba sin peso. Ahora la frase manda a la izquierda y la llamada se
+   apoya a su derecha, alineadas por abajo: se lee como una conclusión, no
+   como un remate. */
 .voces-cierre{
   margin-top:clamp(36px,4.6vw,72px);padding-top:clamp(28px,3.4vw,48px);
   border-top:1px solid var(--rule);
-  display:grid;justify-items:center;text-align:center;gap:14px;
+  display:grid;grid-template-columns:1.3fr 1fr;
+  gap:clamp(22px,4vw,64px);align-items:end;
 }
-.voces-cierre-q{margin:0;font-size:clamp(19px,2.1vw,28px);line-height:1.3;font-weight:500;max-width:26ch;letter-spacing:-.01em}
-.voces-cierre-s{margin:0;font-size:15px;color:var(--ink-soft)}
-.voces-cierre .btn{margin-top:10px}
+@media(max-width:860px){.voces-cierre{grid-template-columns:1fr;gap:24px;align-items:start}}
+.voces-cierre-q{
+  margin:0;font-size:clamp(22px,2.7vw,36px);line-height:1.2;
+  font-weight:500;letter-spacing:-.015em;max-width:20ch;
+}
+/* El rosa marca la frase automática: es la que la campaña pone en duda. */
+.vc-dicho{color:var(--pink)}
+.voces-cierre-acc{display:grid;justify-items:start;gap:18px}
+.voces-cierre-s{margin:0;font-size:15px;line-height:1.55;color:var(--ink-soft);max-width:30ch}
+.voces-cierre .btn{margin-top:0}
 
 /* ---------- 08 · institucional ---------- */
 .ctas2{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
@@ -972,29 +987,29 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
        cada historia vive en el array VOCES del script. -->
   <section class="band" id="voces">
     <div class="wrap">
-      <div class="voces-head">
-        <div>
-          <p class="kicker">Voces</p>
-          <h2 class="h-lg rv-mask" style="margin-top:18px"><span>¿Cuántas veces has dicho «estoy bien»<br>sin preguntarte si lo <b>estabas</b>?</span></h2>
-        </div>
-        <p class="body rv">Hemos hablado con mujeres que, como tú, han normalizado el «estoy bien». Estas son sus historias.</p>
-      </div>
+      <p class="kicker">Voces</p>
+      <h2 class="h-lg rv-mask" style="margin-top:18px"><span>¿Cuántas veces has dicho «estoy bien» sin preguntarte si lo <b>estabas</b>?</span></h2>
+      <p class="lead rv" style="margin-top:20px">Hemos hablado con mujeres que, como tú, han normalizado el «estoy bien». Estas son sus historias.</p>
+    </div>
 
-      <div class="carrusel rv">
-        <div class="carrusel-pista" id="pista"></div>
-        <div class="carrusel-barra">
-          <div class="carrusel-puntos" id="puntos"></div>
-          <div class="carrusel-flechas">
-            <button type="button" id="vozPrev" aria-label="Historia anterior">←</button>
-            <button type="button" id="vozNext" aria-label="Historia siguiente">→</button>
-          </div>
+    <div class="carrusel rv">
+      <div class="carrusel-pista" id="pista"></div>
+      <div class="carrusel-barra">
+        <div class="carrusel-puntos" id="puntos"></div>
+        <div class="carrusel-flechas">
+          <button type="button" id="vozPrev" aria-label="Historia anterior">←</button>
+          <button type="button" id="vozNext" aria-label="Historia siguiente">→</button>
         </div>
       </div>
+    </div>
 
+    <div class="wrap">
       <div class="voces-cierre rv">
-        <p class="voces-cierre-q">Decir «estoy bien» no siempre significa que nos hayamos preguntado cómo estamos.</p>
-        <p class="voces-cierre-s">Preguntarte cómo estás también es cuidarte.</p>
-        <a class="btn cta" href="#">Quiero saber cómo estoy <span class="arw">→</span></a>
+        <p class="voces-cierre-q">Decir <span class="vc-dicho">«estoy bien»</span> no siempre significa que nos hayamos preguntado cómo estamos.</p>
+        <div class="voces-cierre-acc">
+          <p class="voces-cierre-s">Preguntarte cómo estás también es cuidarte.</p>
+          <a class="btn cta" href="#">Quiero saber cómo estoy <span class="arw">→</span></a>
+        </div>
       </div>
     </div>
   </section>
@@ -1332,30 +1347,48 @@ if (pista) {
     const p = document.createElement("button");
     p.type = "button";
     p.setAttribute("aria-label", `Ir a la historia ${dosDigitos(i)}`);
-    p.addEventListener("click", () => irA(i));
+    p.addEventListener("click", () => vaA(i));
     puntos.appendChild(p);
   });
 
   const tarjetas = () => [...pista.children];
+  // Ahora que la pista lleva canalón lateral, offsetLeft ya no vale: mide
+  // desde el borde del elemento e ignora el relleno, así que el destino
+  // salía corrido. Con rectángulos se mide lo que se ve, haya relleno o no.
+  const desvio = t => {
+    const pad = parseFloat(getComputedStyle(pista).paddingLeft) || 0;
+    return t.getBoundingClientRect().left - pista.getBoundingClientRect().left - pad;
+  };
+  const pintarPunto = i =>
+    [...puntos.children].forEach((p, k) => p.setAttribute("aria-current", k === i ? "true" : "false"));
   const irA = i => {
     const t = tarjetas()[i];
-    if (t) pista.scrollTo({left: t.offsetLeft - pista.offsetLeft, behavior: "smooth"});
+    if (!t) return;
+    pista.scrollTo({left: pista.scrollLeft + desvio(t), behavior: "smooth"});
+    // el punto se enciende al pulsar, sin esperar a que termine el
+    // desplazamiento: si no, la flecha parece que no ha hecho nada
+    pintarPunto(i);
   };
   // el punto activo lo decide la tarjeta más cercana al borde, no un contador
   // aparte: así también acierta cuando se arrastra con el dedo
   const marcar = () => {
     let cerca = 0, dist = Infinity;
     tarjetas().forEach((t, i) => {
-      const d = Math.abs(t.offsetLeft - pista.offsetLeft - pista.scrollLeft);
+      const d = Math.abs(desvio(t));
       if (d < dist) { dist = d; cerca = i; }
     });
-    [...puntos.children].forEach((p, i) => p.setAttribute("aria-current", i === cerca ? "true" : "false"));
+    pintarPunto(cerca);
     return cerca;
   };
-  marcar();
-  pista.addEventListener("scroll", marcar, {passive: true});
-  document.getElementById("vozNext").addEventListener("click", () => irA(Math.min(marcar() + 1, VOCES.length - 1)));
-  document.getElementById("vozPrev").addEventListener("click", () => irA(Math.max(marcar() - 1, 0)));
+  // Las flechas cuentan desde el último destino pedido, no desde dónde está
+  // la pista: si no, dos clics seguidos durante el desplazamiento suave leen
+  // la misma posición y el segundo no avanza.
+  let actual = marcar();
+  pista.addEventListener("scroll", () => { actual = marcar(); }, {passive: true});
+  const vaA = i => { actual = i; irA(i); };
+  const salta = paso => vaA(Math.min(Math.max(actual + paso, 0), VOCES.length - 1));
+  document.getElementById("vozNext").addEventListener("click", () => salta(1));
+  document.getElementById("vozPrev").addEventListener("click", () => salta(-1));
 }
 
 /* vídeo: se descarga solo al pulsar */
