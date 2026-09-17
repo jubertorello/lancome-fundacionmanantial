@@ -3,24 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="I'M FINE, or maybe not. A veces decimos «estoy bien» sin pararnos a pensar cómo estamos realmente. Una iniciativa de Lancôme y Fundación Manantial.">
+<meta name="description" content="I'M (NOT) FINE. A veces decimos «estoy bien» sin pararnos a pensar cómo estamos realmente. Una iniciativa de Lancôme y Fundación Manantial.">
 <meta name="theme-color" content="#0A0507">
 <!-- Mientras la landing esté en revisión no debe indexarse: es material de
      campaña sin publicar. Quitar esta línea y robots.txt al aprobarla. -->
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-<meta property="og:title" content="I'M FINE. OR MAYBE NOT.">
+<meta property="og:title" content="I'M (NOT) FINE">
 <meta property="og:description" content="No te decimos cómo estás. Te invitamos a comprobarlo.">
 <meta property="og:image" content="img/rosa-macro.jpg">
 <meta property="og:type" content="website">
-<title>I'm Fine. Or Maybe Not.</title>
+<title>I'm (not) fine</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300..900;1,400..600&family=Archivo:wdth,wght@62..100,700..900&display=swap">
 
 <style>
 /* ==========================================================================
-   I'M FINE. OR MAYBE NOT.  ·  Lancôme × Fundación Manantial
+   I'M (NOT) FINE  ·  Lancôme × Fundación Manantial
    ---------------------------------------------------------------------------
    · FORM_URL (al final, en el <script>) = URL del cuestionario.
      Todos los CTA principales la toman de ahí.
@@ -85,7 +85,6 @@ a{color:inherit}
 .wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--pad)}
 .band{padding-block:clamp(56px,7.5vw,112px)}
 .band--grey{background:var(--paper-2)}
-.band--sand{background:var(--sand)}
 section{scroll-margin-top:72px}
 
 /* ---------- tipografía ---------- */
@@ -93,15 +92,14 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .h-xl{font-size:clamp(32px,5vw,62px);line-height:1.08}
 .h-lg{font-size:clamp(27px,3.6vw,46px);line-height:1.12}
 .h-xl b,.h-lg b{font-weight:800}
-.lead{font-size:clamp(16px,1.35vw,19px);line-height:1.6;color:var(--ink-soft);max-width:46ch;margin:0}
+/* sin medida corta: las entradillas de sección van en una sola línea
+   mientras quepan, y solo se parten cuando la pantalla obliga */
+.lead{font-size:clamp(16px,1.35vw,19px);line-height:1.6;color:var(--ink-soft);margin:0}
 .body{font-size:16px;line-height:1.68;color:var(--ink-soft);max-width:60ch;margin:0}
 .kicker{
   margin:0;font-size:11px;font-weight:700;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--mute);
+  text-transform:uppercase;color:var(--pink);
 }
-.kicker .ast{color:var(--pink)}
-.band--sand .kicker{color:var(--blue)}
-.band--sand .kicker .ast{color:var(--blue)}
 
 /* ---------- botones (rectos, como Lancôme) ---------- */
 .btn{
@@ -120,12 +118,6 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .btn--line{background:transparent;color:var(--blue);border-color:var(--blue)}
 .btn--line:hover{background:var(--blue);border-color:var(--blue);color:#fff}
 .btn--big{font-size:13px;padding:18px 34px}
-.link{
-  display:inline-block;font-size:12px;font-weight:700;letter-spacing:.13em;
-  text-transform:uppercase;text-decoration:none;padding-bottom:3px;
-  border-bottom:1px solid currentColor;transition:color .3s var(--ease);
-}
-.link:hover{color:var(--blue)}
 
 /* ---------- lockups ---------- */
 .lock{display:flex;align-items:center;gap:13px;min-width:0}
@@ -164,20 +156,14 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .hero-claim{font-family:var(--f-logo);font-weight:800;font-variation-settings:"wdth" 76;
   text-transform:uppercase;line-height:.88;letter-spacing:-.02em;margin:0;
   font-size:clamp(46px,11.5vw,168px);}
-.hero-claim .ast{color:var(--pink);opacity:0;transition:opacity .45s var(--ease)}
-.hero-claim .ast{opacity:1}
-.js .hero-claim .ast{opacity:0}
-.js .hero-claim .ast.on{opacity:1}
-.hero-claim2{
-  font-family:var(--f-logo);font-weight:800;font-variation-settings:"wdth" 76;
-  text-transform:uppercase;font-size:clamp(28px,5.2vw,74px);line-height:1;
-  color:var(--pink);margin:.1em 0 0;
-}
+/* El hueco del «(not)» está reservado desde el principio: la frase se
+   escribe con un agujero en medio y la duda llega a ocuparlo. Así no hay
+   salto de maquetación y la espera se ve. */
+.hero-claim .claim-not{color:var(--pink);padding-inline:.12em}
 
-/* «I'M FINE» se teclea: es lo que mandas, deliberado y mecánico.
-   «*or maybe not» no se teclea: es el pensamiento de debajo, así que
-   aparece entero y va enfocándose. Si los dos se escribieran igual,
-   estarían al mismo nivel y el claim perdería la tensión. */
+/* «I'M … FINE» se teclea: es lo que mandas, deliberado y mecánico.
+   «(not)» no se teclea: es lo que piensas, así que aparece entero y va
+   enfocándose en el hueco que la frase le había dejado. */
 .js .tw span{opacity:0}
 .js .tw span.on,.js .tw.done span{opacity:1}
 
@@ -301,20 +287,6 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .say-b small{color:rgba(255,255,255,.78)}
 .say p{margin:0;font-size:clamp(18px,1.75vw,24px);line-height:1.24;font-weight:400}
 
-/* ---------- cosas que revisamos ---------- */
-.checks{border-top:1px solid var(--rule);margin-top:clamp(26px,3.5vw,44px)}
-.check{
-  border-bottom:1px solid var(--rule);display:flex;align-items:baseline;
-  justify-content:space-between;gap:20px;padding:clamp(13px,1.7vw,20px) 0;
-}
-.check span{font-size:clamp(18px,2.2vw,30px);line-height:1.2;font-weight:400}
-.check b{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
-.check--last{padding-top:clamp(26px,3.4vw,48px)}
-.check--last span{position:relative;display:inline-block;color:var(--blue);font-weight:800;font-size:clamp(22px,2.7vw,38px);letter-spacing:-.015em}
-.check--last b{color:var(--blue)}
-.last-q{display:grid;gap:clamp(10px,1.2vw,16px);justify-items:start}
-.last-ask{font-style:normal;font-size:clamp(16px,1.4vw,19px);color:var(--ink-soft);line-height:1.4}
-
 /* ---------- 03 · cuestionario (mundo rosa Lancôme) ---------- */
 .quest{position:relative;background:#2E0410;color:#fff;overflow:hidden}
 /* La rosa va nítida debajo; el desenfoque y el oscurecido los hace esta
@@ -338,7 +310,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .quest-in{position:relative;z-index:3;padding-block:clamp(52px,8vw,112px)}
 .quest-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(30px,5vw,80px);align-items:center}
 @media(max-width:900px){.quest-grid{grid-template-columns:1fr}}
-.quest .kicker{color:rgba(255,255,255,.6)}
+.quest .kicker{color:var(--pink)}
 .quest h2{margin-top:16px}
 .quest .lead{color:rgba(255,255,255,.8);margin-top:20px}
 .quest-cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
@@ -356,129 +328,141 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .obj h3{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
 .obj p{margin:0;font-size:15px;line-height:1.6;color:var(--ink-soft)}
 
-/* la cita es el corazón de lo que dice la fundación: bloque azul entero */
-.quote{margin-top:clamp(44px,5.5vw,84px);
   background:var(--blue);color:#fff;padding:clamp(32px,5vw,72px)}
-.quote p{margin:0;font-weight:300;font-size:clamp(23px,3.6vw,48px);line-height:1.24;letter-spacing:-.02em}
-.quote cite{display:block;margin-top:22px;font-style:normal;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.62)}
 
-/* ---------- 05 · los tres pilares ----------
-   Tres columnas con filete azul arriba: se leen de un vistazo y de lado,
-   no como una lista que hay que recorrer. */
-.pilares{
+/* ---------- Fundación Manantial ----------
+   Sin fondo de color: aquí el peso lo dan las cifras y el aire, no una
+   superficie. Los números son lo grande de la sección. */
+.fm-intro{
+  margin:0;font-size:clamp(19px,2.1vw,28px);line-height:1.38;
+  font-weight:300;letter-spacing:-.015em;max-width:30ch;
+}
+.kpis{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:clamp(20px,2.6vw,44px);
+  margin-top:clamp(40px,5vw,76px);
+  padding-top:clamp(26px,3vw,40px);border-top:1px solid var(--rule);
+}
+@media(max-width:820px){.kpis{grid-template-columns:repeat(2,1fr);gap:28px}}
+.kpi b{
+  display:block;font-size:clamp(40px,5.4vw,78px);line-height:.95;
+  font-weight:300;color:var(--blue);font-variant-numeric:tabular-nums;
+  letter-spacing:-.03em;
+}
+.kpi span{
+  display:block;margin-top:12px;font-size:11px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--mute);
+}
+.ctas2{display:flex;gap:12px;flex-wrap:wrap;margin-top:clamp(34px,4vw,56px)}
+
+/* ---------- 06 · artículos ----------
+   Retícula de Lancôme: tres por fila, imagen algo apaisada y debajo el
+   tiempo de lectura en gris, el titular en negro y el enlace subrayado en
+   versales. Sin caja: la ficha es la propia columna. */
+.arts{
   display:grid;grid-template-columns:repeat(3,1fr);
-  gap:clamp(24px,3.2vw,52px);
-  margin-top:clamp(36px,4.5vw,64px);
+  gap:clamp(30px,3vw,48px) clamp(14px,1.2vw,16px);
+  margin-top:clamp(34px,4vw,56px);
 }
-@media(max-width:820px){.pilares{grid-template-columns:1fr;gap:30px}}
-.pilar{border-top:2px solid var(--blue);padding-top:20px;display:grid;gap:12px;align-content:start}
-.pilar h3{
-  margin:0;font-size:12px;font-weight:700;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--blue);
+@media(max-width:860px){.arts{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.arts{grid-template-columns:1fr}}
+.art{display:grid;align-content:start;text-decoration:none;gap:0}
+.art-img{
+  display:block;aspect-ratio:121/100;overflow:hidden;background:var(--paper-2);
+  position:relative;
 }
-.pilar p{margin:0;font-size:clamp(16px,1.35vw,18px);line-height:1.55;color:var(--ink-soft)}
-
-/* el bloque institucional respira tras los pilares */
-.inst{margin-top:clamp(46px,6vw,88px);padding-top:clamp(36px,4.5vw,60px);
-  border-top:1px solid rgba(0,69,145,.18)}
-
-/* ---------- 06 · artículos ---------- */
-.arts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,34px);margin-top:clamp(30px,4vw,48px)}
-@media(max-width:860px){.arts{grid-template-columns:1fr}}
-.art{text-decoration:none;display:grid;gap:12px;align-content:start}
-.art-img{aspect-ratio:4/3;background:var(--paper-2);position:relative;overflow:hidden}
-.art-img::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(145deg,rgba(0,69,145,.16),rgba(0,69,145,.06));
-  transition:opacity .4s var(--ease);
+.art-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.art:hover .art-img img{transform:scale(1.04)}
+.art-min{
+  display:block;padding-top:16px;font-size:14px;line-height:1.5;color:#808080;
 }
-.art:hover .art-img::after{opacity:.45}
-.art-img i{
-  position:absolute;left:14px;top:14px;font-style:normal;z-index:4;
-  background:var(--paper);padding:5px 9px;font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+.art-tit{
+  display:block;margin-top:12px;font-size:16px;line-height:1.5;color:var(--ink);
+  max-width:26em;
 }
-.art h3{font-size:clamp(17px,1.5vw,21px);line-height:1.3;font-weight:500}
-.art p{margin:0;font-size:14px;line-height:1.55;color:var(--ink-soft)}
-.art .link{margin-top:4px;justify-self:start}
+.art-mas{
+  display:block;margin-top:16px;font-size:14px;line-height:1.5;
+  text-transform:uppercase;text-decoration:underline;text-underline-offset:3px;
+  color:var(--ink);transition:color .3s var(--ease);
+}
+.art:hover .art-mas{color:var(--blue)}
+.arts-pie{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  flex-wrap:wrap;margin-top:clamp(36px,4vw,60px);
+}
+.link-ter{
+  font-size:16px;line-height:1.5;text-transform:uppercase;
+  text-decoration:underline;text-underline-offset:3px;color:var(--ink);
+}
+.link-ter:hover{color:var(--blue)}
 
 /* ---------- 07 · voces ----------
-   Una historia manda y las otras tres esperan debajo. El peso visual dice
-   por dónde empezar, que es lo que no hacía la rejilla de cuatro iguales. */
+   Carrusel: una historia ocupa la pantalla y las siguientes asoman por la
+   derecha, que es lo que invita a seguir. Se arrastra con el dedo y se
+   navega con puntos o flechas. */
 .voces-head{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(24px,4vw,64px);align-items:end}
 @media(max-width:860px){.voces-head{grid-template-columns:1fr;gap:18px}}
 .voces-head .body{font-size:15px;max-width:34ch}
 
+.carrusel{margin-top:clamp(30px,4vw,52px)}
+.carrusel-pista{
+  display:flex;gap:clamp(12px,1.4vw,20px);
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;-ms-overflow-style:none;
+  scroll-behavior:smooth;
+}
+.carrusel-pista::-webkit-scrollbar{display:none}
 .voz{
-  position:relative;margin:clamp(30px,4vw,52px) 0 0;
-  aspect-ratio:16/9;overflow:hidden;background:#1A1013;
+  position:relative;flex:0 0 min(78%,880px);scroll-snap-align:start;
+  aspect-ratio:16/10;overflow:hidden;background:#1A1013;margin:0;
 }
-@media(max-width:700px){.voz{aspect-ratio:4/5}}
-.voz img{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  object-position:center 26%;
-}
+@media(max-width:700px){.voz{flex-basis:88%;aspect-ratio:4/5}}
+.voz img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 26%}
 .voz::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(105deg,rgba(10,5,7,.82) 0%,rgba(10,5,7,.55) 42%,transparent 78%);
+  background:linear-gradient(105deg,rgba(10,5,7,.82) 0%,rgba(10,5,7,.5) 44%,transparent 78%);
 }
-@media(max-width:700px){
-  .voz::after{background:linear-gradient(180deg,rgba(10,5,7,.25) 30%,rgba(10,5,7,.88) 100%)}
-}
+@media(max-width:700px){.voz::after{background:linear-gradient(180deg,rgba(10,5,7,.2) 30%,rgba(10,5,7,.9) 100%)}}
 .voz-in{
   position:absolute;inset:0;z-index:2;color:#fff;
-  padding:clamp(22px,3.4vw,52px);
+  padding:clamp(22px,3vw,48px);
   display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
-  gap:clamp(14px,1.8vw,24px);max-width:min(560px,68%);
+  gap:clamp(14px,1.8vw,22px);max-width:min(520px,72%);
 }
 @media(max-width:700px){.voz-in{justify-content:flex-end;max-width:100%}}
-.voz-n{
-  margin:0;font-size:11px;font-weight:700;letter-spacing:.2em;
-  color:rgba(255,255,255,.62);
-}
-.voz-n::after{content:"";display:inline-block;width:48px;height:1px;background:rgba(255,255,255,.4);margin-left:14px;vertical-align:middle}
-.voz-cita{
-  margin:0;font-size:clamp(20px,2.5vw,34px);line-height:1.24;font-weight:300;
-}
+.voz-n{margin:0;font-size:11px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,.62)}
+.voz-n::after{content:"";display:inline-block;width:40px;height:1px;background:rgba(255,255,255,.4);margin-left:12px;vertical-align:middle}
+.voz-cita{margin:0;font-size:clamp(20px,2.3vw,32px);line-height:1.24;font-weight:300}
 .voz-cita em{display:block;font-style:normal;font-size:.62em;font-weight:400;color:rgba(255,255,255,.82);margin-top:.5em;line-height:1.4}
-
-.voz-play,.voz-nav button{
-  font-family:var(--f-sans);color:#fff;background:none;cursor:pointer;
-  border:1px solid rgba(255,255,255,.5);
+.voz-play{
+  display:inline-flex;align-items:center;gap:12px;cursor:pointer;
+  font-family:var(--f-sans);color:#fff;background:none;
+  border:1px solid rgba(255,255,255,.5);border-radius:999px;
+  padding:11px 20px 11px 11px;
+  font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
   transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease);
 }
-.voz-play{
-  display:inline-flex;align-items:center;gap:12px;
-  padding:12px 22px 12px 12px;border-radius:999px;
-  font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
-}
 .voz-play i{
-  width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.16);
-  display:grid;place-items:center;font-size:11px;padding-left:2px;font-style:normal;
+  width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.16);
+  display:grid;place-items:center;font-size:10px;padding-left:2px;font-style:normal;
 }
 .voz-play:hover{background:#fff;color:var(--ink);border-color:#fff}
-.voz-nav{position:absolute;top:clamp(18px,2.4vw,30px);right:clamp(18px,2.4vw,30px);z-index:3;display:flex;gap:10px}
-.voz-nav button{width:42px;height:42px;border-radius:50%;font-size:15px;display:grid;place-items:center}
-.voz-nav button:hover{background:#fff;color:var(--ink);border-color:#fff}
-@media(max-width:700px){.voz-nav{display:none}}
 
-/* las tres que esperan */
-.voz-thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.4vw,20px);margin-top:clamp(12px,1.4vw,20px)}
-@media(max-width:700px){.voz-thumbs{grid-template-columns:1fr;gap:10px}}
-.thumb{
-  position:relative;overflow:hidden;background:#1A1013;cursor:pointer;
-  border:0;padding:0;aspect-ratio:4/3;text-align:left;
-  font:inherit;color:#fff;
+.carrusel-barra{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:20px}
+.carrusel-puntos{display:flex;gap:8px}
+.carrusel-puntos button{
+  width:32px;height:3px;border:0;padding:0;cursor:pointer;
+  background:var(--rule);transition:background .3s var(--ease);
 }
-@media(max-width:700px){.thumb{aspect-ratio:16/7}}
-.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 26%;
-  transition:transform .6s var(--ease)}
-.thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,5,7,.15) 30%,rgba(10,5,7,.88) 100%)}
-.thumb:hover img{transform:scale(1.05)}
-.thumb-in{position:absolute;inset:0;z-index:2;padding:clamp(14px,1.6vw,20px);display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
-.thumb-n{font-size:10px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,.6)}
-.thumb-q{font-size:clamp(14px,1.15vw,16px);line-height:1.35;font-weight:400}
-.thumb-ver{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.78);display:flex;align-items:center;gap:8px}
-.thumb-ver::before{content:"▶";font-size:8px}
+.carrusel-puntos button[aria-current="true"]{background:var(--pink)}
+.carrusel-flechas{display:flex;gap:10px}
+.carrusel-flechas button{
+  width:42px;height:42px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--rule);background:none;color:var(--ink);
+  font-size:15px;display:grid;place-items:center;
+  transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease);
+}
+.carrusel-flechas button:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
 
 /* el cierre devuelve la pregunta */
 .voces-cierre{
@@ -491,13 +475,6 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .voces-cierre .btn{margin-top:10px}
 
 /* ---------- 08 · institucional ---------- */
-.inst{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,4.5vw,72px);align-items:start}
-@media(max-width:860px){.inst{grid-template-columns:1fr}}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.22);border:0}
-.stat{background:var(--blue);padding:clamp(20px,2.4vw,30px)}
-.band--sand .proj{border-color:rgba(0,69,145,.18)}
-.stat b{display:block;font-size:clamp(26px,3vw,40px);line-height:1;font-weight:300;color:#fff;font-variant-numeric:tabular-nums}
-.stat span{display:block;margin-top:8px;font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.66)}
 .ctas2{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
 /* Los proyectos no son ideas como los pilares de arriba: son cosas que la
    fundación hace, y además son enlaces. Por eso dejan de ser columnas con
@@ -522,7 +499,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 }
 .proj:hover{transform:translateY(-4px)}
 .proj:hover i{transform:translate(3px,-3px)}
-.band--sand .proj{border:0}
+.proj{border:0}
 
 /* ---------- 09 · cierre ---------- */
 .close{position:relative;background:#0A0507;color:#fff;overflow:hidden;text-align:center}
@@ -533,7 +510,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .close-in{position:relative;z-index:2;padding-block:clamp(60px,9vw,140px);display:grid;justify-items:center;gap:26px}
 .close-claim{font-family:var(--f-logo);font-weight:800;font-variation-settings:"wdth" 76;
   text-transform:uppercase;line-height:.9;margin:0;font-size:clamp(34px,8.5vw,124px)}
-.close-claim em{font-style:normal;color:var(--pink);display:block;font-size:.62em}
+.close-claim em{font-style:normal;color:var(--pink)}
 .close p{margin:0;font-size:clamp(17px,1.7vw,22px);line-height:1.45;color:rgba(255,255,255,.82);max-width:26ch}
 
 /* ---------- footer ---------- */
@@ -588,68 +565,8 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 
 /* El bloque no se desvanece como conjunto: si lo hiciera, las filas ya
    estarían todas a la vista antes de empezar a entrar una a una. */
-.js .checks.rv{opacity:1;transform:none}
-
-.js .check span{opacity:0;transform:translateY(12px)}
-.js .check b{opacity:0;transform:translateX(14px)}
-.js .checks.in .check span{opacity:1;transform:none;
-  transition:opacity .55s var(--ease),transform .55s var(--ease);
-  transition-delay:calc(var(--i,0) * 280ms)}
-.js .checks.in .check b{opacity:1;transform:none;
-  transition:opacity .5s var(--ease),transform .5s var(--ease);
-  transition-delay:calc(var(--i,0) * 280ms + 200ms)}
-
-/* La pregunta no entra como las demás: sube, se asienta y crece un punto,
-   y llega tras una espera en la que no pasa nada. Es la que rompe la
-   cadena, así que tiene que moverse distinto. */
-.js .check--last span{transform:translateY(16px) scale(.94);transform-origin:left center}
-.js .checks.in .check--last span{
-  transition:opacity .7s var(--ease),transform .7s var(--ease);
-  transition-delay:1550ms}
-
-/* «Silencio» no cae como las demás: no se desplaza, solo aparece, y lo
-   hace a ritmo constante. Un silencio no llega, se instala. */
-.js .checks.in .check--last b{
-  transform:none;
-  transition:opacity .8s linear;
-  transition-delay:2150ms;
 }
 
-/* La última pregunta cierra el gesto, ya instalado el silencio. */
-.js .last-ask{opacity:0;transform:translateY(10px)}
-.js .checks.in .last-ask{opacity:1;transform:none;
-  transition:opacity .7s var(--ease),transform .7s var(--ease);
-  transition-delay:2750ms}
-@media(prefers-reduced-motion:reduce){
-  .js .rv,.js .stagger > *,.js .check span,.js .check b,.js .last-ask{opacity:1;transform:none}
-  .js .think{opacity:1;filter:none;transform:none}
-  .js .rv-mask > *{transform:none}
-  .js .ph img{transform:none}
-  .caret{animation:none}
-  .caret{display:none}
-}
-
-/* ---------- huecos de imagen ----------
-   Suelta los JPG en una carpeta img/ junto al HTML con el nombre
-   indicado en cada src y la foto sustituye al hueco automáticamente. */
-.ph{
-  position:relative;aspect-ratio:var(--ar,4/3);overflow:hidden;
-  background:
-    linear-gradient(145deg,rgba(0,69,145,.10),rgba(0,69,145,.04)),
-    var(--paper-2);
-}
-.ph::after{
-  content:attr(data-label);position:absolute;left:12px;bottom:12px;z-index:3;
-  font-size:9px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--mute);background:var(--paper);padding:5px 8px;
-}
-.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
-.ph:has(img)::after{display:none}
-
-.split{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;gap:0}
-@media(max-width:820px){.split{grid-template-columns:1fr}}
-.split-txt{padding:clamp(34px,5.5vw,88px) var(--pad);display:grid;align-content:center;gap:20px;max-width:640px;justify-self:center;width:100%}
-.split .ph{--ar:4/5;min-height:300px}
 
 /* imagen de fondo del hero y del cierre */
 .bgimg{position:absolute;inset:0;z-index:0;overflow:hidden}
@@ -816,10 +733,9 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   <section class="hero" id="inicio">
     <div class="bgimg bgimg--blur" aria-hidden="true"><img src="img/rosa-macro.webp" alt="" data-opt></div>
     <div class="hero-in wrap">
-      <h1 class="hero-claim" aria-label="I'm fine, or maybe not">
-        <span class="tw" data-speed="62">I'm fine</span><span class="ast" aria-hidden="true">*</span>
+      <h1 class="hero-claim" aria-label="I'm not fine">
+        <span class="tw" data-speed="62">I'm</span><span class="claim-not think" id="think" aria-hidden="true">(not)</span><span class="tw" data-speed="62" data-delay="330" data-ultima>fine</span>
       </h1>
-      <p class="hero-claim2 think" id="think" aria-hidden="true">*or maybe not</p>
       <div class="hero-grid">
         <p class="hero-lead">¿Estoy bien porque realmente lo estoy o porque es lo que respondo automáticamente?</p>
         <div class="hero-act">
@@ -855,7 +771,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 
   <!-- 02 · ABRIMOS LA DUDA -->
   <section class="band wrap" id="duda">
-    <p class="kicker"><span class="ast">✱</span> Abrimos la duda</p>
+    <p class="kicker">Abrimos la duda</p>
     <h2 class="h-xl rv-mask" style="margin-top:18px"><span>¿Cómo sabes que estás <b>bien</b>?</span></h2>
     <p class="lead rv" style="margin-top:22px">A veces decimos «estoy bien» sin pararnos a pensar cómo estamos realmente.</p>
 
@@ -890,38 +806,36 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   </section>
 
   <!-- banda: lo que se normaliza -->
-  <section class="split" aria-label="¿Y si te has acostumbrado a estar así?">
-    <figure class="ph" data-label="" style="--ar:4/5;margin:0">
-      <img src="img/mujer-sofa.webp" alt="Mujer recostada en un sofá mirando el móvil, con la luz baja" data-opt>
-    </figure>
-    <div class="split-txt">
-      <p class="kicker"><span class="ast">✱</span> Lo que se normaliza</p>
-      <h2 class="h-lg rv-mask"><span>¿Y si te has acostumbrado<br>a estar <b>así</b>?</span></h2>
-      <p class="body">Un mal día es un mal día. Un cansancio que no se va, una tristeza que se instala o una tensión constante son otra cosa. Lo que se repite, cuenta.</p>
+  <!-- 04 · COLABORACIÓN -->
+  <section class="band wrap" id="colaboracion">
+    <p class="kicker">Lancôme + Fundación Manantial</p>
+    <h2 class="h-lg rv-mask" style="margin-top:18px"><span>Juntos en la prevención de los problemas<br>de salud mental de las <b>mujeres</b></span></h2>
+    <p class="lead rv" style="margin-top:20px">Tres objetivos, una misma idea: que preguntarse cómo se está deje de ser algo excepcional.</p>
+
+    <div class="objs rv stagger">
+      <article class="obj">
+        <div class="obj-n" data-hasta="3" data-prefijo="1 de cada ">1 de cada 3</div>
+        <h3>Prevención</h3>
+        <p>Una de cada tres mujeres convivirá con ansiedad o depresión a lo largo de su vida. Cuanto antes se nombra, menos pesa.</p>
+      </article>
+      <article class="obj">
+        <div class="obj-n">El doble</div>
+        <h3>Concienciación</h3>
+        <p>La ansiedad y la depresión se diagnostican hasta el doble en mujeres que en hombres. Hablar de ello es parte del cuidado.</p>
+      </article>
+      <article class="obj">
+        <div class="obj-n" data-hasta="10" data-sufijo=" años">10 años</div>
+        <h3>Contra el estigma</h3>
+        <p>Es el tiempo que puede pasar entre los primeros síntomas y pedir ayuda. El estigma es lo que alarga esa espera.</p>
+      </article>
     </div>
+
+    <p class="rv" style="margin-top:clamp(34px,4vw,52px)">
+      <a class="btn cta" href="#">Quiero saber cómo estoy <span class="arw">→</span></a>
+    </p>
   </section>
 
-  <!-- COSAS QUE REVISAMOS -->
-  <section class="band band--sand" id="revisamos">
-    <div class="wrap">
-      <h2 class="h-lg rv-mask"><span>Lo comprobamos todo.<br>Menos cómo estamos.</span></h2>
-      <div class="checks rv stagger">
-        <div class="check"><span>¿He cerrado la puerta?</span><b>Compruebas</b></div>
-        <div class="check"><span>¿He apagado el horno?</span><b>Compruebas</b></div>
-        <div class="check"><span>¿He enviado el mail?</span><b>Compruebas</b></div>
-        <div class="check"><span>¿He reservado el vuelo?</span><b>Compruebas</b></div>
-        <div class="check check--last">
-          <div class="last-q">
-            <span>¿Cómo estoy?</span>
-            <em class="last-ask">¿Hace cuánto que no te lo preguntas?</em>
-          </div>
-          <b>Silencio</b>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 03 · CUESTIONARIO -->
+  <!-- 04 · CUESTIONARIO -->
   <section class="quest" id="cuestionario">
     <div class="bgimg" aria-hidden="true"><img src="img/rosa-macro.webp" alt="" data-opt></div>
     <div class="quest-glass" aria-hidden="true"></div>
@@ -946,123 +860,58 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     </div>
   </section>
 
-  <!-- 04 · COLABORACIÓN -->
-  <section class="band wrap" id="colaboracion">
-    <p class="kicker"><span class="ast">✱</span> Lancôme + Fundación Manantial</p>
-    <h2 class="h-lg rv" style="margin-top:18px">Juntos en la prevención de los problemas<br>de salud mental de las <b>mujeres</b></h2>
-
-    <div class="objs rv stagger">
-      <article class="obj">
-        <div class="obj-n">1 de cada 3</div>
-        <h3>Prevención</h3>
-        <p>Una de cada tres mujeres convivirá con ansiedad o depresión a lo largo de su vida. Cuanto antes se nombra, menos pesa.</p>
-      </article>
-      <article class="obj">
-        <div class="obj-n">El doble</div>
-        <h3>Concienciación</h3>
-        <p>La ansiedad y la depresión se diagnostican hasta el doble en mujeres que en hombres. Hablar de ello es parte del cuidado.</p>
-      </article>
-      <article class="obj">
-        <div class="obj-n">10 años</div>
-        <h3>Contra el estigma</h3>
-        <p>Es el tiempo que puede pasar entre los primeros síntomas y pedir ayuda. El estigma es lo que alarga esa espera.</p>
-      </article>
-    </div>
-
-    <div class="rv" style="margin-top:clamp(44px,5.5vw,80px)">
-      <figure class="ph" data-label="" style="--ar:21/9;margin:0">
-        <img src="img/manos.webp" alt="Unas manos sostienen a otras" data-opt>
-      </figure>
-    </div>
-
-    <div class="quote rv">
-      <p>«No se trata de que todo el mundo vaya a terapia y busque un diagnóstico. Lo primero es eliminar las barreras sociales y poder hablar de cómo nos sentimos.»</p>
-      <cite>Fundación Manantial</cite>
-    </div>
-  </section>
-
-  <!-- 05 · CÓMO ENTENDEMOS LA SALUD MENTAL -->
-  <!-- 05 · FUNDACIÓN MANANTIAL
-       Unifica «cómo entendemos la salud mental» con el bloque
-       institucional: eran dos secciones de arena separadas por artículos y
-       voces que empezaban las dos diciendo «Fundación Manantial».
-       El orden va de lo que piensa a lo que hace: mirada, casa, proyectos. -->
-  <section class="band band--sand" id="fundacion">
-    <div class="wrap">
-      <p class="kicker"><span class="ast">✱</span> Fundación Manantial</p>
-      <h2 class="h-lg rv-mask" style="margin-top:18px"><span>Estar bien no es una respuesta <b>automática</b></span></h2>
-      <p class="lead rv" style="margin-top:20px">No hace falta estar mal para preguntarte cómo estás. Revisarlo también es un gesto de cuidado.</p>
-
-      <div class="pilares rv stagger">
-        <article class="pilar">
-          <h3>Prevención</h3>
-          <p>No esperar a estar mal para preguntarnos cómo estamos.</p>
-        </article>
-        <article class="pilar">
-          <h3>Normalización</h3>
-          <p>Pararnos a mirar aquello que hemos dejado de cuestionarnos porque se ha convertido en «lo normal».</p>
-        </article>
-        <article class="pilar">
-          <h3>Conversación</h3>
-          <p>Hablar de cómo estamos también es una forma de cuidarnos.</p>
-        </article>
-      </div>
-
-      <div class="inst">
-        <div>
-          <p class="body rv">Desde 1995 Fundación Manantial trabaja por los derechos y la recuperación de las personas con problemas de salud mental y sus familias.</p>
-          <div class="ctas2 rv">
-            <a class="btn btn--line" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Quiero colaborar</a>
-            <a class="btn btn--line" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Quiero estar informado</a>
-          </div>
-        </div>
-        <div class="stats rv stagger">
-          <div class="stat"><b>1995</b><span>Año de fundación</span></div>
-          <div class="stat"><b>+4.000</b><span>Personas atendidas al año</span></div>
-          <div class="stat"><b>+50</b><span>Recursos y servicios</span></div>
-          <div class="stat"><b>+700</b><span>Profesionales</span></div>
-        </div>
-      </div>
-
-      <p class="kicker rv" style="margin-top:clamp(40px,5vw,72px)">Proyectos de Fundación Manantial</p>
-      <div class="projs rv stagger">
-        <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Atención comunitaria</b><i aria-hidden="true">↗</i><span>Equipos que acompañan en el entorno de cada persona.</span></a>
-        <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Empleo e inserción</b><i aria-hidden="true">↗</i><span>Formación y trabajo como parte de la recuperación.</span></a>
-        <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Vivienda y apoyo</b><i aria-hidden="true">↗</i><span>Alternativas residenciales para vivir con autonomía.</span></a>
-        <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Sensibilización</b><i aria-hidden="true">↗</i><span>Campañas contra el estigma y por los derechos.</span></a>
-      </div>
-    </div>
-  </section>
-
   <!-- 06 · ARTÍCULOS -->
   <section class="band wrap" id="articulos">
-    <p class="kicker"><span class="ast">✱</span> Artículos Lancôme</p>
-    <h2 class="h-lg rv" style="margin-top:18px">Prevención y salud <b>mental</b></h2>
-    <p class="body rv" style="margin-top:18px">Contenido para seguir leyendo, elaborado con Fundación Manantial y alojado en Lancôme.</p>
+    <p class="kicker">Artículos Lancôme</p>
+    <h2 class="h-lg rv-mask" style="margin-top:18px"><span>Prevención y salud <b>mental</b></span></h2>
+    <p class="lead rv" style="margin-top:20px">Contenido elaborado con Fundación Manantial y alojado en Lancôme.</p>
 
     <div class="arts rv stagger">
-      <a class="art" href="#">
-        <div class="art-img ph" data-label="Mujer escribiendo en casa" style="--ar:4/3"><img src="img/mujer-escribiendo.webp" alt="" data-opt><i>5 min de lectura</i></div>
-        <h3>Las señales que solemos dejar pasar</h3>
-        <p>Cansancio, irritabilidad, desconexión: cómo distinguir una mala racha de algo que conviene mirar de cerca.</p>
-        <span class="link">Leer en Lancôme</span>
-      </a>
-      <a class="art" href="#">
-        <div class="art-img ph" data-label="Manos y cuenco tibetano" style="--ar:4/3"><img src="img/cuenco.webp" alt="" data-opt><i>4 min de lectura</i></div>
-        <h3>Por qué nos cuesta tanto decir que no estamos bien</h3>
-        <p>El peso de la autoexigencia y del «yo puedo con todo» en la salud mental de las mujeres.</p>
-        <span class="link">Leer en Lancôme</span>
-      </a>
-      <a class="art" href="#">
-        <div class="art-img ph" data-label="Madre y bebé, cotidiano" style="--ar:4/3"><img src="img/cama.webp" alt="" data-opt><i>6 min de lectura</i></div>
-        <h3>Hábitos que sostienen: sueño, vínculos y descanso</h3>
-        <p>Pequeñas rutinas con evidencia detrás para cuidar el ánimo en el día a día.</p>
-        <span class="link">Leer en Lancôme</span>
-      </a>
+        <a class="art" href="#">
+          <span class="art-img"><img src="img/mujer-escribiendo.webp" alt="" data-opt></span>
+          <span class="art-min">5 min de lectura</span>
+          <span class="art-tit">Las señales que solemos dejar pasar: cansancio, irritabilidad, desconexión</span>
+          <span class="art-mas">Leer más</span>
+        </a>
+        <a class="art" href="#">
+          <span class="art-img"><img src="img/cuenco.webp" alt="" data-opt></span>
+          <span class="art-min">4 min de lectura</span>
+          <span class="art-tit">Por qué nos cuesta tanto decir que no estamos bien</span>
+          <span class="art-mas">Leer más</span>
+        </a>
+        <a class="art" href="#">
+          <span class="art-img"><img src="img/cama.webp" alt="" data-opt></span>
+          <span class="art-min">6 min de lectura</span>
+          <span class="art-tit">Hábitos que sostienen: sueño, vínculos y descanso</span>
+          <span class="art-mas">Leer más</span>
+        </a>
+        <a class="art" href="#">
+          <span class="art-img"><img src="img/madre-bebe.webp" alt="" data-opt></span>
+          <span class="art-min">3 min de lectura</span>
+          <span class="art-tit">Cuidar de otros sin dejar de cuidarte</span>
+          <span class="art-mas">Leer más</span>
+        </a>
+        <a class="art" href="#">
+          <span class="art-img"><img src="img/retrato-sereno.webp" alt="" data-opt></span>
+          <span class="art-min">5 min de lectura</span>
+          <span class="art-tit">Cuándo una mala racha deja de serlo</span>
+          <span class="art-mas">Leer más</span>
+        </a>
+        <a class="art" href="#">
+          <span class="art-img"><img src="img/mujer-sofa.webp" alt="" data-opt></span>
+          <span class="art-min">4 min de lectura</span>
+          <span class="art-tit">Lo que normalizamos y convendría volver a mirar</span>
+          <span class="art-mas">Leer más</span>
+        </a>
+    </div>
+
+    <div class="arts-pie rv">
+      <a class="link-ter" href="#">Ver todos los artículos</a>
+      <a class="btn cta" href="#">Quiero saber cómo estoy <span class="arw">→</span></a>
     </div>
   </section>
 
-  <!-- 07 · VOCES -->
+  <!-- 06 · VOCES -->
   <!-- 07 · VOCES
        Una historia en grande y las otras tres debajo, para ir cambiando.
        Cierra devolviendo la pregunta a quien lee y empujando al cuestionario.
@@ -1072,28 +921,22 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     <div class="wrap">
       <div class="voces-head">
         <div>
-          <p class="kicker"><span class="ast">✱</span> Voces</p>
+          <p class="kicker">Voces</p>
           <h2 class="h-lg rv-mask" style="margin-top:18px"><span>¿Cuántas veces has dicho «estoy bien»<br>sin preguntarte si lo <b>estabas</b>?</span></h2>
         </div>
         <p class="body rv">Hemos hablado con mujeres que, como tú, han normalizado el «estoy bien». Estas son sus historias.</p>
       </div>
 
-      <figure class="voz rv" id="voz">
-        <img id="vozImg" src="img/retrato-trenzas.webp" alt="" data-opt>
-        <figcaption class="voz-in">
-          <p class="voz-n"><span id="vozN">01</span> / 04</p>
-          <blockquote class="voz-cita" id="vozCita"></blockquote>
-          <button class="voz-play" type="button" id="vozPlay">
-            <i aria-hidden="true">▶</i> Ver vídeo
-          </button>
-        </figcaption>
-        <div class="voz-nav">
-          <button type="button" id="vozPrev" aria-label="Historia anterior">←</button>
-          <button type="button" id="vozNext" aria-label="Historia siguiente">→</button>
+      <div class="carrusel rv">
+        <div class="carrusel-pista" id="pista"></div>
+        <div class="carrusel-barra">
+          <div class="carrusel-puntos" id="puntos"></div>
+          <div class="carrusel-flechas">
+            <button type="button" id="vozPrev" aria-label="Historia anterior">←</button>
+            <button type="button" id="vozNext" aria-label="Historia siguiente">→</button>
+          </div>
         </div>
-      </figure>
-
-      <div class="voz-thumbs rv" id="vozThumbs"></div>
+      </div>
 
       <div class="voces-cierre rv">
         <p class="voces-cierre-q">Decir «estoy bien» no siempre significa que nos hayamos preguntado cómo estamos.</p>
@@ -1103,11 +946,43 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     </div>
   </section>
 
+  <!-- 07 · FUNDACIÓN MANANTIAL
+       Unifica «cómo entendemos la salud mental» con el bloque
+       institucional: eran dos secciones de arena separadas por artículos y
+       voces que empezaban las dos diciendo «Fundación Manantial».
+       El orden va de lo que piensa a lo que hace: mirada, casa, proyectos. -->
+  <section class="band" id="fundacion">
+    <div class="wrap">
+      <p class="kicker">Fundación Manantial</p>
+      <p class="fm-intro rv" style="margin-top:20px">Desde 1995 Fundación Manantial trabaja por los derechos y la recuperación de las personas con problemas de salud mental y sus familias.</p>
+
+      <div class="kpis rv stagger">
+        <div class="kpi"><b data-hasta="1995" data-crudo="1">1995</b><span>Año de fundación</span></div>
+        <div class="kpi"><b data-hasta="4000" data-prefijo="+">+4.000</b><span>Personas atendidas al año</span></div>
+        <div class="kpi"><b data-hasta="50" data-prefijo="+">+50</b><span>Recursos y servicios</span></div>
+        <div class="kpi"><b data-hasta="700" data-prefijo="+">+700</b><span>Profesionales</span></div>
+      </div>
+
+      <div class="ctas2 rv">
+        <a class="btn btn--line" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Quiero colaborar</a>
+        <a class="btn btn--line" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Quiero estar informado</a>
+      </div>
+
+      <p class="kicker rv" style="margin-top:clamp(44px,5.5vw,80px)">Proyectos</p>
+      <div class="projs rv stagger">
+        <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Atención comunitaria</b><i aria-hidden="true">↗</i><span>Equipos que acompañan en el entorno de cada persona.</span></a>
+        <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Empleo e inserción</b><i aria-hidden="true">↗</i><span>Formación y trabajo como parte de la recuperación.</span></a>
+        <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Vivienda y apoyo</b><i aria-hidden="true">↗</i><span>Alternativas residenciales para vivir con autonomía.</span></a>
+        <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Sensibilización</b><i aria-hidden="true">↗</i><span>Campañas contra el estigma y por los derechos.</span></a>
+      </div>
+    </div>
+  </section>
+
   <!-- 09 · CIERRE -->
   <section class="close" id="cierre">
     <div class="bgimg bgimg--seal" aria-hidden="true"><img src="img/sello-rosa.webp" alt="" data-opt></div>
     <div class="close-in wrap">
-      <h2 class="close-claim">I'm fine.<em>*Or maybe not.</em></h2>
+      <h2 class="close-claim">I'm <em>(not)</em> fine</h2>
       <p>No te decimos cómo estás. Te invitamos a comprobarlo.</p>
       <a class="btn btn--light btn--big cta" href="#">Compruébalo <span class="arw">→</span></a>
     </div>
@@ -1223,6 +1098,7 @@ document.querySelectorAll(".tw").forEach(tw => {
     return;
   }
 
+
   const caret = document.createElement("i");
   caret.className = "caret";
   tw.appendChild(caret);
@@ -1233,11 +1109,11 @@ document.querySelectorAll(".tw").forEach(tw => {
       caret.classList.add("off");
       tw.classList.add("done");
       // el asterisco aparece cuando la frase ya está dicha, no antes
-      const ast = tw.parentElement.querySelector(".ast");
-      if (ast) setTimeout(() => ast.classList.add("on"), 140);
-      // la pausa antes del pensamiento: el silencio es parte de la frase
-      const think = document.getElementById("think");
-      if (think) setTimeout(() => think.classList.add("in"), 620);
+      // el «(not)» llega cuando la frase ya está escrita, no antes
+      if (tw.hasAttribute("data-ultima")) {
+        const think = document.getElementById("think");
+        if (think) setTimeout(() => think.classList.add("in"), 520);
+      }
       return;
     }
     spans[i].classList.add("on");
@@ -1254,7 +1130,6 @@ document.querySelectorAll(".tw").forEach(tw => {
 setTimeout(() => {
   document.querySelectorAll(".tw:not(.done)").forEach(tw => tw.classList.add("done"));
   document.querySelectorAll(".caret").forEach(c => c.classList.add("off"));
-  document.querySelectorAll(".hero-claim .ast").forEach(a => a.classList.add("on"));
   document.getElementById("think")?.classList.add("in");
 }, 4000);
 
@@ -1311,23 +1186,37 @@ if (!("IntersectionObserver" in window)) {
   addEventListener("scroll", respaldo, {passive: true});
 }
 
-/* contador */
+/* Contadores. Sirve para las 7.000 del cuestionario, para las cifras de la
+   fundación y para los datos de los objetivos. Cada cifra declara hasta
+   dónde sube y, si hace falta, qué la acompaña delante o detrás:
+     data-hasta    el número final
+     data-prefijo  lo que va antes  («+», «1 de cada »)
+     data-sufijo   lo que va detrás («&nbsp;años»)
+     data-crudo    sin separador de miles, para los años */
 const fmt = new Intl.NumberFormat("es-ES");
 const cio = new IntersectionObserver((es) => {
   es.forEach(e => {
     if (!e.isIntersecting) return;
-    const el = e.target, to = +el.dataset.to, t0 = performance.now(), dur = 1500;
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = fmt.format(to); cio.unobserve(el); return; }
-    const step = (t) => {
-      const p = Math.min(1, (t - t0) / dur);
-      el.textContent = fmt.format(Math.round(to * (1 - Math.pow(1 - p, 3))));
-      if (p < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
+    const el = e.target;
+    const hasta = +(el.dataset.hasta ?? el.dataset.to);
+    const antes = el.dataset.prefijo || "";
+    const detras = el.dataset.sufijo || "";
+    const crudo = "crudo" in el.dataset;
+    const escribe = n => el.textContent = antes + (crudo ? n : fmt.format(n)) + detras;
+
     cio.unobserve(el);
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) { escribe(hasta); return; }
+
+    const t0 = performance.now(), dur = 1500;
+    const paso = (t) => {
+      const p = Math.min(1, (t - t0) / dur);
+      escribe(Math.round(hasta * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) requestAnimationFrame(paso);
+    };
+    requestAnimationFrame(paso);
   });
-}, {threshold:0.5});
-document.querySelectorAll(".num[data-to]").forEach(el => cio.observe(el));
+}, {threshold:0.4});
+document.querySelectorAll("[data-hasta], .num[data-to]").forEach(el => cio.observe(el));
 
 /* ---------- voces ----------
    Las cuatro historias viven aquí: al sustituirlas por las reales solo hay
@@ -1340,48 +1229,50 @@ const VOCES = [
   {img:"img/retrato-estudio.webp",  pie:"aunque hace tiempo que no me pregunto cómo estoy."},
 ];
 
-const vozImg = document.getElementById("vozImg");
-const vozCita = document.getElementById("vozCita");
-const vozN = document.getElementById("vozN");
-const vozThumbs = document.getElementById("vozThumbs");
-let vozActiva = 0;
-
+const pista = document.getElementById("pista");
+const puntos = document.getElementById("puntos");
 const dosDigitos = n => String(n + 1).padStart(2, "0");
 
-const pintarVoces = () => {
-  const v = VOCES[vozActiva];
-  vozImg.src = v.img;
-  vozN.textContent = dosDigitos(vozActiva);
-  vozCita.innerHTML = `«Estoy bien…<em>${v.pie}»</em>`;
+if (pista) {
+  VOCES.forEach((v, i) => {
+    const f = document.createElement("figure");
+    f.className = "voz";
+    f.innerHTML =
+      `<img src="${v.img}" alt="">` +
+      `<figcaption class="voz-in">` +
+        `<p class="voz-n">${dosDigitos(i)} / ${dosDigitos(VOCES.length - 1)}</p>` +
+        `<blockquote class="voz-cita">«Estoy bien…<em>${v.pie}»</em></blockquote>` +
+        `<button class="voz-play" type="button"><i aria-hidden="true">▶</i> Ver vídeo</button>` +
+      `</figcaption>`;
+    pista.appendChild(f);
 
-  // las otras tres, en el orden en que siguen a la actual
-  vozThumbs.innerHTML = "";
-  for (let i = 1; i <= 3; i++) {
-    const idx = (vozActiva + i) % VOCES.length;
-    const b = document.createElement("button");
-    b.type = "button";
-    b.className = "thumb";
-    b.setAttribute("aria-label", `Ver la historia ${dosDigitos(idx)}`);
-    b.innerHTML =
-      `<img src="${VOCES[idx].img}" alt="">` +
-      `<span class="thumb-in">` +
-        `<span class="thumb-n">${dosDigitos(idx)} / 04</span>` +
-        `<span class="thumb-q">«Estoy bien… ${VOCES[idx].pie}»</span>` +
-        `<span class="thumb-ver">Ver vídeo</span>` +
-      `</span>`;
-    b.addEventListener("click", () => { vozActiva = idx; pintarVoces(); });
-    vozThumbs.appendChild(b);
-  }
-};
+    const p = document.createElement("button");
+    p.type = "button";
+    p.setAttribute("aria-label", `Ir a la historia ${dosDigitos(i)}`);
+    p.addEventListener("click", () => irA(i));
+    puntos.appendChild(p);
+  });
 
-if (vozImg) {
-  pintarVoces();
-  document.getElementById("vozNext").addEventListener("click", () => {
-    vozActiva = (vozActiva + 1) % VOCES.length; pintarVoces();
-  });
-  document.getElementById("vozPrev").addEventListener("click", () => {
-    vozActiva = (vozActiva - 1 + VOCES.length) % VOCES.length; pintarVoces();
-  });
+  const tarjetas = () => [...pista.children];
+  const irA = i => {
+    const t = tarjetas()[i];
+    if (t) pista.scrollTo({left: t.offsetLeft - pista.offsetLeft, behavior: "smooth"});
+  };
+  // el punto activo lo decide la tarjeta más cercana al borde, no un contador
+  // aparte: así también acierta cuando se arrastra con el dedo
+  const marcar = () => {
+    let cerca = 0, dist = Infinity;
+    tarjetas().forEach((t, i) => {
+      const d = Math.abs(t.offsetLeft - pista.offsetLeft - pista.scrollLeft);
+      if (d < dist) { dist = d; cerca = i; }
+    });
+    [...puntos.children].forEach((p, i) => p.setAttribute("aria-current", i === cerca ? "true" : "false"));
+    return cerca;
+  };
+  marcar();
+  pista.addEventListener("scroll", marcar, {passive: true});
+  document.getElementById("vozNext").addEventListener("click", () => irA(Math.min(marcar() + 1, VOCES.length - 1)));
+  document.getElementById("vozPrev").addEventListener("click", () => irA(Math.max(marcar() - 1, 0)));
 }
 
 /* vídeo: se descarga solo al pulsar */
