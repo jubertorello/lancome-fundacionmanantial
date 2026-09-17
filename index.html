@@ -89,6 +89,7 @@ a{color:inherit}
 /* La arena es el suelo de la fundación. Funciona ahora que sus fichas son
    azules: antes, con fichas blancas, la superficie se las comía. */
 .band--sand{background:var(--sand)}
+#colaboracion{background:#FBFBFB}
 section{scroll-margin-top:72px}
 
 /* ---------- tipografía ---------- */
@@ -332,14 +333,45 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .num-l{margin:8px 0 0;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.62)}
 .note{margin:0;font-size:13px;line-height:1.55;color:rgba(255,255,255,.6);max-width:36ch}
 
-/* ---------- 04 · objetivos ---------- */
-.objs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);margin-top:clamp(34px,4vw,54px)}
-@media(max-width:820px){.objs{grid-template-columns:1fr;gap:34px}}
-.obj{display:grid;gap:12px;align-content:start;border-top:2px solid var(--blue);padding-top:20px}
-.obj-n{font-size:clamp(30px,3.4vw,44px);line-height:1;font-weight:300;color:var(--blue);font-variant-numeric:tabular-nums}
-.obj h3{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
-.obj p{margin:0;font-size:15px;line-height:1.6;color:var(--ink-soft)}
+/* ---------- 04 · colaboración ----------
+   Formato de Lancôme: titular a un lado y una lista desplegable al otro,
+   cada fila separada por un filete fino y con un más que se convierte en
+   menos. Las cifras van en el propio rótulo para que se vean sin abrir. */
+.colabora{display:grid;grid-template-columns:436px 1fr;gap:clamp(40px,8vw,127px);align-items:start}
+@media(max-width:980px){.colabora{grid-template-columns:1fr;gap:34px}}
+.colabora-izq{display:grid;justify-items:start;gap:clamp(20px,2.4vw,32px)}
+.colabora-tit{
+  margin:0;font-size:clamp(26px,2.6vw,32px);line-height:1.2;
+  font-weight:500;letter-spacing:-.01em;
+}
 
+.fila{border-top:1px solid #333}
+.fila:last-child{border-bottom:1px solid #333}
+.fila-cab{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  gap:clamp(24px,6vw,89px);padding:24px 0;
+  background:none;border:0;cursor:pointer;text-align:left;font:inherit;color:inherit;
+}
+.fila-t{font-size:clamp(17px,1.6vw,20px);line-height:1.5;color:var(--ink);display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.fila-dato{font-size:.8em;font-weight:700;letter-spacing:.02em;color:var(--blue)}
+
+/* el más se convierte en menos girando una de sus dos barras */
+.fila-mas{position:relative;width:24px;height:24px;flex:none}
+.fila-mas::before,.fila-mas::after{
+  content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;
+  background:var(--ink);transform:translate(-50%,-50%);
+  transition:transform .35s var(--ease),opacity .35s var(--ease);
+}
+.fila-mas::after{transform:translate(-50%,-50%) rotate(90deg)}
+.fila-cab[aria-expanded="true"] .fila-mas::after{transform:translate(-50%,-50%) rotate(0deg)}
+
+.fila-cuerpo{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
+.fila-cab[aria-expanded="true"] + .fila-cuerpo{grid-template-rows:1fr}
+.fila-cuerpo > div{overflow:hidden;min-height:0}
+.fila-cuerpo p{
+  margin:0;padding:0 0 28px;max-width:60ch;
+  font-size:14px;line-height:1.5;color:#4D4D4D;
+}
 
 /* ---------- Fundación Manantial ----------
    Sin fondo de color: aquí el peso lo dan las cifras y el aire, no una
@@ -810,32 +842,45 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 
   <!-- banda: lo que se normaliza -->
   <!-- 04 · COLABORACIÓN -->
-  <section class="band wrap" id="colaboracion">
-    <p class="kicker">Lancôme + <span class="fm-nombre">Fundación Manantial</span></p>
-    <h2 class="h-lg rv-mask" style="margin-top:18px"><span>Juntos en la prevención de los problemas<br>de salud mental de las <b>mujeres</b></span></h2>
-    <p class="lead rv" style="margin-top:20px">Tres objetivos, una misma idea: que preguntarse cómo se está deje de ser algo excepcional.</p>
+  <section class="band" id="colaboracion">
+    <div class="wrap colabora">
+      <div class="colabora-izq">
+        <p class="kicker">Lancôme + <span class="fm-nombre">Fundación Manantial</span></p>
+        <h2 class="colabora-tit rv-mask"><span>Juntos en la prevención de los problemas de salud mental de las mujeres</span></h2>
+        <a class="btn cta rv" href="#">Quiero saber cómo estoy <span class="arw">→</span></a>
+      </div>
 
-    <div class="objs rv stagger">
-      <article class="obj">
-        <div class="obj-n" data-hasta="3" data-prefijo="1 de cada ">1 de cada 3</div>
-        <h3>Prevención</h3>
-        <p>Una de cada tres mujeres convivirá con ansiedad o depresión a lo largo de su vida. Cuanto antes se nombra, menos pesa.</p>
-      </article>
-      <article class="obj">
-        <div class="obj-n">El doble</div>
-        <h3>Concienciación</h3>
-        <p>La ansiedad y la depresión se diagnostican hasta el doble en mujeres que en hombres. Hablar de ello es parte del cuidado.</p>
-      </article>
-      <article class="obj">
-        <div class="obj-n" data-hasta="10" data-sufijo=" años">10 años</div>
-        <h3>Contra el estigma</h3>
-        <p>Es el tiempo que puede pasar entre los primeros síntomas y pedir ayuda. El estigma es lo que alarga esa espera.</p>
-      </article>
+      <div class="colabora-der rv">
+        <div class="fila">
+          <button class="fila-cab" type="button" aria-expanded="true">
+            <span class="fila-t">¿Qué es esta colaboración?</span>
+            <span class="fila-mas" aria-hidden="true"></span>
+          </button>
+          <div class="fila-cuerpo"><div><p>Lancôme y <span class="fm-nombre">Fundación Manantial</span> impulsan juntas la prevención de los problemas de salud mental de las mujeres: un cuestionario de autoobservación, contenido elaborado con especialistas y campañas para que hablar de cómo estamos deje de ser algo excepcional.</p></div></div>
+        </div>
+        <div class="fila">
+          <button class="fila-cab" type="button" aria-expanded="false">
+            <span class="fila-t">Prevención<span class="fila-dato">1 de cada 3</span></span>
+            <span class="fila-mas" aria-hidden="true"></span>
+          </button>
+          <div class="fila-cuerpo"><div><p>Una de cada tres mujeres convivirá con ansiedad o depresión a lo largo de su vida. Cuanto antes se nombra, menos pesa.</p></div></div>
+        </div>
+        <div class="fila">
+          <button class="fila-cab" type="button" aria-expanded="false">
+            <span class="fila-t">Concienciación<span class="fila-dato">El doble</span></span>
+            <span class="fila-mas" aria-hidden="true"></span>
+          </button>
+          <div class="fila-cuerpo"><div><p>La ansiedad y la depresión se diagnostican hasta el doble en mujeres que en hombres. Hablar de ello es parte del cuidado.</p></div></div>
+        </div>
+        <div class="fila">
+          <button class="fila-cab" type="button" aria-expanded="false">
+            <span class="fila-t">Contra el estigma<span class="fila-dato">10 años</span></span>
+            <span class="fila-mas" aria-hidden="true"></span>
+          </button>
+          <div class="fila-cuerpo"><div><p>Es el tiempo que puede pasar entre los primeros síntomas y pedir ayuda. El estigma es lo que alarga esa espera.</p></div></div>
+        </div>
+      </div>
     </div>
-
-    <p class="rv" style="margin-top:clamp(34px,4vw,52px)">
-      <a class="btn cta" href="#">Quiero saber cómo estoy <span class="arw">→</span></a>
-    </p>
   </section>
 
   <!-- 04 · CUESTIONARIO -->
@@ -1283,6 +1328,13 @@ if (filmBox) {
     if (e.key === "Enter" || e.key === " ") { e.preventDefault(); play(); }
   });
 }
+
+/* acordeón de la colaboración */
+document.querySelectorAll(".fila-cab").forEach(b => {
+  b.addEventListener("click", () => {
+    b.setAttribute("aria-expanded", b.getAttribute("aria-expanded") === "true" ? "false" : "true");
+  });
+});
 
 /* tarjetas: toggle en táctil */
 document.querySelectorAll(".say").forEach(b => {
