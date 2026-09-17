@@ -1428,6 +1428,33 @@ document.querySelectorAll(".say").forEach(b => {
   });
 });
 
+/* En táctil no hay cursor que descubra que las tarjetas tienen dorso, y un
+   cuadrado con una frase no parece tocable. Al llegar a la sección, la
+   primera se voltea sola y vuelve: enseña el gesto en lugar de explicarlo.
+   Es una demostración, no un estado, así que ocurre una sola vez y se
+   aparta en cuanto tocas tú. */
+const bloqueFrases = document.querySelector(".says");
+if (bloqueFrases && !matchMedia("(hover:hover) and (pointer:fine)").matches && !reduce) {
+  let tocado = false;
+  bloqueFrases.addEventListener("click", () => { tocado = true; }, {once: true});
+
+  const ojeador = new IntersectionObserver(entradas => {
+    if (!entradas.some(e => e.isIntersecting)) return;
+    ojeador.disconnect();
+    const muestra = bloqueFrases.querySelector(".say");
+    if (!muestra) return;
+    setTimeout(() => {
+      if (tocado) return;
+      muestra.setAttribute("aria-pressed", "true");
+      setTimeout(() => {
+        // si has tocado durante la demostración, mando yo ya no
+        if (!tocado) muestra.setAttribute("aria-pressed", "false");
+      }, 1150);
+    }, 450);
+  }, {threshold: .4});
+  ojeador.observe(bloqueFrases);
+}
+
 
 /* barra CTA fija */
 const dock = document.getElementById("dock");
