@@ -315,7 +315,9 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .quest-in{position:relative;z-index:3;padding-block:clamp(52px,8vw,112px)}
 .quest-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(30px,5vw,80px);align-items:center}
 @media(max-width:900px){.quest-grid{grid-template-columns:1fr}}
-.quest .kicker{color:var(--pink)}
+/* Excepción a los rótulos en rosa: sobre el granate oscuro el rosa se
+   queda en 4,4:1 y para 11 px hace falta 4,5. En blanco se lee. */
+.quest .kicker{color:rgba(255,255,255,.92)}
 .quest h2{margin-top:16px}
 .quest .lead{color:rgba(255,255,255,.8);margin-top:20px}
 .quest-cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
@@ -337,10 +339,11 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 /* ---------- Fundación Manantial ----------
    Sin fondo de color: aquí el peso lo dan las cifras y el aire, no una
    superficie. Los números son lo grande de la sección. */
-.fm-intro{
-  margin:0;font-size:clamp(19px,2.1vw,28px);line-height:1.38;
-  font-weight:300;letter-spacing:-.015em;max-width:30ch;
-}
+/* La frase que define a la fundación es el titular de su sección, no un
+   pie de apoyo. Medida algo más larga que un titular corto, porque es una
+   frase entera y no un lema. */
+.fm-titular{max-width:22ch}
+.fm-titular b{font-weight:inherit}
 .kpis{
   display:grid;grid-template-columns:repeat(4,1fr);
   gap:clamp(20px,2.6vw,44px);
@@ -954,7 +957,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   <section class="band" id="fundacion">
     <div class="wrap">
       <p class="kicker fm-nombre">Fundación Manantial</p>
-      <p class="fm-intro rv" style="margin-top:20px">Desde 1995 <span class="fm-nombre">Fundación Manantial</span> trabaja por los derechos y la recuperación de las personas con problemas de salud mental y sus familias.</p>
+      <h2 class="h-lg rv-mask fm-titular" style="margin-top:18px"><span>Desde 1995 <b class="fm-nombre">Fundación Manantial</b> trabaja por los derechos y la recuperación de las personas con problemas de salud mental y sus familias.</span></h2>
 
       <div class="kpis rv stagger">
         <div class="kpi"><b data-hasta="1995" data-crudo="1">1995</b><span>Año de fundación</span></div>
