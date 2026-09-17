@@ -385,9 +385,14 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .art-min{
   display:block;padding-top:16px;font-size:14px;line-height:1.5;color:#808080;
 }
+/* El titular ocupa siempre dos líneas exactas: si es corto reserva el
+   hueco y si es largo se corta con puntos suspensivos. Así los «leer más»
+   de las tres tarjetas caen a la misma altura, como en la retícula de
+   Lancôme, donde ese bloque mide 48 px fijos. */
 .art-tit{
-  display:block;margin-top:12px;font-size:16px;line-height:1.5;color:var(--ink);
-  max-width:26em;
+  margin-top:12px;font-size:16px;line-height:1.5;color:var(--ink);
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;
+  overflow:hidden;min-height:3em;
 }
 .art-mas{
   display:block;margin-top:16px;font-size:14px;line-height:1.5;
