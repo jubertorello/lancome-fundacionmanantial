@@ -100,6 +100,9 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   margin:0;font-size:11px;font-weight:700;letter-spacing:.16em;
   text-transform:uppercase;color:var(--pink);
 }
+/* El nombre de la fundación lleva siempre su azul, esté donde esté:
+   en un rótulo, dentro de una frase o en el pie. Es marca, no texto. */
+.fm-nombre{color:var(--blue)}
 
 /* ---------- botones (rectos, como Lancôme) ---------- */
 .btn{
@@ -799,7 +802,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   <!-- banda: lo que se normaliza -->
   <!-- 04 · COLABORACIÓN -->
   <section class="band wrap" id="colaboracion">
-    <p class="kicker">Lancôme + Fundación Manantial</p>
+    <p class="kicker">Lancôme + <span class="fm-nombre">Fundación Manantial</span></p>
     <h2 class="h-lg rv-mask" style="margin-top:18px"><span>Juntos en la prevención de los problemas<br>de salud mental de las <b>mujeres</b></span></h2>
     <p class="lead rv" style="margin-top:20px">Tres objetivos, una misma idea: que preguntarse cómo se está deje de ser algo excepcional.</p>
 
@@ -855,7 +858,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   <section class="band wrap" id="articulos">
     <p class="kicker">Artículos Lancôme</p>
     <h2 class="h-lg rv-mask" style="margin-top:18px"><span>Prevención y salud <b>mental</b></span></h2>
-    <p class="lead rv" style="margin-top:20px">Contenido elaborado con Fundación Manantial y alojado en Lancôme.</p>
+    <p class="lead rv" style="margin-top:20px">Contenido elaborado con <span class="fm-nombre">Fundación Manantial</span> y alojado en Lancôme.</p>
 
     <div class="arts rv stagger">
         <a class="art" href="#">
@@ -944,8 +947,8 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
        El orden va de lo que piensa a lo que hace: mirada, casa, proyectos. -->
   <section class="band" id="fundacion">
     <div class="wrap">
-      <p class="kicker">Fundación Manantial</p>
-      <p class="fm-intro rv" style="margin-top:20px">Desde 1995 Fundación Manantial trabaja por los derechos y la recuperación de las personas con problemas de salud mental y sus familias.</p>
+      <p class="kicker fm-nombre">Fundación Manantial</p>
+      <p class="fm-intro rv" style="margin-top:20px">Desde 1995 <span class="fm-nombre">Fundación Manantial</span> trabaja por los derechos y la recuperación de las personas con problemas de salud mental y sus familias.</p>
 
       <div class="kpis rv stagger">
         <div class="kpi"><b data-hasta="1995" data-crudo="1">1995</b><span>Año de fundación</span></div>
@@ -990,7 +993,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
         <a href="#voces">Voces</a>
       </div>
       <div class="foot-col">
-        <h4>Fundación Manantial</h4>
+        <h4 class="fm-nombre">Fundación Manantial</h4>
         <a href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Quiénes somos</a>
         <a href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Proyectos</a>
         <a href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Quiero colaborar</a>
