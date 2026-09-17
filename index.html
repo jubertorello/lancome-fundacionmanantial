@@ -53,7 +53,7 @@
   --pink:#EE4B98;
   --blue:#004591;
   --blue-dark:#00305F;
-  --sand:#EAE6E0;
+  --sand:#EAE6E0;   /* solo para el hover de los proyectos */
   --wine:#5C0B1B;
   --wine-2:#8E1230;
 
@@ -539,8 +539,11 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   font-style:normal;font-size:15px;line-height:1;color:#fff;
   transition:transform .4s var(--ease);
 }
-.proj:hover{transform:translateY(-4px);background:var(--blue-dark)}
-.proj:hover i{transform:translate(3px,-3px)}
+/* Al pasar por encima la ficha se invierte: la arena vuelve a la página
+   como color de interacción, no como superficie de fondo. */
+.proj:hover{transform:translateY(-4px);background:var(--sand);color:var(--blue)}
+.proj:hover span{color:rgba(0,69,145,.78)}
+.proj:hover i{transform:translate(3px,-3px);color:var(--blue)}
 .proj{border:0}
 
 /* ---------- 09 · cierre ---------- */
@@ -866,7 +869,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
       <div class="colabora-der rv">
         <div class="fila">
           <button class="fila-cab" type="button" aria-expanded="true">
-            <span class="fila-t">¿Qué es esta colaboración?</span>
+            <span class="fila-t">La colaboración</span>
             <span class="fila-mas" aria-hidden="true"></span>
           </button>
           <div class="fila-cuerpo"><div><p>Lancôme y <span class="fm-nombre">Fundación Manantial</span> impulsan juntas la prevención de los problemas de salud mental de las mujeres: un cuestionario de autoobservación, contenido elaborado con especialistas y campañas para que hablar de cómo estamos deje de ser algo excepcional.</p></div></div>
