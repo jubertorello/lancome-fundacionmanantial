@@ -312,6 +312,39 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .say-b small{color:rgba(255,255,255,.78)}
 .say p{margin:0;font-size:clamp(18px,1.75vw,24px);line-height:1.24;font-weight:400}
 
+/* ---------- la cifra ----------
+   Banda a todo el ancho, al modo de Lancôme: el dato deja de ser una línea
+   en un desplegable y pasa a ocupar su propia franja. El texto se queda en
+   la retícula y la foto se escapa por la derecha hasta el borde. */
+.dato{background:var(--paper-2)}
+.dato-in{
+  --canalon:max(var(--pad),calc((100% - var(--max))/2 + var(--pad)));
+  display:grid;grid-template-columns:1.05fr .95fr;
+  gap:clamp(28px,5vw,72px);align-items:center;
+}
+.dato-txt{padding-block:var(--sec);padding-left:var(--canalon)}
+.dato-cifra{
+  margin:18px 0 0;font-size:clamp(36px,5.4vw,78px);line-height:1.02;
+  font-weight:300;letter-spacing:-.035em;
+}
+.dato-cifra b{font-weight:300;color:var(--blue)}
+.dato-sub{
+  margin:16px 0 0;font-size:clamp(19px,2vw,28px);line-height:1.28;
+  font-weight:400;max-width:22ch;letter-spacing:-.01em;
+}
+.dato-pie{margin:20px 0 0;font-size:15px;line-height:1.55;color:var(--ink-soft)}
+.dato-img{
+  margin:0;position:relative;align-self:stretch;overflow:hidden;
+  min-height:clamp(320px,40vw,540px);background:var(--paper-2);
+}
+.dato-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@media(max-width:860px){
+  .dato-in{grid-template-columns:1fr;gap:0}
+  .dato-txt{padding-inline:var(--pad);padding-block:var(--sec)}
+  /* la foto va delante: entra antes el gesto y después el dato */
+  .dato-img{order:-1;min-height:clamp(230px,58vw,340px)}
+}
+
 /* ---------- 03 · cuestionario (mundo rosa Lancôme) ---------- */
 .quest{position:relative;background:#2E0410;color:#fff;overflow:hidden}
 /* La rosa va nítida debajo; el desenfoque y el oscurecido los hace esta
@@ -384,7 +417,6 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   background:none;border:0;cursor:pointer;text-align:left;font:inherit;color:inherit;
 }
 .fila-t{font-size:clamp(17px,1.6vw,20px);line-height:1.5;color:var(--ink);display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
-.fila-dato{font-size:.8em;font-weight:700;letter-spacing:.02em;color:var(--blue)}
 
 /* el más se convierte en menos girando una de sus dos barras */
 .fila-mas{position:relative;width:24px;height:24px;flex:none}
@@ -946,30 +978,48 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
             <span class="fila-t">La colaboración</span>
             <span class="fila-mas" aria-hidden="true"></span>
           </button>
-          <div class="fila-cuerpo"><div><p>Lancôme y <span class="fm-nombre">Fundación Manantial</span> impulsan juntas la prevención de los problemas de salud mental de las mujeres: un cuestionario de autoobservación, contenido elaborado con especialistas y campañas para que hablar de cómo estamos deje de ser algo excepcional.</p></div></div>
+          <div class="fila-cuerpo"><div><p>Lancôme y <span class="fm-nombre">Fundación Manantial</span> impulsan juntos la prevención de los problemas de salud mental de las mujeres: un cuestionario de autoobservación, contenido elaborado con especialistas y campañas para que hablar de cómo estamos deje de ser algo excepcional.</p></div></div>
         </div>
         <div class="fila">
           <button class="fila-cab" type="button" aria-expanded="false">
-            <span class="fila-t">Prevención<span class="fila-dato">1 de cada 3</span></span>
+            <span class="fila-t">Prevención</span>
             <span class="fila-mas" aria-hidden="true"></span>
           </button>
-          <div class="fila-cuerpo"><div><p>Una de cada tres mujeres convivirá con ansiedad o depresión a lo largo de su vida. Cuanto antes se nombra, menos pesa.</p></div></div>
+          <div class="fila-cuerpo"><div><p>Observarse a tiempo cambia las cosas. El cuestionario no diagnostica: ayuda a parar cuatro minutos y mirar cómo estás, antes de que lo que se calla se haga grande.</p></div></div>
         </div>
         <div class="fila">
           <button class="fila-cab" type="button" aria-expanded="false">
-            <span class="fila-t">Concienciación<span class="fila-dato">El doble</span></span>
+            <span class="fila-t">Concienciación</span>
             <span class="fila-mas" aria-hidden="true"></span>
           </button>
-          <div class="fila-cuerpo"><div><p>La ansiedad y la depresión se diagnostican hasta el doble en mujeres que en hombres. Hablar de ello es parte del cuidado.</p></div></div>
+          <div class="fila-cuerpo"><div><p>Hablar de cómo estamos sigue costando más que hablar de cualquier otra cosa. Nombrarlo en voz alta, sin dramatizarlo y sin esperar a estar mal, es parte del cuidado.</p></div></div>
         </div>
         <div class="fila">
           <button class="fila-cab" type="button" aria-expanded="false">
-            <span class="fila-t">Contra el estigma<span class="fila-dato">10 años</span></span>
+            <span class="fila-t">Contra el estigma</span>
             <span class="fila-mas" aria-hidden="true"></span>
           </button>
-          <div class="fila-cuerpo"><div><p>Es el tiempo que puede pasar entre los primeros síntomas y pedir ayuda. El estigma es lo que alarga esa espera.</p></div></div>
+          <div class="fila-cuerpo"><div><p>La salud mental sigue siendo un tema tabú: algo que se cuenta en voz baja, o que no se cuenta. Mientras lo siga siendo, pedir ayuda seguirá pareciendo una excepción y no lo más normal del mundo.</p></div></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- 05 · LA CIFRA
+       OJO: este dato de prevalencia sigue SIN VERIFICAR y aquí ya no es una
+       línea dentro de un desplegable: es la afirmación más grande de la
+       página. Antes de publicar hace falta fuente citable. Ver README. -->
+  <section class="dato" aria-label="Prevalencia de ansiedad y depresión en mujeres">
+    <div class="dato-in">
+      <div class="dato-txt">
+        <p class="kicker">Por qué esta campaña</p>
+        <p class="dato-cifra rv-mask"><span><b>1 de cada 3</b> mujeres</span></p>
+        <p class="dato-sub rv">convivirá con ansiedad o depresión a lo largo de su vida.</p>
+        <p class="dato-pie rv">Cuanto antes se nombra, menos pesa.</p>
+      </div>
+      <figure class="dato-img rv">
+        <img src="img/manos.webp" alt="" data-opt>
+      </figure>
     </div>
   </section>
 

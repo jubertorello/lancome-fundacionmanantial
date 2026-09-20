@@ -174,7 +174,8 @@ python3 -m http.server 8000
 | Vídeo de embajadoras | bloque `.hero` y sección `#voces` |
 | Historias reales de Voces | array `VOCES` en el script: imagen y frase de cada una. **Las frases actuales son de campaña, no testimonios**: hay que sustituirlas por lo que digan de verdad las mujeres que aparezcan, y con sus caras |
 | Artículos de Lancôme | títulos y URLs reales en `#articulos` |
-| Datos de prevalencia | `#colaboracion` y `.stats` — verificar fuentes antes de publicar |
+| **«1 de cada 3 mujeres»** | Sección `.dato`, entre la colaboración y el cuestionario. Ya no es una línea dentro de un desplegable: es **la afirmación más grande de la página**, a todo el ancho y en cuerpo de 78 px. **Necesita fuente citable antes de publicar.** Si no se puede sostener, la banda se quita entera. |
+| Resto de datos de prevalencia | `#colaboracion` y las cifras de `#fundacion` — verificar fuentes antes de publicar |
 
 ## Vídeo
 
