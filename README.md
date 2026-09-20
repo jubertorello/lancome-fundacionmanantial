@@ -166,6 +166,7 @@ python3 -m http.server 8000
 
 | Pendiente | Dónde |
 |---|---|
+| **El contador del cuestionario es una MAQUETA** | `data-sim-desde` en `index.html` + el bloque «MAQUETA» del `<script>`. Sube solo de 6.457 a 7.000 y esos incrementos **no corresponden a nadie**. Está así para que el cliente vea el efecto en la URL de revisión. **No puede salir a `fundacionmanantial.org/lancome` tal cual:** o se alimenta con el número real que dé la Fundación, o se revierte al contador con dato fijo (commit `e0fe751`). |
 | URL del cuestionario | `const FORM_URL` al final de `index.html` — alimenta los 6 CTA. **Ahora apunta provisionalmente a lancome.es** |
 | Logo oficial de Fundación Manantial | los `<svg class="fm-mark">` (ahora hay un trazado provisional) |
 | Ruta final de alojamiento | prevista `fundacionmanantial.org/lancome` |
