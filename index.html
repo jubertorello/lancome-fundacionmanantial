@@ -314,36 +314,42 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .say p{margin:0;font-size:clamp(18px,1.75vw,24px);line-height:1.24;font-weight:400}
 
 /* ---------- la cifra ----------
-   Banda a todo el ancho, al modo de Lancôme: el dato deja de ser una línea
-   en un desplegable y pasa a ocupar su propia franja. El texto se queda en
-   la retícula y la foto se escapa por la derecha hasta el borde. */
-.dato{background:var(--paper-3)}
+   Composición al modo de Lancôme: el texto sangrado dentro de su columna,
+   la foto contenida a la derecha con aire alrededor —no a sangre— y todo
+   sobre blanco. Titular pesado y corto, y debajo el cuerpo y la llamada. */
+.dato{background:var(--paper)}
 .dato-in{
-  --canalon:max(var(--pad),calc((100% - var(--max))/2 + var(--pad)));
-  display:grid;grid-template-columns:1.05fr .95fr;
-  gap:clamp(28px,5vw,72px);align-items:center;
+  max-width:var(--max);margin-inline:auto;
+  padding:var(--sec) var(--pad);
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(30px,5vw,88px);align-items:center;
 }
-.dato-txt{padding-block:var(--sec);padding-left:var(--canalon)}
+.dato-txt{max-width:46ch;padding-left:clamp(0px,3.5vw,64px)}
 .dato-cifra{
-  margin:18px 0 0;font-size:clamp(36px,5.4vw,78px);line-height:1.02;
-  font-weight:300;letter-spacing:-.035em;
+  margin:18px 0 0;font-size:clamp(32px,4.4vw,60px);line-height:1.06;
+  font-weight:700;letter-spacing:-.03em;
 }
-.dato-cifra b{font-weight:300;color:var(--blue)}
+.dato-cifra b{font-weight:inherit;color:var(--blue)}
 .dato-sub{
-  margin:16px 0 0;font-size:clamp(19px,2vw,28px);line-height:1.28;
-  font-weight:400;max-width:22ch;letter-spacing:-.01em;
+  margin:10px 0 0;font-size:clamp(20px,2.1vw,30px);line-height:1.22;
+  font-weight:500;letter-spacing:-.015em;max-width:20ch;
 }
-.dato-pie{margin:20px 0 0;font-size:15px;line-height:1.55;color:var(--ink-soft)}
+.dato-cuerpo{
+  margin:24px 0 0;font-size:15px;line-height:1.65;
+  color:var(--ink-soft);max-width:42ch;
+}
+.dato .btn{margin-top:30px}
+/* La foto es horizontal: en cuadrado conserva las dos manos del centro.
+   Para la vertical de la referencia haría falta una toma en vertical. */
 .dato-img{
-  margin:0;position:relative;align-self:stretch;overflow:hidden;
-  min-height:clamp(320px,40vw,540px);background:var(--paper-3);
+  margin:0;position:relative;overflow:hidden;
+  aspect-ratio:1/1;background:var(--paper-3);
 }
 .dato-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 @media(max-width:860px){
-  .dato-in{grid-template-columns:1fr;gap:0}
-  .dato-txt{padding-inline:var(--pad);padding-block:var(--sec)}
-  /* la foto va delante: entra antes el gesto y después el dato */
-  .dato-img{order:-1;min-height:clamp(230px,58vw,340px)}
+  .dato-in{grid-template-columns:1fr;gap:28px}
+  .dato-txt{padding-left:0;max-width:none}
+  .dato-img{order:-1;aspect-ratio:4/3}
 }
 
 /* ---------- 03 · cuestionario (mundo rosa Lancôme) ---------- */
@@ -1001,9 +1007,10 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     <div class="dato-in">
       <div class="dato-txt">
         <p class="kicker">Por qué esta campaña</p>
-        <p class="dato-cifra rv-mask"><span><b>1 de cada 3</b> mujeres</span></p>
+        <h2 class="dato-cifra rv-mask"><span><b>1 de cada 3</b> mujeres</span></h2>
         <p class="dato-sub rv">convivirá con ansiedad o depresión a lo largo de su vida.</p>
-        <p class="dato-pie rv">Cuanto antes se nombra, menos pesa.</p>
+        <p class="dato-cuerpo rv">En cada etapa de la vida hay presiones y circunstancias que pesan sobre cómo estamos. Y demasiadas veces «estoy bien» es lo que respondemos, aunque no lo estemos. Cuanto antes se nombra, menos pesa.</p>
+        <a class="btn cta rv" href="#">Haz el cuestionario <span class="arw">→</span></a>
       </div>
       <figure class="dato-img rv">
         <img src="img/manos.webp" alt="" data-opt>
