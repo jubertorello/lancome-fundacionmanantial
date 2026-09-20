@@ -320,7 +320,9 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .dato{background:var(--paper)}
 .dato-in{
   max-width:var(--max);margin-inline:auto;
-  padding:var(--sec) var(--pad);
+  /* La cifra vive dentro de la sección de la colaboración: el aire de
+     arriba y de abajo ya lo pone .band, aquí solo se separa del acordeón. */
+  padding-inline:var(--pad);margin-top:clamp(42px,5.4vw,84px);
   display:grid;grid-template-columns:1fr 1fr;
   gap:clamp(30px,5vw,88px);align-items:center;
 }
@@ -998,24 +1000,24 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- 05 · LA CIFRA
+    <!-- 05 · LA CIFRA
        OJO: este dato de prevalencia sigue SIN VERIFICAR y aquí ya no es una
        línea dentro de un desplegable: es la afirmación más grande de la
        página. Antes de publicar hace falta fuente citable. Ver README. -->
-  <section class="dato" aria-label="Prevalencia de ansiedad y depresión en mujeres">
-    <div class="dato-in">
-      <div class="dato-txt">
-        <p class="kicker">Por qué esta campaña</p>
-        <h2 class="dato-cifra rv-mask"><span><b>1 de cada 3</b> mujeres</span></h2>
-        <p class="dato-sub rv">convivirá con ansiedad o depresión a lo largo de su vida.</p>
-        <p class="dato-cuerpo rv">En cada etapa de la vida hay presiones y circunstancias que pesan sobre cómo estamos. Y demasiadas veces «estoy bien» es lo que respondemos, aunque no lo estemos. Cuanto antes se nombra, menos pesa.</p>
-        <a class="btn cta rv" href="#">Haz el cuestionario <span class="arw">→</span></a>
+    <div class="dato">
+      <div class="dato-in">
+        <div class="dato-txt">
+          <p class="kicker">Por qué esta campaña</p>
+          <h2 class="dato-cifra rv-mask"><span><b>1 de cada 3</b> mujeres</span></h2>
+          <p class="dato-sub rv">convivirá con ansiedad o depresión a lo largo de su vida.</p>
+          <p class="dato-cuerpo rv">En cada etapa de la vida hay presiones y circunstancias que pesan sobre cómo estamos. Y demasiadas veces «estoy bien» es lo que respondemos, aunque no lo estemos. Cuanto antes se nombra, menos pesa.</p>
+          <a class="btn cta rv" href="#">Haz el cuestionario <span class="arw">→</span></a>
+        </div>
+        <figure class="dato-img rv">
+          <img src="img/manos.webp" alt="" data-opt>
+        </figure>
       </div>
-      <figure class="dato-img rv">
-        <img src="img/manos.webp" alt="" data-opt>
-      </figure>
     </div>
   </section>
 
