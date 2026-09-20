@@ -324,7 +324,8 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   display:grid;grid-template-columns:1fr 1fr;
   gap:clamp(30px,5vw,88px);align-items:center;
 }
-.dato-txt{max-width:46ch;padding-left:clamp(0px,3.5vw,64px)}
+/* Sin sangrado: arranca en la misma vertical que el resto de secciones. */
+.dato-txt{max-width:46ch}
 .dato-cifra{
   margin:18px 0 0;font-size:clamp(32px,4.4vw,60px);line-height:1.06;
   font-weight:700;letter-spacing:-.03em;
@@ -348,7 +349,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .dato-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 @media(max-width:860px){
   .dato-in{grid-template-columns:1fr;gap:28px}
-  .dato-txt{padding-left:0;max-width:none}
+  .dato-txt{max-width:none}
   .dato-img{order:-1;aspect-ratio:4/3}
 }
 
