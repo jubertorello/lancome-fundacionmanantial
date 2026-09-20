@@ -377,19 +377,6 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .quest-side{border-left:1px solid rgba(255,255,255,.2);padding-left:clamp(20px,2.6vw,38px);display:grid;gap:26px}
 @media(max-width:900px){.quest-side{border-left:0;border-top:1px solid rgba(255,255,255,.2);padding:26px 0 0}}
 .num{font-size:clamp(38px,5vw,66px);line-height:.95;font-weight:300;font-variant-numeric:tabular-nums}
-/* Barra de avance hacia el objetivo. Se llena a la vez que corre la cuenta,
-   así el número y la barra cuentan lo mismo. */
-.num-barra{
-  margin-top:18px;width:100%;max-width:260px;height:3px;
-  background:rgba(255,255,255,.22);overflow:hidden;
-}
-.num-barra span{
-  display:block;height:100%;width:var(--p,0%);background:var(--pink);
-  transform:scaleX(0);transform-origin:left;
-  transition:transform 3.8s var(--ease);
-}
-.num-barra.llena span{transform:scaleX(1)}
-@media(prefers-reduced-motion:reduce){.num-barra span{transition:none}}
 .num-pie{
   margin:14px 0 0;font-size:11px;line-height:1.6;
   color:rgba(255,255,255,.48);
@@ -1048,7 +1035,6 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
           <div>
             <div class="num" data-sim-desde="6457" data-sim-hasta="7000">6.457</div>
             <p class="num-l">Mujeres que ya lo han hecho</p>
-            <div class="num-barra" aria-hidden="true"><span style="--p:92.2%"></span></div>
           </div>
           <p class="note">Es una herramienta de prevención y autoobservación, nunca un diagnóstico.</p>
         </div>
@@ -1387,9 +1373,6 @@ const cio = new IntersectionObserver((es) => {
     const escribe = n => el.textContent = antes + (crudo ? n : fmt.format(n)) + detras;
 
     cio.unobserve(el);
-    // la barra arranca con la cuenta, no antes
-    const barra = el.parentElement.querySelector(".num-barra");
-    if (barra) requestAnimationFrame(() => barra.classList.add("llena"));
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) { escribe(hasta); return; }
 
     /* data-lento alarga la cuenta y frena mucho al final: así se ve subir
@@ -1418,17 +1401,12 @@ document.querySelectorAll("[data-hasta], .num[data-to]").forEach(el => cio.obser
 const sim = document.querySelector("[data-sim-desde]");
 if (sim && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
   const desde = +sim.dataset.simDesde, hasta = +sim.dataset.simHasta;
-  const barra = sim.parentElement.querySelector(".num-barra span");
   let n = desde;
-  const pinta = () => {
-    sim.textContent = fmt.format(n);
-    if (barra) barra.style.setProperty("--p", (n / hasta * 100).toFixed(2) + "%");
-  };
+  const pinta = () => { sim.textContent = fmt.format(n); };
   pinta();
   const simIO = new IntersectionObserver(es => {
     if (!es.some(e => e.isIntersecting)) return;
     simIO.disconnect();
-    if (barra) barra.style.transition = "none";
     const tic = () => {
       if (n >= hasta) return;
       n += 1;
