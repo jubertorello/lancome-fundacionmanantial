@@ -38,6 +38,7 @@
   /* neutros con sesgo cálido, los de la web de Lancôme */
   --paper:#FFFFFF;
   --paper-2:#F5F4F2;
+  --paper-3:#FBFBFB;  /* casi blanco: tarjetas de las frases y banda de la cifra */
   --ink:#121212;
   --ink-soft:#5A5A60;
   --mute:#8E8E94;
@@ -289,7 +290,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .says{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1px;background:var(--rule);
   border:1px solid var(--rule);margin-top:clamp(30px,4vw,48px)}
 .say{
-  position:relative;overflow:hidden;background:#FBFBFB;
+  position:relative;overflow:hidden;background:var(--paper-3);
   aspect-ratio:1/1.12;border:0;padding:0;font:inherit;color:inherit;text-align:left;cursor:pointer;
 }
 .say-f,.say-b{
@@ -316,7 +317,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
    Banda a todo el ancho, al modo de Lancôme: el dato deja de ser una línea
    en un desplegable y pasa a ocupar su propia franja. El texto se queda en
    la retícula y la foto se escapa por la derecha hasta el borde. */
-.dato{background:var(--paper-2)}
+.dato{background:var(--paper-3)}
 .dato-in{
   --canalon:max(var(--pad),calc((100% - var(--max))/2 + var(--pad)));
   display:grid;grid-template-columns:1.05fr .95fr;
@@ -335,7 +336,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .dato-pie{margin:20px 0 0;font-size:15px;line-height:1.55;color:var(--ink-soft)}
 .dato-img{
   margin:0;position:relative;align-self:stretch;overflow:hidden;
-  min-height:clamp(320px,40vw,540px);background:var(--paper-2);
+  min-height:clamp(320px,40vw,540px);background:var(--paper-3);
 }
 .dato-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 @media(max-width:860px){
