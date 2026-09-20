@@ -988,12 +988,15 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
           </div>
         </div>
         <div class="quest-side">
-          <!-- DATO REAL, SE ACTUALIZA A MANO.
-               Al cambiarlo hay que tocar las dos cosas a la vez: el número de
-               data-to y el ancho --p de la barra (cifra ÷ 7000). Antes de
-               publicar una cifra nueva, que la confirme la Fundación. -->
+          <!-- ============ MAQUETA, NO PUBLICAR ============
+               Esta rama existe solo para que el cliente vea el efecto y
+               decida. El número arranca en 6.457 (real) y sigue subiendo
+               solo hasta 7.000: esa subida NO corresponde a nadie. Si se
+               aprueba el efecto, hay que alimentarlo con datos de verdad
+               antes de que esto llegue a producción.
+               La rama main lleva la versión con el dato real. -->
           <div>
-            <div class="num" data-to="6457" data-lento>0</div>
+            <div class="num" data-sim-desde="6457" data-sim-hasta="7000">6.457</div>
             <p class="num-l">Mujeres que ya lo han hecho</p>
             <div class="num-barra" aria-hidden="true"><span style="--p:92.2%"></span></div>
           </div>
@@ -1355,6 +1358,38 @@ const cio = new IntersectionObserver((es) => {
   });
 }, {threshold:0.4});
 document.querySelectorAll("[data-hasta], .num[data-to]").forEach(el => cio.observe(el));
+
+/* ============================================================
+   MAQUETA · SOLO EN LA RAMA demo-contador
+   Sube de 6.457 a 7.000 a ritmo lento, de una en una, al llegar a
+   la sección. Los incrementos son inventados: sirven para enseñar
+   el efecto, no para informar de nada.
+   ============================================================ */
+const sim = document.querySelector("[data-sim-desde]");
+if (sim && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const desde = +sim.dataset.simDesde, hasta = +sim.dataset.simHasta;
+  const barra = sim.parentElement.querySelector(".num-barra span");
+  let n = desde;
+  const pinta = () => {
+    sim.textContent = fmt.format(n);
+    if (barra) barra.style.setProperty("--p", (n / hasta * 100).toFixed(2) + "%");
+  };
+  pinta();
+  const simIO = new IntersectionObserver(es => {
+    if (!es.some(e => e.isIntersecting)) return;
+    simIO.disconnect();
+    if (barra) barra.style.transition = "none";
+    const tic = () => {
+      if (n >= hasta) return;
+      n += 1;
+      pinta();
+      // ritmo irregular para que no parezca un cronómetro
+      setTimeout(tic, 900 + Math.random() * 2600);
+    };
+    setTimeout(tic, 1200);
+  }, {threshold: .4});
+  simIO.observe(sim);
+}
 
 /* ---------- voces ----------
    Las cuatro historias viven aquí: al sustituirlas por las reales solo hay
