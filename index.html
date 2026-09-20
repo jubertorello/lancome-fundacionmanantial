@@ -159,7 +159,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .hero::after{
   content:"";position:absolute;inset:0;z-index:1;
   /* viñeta baja para que el texto asiente sin tapar la flor */
-  background:linear-gradient(180deg,rgba(10,5,7,.30) 0%,transparent 34%,rgba(10,5,7,.42) 100%);
+  background:linear-gradient(180deg,rgba(10,5,7,.30) 0%,transparent 34%,rgba(10,5,7,.58) 100%);
 }
 .hero-in{position:relative;z-index:2;padding-block:var(--sec)}
 .hero-claim{font-family:var(--f-logo);font-weight:800;font-variation-settings:"wdth" 76;
@@ -237,8 +237,15 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
    aparecen juntos: aquí y en el pie. */
 .credit{
   margin:clamp(34px,4.5vw,60px) 0 0;padding-top:clamp(20px,2.2vw,28px);
-  border-top:1px solid rgba(255,255,255,.18);
-  display:flex;align-items:center;justify-content:space-between;
+  /* La rosa desenfocada pasa de granate oscuro a rosa claro de izquierda a
+     derecha, y con un filete al 18 % la línea se leía en la mitad oscura y
+     desaparecía en la clara: parecía torcida sin estarlo. Se sube el
+     contraste y la viñeta baja del hero asienta el fondo bajo ella. */
+  border-top:1px solid rgba(255,255,255,.34);
+  /* Los logos arrancan a la altura en que arranca el claim, no centrados
+     contra él: con tres líneas en móvil el centrado los dejaba flotando a
+     media firma. */
+  display:flex;align-items:flex-start;justify-content:space-between;
   gap:clamp(18px,3vw,40px);flex-wrap:wrap;
 }
 .credit-claim{
@@ -337,6 +344,23 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .quest-side{border-left:1px solid rgba(255,255,255,.2);padding-left:clamp(20px,2.6vw,38px);display:grid;gap:26px}
 @media(max-width:900px){.quest-side{border-left:0;border-top:1px solid rgba(255,255,255,.2);padding:26px 0 0}}
 .num{font-size:clamp(38px,5vw,66px);line-height:.95;font-weight:300;font-variant-numeric:tabular-nums}
+/* Barra de avance hacia el objetivo. Se llena a la vez que corre la cuenta,
+   así el número y la barra cuentan lo mismo. */
+.num-barra{
+  margin-top:18px;width:100%;max-width:260px;height:3px;
+  background:rgba(255,255,255,.22);overflow:hidden;
+}
+.num-barra span{
+  display:block;height:100%;width:var(--p,0%);background:var(--pink);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 3.8s var(--ease);
+}
+.num-barra.llena span{transform:scaleX(1)}
+@media(prefers-reduced-motion:reduce){.num-barra span{transition:none}}
+.num-pie{
+  margin:14px 0 0;font-size:11px;line-height:1.6;
+  color:rgba(255,255,255,.48);
+}
 .num-l{margin:8px 0 0;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.62)}
 .note{margin:0;font-size:13px;line-height:1.55;color:rgba(255,255,255,.6);max-width:36ch}
 
@@ -568,7 +592,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   padding-bottom:clamp(26px,3.2vw,44px);
   border-bottom:1px solid var(--rule);
   display:grid;grid-template-columns:1.3fr 1fr;
-  gap:clamp(22px,4vw,64px);align-items:center;
+  gap:clamp(22px,4vw,64px);align-items:end;
 }
 @media(max-width:860px){.voces-cierre{grid-template-columns:1fr;gap:24px;align-items:start}}
 .voces-cierre-q{
@@ -577,8 +601,13 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 }
 /* El rosa marca la frase automática: es la que la campaña pone en duda. */
 .vc-dicho{color:var(--pink)}
-.voces-cierre-acc{display:grid;justify-items:start;gap:18px}
+/* La columna de la llamada se alinea a la derecha, contra el borde de la
+   retícula: así cierra el bloque en lugar de quedar colgando a media caja. */
+.voces-cierre-acc{display:grid;justify-items:end;gap:18px;text-align:right}
 .voces-cierre-s{margin:0;font-size:15px;line-height:1.55;color:var(--ink-soft);max-width:30ch}
+@media(max-width:860px){
+  .voces-cierre-acc{justify-items:start;text-align:left}
+}
 .voces-cierre .btn{margin-top:0}
 
 /* ---------- 08 · institucional ---------- */
@@ -959,9 +988,14 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
           </div>
         </div>
         <div class="quest-side">
+          <!-- DATO REAL, SE ACTUALIZA A MANO.
+               Al cambiarlo hay que tocar las dos cosas a la vez: el número de
+               data-to y el ancho --p de la barra (cifra ÷ 7000). Antes de
+               publicar una cifra nueva, que la confirme la Fundación. -->
           <div>
-            <div class="num" data-to="7000">0</div>
-            <p class="num-l">Mujeres a las que queremos escuchar</p>
+            <div class="num" data-to="6457" data-lento>0</div>
+            <p class="num-l">Mujeres que ya lo han hecho</p>
+            <div class="num-barra" aria-hidden="true"><span style="--p:92.2%"></span></div>
           </div>
           <p class="note">Es una herramienta de prevención y autoobservación, nunca un diagnóstico.</p>
         </div>
@@ -998,7 +1032,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
         <p class="voces-cierre-q">Decir <span class="vc-dicho">«estoy bien»</span> no siempre significa que nos hayamos preguntado cómo estamos.</p>
         <div class="voces-cierre-acc">
           <p class="voces-cierre-s">Preguntarte cómo estás también es cuidarte.</p>
-          <a class="btn cta" href="#">Quiero saber cómo estoy <span class="arw">→</span></a>
+          <a class="btn cta" href="#">Haz el cuestionario <span class="arw">→</span></a>
         </div>
       </div>
     </div>
@@ -1130,7 +1164,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   <div class="dock-in">
     <div class="dock-txt">
       <b>¿Quieres saber cómo estás?</b>
-      <small>3 pasos · 4 min · anónimo · no es un diagnóstico</small>
+      <small>3 pasos · 4 min · anónimo</small>
     </div>
     <a class="btn cta" href="#">Quiero saber cómo estoy <span class="arw">→</span></a>
   </div>
@@ -1285,7 +1319,10 @@ if (!("IntersectionObserver" in window)) {
      data-prefijo  lo que va antes  («+», «1 de cada »)
      data-sufijo   lo que va detrás («&nbsp;años»)
      data-crudo    sin separador de miles, para los años */
-const fmt = new Intl.NumberFormat("es-ES");
+/* useGrouping:"always" porque el español no separa los millares de cuatro
+   cifras por defecto: sin esto la cuenta terminaba escribiendo «+4000» donde
+   el HTML decía «+4.000», y «7000» donde el diseño pide «7.000». */
+const fmt = new Intl.NumberFormat("es-ES", {useGrouping: "always"});
 const cio = new IntersectionObserver((es) => {
   es.forEach(e => {
     if (!e.isIntersecting) return;
@@ -1297,12 +1334,21 @@ const cio = new IntersectionObserver((es) => {
     const escribe = n => el.textContent = antes + (crudo ? n : fmt.format(n)) + detras;
 
     cio.unobserve(el);
+    // la barra arranca con la cuenta, no antes
+    const barra = el.parentElement.querySelector(".num-barra");
+    if (barra) requestAnimationFrame(() => barra.classList.add("llena"));
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) { escribe(hasta); return; }
 
-    const t0 = performance.now(), dur = 1500;
+    /* data-lento alarga la cuenta y frena mucho al final: así se ve subir
+       cifra a cifra, como un recuento, en vez de aparecer de golpe. Es un
+       objetivo, no un marcador en vivo: por eso arranca de cero, se detiene
+       en el número y no vuelve a moverse. */
+    const lento = "lento" in el.dataset;
+    const t0 = performance.now(), dur = lento ? 3800 : 1500;
+    const curva = p => lento ? 1 - Math.pow(1 - p, 1.4) : 1 - Math.pow(1 - p, 3);
     const paso = (t) => {
       const p = Math.min(1, (t - t0) / dur);
-      escribe(Math.round(hasta * (1 - Math.pow(1 - p, 3))));
+      escribe(Math.round(hasta * curva(p)));
       if (p < 1) requestAnimationFrame(paso);
     };
     requestAnimationFrame(paso);
