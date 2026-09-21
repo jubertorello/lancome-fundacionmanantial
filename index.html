@@ -323,14 +323,12 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 @media(max-width:980px){.colabora-img{aspect-ratio:16/9}}
 
 /* ---------- la cifra ----------
-   Sin foto: el dato es lo único que hay, a todo lo ancho y en cuerpo grande.
-   Compite con una imagen y pierde; solo, obliga a leerlo. Entra en dos
-   tiempos y el número llega el último, que es donde está el golpe. */
+   Sección propia, no un apéndice de la colaboración: el dato se sostiene
+   solo. Sin foto y a todo lo ancho —compitiendo con una imagen perdía—, en
+   dos tiempos y con el número llegando el último, que es donde está el
+   golpe. */
 .dato{background:var(--paper)}
-.dato-in{
-  max-width:var(--max);margin-inline:auto;padding-inline:var(--pad);
-  margin-top:clamp(54px,6.4vw,104px);
-}
+.dato-in{max-width:var(--max);margin-inline:auto;padding-inline:var(--pad)}
 .dato-cifra{
   margin:0;font-weight:700;line-height:.94;letter-spacing:-.04em;
   font-size:clamp(46px,8.8vw,138px);
@@ -1006,22 +1004,22 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- 05 · LA CIFRA
+  <!-- 05 · LA CIFRA
        OJO: este dato de prevalencia sigue SIN VERIFICAR y aquí ya no es una
        línea dentro de un desplegable: es la afirmación más grande de la
        página. Antes de publicar hace falta fuente citable. Ver README. -->
-    <div class="dato">
-      <div class="dato-in">
-        <h2 class="dato-cifra">
-          <span class="rv-mask"><span>1 de cada</span></span>
-          <span class="rv-mask"><span><b>3</b> mujeres</span></span>
-        </h2>
-        <p class="dato-sub rv">convivirá con ansiedad o depresión a lo largo de su vida.</p>
-        <div class="dato-cierre">
-          <p class="dato-cuerpo rv">En cada etapa de la vida hay presiones y circunstancias que pesan sobre cómo estamos. Y demasiadas veces «estoy bien» es lo que respondemos, aunque no lo estemos.</p>
-          <a class="btn cta rv" href="#">Haz el cuestionario <span class="arw">→</span></a>
-        </div>
+  <section class="band dato" aria-label="Prevalencia de ansiedad y depresión en mujeres">
+    <div class="dato-in">
+      <h2 class="dato-cifra">
+        <span class="rv-mask"><span>1 de cada</span></span>
+        <span class="rv-mask"><span><b>3</b> mujeres</span></span>
+      </h2>
+      <p class="dato-sub rv">convivirá con ansiedad o depresión a lo largo de su vida.</p>
+      <div class="dato-cierre">
+        <p class="dato-cuerpo rv">En cada etapa de la vida hay presiones y circunstancias que pesan sobre cómo estamos. Y demasiadas veces «estoy bien» es lo que respondemos, aunque no lo estemos.</p>
+        <a class="btn cta rv" href="#">Haz el cuestionario <span class="arw">→</span></a>
       </div>
     </div>
   </section>
