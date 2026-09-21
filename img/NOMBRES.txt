@@ -16,7 +16,8 @@ FOTOGRAFIA
   sello-rosa.webp         fondo del cierre, con poco desenfoque para que se
                           lea el relieve
   mujer-sofa.webp         banda "¿Y si te has acostumbrado a estar asi?"
-  manos.webp              banda ancha del bloque de colaboracion
+  modelo-cara.webp        seccion "Por que esta campana", junto al 1 de cada 3
+  manos.webp              sin uso desde que la cifra se quedo con el retrato
   mujer-escribiendo.webp  articulo 1, senales
   cuenco.webp             articulo 2, autoexigencia
   cama.webp               articulo 3, sueno y descanso
