@@ -313,46 +313,52 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .say-b small{color:rgba(255,255,255,.78)}
 .say p{margin:0;font-size:clamp(18px,1.75vw,24px);line-height:1.24;font-weight:400}
 
+/* la foto llena el hueco que quedaba bajo el titular: la columna izquierda
+   se vaciaba mientras el acordeón crecía a la derecha */
+.colabora-img{
+  margin:clamp(6px,1vw,14px) 0 0;justify-self:stretch;
+  position:relative;overflow:hidden;aspect-ratio:4/3;background:var(--paper-3);
+}
+.colabora-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@media(max-width:980px){.colabora-img{aspect-ratio:16/9}}
+
 /* ---------- la cifra ----------
-   Composición al modo de Lancôme: el texto sangrado dentro de su columna,
-   la foto contenida a la derecha con aire alrededor —no a sangre— y todo
-   sobre blanco. Titular pesado y corto, y debajo el cuerpo y la llamada. */
+   Sin foto: el dato es lo único que hay, a todo lo ancho y en cuerpo grande.
+   Compite con una imagen y pierde; solo, obliga a leerlo. Entra en dos
+   tiempos y el número llega el último, que es donde está el golpe. */
 .dato{background:var(--paper)}
 .dato-in{
-  max-width:var(--max);margin-inline:auto;
-  /* La cifra vive dentro de la sección de la colaboración: el aire de
-     arriba y de abajo ya lo pone .band, aquí solo se separa del acordeón. */
-  padding-inline:var(--pad);margin-top:clamp(42px,5.4vw,84px);
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:clamp(30px,5vw,88px);align-items:center;
+  max-width:var(--max);margin-inline:auto;padding-inline:var(--pad);
+  margin-top:clamp(54px,6.4vw,104px);
 }
-/* Sin sangrado: arranca en la misma vertical que el resto de secciones. */
-.dato-txt{max-width:46ch}
 .dato-cifra{
-  margin:0;font-size:clamp(32px,4.4vw,60px);line-height:1.06;
-  font-weight:700;letter-spacing:-.03em;
+  margin:0;font-weight:700;line-height:.94;letter-spacing:-.04em;
+  font-size:clamp(46px,8.8vw,138px);
 }
+.dato-cifra > .rv-mask:nth-child(2) > *{transition-delay:.16s}
 .dato-cifra b{font-weight:inherit;color:var(--blue)}
+/* el número aparece un poco después y creciendo: es el golpe de la frase */
+.js .dato-cifra b{
+  display:inline-block;transform:scale(.7);opacity:0;
+  transition:transform .85s var(--ease) .42s,opacity .5s var(--ease) .42s;
+}
+.js .dato-cifra .rv-mask.in b{transform:none;opacity:1}
+@media(prefers-reduced-motion:reduce){
+  .js .dato-cifra b{transform:none;opacity:1;transition:none}
+}
 .dato-sub{
-  margin:10px 0 0;font-size:clamp(20px,2.1vw,30px);line-height:1.22;
-  font-weight:500;letter-spacing:-.015em;max-width:20ch;
+  margin:clamp(16px,2vw,26px) 0 0;
+  font-size:clamp(20px,2.3vw,34px);line-height:1.22;
+  font-weight:400;letter-spacing:-.015em;max-width:24ch;
 }
-.dato-cuerpo{
-  margin:24px 0 0;font-size:15px;line-height:1.65;
-  color:var(--ink-soft);max-width:42ch;
+.dato-cierre{
+  margin-top:clamp(28px,3.4vw,52px);
+  display:grid;grid-template-columns:minmax(0,1fr) auto;
+  gap:clamp(20px,3vw,48px);align-items:end;
 }
-.dato .btn{margin-top:30px}
-/* La foto es horizontal: en cuadrado conserva las dos manos del centro.
-   Para la vertical de la referencia haría falta una toma en vertical. */
-.dato-img{
-  margin:0;position:relative;overflow:hidden;
-  aspect-ratio:1/1;background:var(--paper-3);
-}
-.dato-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-@media(max-width:860px){
-  .dato-in{grid-template-columns:1fr;gap:28px}
-  .dato-txt{max-width:none}
-  .dato-img{order:-1;aspect-ratio:4/3}
+.dato-cuerpo{margin:0;font-size:15px;line-height:1.65;color:var(--ink-soft);max-width:46ch}
+@media(max-width:760px){
+  .dato-cierre{grid-template-columns:1fr;gap:24px;align-items:start;justify-items:start}
 }
 
 /* ---------- 03 · cuestionario (mundo rosa Lancôme) ---------- */
@@ -966,6 +972,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
       <div class="colabora-izq">
         <p class="kicker">Lancôme + <span class="fm-nombre">Fundación Manantial</span></p>
         <h2 class="colabora-tit rv-mask"><span>Juntos en la prevención de los problemas de salud mental de las mujeres</span></h2>
+        <figure class="colabora-img rv"><img src="img/modelo.webp" alt="" data-opt></figure>
       </div>
 
       <div class="colabora-der rv">
@@ -1006,15 +1013,15 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
        página. Antes de publicar hace falta fuente citable. Ver README. -->
     <div class="dato">
       <div class="dato-in">
-        <div class="dato-txt">
-          <h2 class="dato-cifra rv-mask"><span><b>1 de cada 3</b> mujeres</span></h2>
-          <p class="dato-sub rv">convivirá con ansiedad o depresión a lo largo de su vida.</p>
-          <p class="dato-cuerpo rv">En cada etapa de la vida hay presiones y circunstancias que pesan sobre cómo estamos. Y demasiadas veces «estoy bien» es lo que respondemos, aunque no lo estemos. Cuanto antes se nombra, menos pesa.</p>
+        <h2 class="dato-cifra">
+          <span class="rv-mask"><span>1 de cada</span></span>
+          <span class="rv-mask"><span><b>3</b> mujeres</span></span>
+        </h2>
+        <p class="dato-sub rv">convivirá con ansiedad o depresión a lo largo de su vida.</p>
+        <div class="dato-cierre">
+          <p class="dato-cuerpo rv">En cada etapa de la vida hay presiones y circunstancias que pesan sobre cómo estamos. Y demasiadas veces «estoy bien» es lo que respondemos, aunque no lo estemos.</p>
           <a class="btn cta rv" href="#">Haz el cuestionario <span class="arw">→</span></a>
         </div>
-        <figure class="dato-img rv">
-          <img src="img/manos.webp" alt="" data-opt>
-        </figure>
       </div>
     </div>
   </section>
