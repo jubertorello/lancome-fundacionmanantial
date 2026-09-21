@@ -324,12 +324,9 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   display:grid;grid-template-columns:1.1fr .9fr;
   gap:clamp(30px,5vw,80px);align-items:center;
 }
-.dato-cifra{
-  margin:0;font-weight:700;line-height:.96;letter-spacing:-.04em;
-  font-size:clamp(42px,6vw,96px);
-}
+.dato-cifra{margin:clamp(14px,1.6vw,20px) 0 0}
 .dato-cifra > .rv-mask:nth-child(2) > *{transition-delay:.16s}
-.dato-cifra b{font-weight:inherit;color:var(--blue)}
+.dato-cifra b{color:var(--blue)}
 /* el número aparece un poco después y creciendo: es el golpe de la frase */
 .js .dato-cifra b{
   display:inline-block;transform:scale(.7);opacity:0;
@@ -1017,7 +1014,8 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   <section class="band dato" aria-label="Prevalencia de ansiedad y depresión en mujeres">
     <div class="dato-in">
       <div class="dato-txt">
-        <h2 class="dato-cifra">
+        <p class="kicker">Por qué esta campaña</p>
+        <h2 class="dato-cifra h-xl">
           <span class="rv-mask"><span>1 de cada</span></span>
           <span class="rv-mask"><span><b>3</b> mujeres</span></span>
         </h2>
