@@ -342,7 +342,8 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 }
 .dato-cuerpo{
   margin:clamp(22px,2.6vw,34px) 0 0;
-  font-size:15px;line-height:1.65;color:var(--ink-soft);max-width:44ch;
+  font-size:clamp(16px,1.35vw,19px);line-height:1.6;
+  color:var(--ink-soft);max-width:44ch;
 }
 .dato-txt .btn{margin-top:clamp(24px,2.8vw,36px)}
 /* La modelo vive a la derecha del original y el fondo es el mismo blanco de
@@ -636,7 +637,12 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   display:grid;grid-template-columns:1.3fr 1fr;
   gap:clamp(22px,4vw,64px);align-items:end;
 }
-@media(max-width:860px){.voces-cierre{grid-template-columns:1fr;gap:24px;align-items:start}}
+@media(max-width:860px){
+  .voces-cierre{grid-template-columns:1fr;gap:24px;align-items:start}
+  /* apilado no hay dos columnas que medir: las medidas cortas de escritorio
+     dejaban el texto cortando antes que el de las demás secciones */
+  .voces-cierre-q,.voces-cierre-s{max-width:none}
+}
 .voces-cierre-q{
   margin:0;font-size:clamp(22px,2.7vw,36px);line-height:1.2;
   font-weight:500;letter-spacing:-.015em;max-width:20ch;
@@ -646,7 +652,12 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 /* La columna de la llamada se alinea a la derecha, contra el borde de la
    retícula: así cierra el bloque en lugar de quedar colgando a media caja. */
 .voces-cierre-acc{display:grid;justify-items:end;gap:18px;text-align:right}
-.voces-cierre-s{margin:0;font-size:15px;line-height:1.55;color:var(--ink-soft);max-width:30ch}
+/* misma escala que las descripciones del resto de secciones (.lead): a 15 px
+   se leía como una nota al pie y no como el texto que acompaña a la frase */
+.voces-cierre-s{
+  margin:0;font-size:clamp(16px,1.35vw,19px);line-height:1.6;
+  color:var(--ink-soft);max-width:30ch;
+}
 @media(max-width:860px){
   .voces-cierre-acc{justify-items:start;text-align:left}
 }
