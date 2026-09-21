@@ -350,11 +350,19 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
    la página: el recorte la mantiene dentro y la foto se funde con la hoja. */
 .dato-img{
   margin:0;position:relative;overflow:hidden;
-  aspect-ratio:4/5;background:var(--paper-3);
+  /* la proporción del frame de Figma, 712 x 882 */
+  aspect-ratio:712/882;background:var(--paper-3);
 }
 .dato-img img{
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;object-position:66% center;
+}
+/* El velo negro al 4 % que lleva el frame en Figma. Asienta la foto y es
+   lo que dibuja el borde contra el blanco de la página: no es un fallo,
+   va en la receta. */
+.dato-img::after{
+  content:"";position:absolute;inset:0;
+  background:rgba(0,0,0,.04);pointer-events:none;
 }
 @media(max-width:860px){
   .dato-in{grid-template-columns:1fr;gap:30px}
