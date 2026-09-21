@@ -664,7 +664,6 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .voces-cierre .btn{margin-top:0}
 
 /* ---------- 08 · institucional ---------- */
-.ctas2{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
 /* Los proyectos no son ideas como los pilares de arriba: son cosas que la
    fundación hace, y además son enlaces. Por eso dejan de ser columnas con
    filete y pasan a fichas blancas sobre la arena, con esquina viva y una
@@ -826,6 +825,13 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   /* la quinta se quedaría sola en su fila: mejor que la ocupe entera, a la
      misma altura que las de arriba */
   .say:nth-child(5){grid-column:1 / -1;aspect-ratio:2.36/1}
+
+  /* --- los dos botones de la fundación comparten fila --- */
+  .ctas2{gap:10px;flex-wrap:nowrap}
+  .ctas2 .btn{
+    flex:1 1 0;min-width:0;justify-content:center;text-align:center;
+    padding:14px 10px;white-space:normal;line-height:1.35;letter-spacing:.08em;
+  }
 
   /* --- la lista de comprobaciones se apila: en línea se estrangulaba --- */
   .check{flex-direction:column;align-items:flex-start;gap:4px}
