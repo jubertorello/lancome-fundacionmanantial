@@ -470,7 +470,14 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
    las cifras se apoyan a la derecha tras un filete. En una tira de cuatro
    los números competían con el titular; en dos por dos se leen como una
    ficha de la fundación. */
-.fm-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(30px,5vw,80px);align-items:start}
+/* El rótulo sale de la rejilla y va encima de las dos columnas: así el
+   titular y la primera cifra arrancan en la misma línea, sin cuadrarlo a
+   ojo con un margen. */
+.fm-grid{
+  display:grid;grid-template-columns:1.15fr .85fr;
+  gap:clamp(30px,5vw,80px);align-items:start;
+  margin-top:clamp(14px,1.6vw,20px);
+}
 @media(max-width:900px){.fm-grid{grid-template-columns:1fr;gap:clamp(34px,5vw,52px)}}
 .fm-izq{display:grid;justify-items:start}
 .kpis{
@@ -671,30 +678,28 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .projs{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.4vw,20px);margin-top:clamp(28px,3.2vw,44px)}
 @media(max-width:820px){.projs{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.projs{grid-template-columns:1fr}}
-/* Azul macizo: al quitar la arena de la sección, unas fichas blancas
-   sobre fondo blanco se quedaban sin superficie y solo las delataba la
-   flecha. En azul recuperan cuerpo y además es territorio de la
-   fundación. */
+/* Cuatro bloques de azul macizo cargaban mucho la sección y competían con
+   las cifras, que también van en azul. En reposo son fichas claras con un
+   filete arriba; el azul aparece al entrar en ellas, como interacción y no
+   como superficie. */
 .proj{
-  text-decoration:none;background:var(--blue);color:#fff;
-  padding:clamp(22px,2.4vw,30px);
+  text-decoration:none;background:var(--paper-3);color:var(--blue);
+  border-top:2px solid var(--blue);
+  padding:clamp(20px,2.2vw,28px);
   display:grid;gap:10px;align-content:start;
   position:relative;min-height:clamp(150px,13vw,190px);
-  transition:transform .4s var(--ease),background .4s var(--ease);
+  transition:transform .4s var(--ease),background .4s var(--ease),color .4s var(--ease);
 }
 .proj b{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding-right:26px}
-.proj span{font-size:14px;line-height:1.55;color:rgba(255,255,255,.76)}
+.proj span{font-size:14px;line-height:1.55;color:var(--ink-soft);transition:color .4s var(--ease)}
 .proj i{
-  position:absolute;top:clamp(20px,2.2vw,28px);right:clamp(20px,2.2vw,28px);
-  font-style:normal;font-size:15px;line-height:1;color:#fff;
-  transition:transform .4s var(--ease);
+  position:absolute;top:clamp(18px,2vw,26px);right:clamp(18px,2vw,26px);
+  font-style:normal;font-size:15px;line-height:1;color:var(--blue);
+  transition:transform .4s var(--ease),color .4s var(--ease);
 }
-/* Al pasar por encima la ficha se invierte: la arena vuelve a la página
-   como color de interacción, no como superficie de fondo. */
-.proj:hover{transform:translateY(-4px);background:var(--sand);color:var(--blue)}
-.proj:hover span{color:rgba(0,69,145,.78)}
-.proj:hover i{transform:translate(3px,-3px);color:var(--blue)}
-.proj{border:0}
+.proj:hover{transform:translateY(-4px);background:var(--blue);color:#fff}
+.proj:hover span{color:rgba(255,255,255,.78)}
+.proj:hover i{transform:translate(3px,-3px);color:#fff}
 
 /* ---------- 09 · cierre ---------- */
 .close{position:relative;background:#0A0507;color:#fff;overflow:hidden;text-align:center}
@@ -1153,10 +1158,10 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
        El orden va de lo que piensa a lo que hace: mirada, casa, proyectos. -->
   <section class="band" id="fundacion">
     <div class="wrap">
+      <p class="kicker fm-nombre">Fundación Manantial</p>
       <div class="fm-grid">
         <div class="fm-izq">
-          <p class="kicker fm-nombre">Fundación Manantial</p>
-          <h2 class="h-lg rv-mask fm-titular" style="margin-top:18px"><span>Desde 1995 <b class="fm-nombre">Fundación Manantial</b> trabaja por los derechos y la recuperación de las personas con problemas de salud mental y sus familias.</span></h2>
+          <h2 class="h-lg rv-mask fm-titular"><span>Desde 1995, por los derechos y la recuperación de las personas con problemas de salud mental.</span></h2>
 
           <div class="ctas2 rv">
             <a class="btn btn--line" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Quiero colaborar</a>
