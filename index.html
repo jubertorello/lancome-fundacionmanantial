@@ -53,9 +53,12 @@
      Azules y arena tomados de fundacionmanantial.org. */
   --pink:#EE4B98;
   --blue:#004591;
-  --blue-dark:#00305F;
-  --sand:#EAE6E0;   /* solo para el hover de los proyectos */
   --wine:#5C0B1B;
+  /* Declarados pero sin usar hoy: el resto de la paleta de marca. --sand
+     dejó de usarse cuando el hover de los proyectos pasó a azul. Se quedan
+     como referencia, no son código muerto que sobre. */
+  --blue-dark:#00305F;
+  --sand:#EAE6E0;
   --wine-2:#8E1230;
 
   --f-sans:"Mulish","Helvetica Neue",Arial,system-ui,sans-serif;
@@ -88,7 +91,6 @@ a{color:inherit}
 
 .wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--pad)}
 .band{padding-block:var(--sec)}
-.band--grey{background:var(--paper-2)}
 
 section{scroll-margin-top:72px}
 
@@ -100,7 +102,6 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 /* sin medida corta: las entradillas de sección van en una sola línea
    mientras quepan, y solo se parten cuando la pantalla obliga */
 .lead{font-size:clamp(16px,1.35vw,19px);line-height:1.6;color:var(--ink-soft);margin:0}
-.body{font-size:16px;line-height:1.68;color:var(--ink-soft);max-width:60ch;margin:0}
 .kicker{
   margin:0;font-size:11px;font-weight:700;letter-spacing:.16em;
   text-transform:uppercase;color:var(--pink);
@@ -402,10 +403,6 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .quest-side{border-left:1px solid rgba(255,255,255,.2);padding-left:clamp(20px,2.6vw,38px);display:grid;gap:26px}
 @media(max-width:900px){.quest-side{border-left:0;border-top:1px solid rgba(255,255,255,.2);padding:26px 0 0}}
 .num{font-size:clamp(38px,5vw,66px);line-height:.95;font-weight:300;font-variant-numeric:tabular-nums}
-.num-pie{
-  margin:14px 0 0;font-size:11px;line-height:1.6;
-  color:rgba(255,255,255,.48);
-}
 .num-l{margin:8px 0 0;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.62)}
 /* misma escala que la descripción del bloque: son las dos frases en
    minúsculas del cuestionario y a 13 px una se leía como letra pequeña */
@@ -776,7 +773,6 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   transition-delay:calc(var(--i,0) * 90ms)}
 
 /* la foto se asienta: entra ligeramente ampliada y se posa */
-.js .ph img{transform:scale(1.07);transition:transform 1.4s var(--ease)}
 .js .ph.seen img{transform:none}
 
 
@@ -806,12 +802,12 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   .top .fm-logo{padding-block:6px}
   .foot-bottom .fm-logo{padding-block:9px}
   .foot-col p{padding-block:5px}
-  .art .link,.proj{min-height:44px;display:flex;align-items:center}
+  .proj{min-height:44px;display:flex;align-items:center}
   .proj{display:grid;padding-top:14px}
 
   /* --- rótulos: 10 px no se leen en la mano --- */
-  .say small,.msg-k,.art-img i,.credit > span:first-child{font-size:11px}
-  .voice i,.hero-play i{font-size:12px}
+  .say small,.art-img i,.credit > span:first-child{font-size:11px}
+  .hero-play i{font-size:12px}
 
   /* --- la barra fija se queda solo con el botón: el titular se partía en
          tres líneas y comía 92 px --- */
@@ -846,8 +842,6 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     padding:14px 10px;white-space:normal;line-height:1.35;letter-spacing:.08em;
   }
 
-  /* --- la lista de comprobaciones se apila: en línea se estrangulaba --- */
-  .check{flex-direction:column;align-items:flex-start;gap:4px}
 
   /* --- la firma y los logos se apilan --- */
   .credit{flex-direction:column;align-items:flex-start;gap:16px}
