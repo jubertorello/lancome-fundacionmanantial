@@ -366,7 +366,8 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 }
 @media(max-width:860px){
   .dato-in{grid-template-columns:1fr;gap:30px}
-  .dato-img{order:-1;aspect-ratio:4/3}
+  /* la foto se sale del canalón y ocupa el ancho de la pantalla */
+  .dato-img{order:-1;aspect-ratio:4/3;margin-inline:calc(var(--pad) * -1)}
 }
 
 /* ---------- 03 · cuestionario (mundo rosa Lancôme) ---------- */
