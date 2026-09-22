@@ -650,14 +650,8 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   display:grid;grid-template-columns:1.3fr 1fr;
   gap:clamp(22px,4vw,64px);align-items:end;
 }
-@media(max-width:860px){
-  .voces-cierre{grid-template-columns:1fr;gap:24px;align-items:start}
-  /* apilado no hay dos columnas que medir: las medidas cortas de escritorio
-     dejaban el texto cortando antes que el de las demás secciones */
-  .voces-cierre-q,.voces-cierre-s{max-width:none}
-}
 .voces-cierre-q{
-  margin:0;font-size:clamp(22px,2.7vw,36px);line-height:1.2;
+  margin:0;font-size:clamp(27px,2.7vw,36px);line-height:1.2;
   font-weight:500;letter-spacing:-.015em;max-width:20ch;
 }
 /* El rosa marca la frase automática: es la que la campaña pone en duda. */
@@ -672,7 +666,13 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   color:var(--ink-soft);max-width:30ch;
 }
 @media(max-width:860px){
+  .voces-cierre{grid-template-columns:1fr;gap:24px;align-items:start}
   .voces-cierre-acc{justify-items:start;text-align:left}
+  /* Apilado no hay dos columnas que medir: las medidas cortas de escritorio
+     cortaban el texto antes que en las demás secciones. Y la frase se lee
+     como el titular de una sección, porque lo es. */
+  .voces-cierre-q,.voces-cierre-s{max-width:none}
+  .voces-cierre-q{line-height:1.12}
 }
 .voces-cierre .btn{margin-top:0}
 
