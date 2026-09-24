@@ -216,37 +216,6 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 }
 .hero-play:hover i{background:#fff;color:var(--ink);border-color:#fff}
 
-/* ---------- bloque de vídeo ---------- */
-.film{background:#0A0507;position:relative;z-index:2}
-/* a sangre: el bloque oscuro termina exactamente donde termina el vídeo,
-   sin marco ni franja negra por debajo */
-.film-in{max-width:none;padding:0}
-.film-box{
-  position:relative;margin:0;aspect-ratio:16/9;overflow:hidden;
-  background:#140309;cursor:pointer;
-}
-.film-box img,.film-box video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.film-box::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(10,5,7,.12),rgba(10,5,7,.45));
-  transition:opacity .4s var(--ease);
-}
-.film-box:hover::after{opacity:.55}
-.film-play{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;
-  width:clamp(62px,7vw,86px);height:clamp(62px,7vw,86px);border-radius:50%;
-  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.75);
-  backdrop-filter:blur(6px);color:#fff;font-size:17px;padding-left:4px;
-  display:grid;place-items:center;cursor:pointer;
-  transition:background .35s var(--ease),color .35s var(--ease),transform .35s var(--ease);
-}
-.film-box:hover .film-play{background:#fff;color:var(--ink);transform:translate(-50%,-50%) scale(1.06)}
-.film-cap{
-  position:absolute;left:clamp(14px,2vw,26px);bottom:clamp(14px,2vw,26px);z-index:3;
-  font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.85);
-}
-.film-box.playing::after,.film-box.playing .film-play,.film-box.playing .film-cap{display:none}
-
 /* Firma de la colaboración. Acompaña a los dos logos siempre que
    aparecen juntos: aquí y en el pie. */
 .credit{
@@ -270,9 +239,8 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   /* al crecer el cuerpo, el mismo espaciado de antes lo estiraba demasiado */
   letter-spacing:.1em;line-height:1.5;
   text-transform:uppercase;color:rgba(255,255,255,.72);
-  /* sin medida corta ni reparto equilibrado: cabe en una línea donde hay
-     sitio y solo se parte cuando la pantalla no da */
-  max-width:none;
+  /* medida para dos líneas, repartidas parejas */
+  max-width:60ch;text-wrap:balance;
 }
 .credit-logos{display:flex;align-items:center;gap:clamp(14px,2vw,22px)}
 .credit-x{font-size:15px;color:rgba(255,255,255,.35)}
@@ -896,7 +864,6 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   .credit-claim{font-size:13px;letter-spacing:.09em;line-height:1.5}
 
   /* --- el rótulo se iba encima del subtítulo quemado del vídeo --- */
-  .film-cap{bottom:auto;top:14px}
 }
 
 @media(max-width:700px){
@@ -986,7 +953,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
       <div class="hero-grid">
         <p class="hero-lead">Decir «no estoy bien» es el inicio de una conversación.</p>
         <div class="hero-act">
-          <a class="hero-play" href="#video"><i>▶</i> Ver el vídeo</a>
+          <a class="hero-play" href="#" role="button"><i>▶</i> Ver el vídeo</a>
           <a class="btn btn--light btn--big cta" href="#">Descubre cómo estás <span class="arw">→</span></a>
         </div>
       </div>
@@ -1002,18 +969,6 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
           </a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- El vídeo no se autocarga: el póster pesa 105 KB y el mp4 solo se pide
-       cuando la persona pulsa. Ver README para la compresión pendiente. -->
-  <section class="film" id="video" aria-label="Vídeo de campaña">
-    <div class="film-in">
-      <figure class="film-box" id="filmBox">
-        <img src="video/manifiesto-poster.webp" alt="Fotograma del vídeo de campaña" data-opt>
-        <button class="film-play" type="button" aria-label="Reproducir el vídeo de campaña">▶</button>
-        <figcaption class="film-cap">Manifiesto · 8 s</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -1602,35 +1557,6 @@ if (pista) {
   const salta = paso => vaA(Math.min(Math.max(actual + paso, 0), VOCES.length - 1));
   document.getElementById("vozNext").addEventListener("click", () => salta(1));
   document.getElementById("vozPrev").addEventListener("click", () => salta(-1));
-}
-
-/* vídeo: se descarga solo al pulsar */
-const filmBox = document.getElementById("filmBox");
-if (filmBox) {
-  const play = () => {
-    if (filmBox.classList.contains("playing")) return;
-    const v = document.createElement("video");
-    v.src = "video/manifiesto.mp4";
-    v.poster = "video/manifiesto-poster.webp";
-    v.controls = true;
-    v.playsInline = true;
-    // con sonido: el play viene de un clic, así que el navegador lo permite.
-    // (El mp4 actual no trae pista de audio; en cuanto llegue un export con
-    //  voz sonará sin tocar nada.)
-    v.muted = false;
-    v.preload = "auto";
-    filmBox.classList.add("playing");
-    filmBox.querySelector("img").replaceWith(v);
-
-    // si algún navegador se niega a arrancar con sonido —iOS en bajo
-    // consumo, por ejemplo— se deja el vídeo listo con sus controles en
-    // lugar de un fotograma congelado
-    v.play().catch(() => { v.controls = true; });
-  };
-  filmBox.addEventListener("click", play);
-  filmBox.querySelector(".film-play").addEventListener("keydown", e => {
-    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); play(); }
-  });
 }
 
 /* acordeón de la colaboración */
