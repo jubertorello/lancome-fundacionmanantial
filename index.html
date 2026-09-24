@@ -250,7 +250,10 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 /* Firma de la colaboración. Acompaña a los dos logos siempre que
    aparecen juntos: aquí y en el pie. */
 .credit{
-  margin:0;padding-top:clamp(20px,2.2vw,28px);
+  /* El margen no sobra aunque el reparto empuje la firma abajo: con
+     space-between actúa de mínimo, así que en pantallas bajas la línea no
+     se pega al botón. Y el relleno la separa de su propio texto. */
+  margin:clamp(30px,3.6vw,52px) 0 0;padding-top:clamp(24px,2.6vw,34px);
   /* La rosa desenfocada pasa de granate oscuro a rosa claro de izquierda a
      derecha, y con un filete al 18 % la línea se leía en la mitad oscura y
      desaparecía en la clara: parecía torcida sin estarlo. Se sube el
@@ -267,7 +270,9 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   /* al crecer el cuerpo, el mismo espaciado de antes lo estiraba demasiado */
   letter-spacing:.1em;line-height:1.5;
   text-transform:uppercase;color:rgba(255,255,255,.72);
-  max-width:34ch;text-wrap:balance;
+  /* sin medida corta ni reparto equilibrado: cabe en una línea donde hay
+     sitio y solo se parte cuando la pantalla no da */
+  max-width:none;
 }
 .credit-logos{display:flex;align-items:center;gap:clamp(14px,2vw,22px)}
 .credit-x{font-size:15px;color:rgba(255,255,255,.35)}
