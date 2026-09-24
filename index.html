@@ -1647,12 +1647,13 @@ if (vmodal && vmodalVid) {
   vmodal.addEventListener("close", () => { vmodalVid.pause(); vmodalVid.currentTime = 0; });
 }
 
-/* El vídeo del hero solo se carga donde tiene sentido: en pantallas
-   anchas, sin petición de menos movimiento y sin ahorro de datos. Son
-   6,4 MB; en un móvil con datos se queda la rosa. */
+/* El vídeo del hero se carga también en móvil. PENDIENTE: el mp4 actual
+   pesa 6,4 MB, demasiado para datos móviles; se espera un export más
+   ligero para vertical. Cuando llegue, conviene servir ese en pantallas
+   pequeñas. Se respetan las preferencias del sistema: quien pide menos
+   movimiento o ahorro de datos se queda con la rosa. */
 const heroVid = document.querySelector(".hero-video");
 if (heroVid
-    && innerWidth >= 900
     && !reduce
     && !matchMedia("(prefers-reduced-data: reduce)").matches) {
   heroVid.addEventListener("canplay", () => heroVid.classList.add("lista"), {once: true});

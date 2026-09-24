@@ -175,6 +175,7 @@ python3 -m http.server 8000
 | Historias reales de Voces | array `VOCES` en el script: imagen y frase de cada una. **Las frases actuales son de campaña, no testimonios**: hay que sustituirlas por lo que digan de verdad las mujeres que aparezcan, y con sus caras |
 | Artículos de Lancôme | títulos y URLs reales en `#articulos` |
 | **«1 de cada 3 mujeres»** | Sección `.dato`, entre la colaboración y el cuestionario. Ya no es una línea dentro de un desplegable: es **la afirmación más grande de la página**, a todo el ancho y en cuerpo de 78 px. **Necesita fuente citable antes de publicar.** Si no se puede sostener, la banda se quita entera. |
+| **Vídeo ligero para móvil** | `video/manifiesto.mp4` pesa 6,4 MB y ahora se carga también en vertical, de fondo del hero. Hace falta un export más ligero para pantallas pequeñas: con datos móviles esto es mucho |
 | El vídeo ya no tiene sección propia | Se quitó: ahora se abre encima desde «Ver el vídeo» del hero, y de fondo en el propio hero. El póster sigue usándose |
 | Foto `manos.webp` sin usar | Salió de la sección de la colaboración; sigue en `img/` por si se reutiliza |
 | Resto de datos de prevalencia | `#colaboracion` y las cifras de `#fundacion` — verificar fuentes antes de publicar |
