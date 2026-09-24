@@ -890,10 +890,10 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
      Para recuperarlo: borrar la línea .top .btn{display:none}. */
   .top .btn{display:none}
 
-  /* El enlace al vídeo sobra en móvil: el vídeo está justo debajo, a
-     sangre, y basta con seguir bajando. Así el hero se queda con una
-     sola acción en vez de dos compitiendo. */
-  .hero-play{display:none}
+  /* El enlace al vídeo se ocultaba porque el vídeo estaba justo debajo en
+     su propia sección y bastaba con seguir bajando. Esa sección ya no
+     existe: si aquí no está, en móvil el vídeo no se ve por ningún sitio.
+     (De fondo tampoco: son 6,4 MB y no se cargan con datos.) */
   .hero-act{width:100%}
   .hero-act .btn{width:100%;justify-content:center}
   .top .fm-logo{--h:40px}
