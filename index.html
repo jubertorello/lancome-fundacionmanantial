@@ -181,7 +181,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   /* Mira el ancho Y el alto: tres líneas a 10vw se comían la firma en
      portátiles bajos. 15vh mantiene el claim proporcionado a la pantalla
      que de verdad hay. */
-  font-size:clamp(54px,min(10vw,15vh),148px);}
+  font-size:clamp(70px,min(10vw,15vh),148px);}
 /* Una palabra por línea. La del medio queda reservada y vacía mientras la
    duda no llega: la frase se escribe con un hueco y luego se ocupa, sin
    salto de maquetación y con la espera a la vista. */
@@ -820,6 +820,11 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
    ========================================================================== */
 @media(max-width:700px){
 
+  /* En vertical el contenido del hero es corto y el reparto dejaba un
+     vacío enorme entre el botón y la firma. Que el bloque ocupe el hueco
+     y centre lo suyo dentro: el aire se reparte arriba y abajo. */
+  .hero-cuerpo{flex:1;display:flex;flex-direction:column;justify-content:center}
+
   /* --- objetivos táctiles: mínimo 44 px, que es lo que recomiendan
          Apple y Google y lo que mide un dedo --- */
   .top .btn{min-height:44px;padding:13px 16px;font-size:11px;letter-spacing:.08em}
@@ -998,7 +1003,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     <div class="says rv stagger">
       <button class="say" aria-pressed="false">
         <span class="say-f"><small>Lo que decimos</small><p>«Estoy bien.»</p></span>
-        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>No llego a todo</p></span></span>
+        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>Estoy agotada</p></span></span>
       </button>
       <button class="say" aria-pressed="false">
         <span class="say-f"><small>Lo que decimos</small><p>«Estoy tranquila.»</p></span>
@@ -1014,7 +1019,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
       </button>
       <button class="say" aria-pressed="false">
         <span class="say-f"><small>Lo que decimos</small><p>«Todo en orden.»</p></span>
-        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>Estoy agotada</p></span></span>
+        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>No llego a todo</p></span></span>
       </button>
     </div>
   </section>
