@@ -178,7 +178,10 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .hero-cuerpo{display:block}
 .hero-claim{font-family:var(--f-logo);font-weight:800;font-variation-settings:"wdth" 76;
   text-transform:uppercase;line-height:.86;letter-spacing:-.025em;margin:0;
-  font-size:clamp(54px,10vw,148px);}
+  /* Mira el ancho Y el alto: tres líneas a 10vw se comían la firma en
+     portátiles bajos. 15vh mantiene el claim proporcionado a la pantalla
+     que de verdad hay. */
+  font-size:clamp(54px,min(10vw,15vh),148px);}
 /* Una palabra por línea. La del medio queda reservada y vacía mientras la
    duda no llega: la frase se escribe con un hueco y luego se ocupa, sin
    salto de maquetación y con la espera a la vista. */
@@ -356,6 +359,14 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   .dato-in{grid-template-columns:1fr;gap:30px}
   /* la foto se sale del canalón y ocupa el ancho de la pantalla */
   .dato-img{order:-1;aspect-ratio:4/3;margin-inline:calc(var(--pad) * -1)}
+}
+
+/* En pantallas bajas el hero necesita menos respiración arriba y abajo,
+   o la firma se queda fuera. */
+@media(max-height:860px){
+  .hero-in{padding-block:clamp(20px,2.6vw,36px)}
+  .hero-grid{margin-top:clamp(20px,3vw,36px)}
+  .credit{margin-top:clamp(20px,2.6vw,34px);padding-top:clamp(16px,2vw,24px)}
 }
 
 /* ---------- 03 · cuestionario (mundo rosa Lancôme) ---------- */
