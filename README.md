@@ -231,7 +231,13 @@ YouTube o Vimeo: bitrate adaptativo, subtítulos gestionables y ancho de
 banda que no paga la fundación. En ese caso, embeber con fachada (póster
 que solo carga el iframe al pulsar) y usar `youtube-nocookie.com`.
 
-`video/manifiesto-master.mp4` se conserva como original para reencodear.
+El máster `video/manifiesto-master.mp4` ya no está en la carpeta: eran 15 MB
+que el servidor no necesita. Sigue en el historial de git y se recupera con
+
+    git checkout bc4df60 -- video/manifiesto-master.mp4
+
+Para el export ligero de móvil o uno con audio, mejor pedir el original a
+quien montó la pieza: ahí está la fuente de verdad.
 
 ## Imágenes
 
