@@ -7,165 +7,162 @@
 <meta name="robots" content="noindex, nofollow">
 
 <!-- ==========================================================================
-     MARQUESINA PROMOCIONAL · Lancôme + Fundación Manantial
+     MARQUESINA · barra superior para fundacionmanantial.org
 
-     Pieza suelta para colocar en otra web y llevar tráfico a la landing.
-     No forma parte de la landing: es un archivo aparte.
+     Tira fina que va ENCIMA del header, en escritorio y en móvil. Lleva a
+     la LANDING de la campaña, no directamente al cuestionario: por eso el
+     botón dice «quiero saber más» y no «haz el cuestionario».
 
-     PARA USARLA
-       · El bloque que se copia es <section class="marq">…</section>, con el
-         <style> de arriba. Todo lo demás de este archivo es el escaparate
-         para verla.
-       · Las rutas de imagen son relativas (img/…). Si la marquesina se
-         monta en otro dominio, hay que apuntarlas donde estén los logos.
+     CÓMO SE MONTA
+       1. Copiar el bloque  <style id="imf-css">…</style>  y pegarlo en el
+          <head> del sitio.
+       2. Copiar  <aside class="imf">…</aside>  y pegarlo como PRIMER
+          elemento dentro del <body>, antes del header.
+       3. Ajustar la ruta del logo en el <img> y el href del botón.
+
+     POR QUÉ TODO LLEVA EL PREFIJO .imf
+       Esto se inyecta en una web que ya tiene sus estilos. Con el prefijo
+       no hay forma de que estas reglas pisen nada de fundacionmanantial.org
+       ni al revés. No hay reset global ni selectores sueltos a propósito.
+
+     SI EL HEADER DEL SITIO ES STICKY
+       Habrá que sumarle la altura de esta barra a su «top», o se solapará
+       al hacer scroll. La barra publica su alto en --imf-h para eso.
 
      PENDIENTE
-       · El botón apunta a la URL de revisión porque la definitiva todavía
-         no existe. Cambiar DESTINO por
-         https://www.fundacionmanantial.org/lancome cuando esté publicada.
+       · El botón apunta a la URL de revisión: cambiar por
+         https://www.fundacionmanantial.org/lancome cuando exista.
      ========================================================================== -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,800&family=Mulish:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,800&family=Mulish:wght@400;700&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --pink:#EE4B98;
-  --blue:#004591;
-  --ink:#121212;
-  --ink-soft:#5A5A60;
-  --rule:#E3E2DF;
-  --ease:cubic-bezier(.22,.61,.36,1);
-  --f-sans:"Mulish",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --f-logo:"Archivo","Mulish",system-ui,sans-serif;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;background:#EFEDEA;color:var(--ink);
-  font-family:var(--f-sans);-webkit-font-smoothing:antialiased;
-  display:grid;place-items:center;min-height:100svh;padding:clamp(16px,4vw,48px);
-}
+<style id="imf-css">
+/* ===== MARQUESINA · todo va prefijado con .imf ===== */
+.imf{
+  --imf-pink:#EE4B98;
+  --imf-ink:#121212;
+  --imf-h:52px;
 
-/* ---------- la marquesina ---------- */
-.marq{
-  position:relative;overflow:hidden;
-  width:min(1180px,100%);background:#fff;
-  display:grid;grid-template-columns:1.25fr .75fr;
-  align-items:center;gap:clamp(24px,4vw,64px);
-  padding:clamp(28px,4vw,56px);
+  position:relative;z-index:1000;
+  display:flex;align-items:center;justify-content:center;
+  gap:clamp(10px,2vw,22px);
+  min-height:var(--imf-h);
+  padding:8px clamp(12px,3vw,28px);
+  background:#fff;border-bottom:1px solid #E3E2DF;
+  font-family:"Mulish",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--imf-ink);line-height:1.2;
+  box-sizing:border-box;
 }
-@media(max-width:820px){
-  .marq{grid-template-columns:1fr;gap:clamp(22px,5vw,32px);text-align:left}
-}
+.imf *{box-sizing:border-box}
 
-/* cabecera: los dos logos, siempre juntos */
-.marq-logos{
-  display:flex;align-items:center;gap:clamp(12px,2vw,20px);
-  margin-bottom:clamp(20px,3vw,30px);
-}
-.marq-logos img{display:block;width:auto}
-.marq-logos .lan{height:17px}
-.marq-logos .fm{height:34px}
-.marq-x{font-size:14px;color:#B9B7B3}
+.imf-logo{display:block;width:auto;height:17px;flex:none}
 
-.marq-claim{
-  font-family:var(--f-logo);font-weight:800;font-variation-settings:"wdth" 76;
-  text-transform:uppercase;line-height:.88;letter-spacing:-.025em;margin:0;
-  font-size:clamp(46px,6.4vw,92px);
-}
-.marq-claim em{font-style:normal;color:var(--pink)}
+.imf-sep{width:1px;height:20px;background:#D9D7D3;flex:none}
 
-.marq-txt{
-  margin:clamp(16px,2vw,24px) 0 0;max-width:34ch;
-  font-size:clamp(16px,1.35vw,19px);line-height:1.6;color:var(--ink-soft);
+/* el claim, con la tipografía del lockup */
+.imf-claim{
+  font-family:"Archivo","Mulish",system-ui,sans-serif;
+  font-weight:800;font-variation-settings:"wdth" 76;
+  text-transform:uppercase;letter-spacing:-.01em;
+  font-size:clamp(15px,1.5vw,19px);white-space:nowrap;flex:none;
+}
+.imf-claim i{font-style:normal;color:var(--imf-pink)}
+
+.imf-txt{
+  font-size:14px;color:#5A5A60;margin:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
 }
 
-/* columna derecha: la llamada */
-.marq-cta{display:grid;justify-items:start;gap:14px}
-@media(min-width:821px){.marq-cta{justify-items:end;text-align:right}}
-.marq-k{
-  margin:0;font-size:11px;font-weight:700;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--pink);
+.imf-btn{
+  flex:none;display:inline-flex;align-items:center;gap:.7em;
+  font-family:inherit;font-size:11px;font-weight:700;
+  letter-spacing:.11em;text-transform:uppercase;text-decoration:none;
+  background:var(--imf-ink);color:#fff;border:1px solid var(--imf-ink);
+  padding:10px 16px;min-height:36px;white-space:nowrap;
+  transition:background .3s ease,border-color .3s ease;
 }
-.btn{
-  display:inline-flex;align-items:center;gap:.8em;
-  font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
-  text-decoration:none;background:var(--ink);color:#fff;
-  border:1px solid var(--ink);padding:16px 28px;min-height:44px;
-  transition:background .35s var(--ease),border-color .35s var(--ease);
-}
-.btn .arw{transition:transform .35s var(--ease)}
-.btn:hover{background:var(--blue);border-color:var(--blue)}
-.btn:hover .arw{transform:translateX(5px)}
-.btn:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.imf-btn:hover,.imf-btn:focus-visible{background:#004591;border-color:#004591;color:#fff}
+.imf-btn:focus-visible{outline:2px solid #004591;outline-offset:2px}
+.imf-btn span{transition:transform .3s ease}
+.imf-btn:hover span{transform:translateX(4px)}
 
-/* ---------- la tira que corre ---------- */
-.tira{
-  grid-column:1 / -1;margin:clamp(26px,3.4vw,44px) -100px 0;
-  padding-top:clamp(18px,2.4vw,26px);border-top:1px solid var(--rule);
-  overflow:hidden;
+/* ===== VARIANTE OSCURA: la misma barra con .imf--dark ===== */
+.imf--dark{
+  background:#121212;color:#fff;
+  border-bottom-color:rgba(255,255,255,.14);
 }
-.tira-in{display:flex;width:max-content;animation:correr 26s linear infinite}
-.tira span{
-  font-family:var(--f-logo);font-weight:800;font-variation-settings:"wdth" 76;
-  text-transform:uppercase;font-size:clamp(20px,2.2vw,30px);
-  letter-spacing:-.01em;color:var(--ink);padding-right:.5em;white-space:nowrap;
-}
-.tira span i{font-style:normal;color:var(--pink)}
-.tira span b{font-weight:inherit;color:#D9D7D3;padding:0 .45em}
-@keyframes correr{to{transform:translateX(-50%)}}
-@media(prefers-reduced-motion:reduce){
-  .tira-in{animation:none}
+/* el logo de Lancôme no tiene versión en negativo: se invierte a blanco
+   puro, que es el negativo estándar de la marca */
+.imf--dark .imf-logo{filter:brightness(0) invert(1)}
+.imf--dark .imf-sep{background:rgba(255,255,255,.26)}
+.imf--dark .imf-txt{color:rgba(255,255,255,.72)}
+.imf--dark .imf-btn{background:#fff;color:#121212;border-color:#fff}
+.imf--dark .imf-btn:hover,
+.imf--dark .imf-btn:focus-visible{background:#004591;border-color:#004591;color:#fff}
+.imf--dark .imf-btn:focus-visible{outline-color:#fff}
+
+/* --- tableta: cae la frase larga, se quedan claim y botón --- */
+@media(max-width:860px){
+  .imf-txt,.imf-sep{display:none}
 }
 
-/* pie del escaparate, no forma parte de la pieza */
-.nota{
-  margin:22px 0 0;font-size:12px;line-height:1.6;color:#8A8880;
-  text-align:center;max-width:62ch;
+/* --- móvil: dos filas, el botón a lo ancho --- */
+@media(max-width:560px){
+  .imf{
+    flex-wrap:wrap;justify-content:flex-start;
+    gap:8px 12px;padding:10px 14px 12px;
+  }
+  .imf-logo{height:16px}
+  .imf-claim{font-size:16px}
+  .imf-btn{width:100%;justify-content:center;padding:11px 14px;min-height:42px}
 }
-.nota code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px}
 </style>
 </head>
-<body>
 
-<section class="marq" aria-label="Campaña I'm (not) fine">
-  <div>
-    <div class="marq-logos">
-      <img class="lan" src="img/logo-lancome.png" alt="Lancôme">
-      <span class="marq-x" aria-hidden="true">+</span>
-      <img class="fm" src="img/logo-fundacion-manantial.png" alt="Fundación Manantial">
-    </div>
+<body style="margin:0;background:#fff;font-family:Mulish,system-ui,sans-serif">
 
-    <h1 class="marq-claim">I'm <em>(not)</em> fine</h1>
+<p style="margin:0;padding:34px 20px 12px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#9A9892">Opción A · fondo blanco</p>
+<!-- ============ MARQUESINA · versión clara ============ -->
+<aside class="imf" aria-label="Campaña I'm (not) fine de Lancôme y Fundación Manantial">
+  <img class="imf-logo" src="img/logo-lancome.png" alt="Lancôme">
+  <span class="imf-sep" aria-hidden="true"></span>
+  <span class="imf-claim">I'm <i>(not)</i> fine</span>
+  <p class="imf-txt">Decir «no estoy bien» es el inicio de una conversación.</p>
 
-    <p class="marq-txt">
-      A veces decimos «estoy bien» sin pararnos a pensar cómo estamos
-      realmente. Párate cuatro minutos y compruébalo.
-    </p>
-  </div>
+  <!-- DESTINO: cambiar por https://www.fundacionmanantial.org/lancome -->
+  <a class="imf-btn" href="https://lancome-fundacionmanantial-chi.vercel.app/">
+    Quiero saber más <span aria-hidden="true">→</span>
+  </a>
+</aside>
+<header style="border-bottom:1px solid #E3E2DF;padding:20px clamp(14px,3vw,28px);display:flex;align-items:center;gap:18px">
+  <img src="img/logo-fundacion-manantial.png" alt="Fundación Manantial" style="height:32px;width:auto">
+  <span style="margin-left:auto;font-size:13px;color:#9A9892">cabecera del sitio (simulada)</span>
+</header>
+<p style="margin:0;padding:34px 20px 12px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#9A9892">Opción B · fondo negro</p>
+<!-- ====== MARQUESINA · versión oscura: misma barra + .imf--dark ====== -->
+<aside class="imf imf--dark" aria-label="Campaña I'm (not) fine de Lancôme y Fundación Manantial">
+  <img class="imf-logo" src="img/logo-lancome.png" alt="Lancôme">
+  <span class="imf-sep" aria-hidden="true"></span>
+  <span class="imf-claim">I'm <i>(not)</i> fine</span>
+  <p class="imf-txt">Decir «no estoy bien» es el inicio de una conversación.</p>
 
-  <div class="marq-cta">
-    <p class="marq-k">Cuestionario · 3 pasos · 4 minutos</p>
-    <!-- DESTINO: cambiar por https://www.fundacionmanantial.org/lancome
-         cuando la landing esté publicada -->
-    <a class="btn" href="https://lancome-fundacionmanantial-chi.vercel.app/" target="_blank" rel="noopener">
-      Descubre cómo estás <span class="arw" aria-hidden="true">→</span>
-    </a>
-  </div>
+  <!-- DESTINO: cambiar por https://www.fundacionmanantial.org/lancome -->
+  <a class="imf-btn" href="https://lancome-fundacionmanantial-chi.vercel.app/">
+    Quiero saber más <span aria-hidden="true">→</span>
+  </a>
+</aside>
+<header style="border-bottom:1px solid #E3E2DF;padding:20px clamp(14px,3vw,28px);display:flex;align-items:center;gap:18px">
+  <img src="img/logo-fundacion-manantial.png" alt="Fundación Manantial" style="height:32px;width:auto">
+  <span style="margin-left:auto;font-size:13px;color:#9A9892">cabecera del sitio (simulada)</span>
+</header>
 
-  <!-- La tira se duplica entera: el bucle salta al 50 % y el corte no se ve -->
-  <div class="tira" aria-hidden="true">
-    <div class="tira-in">
-      <span>I'm <i>(not)</i> fine<b>·</b>I'm <i>(not)</i> fine<b>·</b>I'm <i>(not)</i> fine<b>·</b>I'm <i>(not)</i> fine<b>·</b></span>
-      <span>I'm <i>(not)</i> fine<b>·</b>I'm <i>(not)</i> fine<b>·</b>I'm <i>(not)</i> fine<b>·</b>I'm <i>(not)</i> fine<b>·</b></span>
-    </div>
-  </div>
-</section>
-
-<p class="nota">
-  Pieza promocional suelta. El bloque que se copia es <code>&lt;section class="marq"&gt;</code>.
-  El botón apunta a la URL de revisión: cambiar por la definitiva cuando exista.
+<p style="max-width:58ch;margin:44px auto;padding:0 20px;font-size:13px;line-height:1.7;color:#8A8880;text-align:center">
+  Escaparate: las dos opciones. La barra es el bloque <code>&lt;aside class="imf"&gt;</code>
+  con su <code>&lt;style id="imf-css"&gt;</code>. Para la oscura, se le añade
+  <code>imf--dark</code> a ese mismo <code>aside</code>: no hay dos barras, es una con
+  modificador. Las cabeceras son simulaciones para verlas en su sitio.
 </p>
 
 </body>
