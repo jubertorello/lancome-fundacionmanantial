@@ -27,10 +27,14 @@ algún momento hay que cerrarlo, basta con volver a ponerlo privado y
 mover el proyecto de Vercel a la cuenta de `jubertorello`, que es la que
 coincide con el autor de los commits.
 
-No se indexa. Lleva `noindex, nofollow` y un `robots.txt` cerrado porque
-es material de campaña sin publicar y con fotografía de Lancôme cuya
-licencia para este dominio está por confirmar. **Las dos cosas hay que
-retirarlas al aprobarla.**
+No se indexa: lleva `noindex, nofollow` en el `<head>`, porque es material
+de campaña sin publicar y con fotografía de Lancôme cuya licencia para este
+dominio está por confirmar. **Hay que retirarlo al aprobarla.**
+
+No hay `robots.txt` a propósito. Bloquear el rastreo y pedir `noindex` a la
+vez se estorban: si el buscador no puede entrar, nunca lee la etiqueta, y la
+URL puede acabar listada igual como enlace pelado. Dejando rastrear, el
+`noindex` hace su trabajo.
 
 La URL es pública para quien la tenga. Si hace falta cerrarla del todo
 mientras la ven Lancôme y la fundación, en Vercel se activa protección
@@ -166,7 +170,7 @@ python3 -m http.server 8000
 
 | Pendiente | Dónde |
 |---|---|
-| **QUITAR EL `noindex` AL PUBLICAR** | `<meta name="robots">` en el `<head>` de `index.html`. Es lo único que impide que Google indexe la landing en producción: el `robots.txt` de este repositorio **no cuenta** en `fundacionmanantial.org/lancome`, porque los buscadores solo leen el de la raíz del dominio. Ese `robots.txt` es solo para la URL de revisión y **no hay que subirlo** |
+| **QUITAR EL `noindex` AL PUBLICAR** | `<meta name="robots">` en el `<head>` de `index.html`. Es lo único que controla la indexación. No hay `robots.txt`: en `fundacionmanantial.org/lancome` sería inerte —los buscadores solo leen el de la raíz del dominio— y en la URL de revisión estorbaba, porque bloquear el rastreo impide que Google llegue a leer el propio `noindex` |
 | **El contador del cuestionario es una MAQUETA** | `data-sim-desde` en `index.html` + el bloque «MAQUETA» del `<script>`. Sube solo de 6.457 a 7.000 y esos incrementos **no corresponden a nadie**. Está así para que el cliente vea el efecto en la URL de revisión. **No puede salir a `fundacionmanantial.org/lancome` tal cual:** o se alimenta con el número real que dé la Fundación, o se revierte al contador con dato fijo (commit `e0fe751`). |
 | URL del cuestionario | `const FORM_URL` al final de `index.html` — alimenta los 6 CTA. **Ahora apunta provisionalmente a lancome.es** |
 | Logo oficial de Fundación Manantial | los `<svg class="fm-mark">` (ahora hay un trazado provisional) |
