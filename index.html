@@ -471,9 +471,12 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 /* Columna de apoyo, no cuerpo de sección: va al cuerpo del rótulo de
    abajo. En minúsculas 13 px pesa ópticamente como las versales de 11 con
    su espaciado, así que los dos se leen al mismo nivel. */
+/* Sin tope de medida: la columna ya es estrecha, y a 40 caracteres el
+   texto cortaba a media columna y dejaba un hueco hasta el margen. Aquí
+   el ancho lo pone la propia columna. */
 .note{
   margin:0 0 12px;font-size:13px;line-height:1.65;
-  color:rgba(255,255,255,.6);max-width:40ch;
+  color:rgba(255,255,255,.6);max-width:none;
 }
 .note:last-child{margin-bottom:0}
 .note--cab{margin-bottom:10px}
