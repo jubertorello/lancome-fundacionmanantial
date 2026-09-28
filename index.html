@@ -1612,10 +1612,16 @@ if (pista) {
   document.getElementById("vozPrev").addEventListener("click", () => salta(-1));
 }
 
-/* acordeón de la colaboración */
-document.querySelectorAll(".fila-cab").forEach(b => {
+/* Acordeón de la colaboración: solo uno abierto a la vez. Con los cuatro
+   textos actuales, tenerlos todos desplegados alarga la sección y obliga a
+   buscar dónde estabas. Al abrir uno se cierran los demás; el que ya está
+   abierto se puede cerrar pulsándolo otra vez. */
+const filasCab = [...document.querySelectorAll(".fila-cab")];
+filasCab.forEach(b => {
   b.addEventListener("click", () => {
-    b.setAttribute("aria-expanded", b.getAttribute("aria-expanded") === "true" ? "false" : "true");
+    const abierto = b.getAttribute("aria-expanded") === "true";
+    filasCab.forEach(o => o.setAttribute("aria-expanded", "false"));
+    if (!abierto) b.setAttribute("aria-expanded", "true");
   });
 });
 
