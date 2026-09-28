@@ -343,7 +343,19 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   font-size:clamp(16px,1.35vw,19px);line-height:1.6;
   color:var(--ink-soft);max-width:44ch;
 }
-.dato-txt .btn{margin-top:clamp(24px,2.8vw,36px)}
+/* Las dos definiciones: texto de servicio, no titulares. Van con filete
+   arriba para separarlas del dato sin abrir otra sección. */
+.dato-def{
+  margin-top:clamp(26px,3.2vw,40px);padding-top:clamp(22px,2.6vw,32px);
+  border-top:1px solid var(--rule);
+  display:grid;gap:clamp(18px,2.2vw,26px);
+}
+.dato-def h3{
+  margin:0 0 6px;font-size:clamp(17px,1.5vw,20px);
+  font-weight:600;letter-spacing:-.01em;
+}
+.dato-def p{margin:0;font-size:15px;line-height:1.6;color:var(--ink-soft)}
+.dato-def-cierre{font-weight:500;color:var(--ink) !important}
 /* La modelo vive a la derecha del original y el fondo es el mismo blanco de
    la página: el recorte la mantiene dentro y la foto se funde con la hoja. */
 .dato-img{
@@ -405,6 +417,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .quest h2{margin-top:16px}
 .quest .lead{color:rgba(255,255,255,.8);margin-top:20px}
 .quest-cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.note:last-child{margin-bottom:0}
 .quest-side{border-left:1px solid rgba(255,255,255,.2);padding-left:clamp(20px,2.6vw,38px);display:grid;gap:26px}
 @media(max-width:900px){.quest-side{border-left:0;border-top:1px solid rgba(255,255,255,.2);padding:26px 0 0}}
 .num{font-size:clamp(38px,5vw,66px);line-height:.95;font-weight:300;font-variant-numeric:tabular-nums}
@@ -412,7 +425,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 /* misma escala que la descripción del bloque: son las dos frases en
    minúsculas del cuestionario y a 13 px una se leía como letra pequeña */
 .note{
-  margin:0;font-size:clamp(16px,1.35vw,19px);line-height:1.6;
+  margin:0 0 14px;font-size:clamp(16px,1.35vw,19px);line-height:1.6;
   color:rgba(255,255,255,.6);max-width:36ch;
 }
 
@@ -462,10 +475,13 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .fila-cuerpo{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
 .fila-cab[aria-expanded="true"] + .fila-cuerpo{grid-template-rows:1fr}
 .fila-cuerpo > div{overflow:hidden;min-height:0}
+/* Ahora los desplegables traen varios párrafos: el aire va entre ellos,
+   y el colchón del final solo lo pone el último. */
 .fila-cuerpo p{
-  margin:0;padding:0 0 28px;max-width:60ch;
-  font-size:14px;line-height:1.5;color:#4D4D4D;
+  margin:0 0 13px;padding:0;max-width:60ch;
+  font-size:14px;line-height:1.55;color:#4D4D4D;
 }
+.fila-cuerpo p:last-child{margin-bottom:28px}
 
 /* ---------- Fundación Manantial ----------
    Sin fondo de color: aquí el peso lo dan las cifras y el aire, no una
@@ -868,10 +884,6 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
      y la frase se agolpan arriba mientras en el frente la frase va abajo */
   .say-b-in{display:flex;flex-direction:column;justify-content:space-between;height:100%}
   .say p{font-size:16px;line-height:1.3}
-  /* En móvil se enseñan cuatro: la quinta se quedaba sola en su fila y, aun
-     ocupándola entera, alargaba el bloque sin añadir nada que las otras
-     cuatro no digan ya. En escritorio siguen estando las cinco. */
-  .say:nth-child(5){display:none}
 
   /* --- los dos botones de la fundación comparten fila --- */
   .ctas2{gap:10px;flex-wrap:nowrap}
@@ -997,9 +1009,9 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 
   <!-- 02 · ABRIMOS LA DUDA -->
   <section class="band wrap" id="duda">
-    <p class="kicker">Abrimos la duda</p>
-    <h2 class="h-xl rv-mask" style="margin-top:18px"><span>¿Cómo sabes que estás <b>bien</b>?</span></h2>
-    <p class="lead rv" style="margin-top:22px">A veces decimos «estoy bien» sin pararnos a pensar cómo estamos realmente.</p>
+    <p class="kicker">Lo que no decimos</p>
+    <h2 class="h-xl rv-mask" style="margin-top:18px"><span>¿Nos paramos a escuchar lo que no estamos <b>diciendo</b>?</span></h2>
+    <p class="lead rv" style="margin-top:22px">A veces respondemos «estoy bien» casi de forma automática, sin detenernos a pensar cómo nos sentimos realmente.</p>
 
     <div class="says-hint rv">
       <p class="says-ask">¿Y si hay algo más detrás?</p>
@@ -1010,23 +1022,19 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     <div class="says rv stagger">
       <button class="say" aria-pressed="false">
         <span class="say-f"><small>Lo que decimos</small><p>«Estoy bien.»</p></span>
-        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>Estoy agotada</p></span></span>
+        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>«Estoy agotada.»</p></span></span>
       </button>
       <button class="say" aria-pressed="false">
-        <span class="say-f"><small>Lo que decimos</small><p>«Estoy tranquila.»</p></span>
-        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>Estoy cansada</p></span></span>
+        <span class="say-f"><small>Lo que decimos</small><p>«Es solo estrés.»</p></span>
+        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>«Me siento desbordada.»</p></span></span>
       </button>
       <button class="say" aria-pressed="false">
-        <span class="say-f"><small>Lo que decimos</small><p>«Todo está bien.»</p></span>
-        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>Estoy irritable</p></span></span>
+        <span class="say-f"><small>Lo que decimos</small><p>«Puedo con todo.»</p></span>
+        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>«No llego a todo.»</p></span></span>
       </button>
       <button class="say" aria-pressed="false">
-        <span class="say-f"><small>Lo que decimos</small><p>«Estoy genial.»</p></span>
-        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>Estoy irascible</p></span></span>
-      </button>
-      <button class="say" aria-pressed="false">
-        <span class="say-f"><small>Lo que decimos</small><p>«Todo en orden.»</p></span>
-        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>No llego a todo</p></span></span>
+        <span class="say-f"><small>Lo que decimos</small><p>«Ya descansaré.»</p></span>
+        <span class="say-b"><span class="say-b-in"><small>Lo que no decimos</small><p>«Mi jornada nunca termina.»</p></span></span>
       </button>
     </div>
   </section>
@@ -1044,8 +1052,21 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
           <span class="rv-mask"><span><b>3</b> mujeres</span></span>
         </h2>
         <p class="dato-sub rv">convivirá con ansiedad o depresión a lo largo de su vida.</p>
-        <p class="dato-cuerpo rv">En cada etapa de la vida hay presiones y circunstancias que pesan sobre cómo estamos. Y demasiadas veces «estoy bien» es lo que respondemos, aunque no lo estemos.</p>
-        <a class="btn cta rv" href="#">Haz el cuestionario <span class="arw">→</span></a>
+        <p class="dato-cuerpo rv">Las exigencias, los cuidados, el trabajo, las relaciones o las expectativas pueden influir en cómo nos sentimos. Y demasiadas veces respondemos «estoy bien», aunque no lo estemos.</p>
+
+        <!-- Sin llamada aquí a propósito: el cuestionario ya se ofrece en la
+             cabecera, en su propia sección y en la barra fija. -->
+        <div class="dato-def rv">
+          <div>
+            <h3>Ansiedad</h3>
+            <p>Puede aparecer como preocupación, miedo, inquietud o dificultad para desconectar, y también sentirse en el cuerpo. Cuando es intensa, se mantiene en el tiempo o interfiere en el día a día, es importante pedir ayuda.</p>
+          </div>
+          <div>
+            <h3>Depresión</h3>
+            <p>Va más allá de sentirse triste durante unos días. Puede manifestarse como falta de energía, pérdida de interés, problemas de sueño o dificultad para concentrarse, especialmente cuando se mantiene durante semanas y afecta a la vida cotidiana.</p>
+          </div>
+          <p class="dato-def-cierre">La ansiedad y la depresión se pueden tratar. Pedir ayuda es importante.</p>
+        </div>
       </div>
       <figure class="dato-img rv"><img src="img/modelo-cara.webp" alt="" data-opt></figure>
     </div>
@@ -1065,28 +1086,33 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
             <span class="fila-t">La colaboración</span>
             <span class="fila-mas" aria-hidden="true"></span>
           </button>
-          <div class="fila-cuerpo"><div><p>Lancôme y <span class="fm-nombre">Fundación Manantial</span> impulsan juntos la prevención de los problemas de salud mental de las mujeres: un cuestionario de autoobservación, contenido elaborado con especialistas y campañas para que hablar de cómo estamos deje de ser algo excepcional.</p></div></div>
+          <div class="fila-cuerpo"><div><p>I'M FINE es una iniciativa global de Lancôme para promover la prevención y la concienciación en torno a la salud mental de las mujeres, desarrollada en colaboración con ADAA.</p>
+            <p>En España, <span class="fm-nombre">Fundación Manantial</span> participa como organización local colaboradora, aportando su experiencia en prevención, sensibilización y salud mental y contribuyendo a acercar la iniciativa a nuestra realidad.</p>
+            <p>La campaña invita a las mujeres a detenerse y prestar atención a cómo se sienten, facilita el acceso a herramientas de autoevaluación y promueve conversaciones más abiertas sobre ansiedad, depresión y bienestar emocional.</p>
+            <p>Las herramientas no ofrecen un diagnóstico ni sustituyen la valoración de un profesional.</p></div></div>
         </div>
         <div class="fila">
           <button class="fila-cab" type="button" aria-expanded="false">
             <span class="fila-t">Prevención</span>
             <span class="fila-mas" aria-hidden="true"></span>
           </button>
-          <div class="fila-cuerpo"><div><p>Observarse a tiempo cambia las cosas. El cuestionario no diagnostica: ayuda a parar cuatro minutos y mirar cómo estás, antes de que lo que se calla se haga grande.</p></div></div>
+          <div class="fila-cuerpo"><div><p>Parar y observar cómo estamos puede ayudarnos a detectar señales de malestar a tiempo. El cuestionario no diagnostica: propone dedicar cuatro minutos a escucharnos y prestar atención a aquello que a veces pasamos por alto.</p>
+            <p>El cuestionario utiliza dos herramientas de autoevaluación clínicamente validadas, GAD-7 y PHQ-8, centradas en ansiedad y depresión. Se completa en pocos minutos y puede ayudarte a identificar algunas señales y reflexionar sobre cómo te sientes. No ofrece un diagnóstico ni sustituye la valoración de un profesional.</p>
+            <p>Tras completarlo, podrás acceder a recursos y contenidos adaptados que te ayudarán a comprender mejor lo que estás sintiendo y a valorar los siguientes pasos.</p></div></div>
         </div>
         <div class="fila">
           <button class="fila-cab" type="button" aria-expanded="false">
             <span class="fila-t">Concienciación</span>
             <span class="fila-mas" aria-hidden="true"></span>
           </button>
-          <div class="fila-cuerpo"><div><p>Hablar de cómo estamos sigue costando más que hablar de cualquier otra cosa. Nombrarlo en voz alta, sin dramatizarlo y sin esperar a estar mal, es parte del cuidado.</p></div></div>
+          <div class="fila-cuerpo"><div><p>Hablar de lo que nos pasa no siempre es fácil. Compartir cómo nos sentimos con personas de confianza puede ser un primer paso para comprender lo que estamos viviendo y buscar apoyo cuando lo necesitamos.</p></div></div>
         </div>
         <div class="fila">
           <button class="fila-cab" type="button" aria-expanded="false">
             <span class="fila-t">Contra el estigma</span>
             <span class="fila-mas" aria-hidden="true"></span>
           </button>
-          <div class="fila-cuerpo"><div><p>La salud mental sigue siendo un tema tabú: algo que se cuenta en voz baja, o que no se cuenta. Mientras lo siga siendo, pedir ayuda seguirá pareciendo una excepción y no lo más normal del mundo.</p></div></div>
+          <div class="fila-cuerpo"><div><p>La salud mental sigue siendo un tema tabú: algo que se cuenta en voz baja, o que no se cuenta. Normalizar estas conversaciones ayuda a que pedir apoyo deje de vivirse con miedo, vergüenza o culpa.</p></div></div>
         </div>
       </div>
     </div>
@@ -1100,10 +1126,10 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
       <div class="quest-grid">
         <div>
           <p class="kicker rv">Cuestionario <span class="ast">·</span> 3 pasos <span class="ast">·</span> 4 minutos</p>
-          <h2 class="h-xl rv-mask"><span>¿Quieres saber cómo <b>estás</b>?</span></h2>
-          <p class="lead rv">A veces, preguntártelo es el primer paso.</p>
+          <h2 class="h-xl rv-mask"><span>¿Te has parado a pensar cómo <b>estás</b>?</span></h2>
+          <p class="lead rv">Un primer paso útil para comprender mejor tu bienestar mental.</p>
           <div class="quest-cta rv">
-            <a class="btn btn--light btn--big cta" href="#">Compruébalo <span class="arw">→</span></a>
+            <a class="btn btn--light btn--big cta" href="#">Haz el cuestionario <span class="arw">→</span></a>
           </div>
         </div>
         <div class="quest-side rv">
@@ -1116,9 +1142,10 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
                La rama main lleva la versión con el dato real. -->
           <div>
             <div class="num" data-sim-desde="6457" data-sim-hasta="7000">6.457</div>
-            <p class="num-l">Mujeres a las que queremos escuchar</p>
+            <p class="num-l">Mujeres que ya han empezado a escucharse</p>
           </div>
-          <p class="note">Es una herramienta de prevención y autoobservación, nunca un diagnóstico.</p>
+          <p class="note">En solo cuatro minutos, este cuestionario te ayuda a observar cómo te sientes, identificar algunas señales y poner palabras a lo que te pasa.</p>
+          <p class="note">No es un diagnóstico. Es una herramienta de autoobservación que puede ayudarte a dar un primer paso y, si lo necesitas, comenzar una conversación.</p>
         </div>
       </div>
     </div>
@@ -1133,8 +1160,8 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   <section class="band" id="voces">
     <div class="wrap">
       <p class="kicker">Voces</p>
-      <h2 class="h-lg rv-mask" style="margin-top:18px"><span>¿Cuántas veces has dicho «estoy bien» sin preguntarte si lo <b>estabas</b>?</span></h2>
-      <p class="lead rv" style="margin-top:20px">Hemos hablado con mujeres que, como tú, han normalizado el «estoy bien». Estas son sus historias.</p>
+      <h2 class="h-lg rv-mask" style="margin-top:18px"><span>¿Qué hay detrás de un «estoy <b>bien</b>»?</span></h2>
+      <p class="lead rv" style="margin-top:20px">A veces, detrás de esas dos palabras hay cansancio, preocupación, falta de tiempo o dificultad para desconectar. Hemos hablado con mujeres que ponen palabras a lo que muchas veces no decimos. Estas son sus historias.</p>
     </div>
 
     <div class="carrusel rv">
@@ -1197,7 +1224,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
       <p class="kicker fm-nombre">Fundación Manantial</p>
       <div class="fm-grid">
         <div class="fm-izq">
-          <h2 class="h-lg rv-mask fm-titular"><span>Desde 1995, por los derechos y la recuperación de las personas con problemas de salud mental.</span></h2>
+          <h2 class="h-lg rv-mask fm-titular"><span>Trabajamos para mejorar el bienestar emocional de las personas con problemas de salud mental y crear una sociedad más inclusiva.</span></h2>
 
           <div class="ctas2 rv">
             <a class="btn btn--line" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Quiero colaborar</a>
@@ -1206,19 +1233,19 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
         </div>
 
         <div class="kpis rv stagger">
-          <div class="kpi"><b data-hasta="1995" data-crudo="1">1995</b><span>Año de fundación</span></div>
-          <div class="kpi"><b data-hasta="4000" data-prefijo="+">+4.000</b><span>Personas atendidas al año</span></div>
-          <div class="kpi"><b data-hasta="50" data-prefijo="+">+50</b><span>Recursos y servicios</span></div>
+          <div class="kpi"><b data-hasta="3000" data-prefijo="+">+3.000</b><span>Personas atendidas al año</span></div>
+          <div class="kpi"><b data-hasta="50" data-prefijo="+">+50</b><span>Centros y servicios</span></div>
           <div class="kpi"><b data-hasta="700" data-prefijo="+">+700</b><span>Profesionales</span></div>
+          <div class="kpi"><b data-hasta="400" data-prefijo="+">+400</b><span>Personas han accedido a un empleo</span></div>
         </div>
       </div>
 
       <p class="kicker rv" style="margin-top:clamp(44px,5.5vw,80px)">Proyectos</p>
       <div class="projs rv stagger">
-        <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Atención comunitaria</b><i aria-hidden="true">↗</i><span>Equipos que acompañan en el entorno de cada persona.</span></a>
-        <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Empleo e inserción</b><i aria-hidden="true">↗</i><span>Formación y trabajo como parte de la recuperación.</span></a>
-        <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Vivienda y apoyo</b><i aria-hidden="true">↗</i><span>Alternativas residenciales para vivir con autonomía.</span></a>
-        <a class="proj" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener"><b>Sensibilización</b><i aria-hidden="true">↗</i><span>Campañas contra el estigma y por los derechos.</span></a>
+        <a class="proj" href="https://www.fundacionmanantial.org/servicios-de-salud-mental/" target="_blank" rel="noopener"><b>Atención social e inclusión laboral</b><i aria-hidden="true">↗</i><span>Acompañamos a las personas con problemas de salud mental en sus procesos de recuperación, autonomía e inclusión laboral.</span></a>
+        <a class="proj" href="https://www.fundacionmanantial.org/servicios-privados/" target="_blank" rel="noopener"><b>Salud mental y empresas</b><i aria-hidden="true">↗</i><span>Trabajamos con las empresas para crear entornos laborales saludables, inclusivos y comprometidos con la salud mental.</span></a>
+        <a class="proj" href="https://www.fundacionmanantial.org/servicios-de-salud-mental/voluntariado/" target="_blank" rel="noopener"><b>Voluntariado corporativo</b><i aria-hidden="true">↗</i><span>Impulsamos actividades para que las empresas y sus equipos compartan tiempo, talento y conocimientos junto a personas con problemas de salud mental.</span></a>
+        <a class="proj" href="https://www.fundacionmanantial.org/impulsando-nuestro-proyecto/sensibilizacion/" target="_blank" rel="noopener"><b>Sensibilización</b><i aria-hidden="true">↗</i><span>Impulsamos campañas e iniciativas para combatir el estigma, defender derechos y promover una mirada más realista sobre la salud mental.</span></a>
       </div>
     </div>
   </section>
@@ -1230,8 +1257,8 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
       <h2 class="close-claim rv" aria-label="I'm not fine">
         <span aria-hidden="true">I'm</span><em aria-hidden="true">(not)</em><span aria-hidden="true">fine</span>
       </h2>
-      <p>No te decimos cómo estás. Te invitamos a comprobarlo.</p>
-      <a class="btn btn--light btn--big cta" href="#">Compruébalo <span class="arw">→</span></a>
+      <p>No te decimos cómo estás. Te invitamos a preguntártelo.</p>
+      <a class="btn btn--light btn--big cta" href="#">Haz el cuestionario <span class="arw">→</span></a>
     </div>
   </section>
   <!-- El vídeo se abre encima en lugar de mandarte abajo. <dialog> trae
@@ -1253,13 +1280,13 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
       </div>
       <div class="foot-col">
         <h4 class="fm-nombre">Fundación Manantial</h4>
-        <a href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Quiénes somos</a>
+        <a href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Sobre Fundación Manantial</a>
         <a href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Proyectos</a>
         <a href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Quiero colaborar</a>
       </div>
       <div class="foot-col">
-        <h4>Si necesitas ayuda</h4>
-        <p><strong>024</strong> · Atención a la conducta suicida</p>
+        <h4>Si necesitas ayuda inmediata</h4>
+        <p><strong>024</strong> · Línea de atención a la conducta suicida</p>
         <p><strong>112</strong> · Emergencias</p>
       </div>
       <div class="foot-col">
@@ -1270,7 +1297,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 
     <div class="foot-bottom">
       <div class="foot-lock">
-        <p class="credit-claim credit-claim--pie">Juntos en la prevención de los problemas de salud mental de las mujeres</p>
+        <p class="credit-claim credit-claim--pie">Por la prevención de los problemas de salud mental de las mujeres</p>
         <div class="lock" style="gap:20px">
           <span class="brand lan-logo" style="--h:22px"><img src="img/logo-lancome.png" alt="Lancôme"></span>
           <span class="lock-x">+</span>
@@ -1280,7 +1307,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
         </div>
       </div>
       <p class="legal">
-        Esta iniciativa tiene fines divulgativos y de prevención. El cuestionario es anónimo y no constituye un diagnóstico.
+        Esta iniciativa tiene fines de sensibilización y prevención. El cuestionario es anónimo y no constituye un diagnóstico.
         · <a href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">fundacionmanantial.org</a>
       </p>
     </div>
@@ -1290,7 +1317,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 <div class="dock" id="dock">
   <div class="dock-in">
     <div class="dock-txt">
-      <b>¿Quieres saber cómo estás?</b>
+      <b>¿Te has parado a pensar cómo estás?</b>
       <small>3 pasos · 4 min · anónimo</small>
     </div>
     <a class="btn cta" href="#">Quiero saber cómo estoy <span class="arw">→</span></a>
@@ -1531,7 +1558,7 @@ if (pista) {
       `<figcaption class="voz-in">` +
         `<p class="voz-n">${dosDigitos(i)} / ${dosDigitos(VOCES.length - 1)}</p>` +
         `<blockquote class="voz-cita">«Estoy bien…<em>${v.pie}»</em></blockquote>` +
-        `<button class="voz-play" type="button"><i aria-hidden="true">▶</i> Ver vídeo</button>` +
+        `<button class="voz-play" type="button"><i aria-hidden="true">▶</i> Escuchar su historia</button>` +
       `</figcaption>`;
     pista.appendChild(f);
 
