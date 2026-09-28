@@ -322,7 +322,15 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   display:grid;grid-template-columns:1.1fr .9fr;
   gap:clamp(30px,5vw,80px);align-items:center;
 }
-.dato-cifra{margin:clamp(14px,1.6vw,20px) 0 0}
+/* Aquí la cifra no es un titular de sección, es el mensaje entero: pide
+   su propia escala. Con la de titular la columna quedaba muy por debajo
+   de la foto y el texto flotaba a media altura. */
+.dato-cifra{
+  margin:clamp(14px,1.6vw,20px) 0 0;
+  font-size:clamp(46px,7.2vw,104px);line-height:1.02;
+  font-weight:600;letter-spacing:-.035em;
+}
+.dato-cifra b{font-weight:800}
 .dato-cifra > .rv-mask:nth-child(2) > *{transition-delay:.16s}
 /* el número aparece un poco después y creciendo: es el golpe de la frase */
 .js .dato-cifra b{
@@ -396,12 +404,13 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
    la página: el recorte la mantiene dentro y la foto se funde con la hoja. */
 .dato-img{
   margin:0;position:relative;overflow:hidden;
-  /* la proporción del frame de Figma, 712 x 882 */
-  aspect-ratio:712/882;background:var(--paper-3);
+  /* Cuadrada en vez del vertical del frame: al lado de un bloque corto,
+     una foto en torre desequilibraba la fila. */
+  aspect-ratio:1/1;background:var(--paper-3);
 }
 .dato-img img{
   position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:center;
+  object-fit:cover;object-position:center 32%;
 }
 /* El velo negro al 4 % que lleva el frame en Figma. Asienta la foto y es
    lo que dibuja el borde contra el blanco de la página: no es un fallo,
@@ -1104,7 +1113,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     <div class="dato-in">
       <div class="dato-txt">
         <p class="kicker">Por qué esta campaña</p>
-        <h2 class="dato-cifra h-xl">
+        <h2 class="dato-cifra">
           <span class="rv-mask"><span>1 de cada</span></span>
           <span class="rv-mask"><span><b>3</b> mujeres</span></span>
         </h2>
