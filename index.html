@@ -371,14 +371,29 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 }
 @media(max-width:760px){.defs{grid-template-columns:1fr}}
 .def{
-  background:var(--paper-3);border-top:2px solid var(--blue);
-  padding:clamp(20px,2.2vw,28px);
+  background:var(--paper-3);border-top:2px solid var(--pink);
+  padding:clamp(18px,2vw,24px) clamp(20px,2.2vw,28px);
+  align-self:start;
 }
-.def h3{
-  margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--blue);
+.def summary{
+  list-style:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  font-size:11px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--pink);
 }
-.def p{margin:0;font-size:15px;line-height:1.6;color:var(--ink-soft)}
+.def summary::-webkit-details-marker{display:none}
+/* Flecha dibujada con dos bordes: nítida a cualquier tamaño y sin
+   depender de que la tipografía traiga el glifo. */
+.def summary::after{
+  content:"";flex:none;width:8px;height:8px;margin-right:3px;
+  border-right:2px solid var(--pink);
+  border-bottom:2px solid var(--pink);
+  transform:translateY(-2px) rotate(45deg);
+  transition:transform .35s var(--ease);
+}
+.def[open] summary::after{transform:translateY(2px) rotate(-135deg)}
+.def summary:focus-visible{outline:2px solid var(--pink);outline-offset:4px}
+.def p{margin:12px 0 0;font-size:15px;line-height:1.6;color:var(--ink-soft)}
 .dato-def-cierre{
   margin:clamp(20px,2.4vw,30px) 0 0;
   font-size:clamp(17px,1.6vw,21px);line-height:1.4;
@@ -1119,15 +1134,17 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
          vistazo. -->
     <div class="dato-def">
       <div class="dato-def-in">
+        <!-- Plegadas de salida: quien quiera la definición la abre. Son
+             <details>, así que funcionan con teclado y sin JavaScript. -->
         <div class="defs rv stagger">
-          <div class="def">
-            <h3>Ansiedad</h3>
+          <details class="def">
+            <summary>Ansiedad</summary>
             <p>Puede aparecer como preocupación, miedo, inquietud o dificultad para desconectar, y también sentirse en el cuerpo. Cuando es intensa, se mantiene en el tiempo o interfiere en el día a día, es importante pedir ayuda.</p>
-          </div>
-          <div class="def">
-            <h3>Depresión</h3>
+          </details>
+          <details class="def">
+            <summary>Depresión</summary>
             <p>Va más allá de sentirse triste durante unos días. Puede manifestarse como falta de energía, pérdida de interés, problemas de sueño o dificultad para concentrarse, especialmente cuando se mantiene durante semanas y afecta a la vida cotidiana.</p>
-          </div>
+          </details>
         </div>
 
         <p class="dato-def-cierre rv">La ansiedad y la depresión se pueden tratar. <b>Pedir ayuda es importante.</b></p>
