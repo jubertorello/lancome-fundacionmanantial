@@ -361,9 +361,12 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
    servicio y en fichas se lee como referencia, no como continuación del
    dato. El cierre cruza las dos. */
 .dato-def{margin-top:clamp(30px,3.6vw,48px)}
+/* El filete va al final, debajo de la frase de cierre: ahí separa esta
+   sección de la siguiente. Arriba dividía el bloque en dos cuando en
+   realidad es todo lo mismo. */
 .dato-def-in{
   max-width:var(--max);margin-inline:auto;padding-inline:var(--pad);
-  padding-top:clamp(24px,2.8vw,34px);border-top:1px solid var(--rule);
+  padding-bottom:clamp(26px,3vw,38px);border-bottom:1px solid var(--rule);
 }
 .defs{
   display:grid;grid-template-columns:repeat(2,1fr);
