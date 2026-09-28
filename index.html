@@ -338,10 +338,13 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   font-size:clamp(20px,2.3vw,34px);line-height:1.22;
   font-weight:400;letter-spacing:-.015em;max-width:24ch;
 }
+/* Más pequeño que las descripciones de sección: aquí no abre nada, es el
+   texto que acompaña al dato. Va al mismo cuerpo que las definiciones de
+   abajo, que son del mismo registro. */
 .dato-cuerpo{
   margin:clamp(22px,2.6vw,34px) 0 0;
-  font-size:clamp(16px,1.35vw,19px);line-height:1.6;
-  color:var(--ink-soft);max-width:44ch;
+  font-size:15px;line-height:1.6;
+  color:var(--ink-soft);max-width:48ch;
 }
 /* Las dos definiciones: texto de servicio, no titulares. Van con filete
    arriba para separarlas del dato sin abrir otra sección. */
