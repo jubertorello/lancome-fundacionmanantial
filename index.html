@@ -797,6 +797,55 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .proj:hover span{color:rgba(255,255,255,.78)}
 .proj:hover i{transform:translate(3px,-3px);color:#fff}
 
+/* ---------- alta en la lista, encima ---------- */
+.amodal{
+  border:0;padding:0;background:transparent;
+  width:min(520px,92vw);max-width:none;max-height:92vh;overflow:visible;
+}
+.amodal::backdrop{background:rgba(10,5,7,.78);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+.alta{
+  background:var(--paper);padding:clamp(26px,3.4vw,42px);
+  display:grid;gap:14px;max-height:88vh;overflow:auto;
+}
+.alta h2{margin:12px 0 0;font-size:clamp(24px,2.4vw,30px);line-height:1.2}
+.alta-sub{margin:0;font-size:15px;line-height:1.55;color:var(--ink-soft)}
+.alta-fila{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:480px){.alta-fila{grid-template-columns:1fr}}
+.alta-c{
+  display:grid;gap:6px;
+  font-size:11px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-soft);
+}
+.alta-l{display:block}
+.alta-l i{font-style:normal;color:var(--pink)}
+.alta-c input{
+  font:inherit;font-size:16px;font-weight:400;letter-spacing:normal;
+  text-transform:none;color:var(--ink);
+  padding:12px 14px;min-height:46px;
+  border:1px solid var(--rule);background:#fff;
+  transition:border-color .25s var(--ease);
+}
+.alta-c input:focus{outline:0;border-color:var(--blue)}
+.alta-c input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+/* sin :invalid a secas: marcaría en rojo un campo vacío que nadie ha tocado */
+.alta-c input:user-invalid{border-color:#B3261E}
+.alta-ok{
+  display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;
+  margin-top:4px;font-size:13px;line-height:1.5;color:var(--ink-soft);
+}
+.alta-ok input{width:17px;height:17px;margin-top:2px;accent-color:var(--blue)}
+.alta-ok a{color:var(--blue)}
+.alta .btn{margin-top:8px;justify-content:center}
+.amodal-x{
+  position:absolute;top:-44px;right:0;
+  width:36px;height:36px;border-radius:50%;cursor:pointer;
+  border:1px solid rgba(255,255,255,.5);background:none;color:#fff;
+  font-size:14px;line-height:1;display:grid;place-items:center;
+  transition:background .3s var(--ease),color .3s var(--ease);
+}
+.amodal-x:hover{background:#fff;color:var(--ink);border-color:#fff}
+.amodal-x:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
 /* ---------- el vídeo, encima ---------- */
 .vmodal{
   border:0;padding:0;background:transparent;
@@ -1318,7 +1367,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 
           <div class="ctas2 rv">
             <a class="btn btn--line" href="https://www.fundacionmanantial.org/colaborar-en-salud-mental/" target="_blank" rel="noopener">Quiero colaborar</a>
-            <a class="btn btn--line" href="https://www.fundacionmanantial.org/" target="_blank" rel="noopener">Quiero estar informado</a>
+            <button class="btn btn--line" type="button" id="abrirAlta">Quiero estar informado</button>
           </div>
         </div>
 
@@ -1353,6 +1402,57 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
   </section>
   <!-- El vídeo se abre encima en lugar de mandarte abajo. <dialog> trae
        gratis el cierre con Esc, el foco atrapado dentro y el fondo. -->
+  <!-- ALTA EN LA LISTA DE FUNDACIÓN MANANTIAL
+       De todo el código que manda Mailchimp aquí solo se usa lo que hace
+       falta: la URL del formulario y los nombres de los campos. Su CSS
+       classic-061523, jQuery y mc-validate.js quedan fuera a propósito —
+       pisarían los estilos de la landing y traerían 90 KB para validar un
+       correo que el navegador ya valida con type="email".
+
+       El <input> escondido b_96d9e4ae2e045dfb002653168_238a2f7b10 es el
+       cazabots de Mailchimp: lo rellenan los robots y así descarta el
+       envío. No tocar.
+
+       target="_blank": la confirmación la pinta Mailchimp en su dominio,
+       así nadie se va de la landing. -->
+  <dialog class="amodal" id="amodal" aria-labelledby="altaTit">
+    <button class="amodal-x" type="button" aria-label="Cerrar">&#10005;</button>
+    <form class="alta"
+          action="https://fundacionmanantial.us18.list-manage.com/subscribe/post?u=96d9e4ae2e045dfb002653168&amp;id=238a2f7b10&amp;f_id=0011a1e6f0"
+          method="post" target="_blank" novalidate>
+      <p class="kicker fm-nombre">Fundación Manantial</p>
+      <h2 id="altaTit">Quiero estar informado</h2>
+      <p class="alta-sub">Déjanos tu correo y te contamos en qué anda la fundación.</p>
+
+      <label class="alta-c" for="alta-email">
+        <span class="alta-l">Correo electrónico <i aria-hidden="true">*</i></span>
+        <input id="alta-email" type="email" name="EMAIL" required autocomplete="email">
+      </label>
+      <div class="alta-fila">
+        <label class="alta-c" for="alta-nombre">
+          <span class="alta-l">Nombre</span>
+          <input id="alta-nombre" type="text" name="FNAME" autocomplete="given-name">
+        </label>
+        <label class="alta-c" for="alta-apellidos">
+          <span class="alta-l">Apellidos</span>
+          <input id="alta-apellidos" type="text" name="LNAME" autocomplete="family-name">
+        </label>
+      </div>
+
+      <label class="alta-ok">
+        <input type="checkbox" required>
+        <span>He leído y acepto la <a href="https://www.fundacionmanantial.org/politica-de-privacidad/" target="_blank" rel="noopener">política de privacidad</a> de Fundación Manantial.</span>
+      </label>
+
+      <!-- cazabots de Mailchimp: fuera de pantalla y fuera del foco -->
+      <div aria-hidden="true" style="position:absolute;left:-5000px">
+        <input type="text" name="b_96d9e4ae2e045dfb002653168_238a2f7b10" tabindex="-1" value="">
+      </div>
+
+      <button class="btn cta" type="submit">Suscribirme <span class="arw">→</span></button>
+    </form>
+  </dialog>
+
   <dialog class="vmodal" id="vmodal" aria-label="Vídeo de campaña">
     <button class="vmodal-x" type="button" aria-label="Cerrar el vídeo">&#10005;</button>
     <video id="vmodalVid" controls playsinline preload="none" poster="video/manifiesto-poster.webp"></video>
@@ -1755,6 +1855,20 @@ const midoCabecera = () => {
 };
 midoCabecera();
 addEventListener("resize", midoCabecera, {passive: true});
+
+/* Alta en la lista. El formulario se envía a Mailchimp en una pestaña
+   nueva: la confirmación la pinta su dominio y nadie se va de aquí. */
+const amodal = document.getElementById("amodal");
+const abrirAlta = document.getElementById("abrirAlta");
+if (amodal && abrirAlta) {
+  abrirAlta.addEventListener("click", () => amodal.showModal());
+  amodal.querySelector(".amodal-x").addEventListener("click", () => amodal.close());
+  amodal.addEventListener("click", e => { if (e.target === amodal) amodal.close(); });
+  // al enviarse se abre la pestaña de Mailchimp: aquí ya no pinta nada
+  amodal.querySelector("form").addEventListener("submit", () => {
+    setTimeout(() => amodal.close(), 400);
+  });
+}
 
 /* «Ver el vídeo» abre el modal en vez de llevarte a la sección de abajo.
    El mp4 no se pide hasta el primer clic. */
