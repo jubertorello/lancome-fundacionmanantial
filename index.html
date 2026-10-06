@@ -767,29 +767,43 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .voces-cierre .btn{margin-top:0}
 
 /* ---------- 07b · recursos ----------
-   Mientras no haya testimonios, este bloque ocupa el sitio de Voces. No
-   lleva imagen a propósito: es una bifurcación, el paso de después del
-   cuestionario, y lo que pesa es la pregunta. Titular a la izquierda y el
-   cuerpo con su llamada a la derecha, el mismo reparto que la sección de la
-   fundación, para que las dos últimas secciones se lean con el mismo ritmo.
+   Mientras no haya testimonios, este bloque ocupa el sitio de Voces. Es el
+   paso de después del cuestionario, así que va con el mismo reparto que la
+   cifra: el texto manda a la izquierda y la foto acompaña a la derecha,
+   centradas entre sí. La imagen viene del carrusel de Voces —una mujer
+   sentada, mirando al frente, con luz de ventana—: no ilustra el malestar,
+   ilustra el después.
    El filete de abajo hace lo que hacía el cierre de Voces: separar de la
    siguiente sección, que es blanca igual que esta. */
 .rec-grid{
-  display:grid;grid-template-columns:1.15fr .85fr;
-  gap:clamp(26px,5vw,80px);align-items:start;
-  margin-top:clamp(14px,1.6vw,20px);
+  display:grid;grid-template-columns:1.1fr .9fr;
+  gap:clamp(30px,5vw,80px);align-items:center;
   padding-bottom:clamp(30px,3.6vw,48px);
   border-bottom:1px solid var(--rule);
 }
-@media(max-width:900px){.rec-grid{grid-template-columns:1fr;gap:clamp(22px,4vw,32px)}}
-.rec-tit{max-width:22ch}
-@media(max-width:900px){.rec-tit{max-width:none}}
-/* El cuerpo baja un poco: arrancando a ras del titular competía con él. */
-.rec-der{
-  display:grid;justify-items:start;
-  gap:clamp(14px,1.4vw,18px);padding-top:clamp(4px,.7vw,10px);
+.rec-txt{display:grid;justify-items:start}
+.rec-txt .kicker{margin:0}
+.rec-tit{margin:clamp(14px,1.6vw,20px) 0 0;max-width:18ch}
+.rec-txt .lead{margin-top:clamp(16px,1.8vw,24px)}
+.rec-txt .btn{margin-top:clamp(20px,2.2vw,30px)}
+
+/* Mismo velo tenue que la foto de la cifra: viene de Figma y asienta la
+   imagen sobre el blanco, que si no flota. */
+.rec-img{
+  position:relative;margin:0;overflow:hidden;
+  aspect-ratio:1/1.1;background:var(--paper-3);
 }
-.rec-der .btn{margin-top:clamp(6px,1vw,12px)}
+.rec-img img{width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block}
+.rec-img::after{
+  content:"";position:absolute;inset:0;
+  background:rgba(0,0,0,.04);pointer-events:none;
+}
+@media(max-width:900px){
+  .rec-grid{grid-template-columns:1fr;gap:clamp(24px,4vw,34px)}
+  .rec-tit{max-width:none}
+  /* apilada, la foto va primero y se sale del canalón, como en la cifra */
+  .rec-img{order:-1;aspect-ratio:4/3;margin-inline:calc(var(--pad) * -1)}
+}
 
 /* ---------- 08 · institucional ---------- */
 /* Los proyectos no son ideas como los pilares de arriba: son cosas que la
@@ -1368,15 +1382,16 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
        tener con qué sostenerlo. Los recursos viven en la web de Lancôme,
        así que el botón sale fuera. -->
   <section class="band wrap" id="recursos">
-    <p class="kicker">Recursos y más información</p>
     <div class="rec-grid">
-      <h2 class="h-lg rv-mask rec-tit"><span>¿Ya has hecho el cuestionario? Ahora, da el <b>siguiente paso</b>.</span></h2>
-      <div class="rec-der">
+      <div class="rec-txt">
+        <p class="kicker">Recursos y más información</p>
+        <h2 class="h-lg rv-mask rec-tit"><span>¿Ya has hecho el cuestionario? Ahora, da el <b>siguiente paso</b>.</span></h2>
         <p class="lead rv">Identificar cómo te sientes es importante. Comprender lo que te pasa y contar con herramientas para afrontar el malestar también.</p>
         <p class="lead rv">Encuentra información y recursos prácticos para ayudarte a gestionar situaciones del día a día, cuidar tu bienestar y saber cuándo puede ser necesario buscar apoyo.</p>
         <!-- DESTINO: página de recursos de Lancôme, pendiente de URL definitiva -->
         <a class="btn rv" href="https://www.lancome.es/" target="_blank" rel="noopener">Descubre los recursos <span class="arw">→</span></a>
       </div>
+      <figure class="rec-img rv"><img src="img/retrato-estudio.webp" alt="" data-opt></figure>
     </div>
   </section>
 
