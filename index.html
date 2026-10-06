@@ -792,7 +792,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   position:relative;margin:0;overflow:hidden;
   aspect-ratio:1/1.1;background:var(--paper-3);
 }
-.rec-img img{width:100%;height:100%;object-fit:cover;object-position:68% center;display:block}
+.rec-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
 .rec-img::after{
   content:"";position:absolute;inset:0;
   background:rgba(0,0,0,.04);pointer-events:none;
@@ -801,7 +801,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   .rec-grid{grid-template-columns:1fr;gap:clamp(24px,4vw,34px)}
   .rec-tit{max-width:none}
   /* apilada, la foto va primero y se sale del canalón, como en la cifra */
-  .rec-img{order:-1;aspect-ratio:4/3;margin-inline:calc(var(--pad) * -1)}
+  .rec-img{order:-1;aspect-ratio:1/1;margin-inline:calc(var(--pad) * -1)}
 }
 
 /* ---------- 08 · institucional ---------- */
@@ -1390,7 +1390,7 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
         <!-- DESTINO: página de recursos de Lancôme, pendiente de URL definitiva -->
         <a class="btn rv" href="https://www.lancome.es/" target="_blank" rel="noopener">Descubre los recursos <span class="arw">→</span></a>
       </div>
-      <figure class="rec-img rv"><img src="img/retrato-sereno.webp" alt="" data-opt></figure>
+      <figure class="rec-img rv"><img src="img/retrato-rosa.webp" alt="" data-opt></figure>
     </div>
   </section>
 
