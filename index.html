@@ -1237,7 +1237,8 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
             <span class="fila-t">Concienciación</span>
             <span class="fila-mas" aria-hidden="true"></span>
           </button>
-          <div class="fila-cuerpo"><div><p>Hablar de lo que nos pasa no siempre es fácil. Compartir cómo nos sentimos con personas de confianza puede ser un primer paso para comprender lo que estamos viviendo y buscar apoyo cuando lo necesitamos.</p></div></div>
+          <div class="fila-cuerpo"><div><p>Hablar de lo que nos pasa no siempre es fácil, pero poner palabras a cómo nos sentimos puede ser un primer paso importante. Ver a otras mujeres y referentes hablar con naturalidad de ansiedad, depresión y malestar emocional contribuye a romper tabúes y a normalizar estas conversaciones.</p>
+            <p>Compartir lo que nos ocurre con alguien de confianza puede ayudarnos a sentirnos acompañadas y a comprender mejor lo que estamos viviendo. Y si el malestar se mantiene en el tiempo, aumenta o empieza a interferir en nuestra vida cotidiana, es importante pedir ayuda profesional.</p></div></div>
         </div>
         <div class="fila">
           <button class="fila-cab" type="button" aria-expanded="false">
@@ -1325,7 +1326,16 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     </div>
   </section>
 
-  <!-- 07 · ARTÍCULOS -->
+  <!-- ====================================================================
+       SECCIÓN DE ARTÍCULOS · OCULTA A PETICIÓN DEL CLIENTE
+       Se esconde hasta tener la información definitiva; los artículos se
+       leen en la web de Lancôme. Para devolverla: quitar este comentario
+       y volver a poner <!-- y --> donde ahora pone <!~~ y ~~>.
+       Sus estilos (.arts, .art…) se quedan en la hoja a propósito, para
+       que al volver no haya que recuperarlos.
+       ==================================================================== -->
+  <!--
+  <!~~ 07 · ARTÍCULOS ~~>
   <section class="band wrap" id="articulos">
     <p class="kicker">Artículos Lancôme</p>
     <h2 class="h-lg rv-mask" style="margin-top:18px"><span>Prevención y salud <b>mental</b></span></h2>
@@ -1353,11 +1363,13 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
     </div>
   </section>
 
-  <!-- 07 · FUNDACIÓN MANANTIAL
+  <!~~ 07 · FUNDACIÓN MANANTIAL
        Unifica «cómo entendemos la salud mental» con el bloque
        institucional: eran dos secciones de arena separadas por artículos y
        voces que empezaban las dos diciendo «Fundación Manantial».
-       El orden va de lo que piensa a lo que hace: mirada, casa, proyectos. -->
+       El orden va de lo que piensa a lo que hace: mirada, casa, proyectos. ~~>
+  -->
+
   <section class="band" id="fundacion">
     <div class="wrap">
       <p class="kicker fm-nombre">Fundación Manantial</p>
@@ -1465,7 +1477,6 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
       <div class="foot-col">
         <h4>La campaña</h4>
         <a class="cta" href="#cuestionario">Haz el cuestionario</a>
-        <a href="#articulos">Artículos</a>
         <a href="#voces">Voces</a>
       </div>
       <div class="foot-col">
