@@ -193,7 +193,7 @@ aparte para no perder a quien está leyendo:
 | Desde | A |
 |---|---|
 | Los 6 CTA del cuestionario | `https://www.imfine.com/es-es/evalua-tu-salud-mental` |
-| «Descubre los recursos», en `#recursos` | `https://www.imfine.com/ES-ES` |
+| «Descubre los recursos», en `#recursos` | `https://www.imfine.com/es-es/recursos` |
 | «Quiero colaborar» (×2) | `fundacionmanantial.org/colaborar-en-salud-mental/` |
 | «Sobre Fundación Manantial», en el pie | `fundacionmanantial.org/salud-mental/` |
 | «Proyectos» y las 4 fichas | `fundacionmanantial.org/servicios-*` |
