@@ -182,50 +182,70 @@ python3 -m http.server 8000
 | Historias reales de Voces | array `VOCES` en el script: imagen y frase de cada una. **Las frases actuales son de campaña, no testimonios**: hay que sustituirlas por lo que digan de verdad las mujeres que aparezcan, y con sus caras |
 | Artículos de Lancôme | títulos y URLs reales en `#articulos` |
 | **«1 de cada 3 mujeres»** | Sección `.dato`, entre la colaboración y el cuestionario. Ya no es una línea dentro de un desplegable: es **la afirmación más grande de la página**, a todo el ancho y en cuerpo de 78 px. **Necesita fuente citable antes de publicar.** Si no se puede sostener, la banda se quita entera. |
-| Export vertical del spot | Resuelto a medias: ya hay un export ligero de 720p para móvil (3,7 MB). Pero el spot es 16:9 y el hero ocupa toda la pantalla, así que en vertical se recorta por los lados. Si el cliente tiene una versión 9:16, mejor esa |
+| Export vertical del manifiesto | El spot del modal ya viene en 9:16 y llena el teléfono. El manifiesto del fondo del hero no: es 16:9 contra una pantalla vertical, así que se recorta por los lados. Si el cliente tiene una versión 9:16 de los 57 s, mejor esa |
 | Foto `manos.webp` sin usar | Salió de la sección de la colaboración; sigue en `img/` por si se reutiliza |
 | Resto de datos de prevalencia | `#colaboracion` y las cifras de `#fundacion` — verificar fuentes antes de publicar |
 
 ## Vídeo
 
-El spot de campaña, 57 s, con las embajadoras y locución en español. Hay
-dos exports del mismo máster y la página elige uno:
+Son **dos piezas distintas**, no dos tamaños de la misma:
+
+- **El manifiesto**, 57 s. Va de fondo del hero, mudo y en bucle. Es
+  atmósfera: nadie lo ve entero ahí.
+- **El spot**, 17 s. Es el que se abre al pulsar «Ver el vídeo», con voz y
+  con controles. Está montado para verse de una sentada.
+
+De cada pieza hay dos exports y la página elige uno por el ancho:
 
 | Fichero | Medidas | Peso | Cuándo |
 |---|---|---|---|
-| `video/manifiesto.mp4` | 1920×1080 | 7,1 MB | pantallas de más de 900 px |
-| `video/manifiesto-movil.mp4` | 1280×720 | 3,7 MB | pantallas de 900 px o menos |
-| `video/manifiesto-poster.webp` | 1280×720 | 10 KB | cartel del modal |
+| `video/manifiesto.mp4` | 1920×1080 | 7,1 MB | fondo del hero, >900 px |
+| `video/manifiesto-movil.mp4` | 1280×720 | 3,7 MB | fondo del hero, ≤900 px |
+| `video/spot-horizontal.mp4` | 1920×1080 | 1,8 MB | modal, >900 px |
+| `video/spot-vertical.mp4` | 1080×1920 | 3,1 MB | modal, ≤900 px |
+| `video/spot-*-poster.webp` | — | 10 KB | cartel del modal |
 
-La decisión se toma una sola vez, en `const VIDEO_SRC` del `<script>`, y la
-comparten el fondo del hero y el modal: lo que se descarga sirve para los
-dos y no se pide nada dos veces. El corte está en los mismos 900 px que usa
-la hoja de estilos, para no inventar un segundo punto de ruptura.
+En el spot el corte no es solo peso: la versión de móvil está **montada en
+vertical, 9:16**, así que llena el teléfono en lugar de quedarse en una
+franja. Por eso el modal cambia de forma en móvil —manda la altura y el
+ancho se ajusta solo, y la caja se encoge con el vídeo para que el aspa de
+cerrar siga pegada a su esquina.
 
-**Ya tiene sonido.** Durante meses el máster venía mudo; este no. El fondo
-del hero va silenciado y en bucle, como debe ser para autoarrancar, y el
-modal de «Ver el vídeo» lo abre con controles y con voz.
+Todo se decide en `const MOVIL` del `<script>`, en los mismos 900 px que
+usa la hoja de estilos, para no inventar un segundo punto de ruptura.
+
+**Tienen sonido.** El fondo del hero va silenciado, como exige el
+autoarranque; el modal lo abre con voz.
+
+`video/manifiesto-poster.webp` ya no se usa en la página: el modal ahora
+pone el cartel del spot. Se queda por si vuelve a hacer falta.
 
 ### De dónde salen estos ficheros
 
-El máster del cliente —`DG133869_SP_LANCOME_LACAUSA_MEDIA_TRADUCCION_TAG_57S_16X9.mp4`,
-65 MB a 9,3 Mbps— es un fichero de emisión, no de web. No está en el repo:
-pesa diez veces lo que la página entera. Para rehacer los exports:
+Los másteres del cliente son ficheros de emisión, a 8-9 Mbps, y **no están
+en el repo**: el del manifiesto pesa 65 MB, diez veces la página entera.
+Para rehacer los exports:
 
 ```bash
-# escritorio
-ffmpeg -i MASTER.mp4 -vf scale=1920:-2 \
+# el manifiesto, fondo del hero
+ffmpeg -i MASTER_57S_16X9.mp4 -vf scale=1920:-2 \
   -c:v libx264 -crf 25 -preset slow -profile:v high -pix_fmt yuv420p \
   -movflags +faststart -c:a aac -b:a 128k -ac 2 video/manifiesto.mp4
-
-# móvil
-ffmpeg -i MASTER.mp4 -vf scale=1280:-2 \
+ffmpeg -i MASTER_57S_16X9.mp4 -vf scale=1280:-2 \
   -c:v libx264 -crf 25 -preset slow -profile:v high -pix_fmt yuv420p \
   -movflags +faststart -c:a aac -b:a 128k -ac 2 video/manifiesto-movil.mp4
 
-# cartel (fotograma 180: Christy Turlington abriendo la pieza)
-ffmpeg -i MASTER.mp4 -vf "select=eq(n\,180),scale=1280:-2" -frames:v 1 p.png
-cwebp -q 72 p.png -o video/manifiesto-poster.webp
+# el spot, el del modal. Ya vienen a 1080: no se reescala, solo se comprime
+ffmpeg -i MASTER_15S_16X9.mp4 \
+  -c:v libx264 -crf 25 -preset slow -profile:v high -pix_fmt yuv420p \
+  -movflags +faststart -c:a aac -b:a 128k -ac 2 video/spot-horizontal.mp4
+ffmpeg -i MASTER_15S_9X16.mp4 \
+  -c:v libx264 -crf 25 -preset slow -profile:v high -pix_fmt yuv420p \
+  -movflags +faststart -c:a aac -b:a 128k -ac 2 video/spot-vertical.mp4
+
+# carteles
+ffmpeg -i video/spot-horizontal.mp4 -vf "select=eq(n\,40),scale=1280:-2" -frames:v 1 p.png
+cwebp -q 72 p.png -o video/spot-horizontal-poster.webp
 ```
 
 `+faststart` es importante: pone el índice del MP4 al principio para que
@@ -234,21 +254,23 @@ fichero entero antes de pintar nada.
 
 ### Lo que hay que mirar
 
-- **El spot es casi todo fondo blanco.** De fondo del hero funciona porque
-  las capas oscuras de `.hero::before` y `.hero::after` lo asientan. Si
-  alguien las toca, el texto blanco del claim deja de leerse.
-- **Es 16:9 y el hero ocupa la pantalla entera.** En vertical se recorta
-  mucho por los lados: queda el centro, que es donde están las caras, pero
-  si el cliente manda un export vertical, mejor ese para móvil.
-- Al llegar al final, el bucle vuelve a empezar desde la cartela de
-  Lancôme. Se nota poco porque son 57 s, pero está ahí.
+- **Las piezas son casi todo fondo blanco.** El manifiesto funciona de
+  fondo del hero porque las capas oscuras de `.hero::before` y
+  `.hero::after` lo asientan. Si alguien las toca, el texto blanco del
+  claim deja de leerse.
+- **El manifiesto es 16:9 y el hero ocupa la pantalla entera**, así que en
+  vertical se recorta por los lados: queda el centro, que es donde están
+  las caras. Si llega un export 9:16 del manifiesto —como el que ya hay del
+  spot—, ese sería mejor para el fondo en móvil.
+- Al llegar al final, el bucle del hero vuelve a empezar desde la cartela
+  de Lancôme. Se nota poco porque son 57 s, pero está ahí.
 
 ### ¿YouTube o alojado?
 
 Alojado. Un embed de YouTube traería el reproductor completo, su marca, sus
 cookies y el consentimiento que eso obliga a pedir en el sitio de una
-fundación de salud mental. 7 MB servidos desde el propio dominio no tienen
-ninguna de esas contrapartidas.
+fundación de salud mental. Unos megas servidos desde el propio dominio no
+tienen ninguna de esas contrapartidas.
 
 Si algún día se suben los testimonios de Voces —piezas largas y varias—, ahí
 sí conviene YouTube o Vimeo: bitrate adaptativo, subtítulos gestionables y

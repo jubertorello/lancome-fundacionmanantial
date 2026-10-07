@@ -903,6 +903,14 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   .vmodal{width:94vw}
   .vmodal-x{top:-44px}
 }
+/* En móvil el spot es vertical (9:16): con un ancho fijo se salía de la
+   pantalla por abajo. Ahí manda la altura y el ancho se ajusta solo, y la
+   caja se encoge con el vídeo —width:auto— para que el aspa de cerrar siga
+   pegada a su esquina y no flote a un palmo, contra el borde del diálogo. */
+@media(max-width:900px){
+  .vmodal{width:auto;max-width:94vw}
+  .vmodal video{width:auto;max-width:94vw;max-height:78svh}
+}
 
 /* ---------- 09 · cierre ---------- */
 .close{position:relative;background:#0A0507;color:#fff;overflow:hidden;text-align:center}
@@ -1536,7 +1544,8 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
 
   <dialog class="vmodal" id="vmodal" aria-label="Vídeo de campaña">
     <button class="vmodal-x" type="button" aria-label="Cerrar el vídeo">&#10005;</button>
-    <video id="vmodalVid" controls playsinline preload="none" poster="video/manifiesto-poster.webp"></video>
+    <!-- el cartel y la fuente los pone el JS: cambian según el ancho -->
+    <video id="vmodalVid" controls playsinline preload="none"></video>
   </dialog>
 </main>
 
@@ -1950,20 +1959,28 @@ if (amodal && abrirAlta) {
   });
 }
 
-/* ---------- EL VÍDEO DE CAMPAÑA ----------
-   Hay dos exports del mismo máster y se elige uno, aquí y una sola vez:
-   lo usan tanto el fondo del hero como el modal, así que el que se
-   descarga sirve para los dos y no se pide nada dos veces.
+/* ---------- LOS VÍDEOS DE CAMPAÑA ----------
+   Son dos piezas distintas, no dos tamaños de la misma:
 
-   · manifiesto.mp4        1920×1080 · 7,1 MB
-   · manifiesto-movil.mp4  1280×720  · 3,7 MB
+   · El manifiesto, 57 s. Va de fondo del hero, mudo y en bucle. Es
+     atmósfera: nadie lo ve entero ahí.
+   · El spot, 17 s. Es el que se abre al pulsar «Ver el vídeo», con voz y
+     con controles. Está montado para verse de una sentada.
 
-   El corte está en los mismos 900 px que usa la hoja de estilos, para no
-   inventar un segundo punto de ruptura. Ahí 720p ya da de sobra y ahorra
-   la mitad de los datos. */
-const VIDEO_SRC = matchMedia("(max-width: 900px)").matches
-  ? "video/manifiesto-movil.mp4"
-  : "video/manifiesto.mp4";
+   De cada pieza hay dos exports y se elige uno por el ancho de pantalla,
+   en los mismos 900 px que usa la hoja de estilos para no inventar un
+   segundo punto de ruptura. En el caso del spot no es solo peso: el corte
+   de móvil está montado en vertical, 9:16, así que llena el teléfono en
+   lugar de quedarse en una franja.
+
+     manifiesto.mp4        1920×1080 · 7,1 MB │ spot-horizontal.mp4 1920×1080 · 1,8 MB
+     manifiesto-movil.mp4  1280×720  · 3,7 MB │ spot-vertical.mp4   1080×1920 · 3,1 MB  */
+const MOVIL = matchMedia("(max-width: 900px)").matches;
+
+const HERO_SRC  = MOVIL ? "video/manifiesto-movil.mp4" : "video/manifiesto.mp4";
+const SPOT_SRC  = MOVIL ? "video/spot-vertical.mp4"    : "video/spot-horizontal.mp4";
+const SPOT_CART = MOVIL ? "video/spot-vertical-poster.webp"
+                        : "video/spot-horizontal-poster.webp";
 
 /* «Ver el vídeo» abre el modal en vez de llevarte a la sección de abajo.
    El mp4 no se pide hasta el primer clic. */
@@ -1974,7 +1991,10 @@ if (vmodal && vmodalVid) {
   document.querySelectorAll(".hero-play").forEach(b => {
     b.addEventListener("click", e => {
       e.preventDefault();
-      if (!vmodalVid.getAttribute("src")) vmodalVid.src = VIDEO_SRC;
+      if (!vmodalVid.getAttribute("src")) {
+        vmodalVid.poster = SPOT_CART;
+        vmodalVid.src = SPOT_SRC;
+      }
       vmodal.showModal();
       vmodalVid.play().catch(() => {});   // si no autoarranca, quedan los controles
     });
@@ -1987,14 +2007,14 @@ if (vmodal && vmodalVid) {
 }
 
 /* El vídeo del hero se carga también en móvil, ya con el export ligero
-   (ver VIDEO_SRC arriba). Se respetan las preferencias del sistema: quien
+   (ver HERO_SRC arriba). Se respetan las preferencias del sistema: quien
    pide menos movimiento o ahorro de datos se queda con la rosa. */
 const heroVid = document.querySelector(".hero-video");
 if (heroVid
     && !reduce
     && !matchMedia("(prefers-reduced-data: reduce)").matches) {
   heroVid.addEventListener("canplay", () => heroVid.classList.add("lista"), {once: true});
-  heroVid.src = VIDEO_SRC;
+  heroVid.src = HERO_SRC;
   heroVid.play().catch(() => {});   // si el navegador lo bloquea, queda la rosa
 }
 
