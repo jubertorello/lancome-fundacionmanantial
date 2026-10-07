@@ -2005,14 +2005,29 @@ if (vmodal && vmodalVid) {
   vmodal.addEventListener("close", () => { vmodalVid.pause(); vmodalVid.currentTime = 0; });
 }
 
-/* El vídeo del hero se carga también en móvil, ya con el export ligero
-   (ver HERO_SRC arriba). Se respetan las preferencias del sistema: quien
-   pide menos movimiento o ahorro de datos se queda con la rosa. */
+/* El vídeo del hero, con el export ligero en móvil (ver HERO_SRC arriba).
+
+   POR QUÉ EN ALGUNOS TELÉFONOS SE QUEDA LA ROSA
+   No es un fallo: hay tres puertas y las tres son decisión de quien mira.
+     · «Reducir movimiento» en los ajustes del sistema.
+     · «Modo de bajos datos» (iOS) o «Ahorro de datos» (Android).
+     · «Modo de bajo consumo» de iOS, que es el caso más frecuente: Safari
+       deja de autoarrancar vídeo y ni siquiera lo precarga. No hay bandera
+       que leer para detectarlo; simplemente play() no prospera.
+   Las dos primeras se consultan aquí; la tercera se nota sola. En los tres
+   casos queda la rosa, que para eso está: es el fondo de verdad, no un
+   hueco de carga.
+
+   Se revela con «playing», no con «canplay». Con canplay bastaba con que
+   el vídeo estuviera listo, aunque no llegara a moverse: en los teléfonos
+   que bloquean el autoarranque aparecía un fotograma congelado —y el spot
+   empieza en un plató casi blanco, que sobre el hero oscuro se ve como una
+   mancha lavada. Ahora o se mueve o se queda la rosa. */
 const heroVid = document.querySelector(".hero-video");
 if (heroVid
     && !reduce
     && !matchMedia("(prefers-reduced-data: reduce)").matches) {
-  heroVid.addEventListener("canplay", () => heroVid.classList.add("lista"), {once: true});
+  heroVid.addEventListener("playing", () => heroVid.classList.add("lista"), {once: true});
   heroVid.src = HERO_SRC;
   heroVid.play().catch(() => {});   // si el navegador lo bloquea, queda la rosa
 }

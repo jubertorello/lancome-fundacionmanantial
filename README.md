@@ -272,6 +272,30 @@ cwebp -q 72 p.png -o video/spot-horizontal-poster.webp
 empiece a verse mientras se descarga. Sin eso, el navegador se traga el
 fichero entero antes de pintar nada.
 
+### Si en un teléfono sale la rosa y no el vídeo
+
+No es un fallo. El export de móvil es H.264 High@3.1, 720p, yuv420p: eso
+lo reproduce cualquier teléfono de los últimos diez años. Lo que pasa es
+que hay tres puertas, y las tres las ha abierto quien mira:
+
+| Ajuste | Dónde | Qué hace |
+|---|---|---|
+| Reducir movimiento | Accesibilidad | la página lo consulta y no pide el vídeo |
+| Modo de bajos datos / Ahorro de datos | iOS / Android | igual: no se pide el vídeo |
+| **Modo de bajo consumo** | iOS, batería | Safari deja de autoarrancar vídeo y ni lo precarga |
+
+El tercero es el más frecuente con diferencia, y el único que no se puede
+consultar: no hay bandera que leer, simplemente `play()` no prospera. Si
+alguien reporta que «no le carga», lo primero es preguntar si lleva el
+teléfono en ahorro de batería.
+
+En los tres casos queda la rosa, que para eso está: es el fondo de verdad
+de la sección, no un hueco de carga.
+
+Se puede forzar el vídeo al primer toque de pantalla —en ese momento el
+navegador ya lo permite—, pero no se hace a propósito: los tres ajustes
+son una petición explícita de quien visita la página.
+
 ### Lo que hay que mirar
 
 - **Las piezas son casi todo fondo blanco.** El manifiesto funciona de
