@@ -177,9 +177,8 @@ python3 -m http.server 8000
 | Logo oficial de Fundación Manantial | los `<svg class="fm-mark">` (ahora hay un trazado provisional) |
 | Ruta final de alojamiento | prevista `fundacionmanantial.org/lancome` |
 | Fotografía | carpeta `img/` — ver nombres abajo |
-| Vídeo de embajadoras | bloque `.hero` y sección `#voces` |
-| Historias reales de Voces | array `VOCES` en el script: imagen y frase de cada una. **Las frases actuales son de campaña, no testimonios**: hay que sustituirlas por lo que digan de verdad las mujeres que aparezcan, y con sus caras |
-| Artículos de Lancôme | títulos y URLs reales en `#articulos` |
+| Voces, oculta de momento | La sección está comentada en `index.html`, con su carrusel y sus estilos intactos. Para devolverla hay que quitar el comentario **y** sustituir el array `VOCES` del script: las frases que hay son de campaña, no testimonios |
+| Artículos, ocultos de momento | También comentados, a petición del cliente: los artículos se leen en la web de Lancôme. Para devolverlos, quitar el comentario y poner títulos y URLs reales |
 | **«1 de cada 3 mujeres»** | Sección `.dato`, entre la colaboración y el cuestionario. Ya no es una línea dentro de un desplegable: es **la afirmación más grande de la página**, a todo el ancho y en cuerpo de 78 px. **Necesita fuente citable antes de publicar.** Si no se puede sostener, la banda se quita entera. |
 | Export vertical del manifiesto | El spot del modal ya viene en 9:16 y llena el teléfono. El manifiesto del fondo del hero no: es 16:9 contra una pantalla vertical, así que se recorta por los lados. Si el cliente tiene una versión 9:16 de los 57 s, mejor esa |
 | Foto `manos.webp` sin usar | Salió de la sección de la colaboración; sigue en `img/` por si se reutiliza |
