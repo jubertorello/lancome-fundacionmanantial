@@ -174,7 +174,6 @@ python3 -m http.server 8000
 | **Dos versiones del mismo claim** | El pie dice «**Por** la prevención…» y el hero y la sección de la colaboración siguen diciendo «**Juntos** en la prevención…». El documento de cambios solo tocaba el pie; confirmado con la clienta que de momento se queda así. Conviene unificarlo antes de publicar |
 | **QUITAR EL `noindex` AL PUBLICAR** | `<meta name="robots">` en el `<head>` de `index.html`. Es lo único que controla la indexación. No hay `robots.txt`: en `fundacionmanantial.org/lancome` sería inerte —los buscadores solo leen el de la raíz del dominio— y en la URL de revisión estorbaba, porque bloquear el rastreo impide que Google llegue a leer el propio `noindex` |
 | **El contador del cuestionario es una MAQUETA** | `data-sim-desde` en `index.html` + el bloque «MAQUETA» del `<script>`. Sube solo de 6.457 a 7.000 y esos incrementos **no corresponden a nadie**. Está así para que el cliente vea el efecto en la URL de revisión. **No puede salir a `fundacionmanantial.org/lancome` tal cual:** o se alimenta con el número real que dé la Fundación, o se revierte al contador con dato fijo (commit `e0fe751`). |
-| URL del cuestionario | `const FORM_URL` al final de `index.html` — alimenta los 6 CTA. **Ahora apunta provisionalmente a lancome.es** |
 | Logo oficial de Fundación Manantial | los `<svg class="fm-mark">` (ahora hay un trazado provisional) |
 | Ruta final de alojamiento | prevista `fundacionmanantial.org/lancome` |
 | Fotografía | carpeta `img/` — ver nombres abajo |
@@ -185,6 +184,25 @@ python3 -m http.server 8000
 | Export vertical del manifiesto | El spot del modal ya viene en 9:16 y llena el teléfono. El manifiesto del fondo del hero no: es 16:9 contra una pantalla vertical, así que se recorta por los lados. Si el cliente tiene una versión 9:16 de los 57 s, mejor esa |
 | Foto `manos.webp` sin usar | Salió de la sección de la colaboración; sigue en `img/` por si se reutiliza |
 | Resto de datos de prevalencia | `#colaboracion` y las cifras de `#fundacion` — verificar fuentes antes de publicar |
+
+## Enlaces de salida
+
+Todo lo que sale de la landing va a dos sitios, y los dos abren en pestaña
+aparte para no perder a quien está leyendo:
+
+| Desde | A |
+|---|---|
+| Los 6 CTA del cuestionario | `https://www.imfine.com/es-es/evalua-tu-salud-mental` |
+| «Descubre los recursos», en `#recursos` | `https://www.imfine.com/ES-ES` |
+| «Quiero colaborar» (×2) | `fundacionmanantial.org/colaborar-en-salud-mental/` |
+| «Sobre Fundación Manantial», en el pie | `fundacionmanantial.org/salud-mental/` |
+| «Proyectos» y las 4 fichas | `fundacionmanantial.org/servicios-*` |
+
+Los CTA no llevan la URL escrita en el HTML: la reparte `const FORM_URL`,
+al principio del `<script>`. **Para cambiar el destino del cuestionario se
+toca esa línea y nada más.** Si algún día el formulario vive en el mismo
+dominio que la landing, el código lo detecta y deja de abrir en pestaña
+nueva, sin tener que tocar los enlaces uno a uno.
 
 ## Vídeo
 
