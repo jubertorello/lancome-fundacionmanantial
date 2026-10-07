@@ -182,69 +182,78 @@ python3 -m http.server 8000
 | Historias reales de Voces | array `VOCES` en el script: imagen y frase de cada una. **Las frases actuales son de campaña, no testimonios**: hay que sustituirlas por lo que digan de verdad las mujeres que aparezcan, y con sus caras |
 | Artículos de Lancôme | títulos y URLs reales en `#articulos` |
 | **«1 de cada 3 mujeres»** | Sección `.dato`, entre la colaboración y el cuestionario. Ya no es una línea dentro de un desplegable: es **la afirmación más grande de la página**, a todo el ancho y en cuerpo de 78 px. **Necesita fuente citable antes de publicar.** Si no se puede sostener, la banda se quita entera. |
-| **Vídeo ligero para móvil** | `video/manifiesto.mp4` pesa 6,4 MB y ahora se carga también en vertical, de fondo del hero. Hace falta un export más ligero para pantallas pequeñas: con datos móviles esto es mucho |
-| El vídeo ya no tiene sección propia | Se quitó: ahora se abre encima desde «Ver el vídeo» del hero, y de fondo en el propio hero. El póster sigue usándose |
+| Export vertical del spot | Resuelto a medias: ya hay un export ligero de 720p para móvil (3,7 MB). Pero el spot es 16:9 y el hero ocupa toda la pantalla, así que en vertical se recorta por los lados. Si el cliente tiene una versión 9:16, mejor esa |
 | Foto `manos.webp` sin usar | Salió de la sección de la colaboración; sigue en `img/` por si se reutiliza |
 | Resto de datos de prevalencia | `#colaboracion` y las cifras de `#fundacion` — verificar fuentes antes de publicar |
 
 ## Vídeo
 
-`video/manifiesto.mp4` — 8 s, 720p, con subtítulos quemados en inglés.
+El spot de campaña, 57 s, con las embajadoras y locución en español. Hay
+dos exports del mismo máster y la página elige uno:
 
-No se autocarga. La página muestra el póster (105 KB) y solo pide el mp4
-cuando alguien pulsa play. Es lo correcto mientras el archivo pese lo que
-pesa.
+| Fichero | Medidas | Peso | Cuándo |
+|---|---|---|---|
+| `video/manifiesto.mp4` | 1920×1080 | 7,1 MB | pantallas de más de 900 px |
+| `video/manifiesto-movil.mp4` | 1280×720 | 3,7 MB | pantallas de 900 px o menos |
+| `video/manifiesto-poster.webp` | 1280×720 | 10 KB | cartel del modal |
 
-### Pendiente: comprimir
+La decisión se toma una sola vez, en `const VIDEO_SRC` del `<script>`, y la
+comparten el fondo del hero y el modal: lo que se descarga sirve para los
+dos y no se pide nada dos veces. El corte está en los mismos 900 px que usa
+la hoja de estilos, para no inventar un segundo punto de ruptura.
 
-El máster viene a 15,5 Mbps, que es bitrate de edición, no de web. Lo he
-bajado a 720p con `avconvert` (la herramienta del sistema, sin control de
-bitrate) y se queda en 6,7 MB. Con ffmpeg baja a ~1 MB sin pérdida visible:
+**Ya tiene sonido.** Durante meses el máster venía mudo; este no. El fondo
+del hero va silenciado y en bucle, como debe ser para autoarrancar, y el
+modal de «Ver el vídeo» lo abre con controles y con voz.
+
+### De dónde salen estos ficheros
+
+El máster del cliente —`DG133869_SP_LANCOME_LACAUSA_MEDIA_TRADUCCION_TAG_57S_16X9.mp4`,
+65 MB a 9,3 Mbps— es un fichero de emisión, no de web. No está en el repo:
+pesa diez veces lo que la página entera. Para rehacer los exports:
 
 ```bash
-ffmpeg -i video/manifiesto-master.mp4 -vf scale=1280:-2 \
-  -c:v libx264 -crf 26 -preset slow -profile:v high \
-  -movflags +faststart -c:a aac -b:a 96k video/manifiesto.mp4
+# escritorio
+ffmpeg -i MASTER.mp4 -vf scale=1920:-2 \
+  -c:v libx264 -crf 25 -preset slow -profile:v high -pix_fmt yuv420p \
+  -movflags +faststart -c:a aac -b:a 128k -ac 2 video/manifiesto.mp4
+
+# móvil
+ffmpeg -i MASTER.mp4 -vf scale=1280:-2 \
+  -c:v libx264 -crf 25 -preset slow -profile:v high -pix_fmt yuv420p \
+  -movflags +faststart -c:a aac -b:a 128k -ac 2 video/manifiesto-movil.mp4
+
+# cartel (fotograma 180: Christy Turlington abriendo la pieza)
+ffmpeg -i MASTER.mp4 -vf "select=eq(n\,180),scale=1280:-2" -frames:v 1 p.png
+cwebp -q 72 p.png -o video/manifiesto-poster.webp
 ```
 
-Conserva el audio. El máster actual no lo tiene —ver abajo— pero el día que
-llegue un export con voz, este comando no lo tira.
+`+faststart` es importante: pone el índice del MP4 al principio para que
+empiece a verse mientras se descarga. Sin eso, el navegador se traga el
+fichero entero antes de pintar nada.
 
-### El archivo actual no tiene sonido
+### Lo que hay que mirar
 
-Comprobado de dos formas: leyendo los átomos del MP4, que solo declaran una
-pista `vide`, y reproduciéndolo en el navegador, donde
-`webkitAudioDecodedByteCount` se queda en 0 con el volumen al máximo y sin
-silenciar.
-
-No se perdió al comprimir: el máster ya venía mudo del programa de edición.
-El reproductor de la página pide sonido —sin `muted`, con controles y
-lanzado por un clic, que es lo que los navegadores exigen para permitir
-audio—, así que **en cuanto se sustituya el archivo por un export con voz,
-sonará sin tocar una línea de código**.
-
-Una vez por debajo de ~1,5 MB se puede pasar a autoplay silenciado en
-bucle, que como hook funciona mucho mejor que un play manual.
+- **El spot es casi todo fondo blanco.** De fondo del hero funciona porque
+  las capas oscuras de `.hero::before` y `.hero::after` lo asientan. Si
+  alguien las toca, el texto blanco del claim deja de leerse.
+- **Es 16:9 y el hero ocupa la pantalla entera.** En vertical se recorta
+  mucho por los lados: queda el centro, que es donde están las caras, pero
+  si el cliente manda un export vertical, mejor ese para móvil.
+- Al llegar al final, el bucle vuelve a empezar desde la cartela de
+  Lancôme. Se nota poco porque son 57 s, pero está ahí.
 
 ### ¿YouTube o alojado?
 
-Para este clip, **alojado**. Son 8 segundos sin audio imprescindible: un
-embed de YouTube traería el reproductor completo, su marca, sus cookies y
-el consentimiento que eso obliga a pedir en el sitio de una fundación de
-salud mental. Un mp4 de 1 MB no tiene ninguna de esas contrapartidas.
+Alojado. Un embed de YouTube traería el reproductor completo, su marca, sus
+cookies y el consentimiento que eso obliga a pedir en el sitio de una
+fundación de salud mental. 7 MB servidos desde el propio dominio no tienen
+ninguna de esas contrapartidas.
 
-Para piezas largas —el manifiesto completo, los testimonios— sí conviene
-YouTube o Vimeo: bitrate adaptativo, subtítulos gestionables y ancho de
-banda que no paga la fundación. En ese caso, embeber con fachada (póster
-que solo carga el iframe al pulsar) y usar `youtube-nocookie.com`.
-
-El máster `video/manifiesto-master.mp4` ya no está en la carpeta: eran 15 MB
-que el servidor no necesita. Sigue en el historial de git y se recupera con
-
-    git checkout bc4df60 -- video/manifiesto-master.mp4
-
-Para el export ligero de móvil o uno con audio, mejor pedir el original a
-quien montó la pieza: ahí está la fuente de verdad.
+Si algún día se suben los testimonios de Voces —piezas largas y varias—, ahí
+sí conviene YouTube o Vimeo: bitrate adaptativo, subtítulos gestionables y
+ancho de banda que no paga la fundación. En ese caso, embeber con fachada
+(un cartel que solo carga el iframe al pulsar) y usar `youtube-nocookie.com`.
 
 ## Imágenes
 

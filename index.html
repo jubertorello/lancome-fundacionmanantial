@@ -1950,6 +1950,21 @@ if (amodal && abrirAlta) {
   });
 }
 
+/* ---------- EL VÍDEO DE CAMPAÑA ----------
+   Hay dos exports del mismo máster y se elige uno, aquí y una sola vez:
+   lo usan tanto el fondo del hero como el modal, así que el que se
+   descarga sirve para los dos y no se pide nada dos veces.
+
+   · manifiesto.mp4        1920×1080 · 7,1 MB
+   · manifiesto-movil.mp4  1280×720  · 3,7 MB
+
+   El corte está en los mismos 900 px que usa la hoja de estilos, para no
+   inventar un segundo punto de ruptura. Ahí 720p ya da de sobra y ahorra
+   la mitad de los datos. */
+const VIDEO_SRC = matchMedia("(max-width: 900px)").matches
+  ? "video/manifiesto-movil.mp4"
+  : "video/manifiesto.mp4";
+
 /* «Ver el vídeo» abre el modal en vez de llevarte a la sección de abajo.
    El mp4 no se pide hasta el primer clic. */
 const vmodal = document.getElementById("vmodal");
@@ -1959,7 +1974,7 @@ if (vmodal && vmodalVid) {
   document.querySelectorAll(".hero-play").forEach(b => {
     b.addEventListener("click", e => {
       e.preventDefault();
-      if (!vmodalVid.getAttribute("src")) vmodalVid.src = "video/manifiesto.mp4";
+      if (!vmodalVid.getAttribute("src")) vmodalVid.src = VIDEO_SRC;
       vmodal.showModal();
       vmodalVid.play().catch(() => {});   // si no autoarranca, quedan los controles
     });
@@ -1971,17 +1986,15 @@ if (vmodal && vmodalVid) {
   vmodal.addEventListener("close", () => { vmodalVid.pause(); vmodalVid.currentTime = 0; });
 }
 
-/* El vídeo del hero se carga también en móvil. PENDIENTE: el mp4 actual
-   pesa 6,4 MB, demasiado para datos móviles; se espera un export más
-   ligero para vertical. Cuando llegue, conviene servir ese en pantallas
-   pequeñas. Se respetan las preferencias del sistema: quien pide menos
-   movimiento o ahorro de datos se queda con la rosa. */
+/* El vídeo del hero se carga también en móvil, ya con el export ligero
+   (ver VIDEO_SRC arriba). Se respetan las preferencias del sistema: quien
+   pide menos movimiento o ahorro de datos se queda con la rosa. */
 const heroVid = document.querySelector(".hero-video");
 if (heroVid
     && !reduce
     && !matchMedia("(prefers-reduced-data: reduce)").matches) {
   heroVid.addEventListener("canplay", () => heroVid.classList.add("lista"), {once: true});
-  heroVid.src = "video/manifiesto.mp4";
+  heroVid.src = VIDEO_SRC;
   heroVid.play().catch(() => {});   // si el navegador lo bloquea, queda la rosa
 }
 
