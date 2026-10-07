@@ -197,6 +197,8 @@ aparte para no perder a quien está leyendo:
 | «Quiero colaborar» (×2) | `fundacionmanantial.org/colaborar-en-salud-mental/` |
 | «Sobre Fundación Manantial», en el pie | `fundacionmanantial.org/salud-mental/` |
 | «Proyectos» y las 4 fichas | `fundacionmanantial.org/servicios-*` |
+| Las 4 marcas de Lancôme (cabecera, firma del hero, pie ×2) | `https://www.imfine.com/ES-ES` |
+| Las 3 marcas de Fundación Manantial | `fundacionmanantial.org` |
 
 Los CTA no llevan la URL escrita en el HTML: la reparte `const FORM_URL`,
 al principio del `<script>`. **Para cambiar el destino del cuestionario se
