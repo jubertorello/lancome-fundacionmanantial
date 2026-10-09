@@ -1355,13 +1355,22 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
           </div>
         </div>
         <div class="quest-side rv">
-          <!-- ============ MAQUETA, NO PUBLICAR ============
-               Esta rama existe solo para que el cliente vea el efecto y
-               decida. El número arranca en 6.457 (real) y sigue subiendo
-               solo hasta 7.000: esa subida NO corresponde a nadie. Si se
-               aprueba el efecto, hay que alimentarlo con datos de verdad
-               antes de que esto llegue a producción.
-               La rama main lleva la versión con el dato real. -->
+          <!-- ==================== MAQUETA, NO PUBLICAR ====================
+               El número arranca en 6.457, que es el dato real que dio la
+               Fundación, y a partir de ahí SUBE SOLO hasta 7.000. Esa
+               subida no corresponde a nadie: es una animación, puesta para
+               que el cliente viera el efecto y decidiera.
+
+               En una campaña de salud mental, bajo el logo de una
+               fundación, un contador que finge participación real no puede
+               salir a producción. Antes de publicar hay que:
+                 · alimentarlo con el dato real que dé la Fundación, o
+                 · revertir al contador con cifra fija (commit e0fe751).
+
+               OTRA COSA QUE FALTA ANTES DE PUBLICAR: quitar el
+               <meta name="robots" content="noindex, nofollow"> del <head>,
+               o la página no se indexa.
+               =============================================================== -->
           <div>
             <div class="num" data-sim-desde="6457" data-sim-hasta="7000">6.457</div>
             <p class="num-l">Mujeres que ya han empezado a escucharse</p>
@@ -1793,10 +1802,12 @@ const cio = new IntersectionObserver((es) => {
 document.querySelectorAll("[data-hasta], .num[data-to]").forEach(el => cio.observe(el));
 
 /* ============================================================
-   MAQUETA · SOLO EN LA RAMA demo-contador
+   MAQUETA · NO PUBLICAR
    Sube de 6.457 a 7.000 a ritmo lento, de una en una, al llegar a
    la sección. Los incrementos son inventados: sirven para enseñar
-   el efecto, no para informar de nada.
+   el efecto, no para informar de nada. Para quitarlo basta con
+   borrar este bloque y el atributo data-sim-desde del marcado: el
+   número se queda fijo en el dato real.
    ============================================================ */
 const sim = document.querySelector("[data-sim-desde]");
 if (sim && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
