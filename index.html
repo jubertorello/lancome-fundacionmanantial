@@ -268,7 +268,10 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .hero-grid{display:grid;grid-template-columns:1fr auto;gap:clamp(24px,4vw,56px);
   align-items:end;margin-top:clamp(30px,4.5vw,58px)}
 @media(max-width:820px){.hero-grid{grid-template-columns:1fr;align-items:start}}
-.hero-lead{font-size:clamp(16px,1.5vw,20px);line-height:1.5;color:var(--ink-soft);max-width:38ch;margin:0}
+/* En tinta, no en gris: sobre el rosa el gris se quedaba a medio camino
+   entre el fondo y el logotipo, y el hero tiene que hablar con una sola
+   voz. */
+.hero-lead{font-size:clamp(16px,1.5vw,20px);line-height:1.5;color:var(--ink);max-width:38ch;margin:0}
 .hero-act{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
 .hero-play{display:inline-flex;align-items:center;gap:11px;color:var(--ink);text-decoration:none;font-size:12px;letter-spacing:.13em;text-transform:uppercase}
 .hero-play i{
@@ -289,7 +292,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
      derecha, y con un filete al 18 % la línea se leía en la mitad oscura y
      desaparecía en la clara: parecía torcida sin estarlo. Se sube el
      contraste y la viñeta baja del hero asienta el fondo bajo ella. */
-  border-top:1px solid rgba(18,18,18,.18);
+  border-top:1px solid rgba(18,18,18,.26);
   /* Los logos arrancan a la altura en que arranca el claim, no centrados
      contra él: con tres líneas en móvil el centrado los dejaba flotando a
      media firma. */
@@ -300,12 +303,12 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   margin:0;font-size:clamp(13px,1.25vw,17px);font-weight:700;
   /* al crecer el cuerpo, el mismo espaciado de antes lo estiraba demasiado */
   letter-spacing:.1em;line-height:1.5;
-  text-transform:uppercase;color:var(--ink-soft);
+  text-transform:uppercase;color:var(--ink);
   /* medida para dos líneas, repartidas parejas */
   max-width:60ch;text-wrap:balance;
 }
 .credit-logos{display:flex;align-items:center;gap:clamp(14px,2vw,22px)}
-.credit-x{font-size:15px;color:rgba(18,18,18,.3)}
+.credit-x{font-size:15px;color:rgba(18,18,18,.42)}
 .foot-lock{display:grid;gap:18px;justify-items:start}
 .credit-claim--pie{color:var(--blue)}
 .lock-x{font-size:15px;color:var(--rule)}
