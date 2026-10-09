@@ -48,3 +48,7 @@ logo-imfine.svg              logotipo de campaña, apilado. Va incrustado en
                              copia de referencia
 logo-imfine-h.png            lockup horizontal, para fondo claro
 logo-imfine-h-negativo.png   lockup horizontal, para fondo oscuro
+                             LOS DOS ESTÁN DE REPUESTO: ahora mismo no los
+                             usa ninguna página. Se quedan porque el
+                             horizontal es el que sirve para tiras muy
+                             bajas, firmas de correo y cosas así

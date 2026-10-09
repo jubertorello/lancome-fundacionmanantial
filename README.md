@@ -88,15 +88,17 @@ palabras. En la marca no existen: lo que separa a «NOT» es que está en otro
 color y en otro plano. Se han quitado del título, de la descripción y de
 los textos alternativos.
 
-Para la marquesina, que es una tira de 53 px, el apilado no cabe: ahí va el
-lockup horizontal, `img/logo-imfine-h.png` sobre fondo claro y
-`img/logo-imfine-h-negativo.png` sobre oscuro. Y la jerarquía de esa tira
-cambia con él: la marquesina se cuelga de fundacionmanantial.org, donde
-quien llega ya conoce a la fundación, así que lo nuevo es la campaña y el
-logotipo manda —va primero y es lo más grande—. Lancôme queda como firma,
-«con» + wordmark, pequeña y al final, antes del botón. Antes los dos logos
-iban del mismo tamaño separados por un filete; eso tenía sentido cuando el
-claim era texto y no había logotipo que mandara.
+La marquesina lleva el mismo apilado, también incrustado, junto al
+wordmark de Lancôme y separados por un filete: es el lockup de la campaña
+tal cual, no dos logos sueltos. La tira sube a 64 px porque en 52 el
+apilado no cabía sin pegarse a los bordes —son tres líneas de texto, no
+una—. Incrustado y no enlazado para que su negro sea `currentColor` y
+cambie solo con el fondo, sin llevar dos ficheros.
+
+En `img/` hay además un lockup **horizontal**, `logo-imfine-h.png` y
+`logo-imfine-h-negativo.png`, que ahora mismo no usa ninguna página. Se
+quedan de repuesto: es el que sirve para tiras muy bajas, firmas de correo
+y sitios donde tres líneas no caben.
 
 ## Color: cada uno tiene un trabajo
 
