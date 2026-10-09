@@ -114,19 +114,22 @@ No hay cuotas de color, hay papeles. La regla es que **cuando la página se
 pone azul o arena, es que habla Fundación Manantial**.
 
 Desde que llegaron los carteles de campaña, el hero y el cierre **ya no son
-oscuros**: van en `--kv: #EFDADF`, un rosa pálido que no se inventa —es el propio
-`--pink` al 20 % sobre blanco—, con el texto y el logotipo en tinta. Así el
-fondo, el «NOT» del logotipo y la rosa de la foto son el mismo color en
-tres intensidades, en vez de tres decisiones sueltas. Eso es lo que permite que el logotipo vaya
-en negro en toda la página, que es como existe la marca. Las capas que antes
-oscurecían el vídeo ahora lo aclaran: el spot es de plató casi blanco, así
-que no hay que taparlo, solo bajarle el contraste para que el negro agarre
-encima.
+oscuros**: van en `--kv: #E8E8EA`, el gris claro medido en el propio KV, con
+el texto y el logotipo en tinta. Eso es lo que permite que el logotipo vaya
+en negro, que es como existe la marca.
 
-El vídeo del hero está rodado en plató casi blanco, así que el rosa solo se
-veía por los bordes. Lo tiñe una capa en **multiply**, no en opacidad:
-multiplicar colorea conservando el detalle, mientras que superponer un rosa
-translúcido lo lavaría —que es justo lo que había antes y se quitó.
+Encima de la imagen llevan **la misma capa que usa imfine.com** sobre su
+vídeo: `linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.5))`, transparente
+arriba y negro al 50 % abajo. Tiene una consecuencia que conviene conocer
+antes de tocarla: **el pie de esas dos secciones queda oscuro**, así que lo
+que cae ahí va en blanco y lo que cae arriba, en negro.
+
+- En el **hero** eso afecta solo a la firma —filete, claim y los dos
+  logos—, que pasa a negativo. El logotipo, la frase y los botones están
+  por encima de la mitad y siguen en tinta.
+- En el **cierre** el texto está centrado, justo donde el degradado ya
+  oscurece, así que el claro central se pinta **encima** del degradado y no
+  debajo. Al revés la frase se perdía sobre la rosa.
 
 Queda **una sola sección oscura, el cuestionario**, y ahora que es la única
 funciona a su favor: es el punto de conversión y se separa de todo lo demás.
@@ -134,7 +137,7 @@ funciona a su favor: es el punto de conversión y se separa de todo lo demás.
 | Color | Hex | Papel |
 |---|---|---|
 | Rosa | `#B14860` | El rosa de marca, medido en los PNG oficiales del logotipo. Es la voz de la duda: el «NOT» del lockup, los rótulos de sección, las frases de «lo que no decimos», los desplegables de ansiedad y depresión |
-| Rosa pálido | `#EFDADF` | El fondo del hero y del cierre: `--pink` al 20 % sobre blanco |
+| Gris de campaña | `#E8E8EA` | El fondo del hero y del cierre, medido en los carteles |
 | Granate | `#5C0B1B` / `#8E1230` | Ya solo el cuestionario, que es la única sección oscura que queda |
 | Azul | `#004591` | La voz de Fundación Manantial |
 | Arena | `#EAE6E0` | La superficie de los bloques de la fundación |

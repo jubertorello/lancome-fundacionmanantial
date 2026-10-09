@@ -46,12 +46,10 @@
   --paper:#FFFFFF;
   --paper-2:#F5F4F2;
   --paper-3:#FBFBFB;
-  /* El fondo del hero y del cierre. Arrancó siendo el gris del KV
-     (#E8E8EA), que es frío y se leía como blanco sucio. Ahora es un rosa
-     pálido, y no inventado: es el propio --pink al 20 % sobre blanco. Así
-     el fondo, el «NOT» del logotipo y la rosa de la foto son el mismo
-     color en tres intensidades, en vez de tres decisiones sueltas. */
-  --kv:#EFDADF;  /* casi blanco: tarjetas de las frases y banda de la cifra */
+  /* El fondo del hero y del cierre: el gris claro medido en los carteles
+     de campaña. Es el mundo de la marca, y es donde el logotipo va en
+     negro. */
+  --kv:#E8E8EA;  /* casi blanco: tarjetas de las frases y banda de la cifra */
   --ink:#121212;
   --ink-soft:#5A5A60;
   --mute:#8E8E94;
@@ -176,21 +174,15 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .hero::before{
   content:"";position:absolute;inset:0;z-index:1;
   background:
-    radial-gradient(66% 80% at 16% 36%, rgba(239,218,223,.90) 0%, rgba(239,218,223,.46) 42%, transparent 70%),
-    linear-gradient(165deg,rgba(255,255,255,.12) 0%,rgba(239,218,223,.16) 100%);
+    radial-gradient(66% 80% at 16% 36%, rgba(232,232,234,.90) 0%, rgba(232,232,234,.46) 42%, transparent 70%),
+    linear-gradient(165deg,rgba(255,255,255,.12) 0%,rgba(232,232,234,.16) 100%);
 }
-/* El rosa del fondo solo asomaba por los bordes, porque el vídeo —plató
-   casi blanco— tapa el resto. Esta capa lo tiñe entero, y en multiply y no
-   en opacidad: multiplicar colorea conservando el detalle, mientras que
-   superponer un rosa translúcido lo lavaría otra vez, que es justo lo que
-   acabábamos de quitar. Sobre el blanco del plató da el rosa; sobre la
-   piel y el pelo solo los asienta. */
+/* La capa que usa imfine.com sobre su vídeo: transparente arriba y negro
+   al 50 % abajo. Da profundidad al pie sin tocar la zona del logotipo, que
+   es la que tiene que quedarse clara. */
 .hero::after{
   content:"";position:absolute;inset:0;z-index:1;
-  background:
-    linear-gradient(180deg,rgba(239,218,223,.22) 0%,transparent 26%,rgba(239,218,223,.30) 100%),
-    var(--kv);
-  mix-blend-mode:multiply;
+  background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.5));
 }
 /* En vertical el vídeo se recorta al centro y el claim cae encima de la
    modelo, que a veces va de negro. Ahí el claro de la izquierda no basta:
@@ -198,8 +190,8 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 @media(max-width:860px){
   .hero::before{
     background:
-      radial-gradient(130% 62% at 28% 26%, rgba(239,218,223,.90) 0%, rgba(239,218,223,.62) 52%, rgba(239,218,223,.24) 84%),
-      linear-gradient(180deg,rgba(239,218,223,.34) 0%,rgba(239,218,223,.20) 100%);
+      radial-gradient(130% 62% at 28% 26%, rgba(232,232,234,.90) 0%, rgba(232,232,234,.62) 52%, rgba(232,232,234,.24) 84%),
+      linear-gradient(180deg,rgba(232,232,234,.34) 0%,rgba(232,232,234,.20) 100%);
   }
 }
 /* Una pantalla exacta, descontando la cabecera pegajosa (--top-h lo mide
@@ -292,7 +284,11 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
      derecha, y con un filete al 18 % la línea se leía en la mitad oscura y
      desaparecía en la clara: parecía torcida sin estarlo. Se sube el
      contraste y la viñeta baja del hero asienta el fondo bajo ella. */
-  border-top:1px solid rgba(18,18,18,.26);
+  /* La firma vive en el pie del hero, que es justo donde el degradado
+     llega al 50 % de negro. Ahí la tinta ya no agarra: filete, texto y
+     logos pasan a blanco. Arriba, donde el degradado es transparente,
+     todo lo demás sigue en negro. */
+  border-top:1px solid rgba(255,255,255,.38);
   /* Los logos arrancan a la altura en que arranca el claim, no centrados
      contra él: con tres líneas en móvil el centrado los dejaba flotando a
      media firma. */
@@ -303,12 +299,12 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   margin:0;font-size:clamp(13px,1.25vw,17px);font-weight:700;
   /* al crecer el cuerpo, el mismo espaciado de antes lo estiraba demasiado */
   letter-spacing:.1em;line-height:1.5;
-  text-transform:uppercase;color:var(--ink);
+  text-transform:uppercase;color:#fff;
   /* medida para dos líneas, repartidas parejas */
   max-width:60ch;text-wrap:balance;
 }
 .credit-logos{display:flex;align-items:center;gap:clamp(14px,2vw,22px)}
-.credit-x{font-size:15px;color:rgba(18,18,18,.42)}
+.credit-x{font-size:15px;color:rgba(255,255,255,.5)}
 .foot-lock{display:grid;gap:18px;justify-items:start}
 .credit-claim--pie{color:var(--blue)}
 .lock-x{font-size:15px;color:var(--rule)}
@@ -982,13 +978,15 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 
 /* ---------- 09 · cierre ---------- */
 .close{position:relative;background:var(--kv);color:var(--ink);overflow:hidden;text-align:center}
-/* Como el hero: la capa aclara en vez de oscurecer, y aquí abre el claro
-   en el centro, que es donde cae el logotipo. La rosa de la foto ya es
-   rosa, así que aquí no hace falta teñir: basta con levantarla. */
+/* La misma capa que el hero: la de imfine.com, transparente arriba y
+   negro al 50 % abajo. El claro central va ENCIMA, no debajo: el degradado
+   oscurece el pie y aquí el texto está justo ahí, centrado, así que el
+   claro tiene que volver a abrirlo después de oscurecerlo. Al revés la
+   frase se perdía sobre la rosa. */
 .close::before{content:"";position:absolute;inset:0;z-index:1;
   background:
-    radial-gradient(62% 72% at 50% 46%, rgba(239,218,223,.88) 0%, rgba(239,218,223,.58) 55%, rgba(239,218,223,.20) 82%),
-    linear-gradient(180deg,rgba(255,250,251,.30) 0%,rgba(239,218,223,.26) 45%,rgba(239,218,223,.52) 100%)}
+    radial-gradient(56% 62% at 50% 44%, rgba(232,232,234,.86) 0%, rgba(232,232,234,.50) 54%, transparent 82%),
+    linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.5))}
 .close-in{position:relative;z-index:2;padding-block:var(--sec);display:grid;justify-items:center;gap:26px}
 .close-claim{
   margin:0;color:var(--ink);
@@ -1013,7 +1011,9 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   .js .close-claim .imf-fine{clip-path:none}
   .js .close-claim .imf-not{opacity:1;filter:none}
 }
-.close p{margin:0;font-size:clamp(17px,1.7vw,22px);line-height:1.45;color:var(--ink-soft);max-width:none;text-wrap:balance}
+/* En tinta, como la frase del hero: es su hermana, y sobre la rosa el
+   gris se quedaba a medio camino entre el fondo y el logotipo. */
+.close p{margin:0;font-size:clamp(17px,1.7vw,22px);line-height:1.45;color:var(--ink);max-width:none;text-wrap:balance}
 
 /* ---------- footer ---------- */
 footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-top:1px solid var(--rule)}
@@ -1272,9 +1272,9 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
       <div class="credit">
         <p class="credit-claim">Juntos en la prevención de los problemas de salud mental de las mujeres</p>
         <div class="credit-logos">
-          <a class="brand lan-logo" href="https://www.imfine.com/ES-ES" target="_blank" rel="noopener" style="--h:19px"><img src="img/logo-lancome.png" alt="Lancôme"></a>
+          <a class="brand lan-logo neg" href="https://www.imfine.com/ES-ES" target="_blank" rel="noopener" style="--h:19px"><img src="img/logo-lancome.png" alt="Lancôme"></a>
           <span class="credit-x">+</span>
-          <a class="brand fm-logo" href="https://www.fundacionmanantial.org/" style="--h:42px">
+          <a class="brand fm-logo neg" href="https://www.fundacionmanantial.org/" style="--h:42px">
             <img src="img/logo-fundacion-manantial.png" alt="Fundación Manantial">
           </a>
         </div>
