@@ -167,15 +167,19 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
    blanco, así que no hay que taparlo, solo bajarle el contraste para que
    el negro agarre encima. La primera abre un claro a la izquierda, que es
    donde cae el claim; la segunda calma los bordes. */
+/* El velo se concentra donde hace falta y suelta el resto. Antes cubría
+   toda la sección y dejaba la imagen lavada; ahora el claro es un foco
+   sobre la columna del texto —que es lo único que necesita contraste— y a
+   partir de la mitad se va, así que el vídeo y la rosa se ven de verdad. */
 .hero::before{
   content:"";position:absolute;inset:0;z-index:1;
   background:
-    radial-gradient(78% 86% at 22% 34%, rgba(232,232,234,.86) 0%, rgba(232,232,234,.52) 46%, rgba(232,232,234,.12) 76%),
-    linear-gradient(165deg,rgba(255,255,255,.30) 0%,rgba(232,232,234,.42) 100%);
+    radial-gradient(66% 80% at 16% 36%, rgba(232,232,234,.90) 0%, rgba(232,232,234,.46) 42%, transparent 70%),
+    linear-gradient(165deg,rgba(255,255,255,.12) 0%,rgba(232,232,234,.16) 100%);
 }
 .hero::after{
   content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg,rgba(232,232,234,.46) 0%,transparent 32%,rgba(232,232,234,.58) 100%);
+  background:linear-gradient(180deg,rgba(232,232,234,.26) 0%,transparent 26%,rgba(232,232,234,.34) 100%);
 }
 /* En vertical el vídeo se recorta al centro y el claim cae encima de la
    modelo, que a veces va de negro. Ahí el claro de la izquierda no basta:
@@ -183,8 +187,8 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 @media(max-width:860px){
   .hero::before{
     background:
-      radial-gradient(120% 70% at 30% 28%, rgba(232,232,234,.92) 0%, rgba(232,232,234,.72) 50%, rgba(232,232,234,.46) 80%),
-      linear-gradient(180deg,rgba(232,232,234,.55) 0%,rgba(232,232,234,.40) 100%);
+      radial-gradient(130% 62% at 28% 26%, rgba(232,232,234,.90) 0%, rgba(232,232,234,.62) 52%, rgba(232,232,234,.24) 84%),
+      linear-gradient(180deg,rgba(232,232,234,.34) 0%,rgba(232,232,234,.20) 100%);
   }
 }
 /* Una pantalla exacta, descontando la cabecera pegajosa (--top-h lo mide
