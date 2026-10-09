@@ -52,3 +52,10 @@ logo-imfine-h-negativo.png   lockup horizontal, para fondo oscuro
                              usa ninguna página. Se quedan porque el
                              horizontal es el que sirve para tiras muy
                              bajas, firmas de correo y cosas así
+
+rosa-campana.webp            la rosa seca de los carteles, recortada del
+                             original en alta sin su texto. Fondo del hero
+                             y del cierre, nítida: es la imagen de la
+                             campaña, no una textura
+kv-imfine.webp               el cartel 1080x1080 entero, en la sección de
+                             recursos. Lleva la fuente del dato al pie
