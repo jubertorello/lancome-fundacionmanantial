@@ -57,5 +57,9 @@ rosa-campana.webp            la rosa seca de los carteles, recortada del
                              original en alta sin su texto. Fondo del hero
                              y del cierre, nítida: es la imagen de la
                              campaña, no una textura
-kv-imfine.webp               el cartel 1080x1080 entero, en la sección de
-                             recursos. Lleva la fuente del dato al pie
+kv-imfine.webp               el cartel 1080x1080 en su versión con la
+                             firma conjunta Lancôme + Fundación Manantial,
+                             en la sección de recursos. Esta versión no
+                             lleva el dato ni su fuente: la fuente va
+                             escrita aparte, bajo la cifra de la sección
+                             «1 de cada 3 mujeres»
