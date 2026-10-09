@@ -52,15 +52,40 @@ una sola línea.
 
 ## Tipografía
 
-- **Mulish** — la tipografía de Fundación Manantial. Es la de toda la
-  página: titulares, cuerpo, botones, navegación y la cita.
-- **Archivo** (ancho condensado, peso 800) — exclusivamente para el lockup
-  del claim, que funciona como logo. Desaparece en cuanto llegue el logo de
-  campaña en SVG, y entonces la landing se queda con una sola familia.
+**Mulish**, y solo Mulish. Es la tipografía de Fundación Manantial, y la
+landing vive en su dominio, así que la voz de la página es la suya:
+titulares, cuerpo, botones, navegación y rótulos.
 
-Había una tercera, Bodoni Moda, para el wordmark LANCÔME y la cita. El
-wordmark pasó a ser el PNG oficial y la cita a Mulish, así que ya no la
-usaba nadie y se ha retirado también de la descarga.
+Hubo dos más y las dos se han ido. **Bodoni Moda** sostenía el wordmark
+LANCÔME hasta que llegó el PNG oficial. **Archivo** condensada sostenía el
+claim hasta que llegó el logotipo de campaña: era lo más parecido que se
+podía componer sin el original. Ahora el claim es el logotipo de verdad en
+SVG, así que Archivo sobra y se ha retirado también de la descarga.
+
+## El logotipo de campaña
+
+`img/logo-imfine.svg` — 3 KB, trazado desde el original de Illustrator.
+
+Las tres palabras son **grupos independientes** (`.imf-im`, `.imf-not`,
+`.imf-fine`), por eso se pueden animar por separado. «NOT» va primero en el
+marcado porque en el original queda **detrás**: «I'M» y «FINE» lo pisan, y
+ese solape es el gesto entero de la campaña. El negro va en `currentColor`,
+así que hereda el blanco sobre el hero y la tinta sobre el papel.
+
+Está incrustado en el HTML, no enlazado, en el hero y en el cierre: así la
+hoja de estilos puede animar sus grupos. En el hero entra con la carga
+—«I'M» y «FINE» barren de izquierda a derecha y «NOT» se enfoca después,
+saliendo de detrás— y en el cierre lo dispara el observador al llegar.
+
+**No lleva paréntesis.** Durante meses escribimos «I'M (NOT) FINE» porque
+el claim se componía con tipografía y los paréntesis separaban las tres
+palabras. En la marca no existen: lo que separa a «NOT» es que está en otro
+color y en otro plano. Se han quitado del título, de la descripción y de
+los textos alternativos.
+
+Para la marquesina, que es una tira de 53 px, el stacked no cabe: ahí va el
+lockup horizontal, `img/logo-imfine-h.png` sobre fondo claro y
+`img/logo-imfine-h-negativo.png` sobre oscuro.
 
 ## Color: cada uno tiene un trabajo
 
@@ -69,7 +94,7 @@ pone azul o arena, es que habla Fundación Manantial**.
 
 | Color | Hex | Papel |
 |---|---|---|
-| Rosa | `#EE4B98` | **Solo** el claim «or maybe not», los asteriscos, el cursor del claim y las frases de «lo que no decimos» |
+| Rosa | `#B14860` | El rosa de marca, medido en los PNG oficiales del logotipo. Es la voz de la duda: el «NOT» del lockup, los rótulos de sección, las frases de «lo que no decimos», los desplegables de ansiedad y depresión |
 | Granate | `#5C0B1B` / `#8E1230` | El mundo Lancôme: hero, cuestionario, cierre |
 | Azul | `#004591` | La voz de Fundación Manantial |
 | Arena | `#EAE6E0` | La superficie de los bloques de la fundación |

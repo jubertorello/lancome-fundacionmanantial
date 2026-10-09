@@ -42,3 +42,9 @@ rosa-macro.jpg se conserva ademas en JPG porque es la imagen de og:image.
 PENDIENTE DE VERIFICAR
   Licencia del banco de imagenes de Lancome para alojarlas en el dominio de
   Fundacion Manantial, no solo en lancome.com.
+
+logo-imfine.svg              logotipo de campaña, apilado. Va incrustado en
+                             el HTML (hero y cierre); este fichero es la
+                             copia de referencia
+logo-imfine-h.png            lockup horizontal, para fondo claro
+logo-imfine-h-negativo.png   lockup horizontal, para fondo oscuro

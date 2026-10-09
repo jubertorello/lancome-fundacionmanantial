@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Marquesina · I'M (NOT) FINE</title>
+<title>Marquesina · I'M NOT FINE</title>
 <meta name="robots" content="noindex, nofollow">
 
 <!-- ==========================================================================
@@ -36,12 +36,12 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,800&family=Mulish:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap" rel="stylesheet">
 
 <style id="imf-css">
 /* ===== MARQUESINA · todo va prefijado con .imf ===== */
 .imf{
-  --imf-pink:#EE4B98;
+  --imf-pink:#B14860;
   --imf-ink:#121212;
   --imf-h:52px;
 
@@ -61,14 +61,13 @@
 
 .imf-sep{width:1px;height:20px;background:#D9D7D3;flex:none}
 
-/* el claim, con la tipografía del lockup */
-.imf-claim{
-  font-family:"Archivo","Mulish",system-ui,sans-serif;
-  font-weight:800;font-variation-settings:"wdth" 76;
-  text-transform:uppercase;letter-spacing:-.01em;
-  font-size:clamp(15px,1.5vw,19px);white-space:nowrap;flex:none;
-}
-.imf-claim i{font-style:normal;color:var(--imf-pink)}
+/* El lockup de campaña, en su versión horizontal. Antes se componía con
+   tipografía porque no teníamos el original; ahora es el logotipo de
+   verdad, así que no hay nada que imitar. Dos ficheros, uno por fondo. */
+.imf-claim{display:block;width:auto;height:15px;flex:none}
+.imf-claim--neg{display:none}
+.imf--dark .imf-claim{display:none}
+.imf--dark .imf-claim--neg{display:block}
 
 .imf-txt{
   font-size:14px;color:#5A5A60;margin:0;
@@ -115,7 +114,7 @@
     gap:8px 12px;padding:10px 14px 12px;
   }
   .imf-logo{height:16px}
-  .imf-claim{font-size:16px}
+  .imf-claim{height:17px}
   .imf-btn{width:100%;justify-content:center;padding:11px 14px;min-height:42px}
 }
 </style>
@@ -125,10 +124,11 @@
 
 <p style="margin:0;padding:34px 20px 12px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#9A9892">Opción A · fondo blanco</p>
 <!-- ============ MARQUESINA · versión clara ============ -->
-<aside class="imf" aria-label="Campaña I'm (not) fine de Lancôme y Fundación Manantial">
+<aside class="imf" aria-label="Campaña I'm not fine de Lancôme y Fundación Manantial">
   <img class="imf-logo" src="img/logo-lancome.png" alt="Lancôme">
   <span class="imf-sep" aria-hidden="true"></span>
-  <span class="imf-claim">I'm <i>(not)</i> fine</span>
+  <img class="imf-claim" src="img/logo-imfine-h.png" alt="I'm not fine">
+  <img class="imf-claim imf-claim--neg" src="img/logo-imfine-h-negativo.png" alt="I'm not fine">
   <p class="imf-txt">Decir «no estoy bien» es el inicio de una conversación.</p>
 
   <!-- DESTINO: cambiar por https://www.fundacionmanantial.org/lancome -->
@@ -142,10 +142,11 @@
 </header>
 <p style="margin:0;padding:34px 20px 12px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#9A9892">Opción B · fondo negro</p>
 <!-- ====== MARQUESINA · versión oscura: misma barra + .imf--dark ====== -->
-<aside class="imf imf--dark" aria-label="Campaña I'm (not) fine de Lancôme y Fundación Manantial">
+<aside class="imf imf--dark" aria-label="Campaña I'm not fine de Lancôme y Fundación Manantial">
   <img class="imf-logo" src="img/logo-lancome.png" alt="Lancôme">
   <span class="imf-sep" aria-hidden="true"></span>
-  <span class="imf-claim">I'm <i>(not)</i> fine</span>
+  <img class="imf-claim" src="img/logo-imfine-h.png" alt="I'm not fine">
+  <img class="imf-claim imf-claim--neg" src="img/logo-imfine-h-negativo.png" alt="I'm not fine">
   <p class="imf-txt">Decir «no estoy bien» es el inicio de una conversación.</p>
 
   <!-- DESTINO: cambiar por https://www.fundacionmanantial.org/lancome -->
