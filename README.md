@@ -119,18 +119,20 @@ el texto y el logotipo en tinta. Eso es lo que permite que el logotipo vaya
 en negro, que es como existe la marca.
 
 Encima de la imagen llevan **la misma capa que usa imfine.com** sobre su
-vídeo: `linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.32))`, transparente
-arriba y oscura abajo.
+vídeo, con su valor: `linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.5))`. Y
+**nada más**. Hubo antes capas claras —un foco sobre la columna del texto y
+un lavado plano sobre toda la sección— que servían para que el texto negro
+agarrase, pero blanqueaban las caras de las modelos, y en un vídeo de
+retratos eso no se puede permitir. Están fuera.
 
-Ellos la llevan al **0.5**, que es lo que pide un pie con texto **blanco**.
-Aquí el texto va en `#222` en toda la sección, así que el techo lo marca el
-contraste, no el gusto: a 0.5 la firma del hero se queda en **3,4:1**, por
-debajo del mínimo para texto pequeño; a **0.32** da **5,9:1**. Si algún día
-ese texto pasara a blanco, se puede subir al 0.5 original.
+El precio de quitarlas, por si alguien se lo encuentra y no sabe de dónde
+sale, son tres puntos de legibilidad. Los tres se arreglan con una línea:
 
-En el **cierre** hay un detalle de orden: el texto está centrado, justo
-donde el degradado oscurece, así que el claro central se pinta **encima**
-del degradado y no debajo. Al revés la frase se perdía sobre la rosa.
+| Dónde | Qué pasa | Salidas |
+|---|---|---|
+| Firma del hero | El pie está al 50 % de negro y la firma va en `#222`: 3,4:1, por debajo del mínimo para texto pequeño | bajar el degradado a `.32` (da 5,9:1) o pasar la firma a blanco |
+| Frase del cierre | Está al 76 % de la altura, con un 38 % de negro encima y la rosa debajo | lo mismo, o devolverle el claro central |
+| Logotipo en móvil | El vídeo se recorta al centro y el claim cae sobre la modelo: cuando lleva el pelo oscuro, «I'M» se pierde | un foco solo para móvil, o bajar el recorte del vídeo |
 
 Queda **una sola sección oscura, el cuestionario**, y ahora que es la única
 funciona a su favor: es el punto de conversión y se separa de todo lo demás.

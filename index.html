@@ -171,32 +171,27 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
    toda la sección y dejaba la imagen lavada; ahora el claro es un foco
    sobre la columna del texto —que es lo único que necesita contraste— y a
    partir de la mitad se va, así que el vídeo y la rosa se ven de verdad. */
-.hero::before{
-  content:"";position:absolute;inset:0;z-index:1;
-  background:
-    radial-gradient(66% 80% at 16% 36%, rgba(232,232,234,.90) 0%, rgba(232,232,234,.46) 42%, transparent 70%),
-    linear-gradient(165deg,rgba(255,255,255,.12) 0%,rgba(232,232,234,.16) 100%);
-}
-/* La capa que usa imfine.com sobre su vídeo: transparente arriba y negro
-   abajo. Ellos la llevan al 50 %, que es lo que pide un pie con texto
-   BLANCO. Aquí el texto es #222 en toda la sección, así que el techo lo
-   marca el contraste: a 0.5 la firma se quedaba en 3,4:1 y a 0.32 da
-   5,9:1. Si algún día ese texto pasara a blanco, se puede subir al 0.5
-   original. */
+/* Sin capa clara de ninguna clase. Hubo un foco sobre la columna del
+   texto y, antes, un lavado plano sobre toda la sección; los dos
+   blanqueaban a las modelos, y en un vídeo de retratos eso es lo último
+   que se quiere. Lo único que va encima del vídeo es el degradado de
+   abajo. */
+
+/* La capa de imfine.com, con su valor: transparente arriba y negro al
+   50 % abajo. Es lo único que se interpone entre el vídeo y la vista.
+
+   OJO con el pie: ahí el degradado está al máximo y la firma va en #222,
+   que sobre ese fondo da 3,4:1 —por debajo del mínimo para texto
+   pequeño—. Se arregla de dos maneras, las dos de una línea: bajar el
+   degradado a 0.32 (da 5,9:1) o pasar la firma a blanco. */
 .hero::after{
   content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.32));
+  background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.5));
 }
 /* En vertical el vídeo se recorta al centro y el claim cae encima de la
    modelo, que a veces va de negro. Ahí el claro de la izquierda no basta:
    hace falta un velo plano que garantice el contraste. */
-@media(max-width:860px){
-  .hero::before{
-    background:
-      radial-gradient(130% 62% at 28% 26%, rgba(232,232,234,.90) 0%, rgba(232,232,234,.62) 52%, rgba(232,232,234,.24) 84%),
-      linear-gradient(180deg,rgba(232,232,234,.34) 0%,rgba(232,232,234,.20) 100%);
-  }
-}
+
 /* Una pantalla exacta, descontando la cabecera pegajosa (--top-h lo mide
    el JS). svh en vez de vh para que las barras del móvil no den saltos.
    Con space-between el contenido se queda arriba y la firma se apoya
@@ -987,9 +982,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
    claro tiene que volver a abrirlo después de oscurecerlo. Al revés la
    frase se perdía sobre la rosa. */
 .close::before{content:"";position:absolute;inset:0;z-index:1;
-  background:
-    radial-gradient(56% 62% at 50% 44%, rgba(232,232,234,.86) 0%, rgba(232,232,234,.50) 54%, transparent 82%),
-    linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.32))}
+  background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.5))}
 .close-in{position:relative;z-index:2;padding-block:var(--sec);display:grid;justify-items:center;gap:26px}
 .close-claim{
   margin:0;color:var(--ink);
