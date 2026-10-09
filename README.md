@@ -88,8 +88,16 @@ palabras. En la marca no existen: lo que separa a «NOT» es que está en otro
 color y en otro plano. Se han quitado del título, de la descripción y de
 los textos alternativos.
 
-La marquesina lleva el mismo apilado, también incrustado, junto al
-wordmark de Lancôme y separados por un filete: es el lockup de la campaña
+La marquesina lleva el mismo apilado, también incrustado, pero en su
+**variante centrada** —la del `.ai`, no la de la izquierda—: en una tira
+el logotipo funciona como sello, al lado del wordmark, y centrado se lee
+como una pieza compacta. En la landing va la alineada a la izquierda
+porque allí es un titular que arranca en la misma vertical que el texto y
+los botones. Son la misma pieza movida, y el fichero de referencia
+`img/logo-imfine.svg` guarda la centrada, con los dos `translate()` de la
+otra anotados en un comentario.
+
+Va junto al wordmark de Lancôme y separados por un filete: es el lockup de la campaña
 tal cual, no dos logos sueltos. La tira sube a 64 px porque en 52 el
 apilado no cabía sin pegarse a los bordes —son tres líneas de texto, no
 una—. Incrustado y no enlazado para que su negro sea `currentColor` y

@@ -3,19 +3,21 @@
      detrás: «I'M» y «FINE» lo pisan. Las tres palabras son grupos
      independientes para poder animarlas por separado.
      El negro usa currentColor: en el hero hereda el blanco. -->
-  <!-- Variante alineada a la izquierda del kit (logo3). Las tres
-     variantes que manda la agencia son la misma pieza movida: I'M, NOT y
-     FINE miden exactamente lo mismo en las tres y solo cambia su margen
-     izquierdo. Por eso esto es una traslación exacta, no un apaño: el
-     original que venía en el .ai es la variante con I'M sangrado, y estos
-     dos translate() la llevan a la que va a ras.
-     Para volver a aquella: quitar los dos transform. -->
-<g class="imf-not" fill="#B14860" transform="translate(-26.84 0)">
+  <!-- El original del .ai: la variante CENTRADA, que es la que usa la
+     marquesina. La landing usa la alineada a la izquierda, y la consigue
+     añadiendo transform="translate(-93.76 0)" al grupo imf-im y
+     transform="translate(-26.84 0)" al grupo imf-not.
+
+     Las tres variantes que manda la agencia son la misma pieza movida:
+     I'M, NOT y FINE miden exactamente lo mismo en todas y solo cambia su
+     margen izquierdo. Por eso pasar de una a otra son dos traslaciones
+     exactas, no un apaño. -->
+<g class="imf-not" fill="#B14860">
     <path d="M 159.488281 228.601562 L 126.570312 228.601562 L 63.679688 159.679688 L 63.679688 228.601562 L 27.320312 228.601562 L 27.320312 112.167969 L 64.171875 112.167969 L 123.128906 177.03125 L 123.128906 112.167969 L 159.488281 112.167969 Z M 159.488281 228.601562 "/>
     <path d="M 206.328125 170.378906 C 206.328125 188.21875 221.230469 198.921875 239.738281 198.921875 C 258.25 198.921875 273.148438 188.21875 273.148438 170.378906 C 273.148438 152.539062 258.25 141.839844 239.738281 141.839844 C 221.230469 141.839844 206.328125 152.539062 206.328125 170.378906 M 311.140625 170.378906 C 311.140625 205.238281 281.5 230.539062 239.730469 230.539062 C 197.960938 230.539062 168.320312 205.238281 168.320312 170.378906 C 168.320312 135.519531 197.960938 110.21875 239.730469 110.21875 C 281.5 110.21875 311.140625 135.519531 311.140625 170.378906 "/>
     <path d="M 394.511719 142.980469 L 394.511719 228.601562 L 357.328125 228.601562 L 357.328125 142.980469 L 309.511719 142.980469 L 309.511719 112.167969 L 442.328125 112.167969 L 442.328125 142.980469 Z M 394.511719 142.980469 "/>
   </g>
-  <g class="imf-im" fill="currentColor" transform="translate(-93.76 0)">
+  <g class="imf-im" fill="currentColor">
     <path d="M 135.550781 131.789062 L 93.878906 131.789062 L 93.878906 0 L 135.550781 0 Z M 135.550781 131.789062 "/>
     <path d="M 266.96875 131.789062 L 231.730469 44.238281 L 231.730469 131.789062 L 191.160156 131.789062 L 191.160156 0 L 252.648438 0 L 284.039062 80.578125 L 315.429688 0 L 376.191406 0 L 376.191406 131.789062 L 335.628906 131.789062 L 335.628906 44.238281 L 300.390625 131.789062 Z M 266.96875 131.789062 "/>
     <path d="M 143.730469 63.859375 L 143.730469 46.738281 C 148.820312 46.738281 157.621094 44.75 157.621094 35.011719 L 143.71875 35.011719 L 143.71875 0.0117188 L 183.398438 0.0117188 L 183.320312 33.78125 C 183.101562 45.191406 177.070312 54.550781 166.699219 59.378906 C 159.589844 62.699219 151.851562 63.871094 143.71875 63.871094 Z M 143.730469 63.859375 "/>
