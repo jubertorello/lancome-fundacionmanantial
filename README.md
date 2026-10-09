@@ -225,10 +225,21 @@ python3 -m http.server 8000
 | Fotografía | carpeta `img/` — ver nombres abajo |
 | Voces, oculta de momento | La sección está comentada en `index.html`, con su carrusel y sus estilos intactos. Para devolverla hay que quitar el comentario **y** sustituir el array `VOCES` del script: las frases que hay son de campaña, no testimonios |
 | Artículos, ocultos de momento | También comentados, a petición del cliente: los artículos se leen en la web de Lancôme. Para devolverlos, quitar el comentario y poner títulos y URLs reales |
-| **«1 de cada 3 mujeres»** | Sección `.dato`, entre la colaboración y el cuestionario. Ya no es una línea dentro de un desplegable: es **la afirmación más grande de la página**, a todo el ancho y en cuerpo de 78 px. **Necesita fuente citable antes de publicar.** Si no se puede sostener, la banda se quita entera. |
 | Export vertical del manifiesto | El spot del modal ya viene en 9:16 y llena el teléfono. El manifiesto del fondo del hero no: es 16:9 contra una pantalla vertical, así que se recorta por los lados. Si el cliente tiene una versión 9:16 de los 57 s, mejor esa |
 | Foto `manos.webp` sin usar | Salió de la sección de la colaboración; sigue en `img/` por si se reutiliza |
 | Resto de datos de prevalencia | `#colaboracion` y las cifras de `#fundacion` — verificar fuentes antes de publicar |
+
+## «1 de cada 3 mujeres»: de dónde sale
+
+Es la afirmación más grande de la página, y durante meses estuvo sin
+fuente: era el primer bloqueo del README. La fuente venía en los carteles
+de campaña que mandó Lancôme, al pie:
+
+> *The Reality of Women's Mental Health*, ADAA, 2026.
+
+ADAA es la Asociación Americana de Ansiedad y Depresión, la misma con la
+que Lancôme desarrolla la iniciativa global. Va citada debajo del dato, en
+12 px y gris: no compite con la cifra, pero está.
 
 ## Enlaces de salida
 
