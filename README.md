@@ -114,12 +114,19 @@ No hay cuotas de color, hay papeles. La regla es que **cuando la página se
 pone azul o arena, es que habla Fundación Manantial**.
 
 Desde que llegaron los carteles de campaña, el hero y el cierre **ya no son
-oscuros**: van en `--kv: #E8E8EA`, el gris claro medido en el propio KV, con
-el texto y el logotipo en tinta. Eso es lo que permite que el logotipo vaya
+oscuros**: van en `--kv: #EFDADF`, un rosa pálido que no se inventa —es el propio
+`--pink` al 20 % sobre blanco—, con el texto y el logotipo en tinta. Así el
+fondo, el «NOT» del logotipo y la rosa de la foto son el mismo color en
+tres intensidades, en vez de tres decisiones sueltas. Eso es lo que permite que el logotipo vaya
 en negro en toda la página, que es como existe la marca. Las capas que antes
 oscurecían el vídeo ahora lo aclaran: el spot es de plató casi blanco, así
 que no hay que taparlo, solo bajarle el contraste para que el negro agarre
 encima.
+
+El vídeo del hero está rodado en plató casi blanco, así que el rosa solo se
+veía por los bordes. Lo tiñe una capa en **multiply**, no en opacidad:
+multiplicar colorea conservando el detalle, mientras que superponer un rosa
+translúcido lo lavaría —que es justo lo que había antes y se quitó.
 
 Queda **una sola sección oscura, el cuestionario**, y ahora que es la única
 funciona a su favor: es el punto de conversión y se separa de todo lo demás.
@@ -127,7 +134,7 @@ funciona a su favor: es el punto de conversión y se separa de todo lo demás.
 | Color | Hex | Papel |
 |---|---|---|
 | Rosa | `#B14860` | El rosa de marca, medido en los PNG oficiales del logotipo. Es la voz de la duda: el «NOT» del lockup, los rótulos de sección, las frases de «lo que no decimos», los desplegables de ansiedad y depresión |
-| Gris de campaña | `#E8E8EA` | El fondo de los carteles. Hero y cierre |
+| Rosa pálido | `#EFDADF` | El fondo del hero y del cierre: `--pink` al 20 % sobre blanco |
 | Granate | `#5C0B1B` / `#8E1230` | Ya solo el cuestionario, que es la única sección oscura que queda |
 | Azul | `#004591` | La voz de Fundación Manantial |
 | Arena | `#EAE6E0` | La superficie de los bloques de la fundación |

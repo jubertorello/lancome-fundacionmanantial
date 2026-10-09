@@ -46,10 +46,12 @@
   --paper:#FFFFFF;
   --paper-2:#F5F4F2;
   --paper-3:#FBFBFB;
-  /* el fondo de los carteles de campaña, medido en el KV: un gris muy
-     claro y frío. Es el mundo de la marca, y es donde el logotipo va en
-     negro. Lo usan el hero y el cierre. */
-  --kv:#E8E8EA;  /* casi blanco: tarjetas de las frases y banda de la cifra */
+  /* El fondo del hero y del cierre. Arrancó siendo el gris del KV
+     (#E8E8EA), que es frío y se leía como blanco sucio. Ahora es un rosa
+     pálido, y no inventado: es el propio --pink al 20 % sobre blanco. Así
+     el fondo, el «NOT» del logotipo y la rosa de la foto son el mismo
+     color en tres intensidades, en vez de tres decisiones sueltas. */
+  --kv:#EFDADF;  /* casi blanco: tarjetas de las frases y banda de la cifra */
   --ink:#121212;
   --ink-soft:#5A5A60;
   --mute:#8E8E94;
@@ -174,12 +176,21 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 .hero::before{
   content:"";position:absolute;inset:0;z-index:1;
   background:
-    radial-gradient(66% 80% at 16% 36%, rgba(232,232,234,.90) 0%, rgba(232,232,234,.46) 42%, transparent 70%),
-    linear-gradient(165deg,rgba(255,255,255,.12) 0%,rgba(232,232,234,.16) 100%);
+    radial-gradient(66% 80% at 16% 36%, rgba(239,218,223,.90) 0%, rgba(239,218,223,.46) 42%, transparent 70%),
+    linear-gradient(165deg,rgba(255,255,255,.12) 0%,rgba(239,218,223,.16) 100%);
 }
+/* El rosa del fondo solo asomaba por los bordes, porque el vídeo —plató
+   casi blanco— tapa el resto. Esta capa lo tiñe entero, y en multiply y no
+   en opacidad: multiplicar colorea conservando el detalle, mientras que
+   superponer un rosa translúcido lo lavaría otra vez, que es justo lo que
+   acabábamos de quitar. Sobre el blanco del plató da el rosa; sobre la
+   piel y el pelo solo los asienta. */
 .hero::after{
   content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg,rgba(232,232,234,.26) 0%,transparent 26%,rgba(232,232,234,.34) 100%);
+  background:
+    linear-gradient(180deg,rgba(239,218,223,.22) 0%,transparent 26%,rgba(239,218,223,.30) 100%),
+    var(--kv);
+  mix-blend-mode:multiply;
 }
 /* En vertical el vídeo se recorta al centro y el claim cae encima de la
    modelo, que a veces va de negro. Ahí el claro de la izquierda no basta:
@@ -187,8 +198,8 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 @media(max-width:860px){
   .hero::before{
     background:
-      radial-gradient(130% 62% at 28% 26%, rgba(232,232,234,.90) 0%, rgba(232,232,234,.62) 52%, rgba(232,232,234,.24) 84%),
-      linear-gradient(180deg,rgba(232,232,234,.34) 0%,rgba(232,232,234,.20) 100%);
+      radial-gradient(130% 62% at 28% 26%, rgba(239,218,223,.90) 0%, rgba(239,218,223,.62) 52%, rgba(239,218,223,.24) 84%),
+      linear-gradient(180deg,rgba(239,218,223,.34) 0%,rgba(239,218,223,.20) 100%);
   }
 }
 /* Una pantalla exacta, descontando la cabecera pegajosa (--top-h lo mide
@@ -969,11 +980,12 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 /* ---------- 09 · cierre ---------- */
 .close{position:relative;background:var(--kv);color:var(--ink);overflow:hidden;text-align:center}
 /* Como el hero: la capa aclara en vez de oscurecer, y aquí abre el claro
-   en el centro, que es donde cae el logotipo. */
+   en el centro, que es donde cae el logotipo. La rosa de la foto ya es
+   rosa, así que aquí no hace falta teñir: basta con levantarla. */
 .close::before{content:"";position:absolute;inset:0;z-index:1;
   background:
-    radial-gradient(62% 72% at 50% 46%, rgba(232,232,234,.90) 0%, rgba(232,232,234,.62) 55%, rgba(232,232,234,.22) 82%),
-    linear-gradient(180deg,rgba(255,255,255,.34) 0%,rgba(232,232,234,.30) 45%,rgba(232,232,234,.56) 100%)}
+    radial-gradient(62% 72% at 50% 46%, rgba(239,218,223,.88) 0%, rgba(239,218,223,.58) 55%, rgba(239,218,223,.20) 82%),
+    linear-gradient(180deg,rgba(255,250,251,.30) 0%,rgba(239,218,223,.26) 45%,rgba(239,218,223,.52) 100%)}
 .close-in{position:relative;z-index:2;padding-block:var(--sec);display:grid;justify-items:center;gap:26px}
 .close-claim{
   margin:0;color:var(--ink);
