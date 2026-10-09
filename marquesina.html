@@ -46,8 +46,9 @@
   --imf-h:52px;
 
   position:relative;z-index:1000;
-  display:flex;align-items:center;justify-content:center;
-  gap:clamp(10px,2vw,22px);
+  display:flex;align-items:center;justify-content:flex-start;
+  gap:clamp(10px,2vw,20px);
+  max-width:1380px;margin-inline:auto;
   min-height:var(--imf-h);
   padding:8px clamp(12px,3vw,28px);
   background:#fff;border-bottom:1px solid #E3E2DF;
@@ -57,17 +58,31 @@
 }
 .imf *{box-sizing:border-box}
 
-.imf-logo{display:block;width:auto;height:17px;flex:none}
+/* EL ORDEN DE LA BARRA
+   Esto se cuelga de fundacionmanantial.org, donde quien llega ya conoce a
+   la fundación. Lo nuevo para esa persona es la campaña, así que manda el
+   logotipo: va primero y es lo más grande de la tira. Lancôme queda como
+   lo que es aquí, una firma —«con»—, pequeña y al final, antes del botón.
+   Antes los dos logos iban del mismo tamaño separados por un filete, como
+   un cobranding de igual a igual; eso tenía sentido cuando el claim era
+   texto y no había logotipo que mandara. */
 
-.imf-sep{width:1px;height:20px;background:#D9D7D3;flex:none}
-
-/* El lockup de campaña, en su versión horizontal. Antes se componía con
-   tipografía porque no teníamos el original; ahora es el logotipo de
-   verdad, así que no hay nada que imitar. Dos ficheros, uno por fondo. */
-.imf-claim{display:block;width:auto;height:15px;flex:none}
+/* El lockup de campaña, horizontal: el apilado no cabe en una tira de
+   52 px. Dos ficheros, uno por fondo, porque es un PNG y no hereda color. */
+.imf-claim{display:block;width:auto;height:21px;flex:none}
 .imf-claim--neg{display:none}
 .imf--dark .imf-claim{display:none}
 .imf--dark .imf-claim--neg{display:block}
+
+.imf-sep{width:1px;height:18px;background:#D9D7D3;flex:none}
+
+/* la firma: «con» + el wordmark, callados */
+.imf-con{
+  display:flex;align-items:center;gap:8px;flex:none;margin-left:auto;
+  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:#9A9892;
+}
+.imf-logo{display:block;width:auto;height:13px}
 
 .imf-txt{
   font-size:14px;color:#5A5A60;margin:0;
@@ -94,6 +109,7 @@
 }
 /* el logo de Lancôme no tiene versión en negativo: se invierte a blanco
    puro, que es el negativo estándar de la marca */
+.imf--dark .imf-con{color:rgba(255,255,255,.52)}
 .imf--dark .imf-logo{filter:brightness(0) invert(1)}
 .imf--dark .imf-sep{background:rgba(255,255,255,.26)}
 .imf--dark .imf-txt{color:rgba(255,255,255,.72)}
@@ -113,8 +129,8 @@
     flex-wrap:wrap;justify-content:flex-start;
     gap:8px 12px;padding:10px 14px 12px;
   }
-  .imf-logo{height:16px}
-  .imf-claim{height:17px}
+  .imf-logo{height:13px}
+  .imf-claim{height:19px}
   .imf-btn{width:100%;justify-content:center;padding:11px 14px;min-height:42px}
 }
 </style>
@@ -125,11 +141,13 @@
 <p style="margin:0;padding:34px 20px 12px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#9A9892">Opción A · fondo blanco</p>
 <!-- ============ MARQUESINA · versión clara ============ -->
 <aside class="imf" aria-label="Campaña I'm not fine de Lancôme y Fundación Manantial">
-  <img class="imf-logo" src="img/logo-lancome.png" alt="Lancôme">
-  <span class="imf-sep" aria-hidden="true"></span>
   <img class="imf-claim" src="img/logo-imfine-h.png" alt="I'm not fine">
   <img class="imf-claim imf-claim--neg" src="img/logo-imfine-h-negativo.png" alt="I'm not fine">
+  <span class="imf-sep" aria-hidden="true"></span>
   <p class="imf-txt">Decir «no estoy bien» es el inicio de una conversación.</p>
+  <span class="imf-con">
+    con <img class="imf-logo" src="img/logo-lancome.png" alt="Lancôme">
+  </span>
 
   <!-- DESTINO: cambiar por https://www.fundacionmanantial.org/lancome -->
   <a class="imf-btn" href="https://lancome-fundacionmanantial-chi.vercel.app/">
@@ -143,11 +161,13 @@
 <p style="margin:0;padding:34px 20px 12px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#9A9892">Opción B · fondo negro</p>
 <!-- ====== MARQUESINA · versión oscura: misma barra + .imf--dark ====== -->
 <aside class="imf imf--dark" aria-label="Campaña I'm not fine de Lancôme y Fundación Manantial">
-  <img class="imf-logo" src="img/logo-lancome.png" alt="Lancôme">
-  <span class="imf-sep" aria-hidden="true"></span>
   <img class="imf-claim" src="img/logo-imfine-h.png" alt="I'm not fine">
   <img class="imf-claim imf-claim--neg" src="img/logo-imfine-h-negativo.png" alt="I'm not fine">
+  <span class="imf-sep" aria-hidden="true"></span>
   <p class="imf-txt">Decir «no estoy bien» es el inicio de una conversación.</p>
+  <span class="imf-con">
+    con <img class="imf-logo" src="img/logo-lancome.png" alt="Lancôme">
+  </span>
 
   <!-- DESTINO: cambiar por https://www.fundacionmanantial.org/lancome -->
   <a class="imf-btn" href="https://lancome-fundacionmanantial-chi.vercel.app/">
