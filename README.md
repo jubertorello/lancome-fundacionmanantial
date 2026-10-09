@@ -119,17 +119,18 @@ el texto y el logotipo en tinta. Eso es lo que permite que el logotipo vaya
 en negro, que es como existe la marca.
 
 Encima de la imagen llevan **la misma capa que usa imfine.com** sobre su
-vídeo: `linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.5))`, transparente
-arriba y negro al 50 % abajo. Tiene una consecuencia que conviene conocer
-antes de tocarla: **el pie de esas dos secciones queda oscuro**, así que lo
-que cae ahí va en blanco y lo que cae arriba, en negro.
+vídeo: `linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.32))`, transparente
+arriba y oscura abajo.
 
-- En el **hero** eso afecta solo a la firma —filete, claim y los dos
-  logos—, que pasa a negativo. El logotipo, la frase y los botones están
-  por encima de la mitad y siguen en tinta.
-- En el **cierre** el texto está centrado, justo donde el degradado ya
-  oscurece, así que el claro central se pinta **encima** del degradado y no
-  debajo. Al revés la frase se perdía sobre la rosa.
+Ellos la llevan al **0.5**, que es lo que pide un pie con texto **blanco**.
+Aquí el texto va en `#222` en toda la sección, así que el techo lo marca el
+contraste, no el gusto: a 0.5 la firma del hero se queda en **3,4:1**, por
+debajo del mínimo para texto pequeño; a **0.32** da **5,9:1**. Si algún día
+ese texto pasara a blanco, se puede subir al 0.5 original.
+
+En el **cierre** hay un detalle de orden: el texto está centrado, justo
+donde el degradado oscurece, así que el claro central se pinta **encima**
+del degradado y no debajo. Al revés la frase se perdía sobre la rosa.
 
 Queda **una sola sección oscura, el cuestionario**, y ahora que es la única
 funciona a su favor: es el punto de conversión y se separa de todo lo demás.

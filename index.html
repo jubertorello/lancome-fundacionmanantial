@@ -178,11 +178,14 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
     linear-gradient(165deg,rgba(255,255,255,.12) 0%,rgba(232,232,234,.16) 100%);
 }
 /* La capa que usa imfine.com sobre su vídeo: transparente arriba y negro
-   al 50 % abajo. Da profundidad al pie sin tocar la zona del logotipo, que
-   es la que tiene que quedarse clara. */
+   abajo. Ellos la llevan al 50 %, que es lo que pide un pie con texto
+   BLANCO. Aquí el texto es #222 en toda la sección, así que el techo lo
+   marca el contraste: a 0.5 la firma se quedaba en 3,4:1 y a 0.32 da
+   5,9:1. Si algún día ese texto pasara a blanco, se puede subir al 0.5
+   original. */
 .hero::after{
   content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.5));
+  background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.32));
 }
 /* En vertical el vídeo se recorta al centro y el claim cae encima de la
    modelo, que a veces va de negro. Ahí el claro de la izquierda no basta:
@@ -284,11 +287,11 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
      derecha, y con un filete al 18 % la línea se leía en la mitad oscura y
      desaparecía en la clara: parecía torcida sin estarlo. Se sube el
      contraste y la viñeta baja del hero asienta el fondo bajo ella. */
-  /* La firma vive en el pie del hero, que es justo donde el degradado
-     llega al 50 % de negro. Ahí la tinta ya no agarra: filete, texto y
-     logos pasan a blanco. Arriba, donde el degradado es transparente,
-     todo lo demás sigue en negro. */
-  border-top:1px solid rgba(255,255,255,.38);
+  /* La firma vive en el pie, que es donde el degradado más oscurece. Va
+     en #222 como el resto del hero, no en blanco, y eso es lo que fija
+     dónde puede acabar el degradado: a 0.5 el #222 se quedaba en 3,4:1,
+     por debajo del mínimo para texto pequeño. A 0.32 da 5,9:1. */
+  border-top:1px solid rgba(34,34,34,.28);
   /* Los logos arrancan a la altura en que arranca el claim, no centrados
      contra él: con tres líneas en móvil el centrado los dejaba flotando a
      media firma. */
@@ -299,12 +302,12 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
   margin:0;font-size:clamp(13px,1.25vw,17px);font-weight:700;
   /* al crecer el cuerpo, el mismo espaciado de antes lo estiraba demasiado */
   letter-spacing:.1em;line-height:1.5;
-  text-transform:uppercase;color:#fff;
+  text-transform:uppercase;color:#222;
   /* medida para dos líneas, repartidas parejas */
   max-width:60ch;text-wrap:balance;
 }
 .credit-logos{display:flex;align-items:center;gap:clamp(14px,2vw,22px)}
-.credit-x{font-size:15px;color:rgba(255,255,255,.5)}
+.credit-x{font-size:15px;color:rgba(34,34,34,.45)}
 .foot-lock{display:grid;gap:18px;justify-items:start}
 .credit-claim--pie{color:var(--blue)}
 .lock-x{font-size:15px;color:var(--rule)}
@@ -979,14 +982,14 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 /* ---------- 09 · cierre ---------- */
 .close{position:relative;background:var(--kv);color:var(--ink);overflow:hidden;text-align:center}
 /* La misma capa que el hero: la de imfine.com, transparente arriba y
-   negro al 50 % abajo. El claro central va ENCIMA, no debajo: el degradado
+   negro abajo (al 0.32, ver el hero). El claro central va ENCIMA, no debajo: el degradado
    oscurece el pie y aquí el texto está justo ahí, centrado, así que el
    claro tiene que volver a abrirlo después de oscurecerlo. Al revés la
    frase se perdía sobre la rosa. */
 .close::before{content:"";position:absolute;inset:0;z-index:1;
   background:
     radial-gradient(56% 62% at 50% 44%, rgba(232,232,234,.86) 0%, rgba(232,232,234,.50) 54%, transparent 82%),
-    linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.5))}
+    linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.32))}
 .close-in{position:relative;z-index:2;padding-block:var(--sec);display:grid;justify-items:center;gap:26px}
 .close-claim{
   margin:0;color:var(--ink);
@@ -1272,9 +1275,9 @@ footer{background:var(--paper);padding-block:clamp(40px,5vw,72px) 108px;border-t
       <div class="credit">
         <p class="credit-claim">Juntos en la prevención de los problemas de salud mental de las mujeres</p>
         <div class="credit-logos">
-          <a class="brand lan-logo neg" href="https://www.imfine.com/ES-ES" target="_blank" rel="noopener" style="--h:19px"><img src="img/logo-lancome.png" alt="Lancôme"></a>
+          <a class="brand lan-logo" href="https://www.imfine.com/ES-ES" target="_blank" rel="noopener" style="--h:19px"><img src="img/logo-lancome.png" alt="Lancôme"></a>
           <span class="credit-x">+</span>
-          <a class="brand fm-logo neg" href="https://www.fundacionmanantial.org/" style="--h:42px">
+          <a class="brand fm-logo" href="https://www.fundacionmanantial.org/" style="--h:42px">
             <img src="img/logo-fundacion-manantial.png" alt="Fundación Manantial">
           </a>
         </div>
