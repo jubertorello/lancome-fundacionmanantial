@@ -67,7 +67,12 @@ SVG, así que Archivo sobra y se ha retirado también de la descarga.
 `img/logo-imfine.svg` — 3 KB, trazado desde el original de Illustrator.
 
 Las tres palabras son **grupos independientes** (`.imf-im`, `.imf-not`,
-`.imf-fine`), por eso se pueden animar por separado. «NOT» va primero en el
+`.imf-fine`), por eso se pueden animar por separado. Va la variante alineada a
+la izquierda. El kit trae tres, y las tres son la misma pieza movida: I'M,
+NOT y FINE miden exactamente lo mismo en todas y solo cambia su margen
+izquierdo, así que los dos `translate()` del marcado son una traslación
+exacta y no un apaño. Quitándolos se vuelve a la del `.ai`, con I'M
+sangrado. «NOT» va primero en el
 marcado porque en el original queda **detrás**: «I'M» y «FINE» lo pisan, y
 ese solape es el gesto entero de la campaña. El negro va en `currentColor`,
 así que hereda el blanco sobre el hero y la tinta sobre el papel.
